@@ -314,7 +314,16 @@
 <p><a href="https://arxiv.org/abs/1705.06950" target="_blank" rel="noopener"><strong>Deep Residual Learning for Image Recognition and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>  12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
 <p><img src="E:\pan\hexo\source\_posts\1.png" alt="1539947950822"></p>
-<p>R-CNN 全称为Regions with CNN features，也就是说，它将图像中的某些候选区域（regions）放到CNN网络中，然后对得到的特征（features）进行检测的。它的总体流程如下：</p>
+<p>  R-CNN 全称为Regions with CNN features，也就是说，它将图像中的某些候选区域（regions）放到CNN中，然后对得到的特征（features）进行检测。它的总体流程如下：</p>
+<ol>
+<li><p>从输入图像提取约个2000候选区域</p>
+</li>
+<li><p>对于每个区域，都让其通过一个CNN，得到features</p>
+</li>
+<li><p>对于每个feature， 用SVM进行分类</p>
+<p>R-CNN是将Deep Learning引入目标检测的开山之作，虽然此时的它还略显臃肿（进行了太多次的CNN运算）。此外，这篇论文还提出了一个重要的思想，即一个任务的预训练模型（如ImageNet）对于另一个任务的训练有很大的帮助，能够缩短其训练时间，也能让其Loss Function更有效地收敛。</p>
+</li>
+</ol>
 <h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1>
           
         
