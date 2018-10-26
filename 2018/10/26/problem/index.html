@@ -79,13 +79,17 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Good Good Study">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="import keras 的时候 遇到 No module named ‘tensorflow.python’ 解决：重装tensorflow">
+<meta property="og:type" content="article">
+<meta property="og:title" content="遇到的问题">
+<meta property="og:url" content="http://yoursite.com/2018/10/26/problem/index.html">
 <meta property="og:site_name" content="Good Good Study">
+<meta property="og:description" content="import keras 的时候 遇到 No module named ‘tensorflow.python’ 解决：重装tensorflow">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-10-26T02:17:38.263Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Good Good Study">
+<meta name="twitter:title" content="遇到的问题">
+<meta name="twitter:description" content="import keras 的时候 遇到 No module named ‘tensorflow.python’ 解决：重装tensorflow">
 
 
 
@@ -115,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/10/26/problem/"/>
 
 
 
 
 
-  <title>Good Good Study</title>
+  <title>遇到的问题 | Good Good Study</title>
   
 
 
@@ -140,8 +144,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,9 +227,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -256,9 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/26/problem/" itemprop="url">遇到的问题</a></h1>
+          <h1 class="post-title" itemprop="name headline">遇到的问题</h1>
         
 
         <div class="post-meta">
@@ -308,14 +309,10 @@
       
 
       
-        
-          
-            <p><strong>import keras 的时候 遇到 No module named ‘tensorflow.python’</strong></p>
+        <p><strong>import keras 的时候 遇到 No module named ‘tensorflow.python’</strong></p>
 <p>解决：重装tensorflow</p>
 <hr>
 
-          
-        
       
     </div>
     
@@ -332,149 +329,28 @@
       
 
       
-
-      
-
       
       
-        <div class="post-eof"></div>
+
       
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/19/R-CNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/19/R-CNN/" itemprop="url">R-CNN</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-19T15:02:35+08:00">
-                2018-10-19
-              </time>
+              <a href="/2018/10/19/R-CNN/" rel="next" title="R-CNN">
+                <i class="fa fa-chevron-left"></i> R-CNN
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <p>paper： </p>
-<p><a href="https://arxiv.org/abs/1705.06950" target="_blank" rel="noopener"><strong>Deep Residual Learning for Image Recognition and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>  12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
-<p><img src="E:\pan\hexo\source\_posts\1.png" alt="1539947950822"></p>
-<p>  R-CNN 全称为Regions with CNN features，也就是说，它将图像中的某些候选区域（regions）放到CNN中，然后对得到的特征（features）进行检测。它的总体流程如下：</p>
-<ol>
-<li><p>从输入图像提取约个2000候选区域</p>
-</li>
-<li><p>对于每个区域，都让其通过一个CNN，得到features</p>
-</li>
-<li><p>对于每个feature， 用SVM进行分类</p>
-<p>R-CNN是将Deep Learning引入目标检测的开山之作，虽然此时的它还略显臃肿（进行了太多次的CNN运算）。此外，这篇论文还提出了一个重要的思想，即一个任务的预训练模型（如ImageNet）对于另一个任务的训练有很大的帮助，能够缩短其训练时间，也能让其Loss Function更有效地收敛。</p>
-</li>
-</ol>
-<p>也正是由于R-CNN是开山之作，它的很多操作在后面成熟版本中已经弃用，对于这些细节，如果实在是搞不懂，可以跳过。Faster R-CNN才是重中之重。</p>
-<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><p>1.Module Design</p>
-<p>候选区域（Region Proposal）用的是传统的selective selective，从输入图像提取约个2000候选区域，但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。</p>
-<p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -484,10 +360,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -495,6 +372,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -707,6 +588,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
