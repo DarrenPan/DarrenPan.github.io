@@ -239,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/leetcode-551-552/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/leetcode543/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pan Sicheng">
@@ -258,7 +258,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/11/02/leetcode-551-552/" itemprop="url">leetcode551&552：Student Attendance Record</a></h1>
+                <a class="post-title-link" href="/2018/11/02/leetcode543/" itemprop="url">【leetcode】543：Diameter of Binary Tree</a></h1>
         
 
         <div class="post-meta">
@@ -270,7 +270,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T12:10:21+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T13:48:03+08:00">
                 2018-11-02
               </time>
             
@@ -310,23 +310,16 @@
       
         
           
-            <h1 id="551-学生出勤纪录-I"><a href="#551-学生出勤纪录-I" class="headerlink" title="551  学生出勤纪录 I"></a>551  学生出勤纪录 I</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：</p>
-<ol>
-<li><strong>‘A’</strong> : Absent，缺勤</li>
-<li><strong>‘L’</strong> : Late，迟到</li>
-<li><strong>‘P’</strong> : Present，到场</li>
-</ol>
-<p>如果一个学生的出勤纪录中不<strong>超过一个’A’(缺勤)</strong>并且<strong>不超过两个连续的’L’(迟到)</strong>,那么这个学生会被奖赏。</p>
-<p>你需要根据这个学生的出勤纪录判断他是否会被奖赏</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;PPALLP&quot;</span><br><span class="line">输出: True</span><br><span class="line">输入: &quot;PPALLL&quot;</span><br><span class="line">输出: False</span><br></pre></td></tr></table></figure>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool checkRecord(string s) &#123;</span><br><span class="line">        int numA =0, numL = 0;</span><br><span class="line">        for (char c : s)&#123;</span><br><span class="line">            if(c == &apos;A&apos;)&#123;</span><br><span class="line">                if (++numA &gt; 1) return false;</span><br><span class="line">                numL = 0;</span><br><span class="line">            &#125;</span><br><span class="line">            else if(c == &apos;L&apos;)&#123;</span><br><span class="line">                if (++numL &gt; 2) return false;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                numL = 0;                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p>对字符串的遍历： <code>for（char c：s）</code></p>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool checkRecord(string s) &#123;</span><br><span class="line">        return (s.find(&quot;A&quot;) == string::npos || s.find(&quot;A&quot;) == s.rfind(&quot;A&quot;)) &amp;&amp; s.find(&quot;LLL&quot;) == string::npos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="知识点：-1"><a href="#知识点：-1" class="headerlink" title="知识点："></a>知识点：</h3><p>string中的<code>find()</code>函数：若查找成功，返回按查找规则找到的第一个字符或子串的位置；若查找失败，返回<code>string::npos</code>。<br><code>rfind()</code>与<code>find()</code>的差别在于查找顺序不一样，<code>rfind()</code>是从指定位置起向前查找，直到串首。<br>参见 <a href="https://www.cnblogs.com/zpcdbky/p/4471454.html" target="_blank" rel="noopener">https://www.cnblogs.com/zpcdbky/p/4471454.html</a></p>
-<h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class Solution &#123;</span><br><span class="line">public:</span><br><span class="line">    bool checkRecord(string s) &#123;</span><br><span class="line">        return !regex_search(s, regex(&quot;A.*A|LLL&quot;));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>使用正则匹配，找出不合题意的情况，然后取反即可。正则匹配式是<code>A.*A|LLL</code>，<code>.*</code>表示有零个或者多个，那么<code>A.*A</code>就是至少有两A的情况，<code>LLL</code>是三个连续的迟到，<code>|</code>表示两个是或的关系，只要能匹配出任意一种情况，就会返回<code>false</code>。</p>
-<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p><code>regex_search()</code>返回<code>true</code>或<code>false</code>，搜索字符串中存在符合规则的子字符串 。<br>正则表达式中，<code>.*</code>表示零个或多个。</p>
-
+            <h1 id="二叉树的直径"><a href="#二叉树的直径" class="headerlink" title="二叉树的直径"></a>二叉树的直径</h1><p><strong>难度：Easy</strong></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一棵二叉树（ binary tree ），你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点（nodes）路径（path）长度中的最大值。这条路径可能穿过根结点（root）。 </p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>给定二叉树 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">     / \</span><br><span class="line">    2   3</span><br><span class="line">   / \     </span><br><span class="line">  4   5</span><br></pre></td></tr></table></figure>
+<p>返回 <strong>3</strong>, 它的长度是路径 [4,2,1,3] 或者 [5,2,1,3]。</p>
+<p><strong>注意：</strong>两结点之间的路径长度是以它们之间边的数目表示。 </p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">diameterOfBinaryTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res = getHeight(root-&gt;left) + getHeight(root-&gt;right);</span><br><span class="line">        <span class="keyword">return</span> max(res, max(diameterOfBinaryTree(root-&gt;left), diameterOfBinaryTree(root-&gt;right)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(TreeNode* node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!node) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (m.count(node)) <span class="keyword">return</span> m[node];</span><br><span class="line">        <span class="keyword">int</span> h = <span class="number">1</span> + max(getHeight(node-&gt;left), getHeight(node-&gt;right));</span><br><span class="line">        <span class="keyword">return</span> m[node] = h;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;TreeNode*, <span class="keyword">int</span>&gt; m;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>其实就是根结点的左右两个子树的深度之和再加1。那么我们只要对每一个结点求出其左右子树深度之和，再加上1就可以更新结果了。为了减少重复计算，我们用哈希表建立每个结点和其深度之间的映射，这样某个结点的深度之前计算过了，就不用再次计算了。</p>
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3>
           
         
       
@@ -813,7 +806,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
