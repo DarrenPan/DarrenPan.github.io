@@ -88,7 +88,7 @@
 <meta property="og:description" content="paper：  Deep Residual Learning for Image Recognition and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/11/02/R-CNN/1.png">
-<meta property="og:updated_time" content="2018-11-02T01:41:06.961Z">
+<meta property="og:updated_time" content="2018-11-02T01:50:24.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN">
 <meta name="twitter:description" content="paper：  Deep Residual Learning for Image Recognition and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任">
@@ -317,14 +317,14 @@
 <hr>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
 <p><img src="/2018/11/02/R-CNN/1.png" alt="1539947950822"></p>
-<p>R-CNN 全称为Regions with CNN features，也就是说，它将图像中的某些候选区域（regions）放到CNN中，然后对得到的特征（features）进行检测。它的总体流程如下：</p>
+<p>R-CNN 全称为Regions with CNN features，也就是说，它将图像中的某些候选区域（regions）放到CNN中，然后对得到的特征（features）进行检测。从上图可以看出，它的总体流程如下：</p>
 <ol>
 <li>从输入图像提取约个2000候选区域</li>
 <li>对于每个区域，都让其通过一个CNN，得到定长的特征向量</li>
 <li>对于每个feature， 用SVM进行分类</li>
 </ol>
 <p>R-CNN是将Deep Learning引入目标检测的开山之作，虽然此时的它还略显臃肿（进行了太多次的CNN运算）。此外，这篇论文还提出了一个重要的思想，即一个任务的预训练模型（如ImageNet）对于另一个任务的训练有很大的帮助，能够缩短其训练时间，也能让其Loss Function更有效地收敛。</p>
-<p>也正是由于R-CNN是开山之作，它的很多操作在后面成熟版本中已经弃用，对于这些细节，如果实在是搞不懂，可以跳过。Faster R-CNN才是重中之重。</p>
+<p>也正是由于R-CNN是开山之作，它只是将CNN用于特征提取，其他很多操作仍然采用传统方法，这些方法在后续成熟版本中已经弃用，对于这些细节，如果实在是搞不懂，可以跳过。Faster R-CNN才是重中之重。</p>
 <hr>
 <h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。</p>
 <p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
@@ -373,6 +373,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/02/leetcode-551-552/" rel="prev" title="leetcode551&552：Student Attendance Record">
+                leetcode551&552：Student Attendance Record <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -449,7 +453,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -462,7 +466,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

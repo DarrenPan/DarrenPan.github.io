@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="leetcode," />
 
 
 
@@ -79,13 +79,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Good Good Study">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="551  学生出勤纪录 I题目描述给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：  ‘A’ : Absent，缺勤 ‘L’ : Late，迟到 ‘P’ : Present，到场  如果一个学生的出勤纪录中不超过一个’A’(缺勤)并且不超过两个连续的’L’(迟到),那么这个学生会被奖赏。 你需要根据这个学生的出勤纪录判断他是否会被奖赏 示例1234输入: &amp;quot;PPALL">
+<meta name="keywords" content="leetcode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="leetcode551&amp;552：Student Attendance Record">
+<meta property="og:url" content="http://yoursite.com/2018/11/02/leetcode-551-552/index.html">
 <meta property="og:site_name" content="Good Good Study">
+<meta property="og:description" content="551  学生出勤纪录 I题目描述给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：  ‘A’ : Absent，缺勤 ‘L’ : Late，迟到 ‘P’ : Present，到场  如果一个学生的出勤纪录中不超过一个’A’(缺勤)并且不超过两个连续的’L’(迟到),那么这个学生会被奖赏。 你需要根据这个学生的出勤纪录判断他是否会被奖赏 示例1234输入: &amp;quot;PPALL">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-11-02T04:44:22.250Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Good Good Study">
+<meta name="twitter:title" content="leetcode551&amp;552：Student Attendance Record">
+<meta name="twitter:description" content="551  学生出勤纪录 I题目描述给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：  ‘A’ : Absent，缺勤 ‘L’ : Late，迟到 ‘P’ : Present，到场  如果一个学生的出勤纪录中不超过一个’A’(缺勤)并且不超过两个连续的’L’(迟到),那么这个学生会被奖赏。 你需要根据这个学生的出勤纪录判断他是否会被奖赏 示例1234输入: &amp;quot;PPALL">
 
 
 
@@ -115,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/02/leetcode-551-552/"/>
 
 
 
 
 
-  <title>Good Good Study</title>
+  <title>leetcode551&552：Student Attendance Record | Good Good Study</title>
   
 
 
@@ -140,8 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -224,9 +228,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -256,9 +260,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/02/leetcode-551-552/" itemprop="url">leetcode551&552：Student Attendance Record</a></h1>
+          <h1 class="post-title" itemprop="name headline">leetcode551&552：Student Attendance Record</h1>
         
 
         <div class="post-meta">
@@ -308,9 +310,7 @@
       
 
       
-        
-          
-            <h1 id="551-学生出勤纪录-I"><a href="#551-学生出勤纪录-I" class="headerlink" title="551  学生出勤纪录 I"></a>551  学生出勤纪录 I</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：</p>
+        <h1 id="551-学生出勤纪录-I"><a href="#551-学生出勤纪录-I" class="headerlink" title="551  学生出勤纪录 I"></a>551  学生出勤纪录 I</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：</p>
 <ol>
 <li><strong>‘A’</strong> : Absent，缺勤</li>
 <li><strong>‘L’</strong> : Late，迟到</li>
@@ -327,8 +327,6 @@
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>使用正则匹配，找出不合题意的情况，然后取反即可。正则匹配式是<code>A.*A|LLL</code>，<code>.*</code>表示有零个或者多个，那么<code>A.*A</code>就是至少有两A的情况，<code>LLL</code>是三个连续的迟到，<code>|</code>表示两个是或的关系，只要能匹配出任意一种情况，就会返回<code>false</code>。</p>
 <h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p><code>regex_search()</code>返回<code>true</code>或<code>false</code>，搜索字符串中存在符合规则的子字符串 。<br>正则表达式中，<code>.*</code>表示零个或多个。</p>
 
-          
-        
       
     </div>
     
@@ -343,285 +341,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/R-CNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/02/R-CNN/" itemprop="url">R-CNN</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T09:32:29+08:00">
-                2018-11-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
           
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>paper： </p>
-<p><a href="https://arxiv.org/abs/1705.06950" target="_blank" rel="noopener"><strong>Deep Residual Learning for Image Recognition and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
-<hr>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
-<p><img src="/2018/11/02/R-CNN/1.png" alt="1539947950822"></p>
-<p>R-CNN 全称为Regions with CNN features，也就是说，它将图像中的某些候选区域（regions）放到CNN中，然后对得到的特征（features）进行检测。从上图可以看出，它的总体流程如下：</p>
-<ol>
-<li>从输入图像提取约个2000候选区域</li>
-<li>对于每个区域，都让其通过一个CNN，得到定长的特征向量</li>
-<li>对于每个feature， 用SVM进行分类</li>
-</ol>
-<p>R-CNN是将Deep Learning引入目标检测的开山之作，虽然此时的它还略显臃肿（进行了太多次的CNN运算）。此外，这篇论文还提出了一个重要的思想，即一个任务的预训练模型（如ImageNet）对于另一个任务的训练有很大的帮助，能够缩短其训练时间，也能让其Loss Function更有效地收敛。</p>
-<p>也正是由于R-CNN是开山之作，它只是将CNN用于特征提取，其他很多操作仍然采用传统方法，这些方法在后续成熟版本中已经弃用，对于这些细节，如果实在是搞不懂，可以跳过。Faster R-CNN才是重中之重。</p>
-<hr>
-<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。</p>
-<p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/Makefile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/31/Makefile/" itemprop="url">Makefile笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-31T14:52:57+08:00">
-                2018-10-31
-              </time>
+              <a href="/2018/11/02/R-CNN/" rel="next" title="R-CNN">
+                <i class="fa fa-chevron-left"></i> R-CNN
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">target ... : prerequisites ...</span><br><span class="line">    command</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-<p><strong>target</strong></p>
-<p>可以是一个object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对 于标签这种特性，在后续的“伪目标”章节中会有叙述。</p>
-<p><strong>prerequisites</strong></p>
-<p>生成该target所依赖的文件和/或target</p>
-<p><strong>command</strong></p>
-<p>该target要执行的命令（任意的shell命令）</p>
-<p><code>$&lt;</code>表示所有的依赖 目标集 , <code>$@</code>表示目标集</p>
-<p>每条<strong>命令</strong>的 开头必须以 <code>Tab</code> 键开头，除非，命令是紧跟在依赖规则后面的分号后的。 </p>
-<p>在Makefile的命令行前加一个减号 <code>-</code> （在Tab键之后） ，标记为不管命令出不出错都认为是成功的 </p>
-<p>变量的赋值及使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects = program.o foo.o utils.o</span><br><span class="line">program : $(objects)</span><br><span class="line">    cc -o program $(objects)</span><br></pre></td></tr></table></figure>
-<p>条件判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;conditional-directive&gt;</span><br><span class="line">&lt;text-if-true&gt;</span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
-<p>其中 <code>&lt;conditional-directive&gt;</code> 表示条件关键字 ，包括<code>ifeq</code>  、<code>ifneq</code>  、<code>ifdef</code> 、<code>ifndef</code></p>
-<p> 函数调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&lt;function&gt; &lt;arguments&gt;)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -631,132 +380,11 @@
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/26/problem/" itemprop="url">零碎的问题及解决</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-26T10:07:40+08:00">
-                2018-10-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>import keras 的时候 遇到 No module named ‘tensorflow.python’</strong></p>
-<p>解决：重装tensorflow</p>
-<hr>
-
-          
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -764,6 +392,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -784,8 +416,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -836,6 +477,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#551-学生出勤纪录-I"><span class="nav-number">1.</span> <span class="nav-text">551  学生出勤纪录 I</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">1.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法一"><span class="nav-number">1.3.</span> <span class="nav-text">解法一</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点："><span class="nav-number">1.3.1.</span> <span class="nav-text">知识点：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法二"><span class="nav-number">1.4.</span> <span class="nav-text">解法二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点：-1"><span class="nav-number">1.4.1.</span> <span class="nav-text">知识点：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法三"><span class="nav-number">1.5.</span> <span class="nav-text">解法三</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.5.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点"><span class="nav-number">1.5.2.</span> <span class="nav-text">知识点</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -976,6 +633,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
