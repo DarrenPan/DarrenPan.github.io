@@ -83,16 +83,16 @@
 <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Object Detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R-CNN">
-<meta property="og:url" content="http://yoursite.com/2018/10/19/R-CNN/index.html">
+<meta property="og:url" content="http://yoursite.com/2018/11/02/R-CNN/index.html">
 <meta property="og:site_name" content="Good Good Study">
 <meta property="og:description" content="paper：  Deep Residual Learning for Image Recognition and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任">
 <meta property="og:locale" content="default">
-<meta property="og:image" content="e:/pan/hexo/source/_posts/1.png">
-<meta property="og:updated_time" content="2018-10-31T06:14:28.014Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/02/R-CNN/E:/pan/hexo/source/_posts/R-CNN/1.png">
+<meta property="og:updated_time" content="2018-11-02T01:34:34.269Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN">
 <meta name="twitter:description" content="paper：  Deep Residual Learning for Image Recognition and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任">
-<meta name="twitter:image" content="e:/pan/hexo/source/_posts/1.png">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/02/R-CNN/E:/pan/hexo/source/_posts/R-CNN/1.png">
 
 
 
@@ -122,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/19/R-CNN/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/02/R-CNN/"/>
 
 
 
@@ -245,7 +245,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/19/R-CNN/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/R-CNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pan Sicheng">
@@ -274,8 +274,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-19T15:02:35+08:00">
-                2018-10-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T09:32:29+08:00">
+                2018-11-02
               </time>
             
 
@@ -316,15 +316,12 @@
 <p><a href="https://arxiv.org/abs/1705.06950" target="_blank" rel="noopener"><strong>Deep Residual Learning for Image Recognition and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
 <hr>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
-<p><img src="E:\pan\hexo\source\_posts\1.png" alt="1539947950822"></p>
+<p><img src="/2018/11/02/R-CNN/E:/pan\hexo\source\_posts\R-CNN\1.png" alt="1539947950822"></p>
 <p>R-CNN 全称为Regions with CNN features，也就是说，它将图像中的某些候选区域（regions）放到CNN中，然后对得到的特征（features）进行检测。它的总体流程如下：</p>
 <ol>
-<li><p>从输入图像提取约个2000候选区域</p>
-</li>
-<li><p>对于每个区域，都让其通过一个CNN，得到定长的特征向量</p>
-</li>
-<li><p>对于每个feature， 用SVM进行分类</p>
-</li>
+<li>从输入图像提取约个2000候选区域</li>
+<li>对于每个区域，都让其通过一个CNN，得到定长的特征向量</li>
+<li>对于每个feature， 用SVM进行分类</li>
 </ol>
 <p>R-CNN是将Deep Learning引入目标检测的开山之作，虽然此时的它还略显臃肿（进行了太多次的CNN运算）。此外，这篇论文还提出了一个重要的思想，即一个任务的预训练模型（如ImageNet）对于另一个任务的训练有很大的帮助，能够缩短其训练时间，也能让其Loss Function更有效地收敛。</p>
 <p>也正是由于R-CNN是开山之作，它的很多操作在后面成熟版本中已经弃用，对于这些细节，如果实在是搞不懂，可以跳过。Faster R-CNN才是重中之重。</p>
@@ -367,15 +364,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/10/31/Makefile/" rel="next" title="Makefile笔记">
+                <i class="fa fa-chevron-left"></i> Makefile笔记
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/10/26/problem/" rel="prev" title="零碎的问题及解决">
-                零碎的问题及解决 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -452,7 +449,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">3</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
