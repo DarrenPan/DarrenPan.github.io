@@ -592,8 +592,15 @@
 <p>R-CNN是将Deep Learning引入目标检测的开山之作，虽然此时的它还略显臃肿（进行了太多次的CNN运算）。此外，这篇论文还提出了一个重要的思想，即一个任务的预训练模型（如ImageNet）对于另一个任务的训练有很大的帮助，能够缩短其训练时间，也能让其Loss Function更有效地收敛。</p>
 <p>也正是由于R-CNN是开山之作，它只是将CNN用于特征提取，其他很多操作仍然采用传统方法，这些方法在后续成熟版本中已经弃用，对于这些细节，如果实在是搞不懂，可以跳过。Faster R-CNN才是重中之重。</p>
 <hr>
-<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective方法，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。</p>
+<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective方法，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。想了解的可以看这篇文章<a href="https://blog.csdn.net/mao_kun/article/details/50576003" target="_blank" rel="noopener">https://blog.csdn.net/mao_kun/article/details/50576003</a></p>
 <p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
+<p>对于每个候选区域，将其4096维的特征向量做每个类别的SVM分类（若类别数目为N，则有N个SVM分类器，每个SVM做二分类，即属于或不属于该类别），得到相对于每个类别的分数。即2000x4096维的特征矩阵与4096xN维的SVM参数矩阵相乘，得到2000xN维的分数矩阵。</p>
+<p>对于同一类的2000个候选区域的分数，使用非极大值抑制（non-maximun suppresion，NMS）剔除掉一些重复的相近的候选框，保留一些得分最高的候选框，即保证对于每个物体，只有一个得分最高的框将其选中。关于NMS，会另开博文讲解。</p>
+<p>最后，对于N个类别中剩余的候选框，使用N个回归器做回归（称为Bounding-box regression），使得候选框的定位更加准确，得到最终的结果。</p>
+<h2 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2.训练过程"></a>2.训练过程</h2><h3 id="2-1预训练（pre-training）"><a href="#2-1预训练（pre-training）" class="headerlink" title="2.1预训练（pre-training）"></a>2.1预训练（pre-training）</h3><p>在ILSVRC数据集上对AlexNet进行分类训练，得到预训练模型，该模型保存了训练完毕后的AlexNet的参数。</p>
+<h3 id="2-2微调（fine-tuning）"><a href="#2-2微调（fine-tuning）" class="headerlink" title="2.2微调（fine-tuning）"></a>2.2微调（fine-tuning）</h3><p>将分类任务上的AlexNet迁移到检测任务上，需要对训练好的AlexNet进行微调，此时输入为候选区域变形后的227x227大小的图像，输出需要将原来的1000维（1000类）改为N+1维（N个类别+背景）。</p>
+<p>选定候选区域与标准框（ground truth）的IoU大于等0.5的为正样本，小于0.5的为负样本。即使是这样分，负样本仍比正样本多得多。因此，在每一次的SGD迭代中，选择32个正样本和96个负样本（3:1）为一个mini-batch。</p>
+<p>学习率（learning rate）设为0.001，</p>
 
           
         
