@@ -367,6 +367,146 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/leetcode-551-552/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/02/leetcode-551-552/" itemprop="url">【leetcode】551&552：Student Attendance Record</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T12:10:21+08:00">
+                2018-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="551-学生出勤纪录-I"><a href="#551-学生出勤纪录-I" class="headerlink" title="551  学生出勤纪录 I"></a>551  学生出勤纪录 I</h1><p><strong>难度：Easy</strong></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：</p>
+<ol>
+<li><strong>‘A’</strong> : Absent，缺勤</li>
+<li><strong>‘L’</strong> : Late，迟到</li>
+<li><strong>‘P’</strong> : Present，到场</li>
+</ol>
+<p>如果一个学生的出勤纪录中不<strong>超过一个’A’(缺勤)</strong>并且<strong>不超过两个连续的’L’(迟到)</strong>,那么这个学生会被奖赏。</p>
+<p>你需要根据这个学生的出勤纪录判断他是否会被奖赏</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;PPALLP&quot;</span><br><span class="line">输出: True</span><br><span class="line">输入: &quot;PPALLL&quot;</span><br><span class="line">输出: False</span><br></pre></td></tr></table></figure>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> numA =<span class="number">0</span>, numL = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : s)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c == <span class="string">'A'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (++numA &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                numL = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="string">'L'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (++numL &gt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                numL = <span class="number">0</span>;                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p>对字符串的遍历： <code>for（char c：s）</code></p>
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (s.find(<span class="string">"A"</span>) == <span class="built_in">string</span>::npos || s.find(<span class="string">"A"</span>) == s.rfind(<span class="string">"A"</span>)) &amp;&amp; s.find(<span class="string">"LLL"</span>) == <span class="built_in">string</span>::npos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="知识点：-1"><a href="#知识点：-1" class="headerlink" title="知识点："></a>知识点：</h3><p>string中的<code>find()</code>函数：若查找成功，返回按查找规则找到的第一个字符或子串的位置；若查找失败，返回<code>string::npos</code>。<br><code>rfind()</code>与<code>find()</code>的差别在于查找顺序不一样，<code>rfind()</code>是从指定位置起向前查找，直到串首。<br>参见 <a href="https://www.cnblogs.com/zpcdbky/p/4471454.html" target="_blank" rel="noopener">https://www.cnblogs.com/zpcdbky/p/4471454.html</a></p>
+<h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !regex_search(s, regex(<span class="string">"A.*A|LLL"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>使用正则匹配，找出不合题意的情况，然后取反即可。正则匹配式是<code>A.*A|LLL</code>，<code>.*</code>表示有零个或者多个，那么<code>A.*A</code>就是至少有两A的情况，<code>LLL</code>是三个连续的迟到，<code>|</code>表示两个是或的关系，只要能匹配出任意一种情况，就会返回<code>false</code>。</p>
+<h3 id="知识点：-2"><a href="#知识点：-2" class="headerlink" title="知识点："></a>知识点：</h3><p><code>regex_search()</code>返回<code>true</code>或<code>false</code>，搜索字符串中存在符合规则的子字符串 。参考：<a href="https://blog.csdn.net/qq_34802416/article/details/79307102" target="_blank" rel="noopener">https://blog.csdn.net/qq_34802416/article/details/79307102</a></p>
+<p>正则表达式中，<code>.*</code>表示零个或多个。</p>
+<hr>
+<h1 id="552-学生出勤纪录-II"><a href="#552-学生出勤纪录-II" class="headerlink" title="552  学生出勤纪录 II"></a>552  学生出勤纪录 II</h1><p><strong>难度：Hard</strong></p>
+<p>挖坑</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/R-CNN/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -452,7 +592,7 @@
 <p>R-CNN是将Deep Learning引入目标检测的开山之作，虽然此时的它还略显臃肿（进行了太多次的CNN运算）。此外，这篇论文还提出了一个重要的思想，即一个任务的预训练模型（如ImageNet）对于另一个任务的训练有很大的帮助，能够缩短其训练时间，也能让其Loss Function更有效地收敛。</p>
 <p>也正是由于R-CNN是开山之作，它只是将CNN用于特征提取，其他很多操作仍然采用传统方法，这些方法在后续成熟版本中已经弃用，对于这些细节，如果实在是搞不懂，可以跳过。Faster R-CNN才是重中之重。</p>
 <hr>
-<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。</p>
+<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective方法，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。</p>
 <p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
 
           
@@ -793,7 +933,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -806,7 +946,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
