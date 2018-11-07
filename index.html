@@ -859,6 +859,12 @@
             <p><strong>import keras 的时候 遇到 No module named ‘tensorflow.python’</strong></p>
 <p>解决：重装tensorflow</p>
 <hr>
+<p><strong>读CSV文件时，报错UnicodeDecodeError: ‘gbk’ codec can’t decode byte 0xbf in position 2: illegal multibyte sequence</strong></p>
+<p>解决：<code>open(csv_path, &#39;r&#39;, encoding=&#39;UTF-8&#39;)</code></p>
+<p>用utf-8编码时，print出来的csv开头有<code>\ufeff</code>，因此encoding应该为<code>‘UTF-8-sig’</code></p>
+<hr>
+<p><strong>读CSV文件时，报错’utf-8’ codec can’t decode byte 0xb4 in position 0: invalid start byte</strong></p>
+<p>解决：保存时 加 encoding=’UTF-8’或’UTF-8-sig’</p>
 
           
         
