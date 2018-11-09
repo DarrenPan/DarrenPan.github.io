@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="paper：Fast R-CNN -arXiv:1504 ICCV2015  IntroductionR-CNN之后，RGB大神又单枪匹马干出了Fast R-CNN。相较于前者，Fast R-CNN更加Deep Learning化了，一是只对整幅图进行一次特征提取，在提取的特征的基础上再进行region proposal的提取；二是将bounding box的分类和回归联合起来，进行多任务的训练。">
+<meta name="description" content="paper：Fast R-CNN -arXiv:1504 ICCV2015  IntroductionR-CNN之后，RGB大神又单枪匹马干出了Fast R-CNN。相较于前者，Fast R-CNN更加Deep Learning化了，一是只对整幅图进行一次特征提取；二是将bounding box的分类和回归联合起来，进行多任务的训练。  Implementation Faster R-CNN的流程">
 <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Object Detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Fast R-CNN">
 <meta property="og:url" content="http://yoursite.com/2018/11/09/Fast R-CNN/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="paper：Fast R-CNN -arXiv:1504 ICCV2015  IntroductionR-CNN之后，RGB大神又单枪匹马干出了Fast R-CNN。相较于前者，Fast R-CNN更加Deep Learning化了，一是只对整幅图进行一次特征提取，在提取的特征的基础上再进行region proposal的提取；二是将bounding box的分类和回归联合起来，进行多任务的训练。">
+<meta property="og:description" content="paper：Fast R-CNN -arXiv:1504 ICCV2015  IntroductionR-CNN之后，RGB大神又单枪匹马干出了Fast R-CNN。相较于前者，Fast R-CNN更加Deep Learning化了，一是只对整幅图进行一次特征提取；二是将bounding box的分类和回归联合起来，进行多任务的训练。  Implementation Faster R-CNN的流程">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/11/09/Fast%20R-CNN/1.png">
-<meta property="og:updated_time" content="2018-11-09T02:15:05.683Z">
+<meta property="og:updated_time" content="2018-11-09T02:36:48.357Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Fast R-CNN">
-<meta name="twitter:description" content="paper：Fast R-CNN -arXiv:1504 ICCV2015  IntroductionR-CNN之后，RGB大神又单枪匹马干出了Fast R-CNN。相较于前者，Fast R-CNN更加Deep Learning化了，一是只对整幅图进行一次特征提取，在提取的特征的基础上再进行region proposal的提取；二是将bounding box的分类和回归联合起来，进行多任务的训练。">
+<meta name="twitter:description" content="paper：Fast R-CNN -arXiv:1504 ICCV2015  IntroductionR-CNN之后，RGB大神又单枪匹马干出了Fast R-CNN。相较于前者，Fast R-CNN更加Deep Learning化了，一是只对整幅图进行一次特征提取；二是将bounding box的分类和回归联合起来，进行多任务的训练。  Implementation Faster R-CNN的流程">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/09/Fast%20R-CNN/1.png">
 
 
@@ -314,10 +314,18 @@
       
         <p>paper：<br><a href="https://arxiv.org/abs/1504.08083" target="_blank" rel="noopener"><strong>Fast R-CNN</strong> -arXiv:1504 ICCV2015</a></p>
 <hr>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>R-CNN之后，RGB大神又单枪匹马干出了Fast R-CNN。相较于前者，Fast R-CNN更加Deep Learning化了，一是只对整幅图进行一次特征提取，在提取的特征的基础上再进行region proposal的提取；二是将bounding box的分类和回归联合起来，进行多任务的训练。</p>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>R-CNN之后，RGB大神又单枪匹马干出了Fast R-CNN。相较于前者，Fast R-CNN更加Deep Learning化了，一是只对整幅图进行一次特征提取；二是将bounding box的分类和回归联合起来，进行多任务的训练。</p>
 <hr>
 <h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><p><img src="/2018/11/09/Fast R-CNN/1.png" alt="1539947950822"></p>
 <p>Faster R-CNN的流程如下：</p>
+<ol>
+<li>和R-CNN一样，用selective search算法在输入图片上提取约2000个候选框。</li>
+<li>将图片输入CNN网络中，得到特征图（feature map）。</li>
+<li>对于每个候选框，都可以在特征图上找到与其相对应的特征框，然后用ROI池化层（region of interest pooling layer）将每个特征框池化到固定的大小。</li>
+<li>将特征框经过全连接层（FC layers）得到特征向量。</li>
+<li>将特征向量分别通过两个不同的全连接层，其中一个输出softmax的分类得分，另一个输出bounding box的regression。</li>
+<li>利用窗口得分分别对每一类物体进行非极大值抑制剔除重叠建议框，最终得到每个类别中回归修正后的得分最高的窗口。 </li>
+</ol>
 
       
     </div>
