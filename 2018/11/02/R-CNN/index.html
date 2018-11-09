@@ -79,19 +79,19 @@
 
 
 
-<meta name="description" content="paper：  Deep Residual Learning for Image Recognition and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任">
+<meta name="description" content="paper：  Rich feature hierarchies for accurate object detection and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类">
 <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Object Detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R-CNN">
 <meta property="og:url" content="http://yoursite.com/2018/11/02/R-CNN/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="paper：  Deep Residual Learning for Image Recognition and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任">
+<meta property="og:description" content="paper：  Rich feature hierarchies for accurate object detection and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/11/02/R-CNN/1.png">
-<meta property="og:updated_time" content="2018-11-06T07:59:10.455Z">
+<meta property="og:updated_time" content="2018-11-09T01:57:05.370Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN">
-<meta name="twitter:description" content="paper：  Deep Residual Learning for Image Recognition and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任">
+<meta name="twitter:description" content="paper：  Rich feature hierarchies for accurate object detection and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/02/R-CNN/1.png">
 
 
@@ -313,7 +313,7 @@
 
       
         <p>paper： </p>
-<p><a href="https://arxiv.org/abs/1705.06950" target="_blank" rel="noopener"><strong>Deep Residual Learning for Image Recognition and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
+<p><a href="https://arxiv.org/abs/1311.2524" target="_blank" rel="noopener"><strong>Rich feature hierarchies for accurate object detection and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
 <hr>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
 <p><img src="/2018/11/02/R-CNN/1.png" alt="1539947950822"></p>
@@ -329,12 +329,14 @@
 <h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective方法，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。想了解的可以看这篇文章<a href="https://blog.csdn.net/mao_kun/article/details/50576003" target="_blank" rel="noopener">https://blog.csdn.net/mao_kun/article/details/50576003</a></p>
 <p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
 <p>对于每个候选区域，将其4096维的特征向量做每个类别的SVM分类（若类别数目为N，则有N个SVM分类器，每个SVM做二分类，即属于或不属于该类别），得到相对于每个类别的分数。即2000x4096维的特征矩阵与4096xN维的SVM参数矩阵相乘，得到2000xN维的分数矩阵。</p>
-<p>对于同一类的2000个候选区域的分数，使用非极大值抑制（non-maximun suppresion，NMS）剔除掉一些重复的相近的候选框，保留一些得分最高的候选框，即保证对于每个物体，只有一个得分最高的框将其选中。关于NMS，会另开博文讲解。</p>
+<p>对于同一类的2000个候选区域的分数，使用非极大值抑制（non-maximun suppresion，NMS）剔除掉一些重复的相近的候选框，保留一些得分最高的候选框，即保证对于每个物体，只有一个得分最高的框将其选中。关于NMS，详见。</p>
 <p>最后，对于N个类别中剩余的候选框，使用N个回归器做回归（称为Bounding-box regression），使得候选框的定位更加准确，得到最终的结果。</p>
-<h2 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2.训练过程"></a>2.训练过程</h2><h3 id="2-1预训练（pre-training）"><a href="#2-1预训练（pre-training）" class="headerlink" title="2.1预训练（pre-training）"></a>2.1预训练（pre-training）</h3><p>在ILSVRC数据集上对AlexNet进行分类训练，得到预训练模型，该模型保存了训练完毕后的AlexNet的参数。</p>
-<h3 id="2-2微调（fine-tuning）"><a href="#2-2微调（fine-tuning）" class="headerlink" title="2.2微调（fine-tuning）"></a>2.2微调（fine-tuning）</h3><p>将分类任务上的AlexNet迁移到检测任务上，需要对训练好的AlexNet进行微调，此时输入为候选区域变形后的227x227大小的图像，输出需要将原来的1000维（1000类）改为N+1维（N个类别+背景）。</p>
+<h2 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2.训练过程"></a>2.训练过程</h2><h3 id="2-1-预训练（pre-training）"><a href="#2-1-预训练（pre-training）" class="headerlink" title="2.1 预训练（pre-training）"></a>2.1 预训练（pre-training）</h3><p>在ILSVRC数据集上对AlexNet进行分类训练，得到预训练模型，该模型保存了训练完毕后的AlexNet的参数。</p>
+<h3 id="2-2-微调（fine-tuning）"><a href="#2-2-微调（fine-tuning）" class="headerlink" title="2.2 微调（fine-tuning）"></a>2.2 微调（fine-tuning）</h3><p>将分类任务上的AlexNet迁移到检测任务上，需要对训练好的AlexNet进行微调，此时输入为候选区域变形后的227x227大小的图像，输出需要将原来的1000维（1000类）改为N+1维（N个类别+背景）。</p>
 <p>选定候选区域与标准框（ground truth）的IoU大于等0.5的为正样本，小于0.5的为负样本。即使是这样分，负样本仍比正样本多得多。因此，在每一次的SGD迭代中，选择32个正样本和96个负样本（3:1）为一个mini-batch。</p>
-<p>学习率（learning rate）设为0.001，</p>
+<p>学习率（learning rate）设为0.001，是预训练时的1/10，从而保证在学习新东西时不至于忘记之前的记忆 。</p>
+<h3 id="2-3-分类训练"><a href="#2-3-分类训练" class="headerlink" title="2.3 分类训练"></a>2.3 分类训练</h3><p>对于每个类别的SVM分类器，选择ground-truth 框作为正样本， 选择与ground-truth的IOU小于0.3的候选框为负样本。同样的，负样本的数目远多于正样本的数目，需要采用负样本挖掘算法（hard negetive mining）选取一部分负样本进行训练。详见</p>
+<h3 id="2-4-回归训练（bounding-box-regression）"><a href="#2-4-回归训练（bounding-box-regression）" class="headerlink" title="2.4 回归训练（bounding box regression）"></a>2.4 回归训练（bounding box regression）</h3><p>详见<a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
 
       
     </div>
@@ -460,7 +462,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -506,7 +508,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation"><span class="nav-number">2.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-模型设计"><span class="nav-number">2.1.</span> <span class="nav-text">1.模型设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-训练过程"><span class="nav-number">2.2.</span> <span class="nav-text">2.训练过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1预训练（pre-training）"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1预训练（pre-training）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2微调（fine-tuning）"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2微调（fine-tuning）</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation"><span class="nav-number">2.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-模型设计"><span class="nav-number">2.1.</span> <span class="nav-text">1.模型设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-训练过程"><span class="nav-number">2.2.</span> <span class="nav-text">2.训练过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-预训练（pre-training）"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 预训练（pre-training）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-微调（fine-tuning）"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 微调（fine-tuning）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-分类训练"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3 分类训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-回归训练（bounding-box-regression）"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.4 回归训练（bounding box regression）</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
