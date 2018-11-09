@@ -79,17 +79,17 @@
 
 
 
-<meta name="description" content="1234target ... : prerequisites ...    command    ...    ... target 可以是一个object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对 于标签这种特性，在后续的“伪目标”章节中会有叙述。 prerequisites 生成该target所依赖的文件和/或target command 该target要">
+<meta name="description" content="吃饭饭">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Makefile笔记">
-<meta property="og:url" content="http://yoursite.com/2018/10/31/Makefile/index.html">
+<meta property="og:title" content="eat">
+<meta property="og:url" content="http://yoursite.com/2018/11/09/eat/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="1234target ... : prerequisites ...    command    ...    ... target 可以是一个object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对 于标签这种特性，在后续的“伪目标”章节中会有叙述。 prerequisites 生成该target所依赖的文件和/或target command 该target要">
+<meta property="og:description" content="吃饭饭">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-10-31T08:59:34.235Z">
+<meta property="og:updated_time" content="2018-11-09T03:10:51.922Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Makefile笔记">
-<meta name="twitter:description" content="1234target ... : prerequisites ...    command    ...    ... target 可以是一个object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对 于标签这种特性，在后续的“伪目标”章节中会有叙述。 prerequisites 生成该target所依赖的文件和/或target command 该target要">
+<meta name="twitter:title" content="eat">
+<meta name="twitter:description" content="吃饭饭">
 
 
 
@@ -119,13 +119,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/10/31/Makefile/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/11/09/eat/"/>
 
 
 
 
 
-  <title>Makefile笔记 | Good Good Study</title>
+  <title>eat | Good Good Study</title>
   
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/Makefile/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/eat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pan Sicheng">
@@ -259,7 +259,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Makefile笔记</h1>
+          <h1 class="post-title" itemprop="name headline">eat</h1>
         
 
         <div class="post-meta">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-31T14:52:57+08:00">
-                2018-10-31
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-09T11:10:19+08:00">
+                2018-11-09
               </time>
             
 
@@ -309,24 +309,7 @@
       
 
       
-        <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">target ... : prerequisites ...</span><br><span class="line">    command</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-<p><strong>target</strong></p>
-<p>可以是一个object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对 于标签这种特性，在后续的“伪目标”章节中会有叙述。</p>
-<p><strong>prerequisites</strong></p>
-<p>生成该target所依赖的文件和/或target</p>
-<p><strong>command</strong></p>
-<p>该target要执行的命令（任意的shell命令）</p>
-<p><code>$&lt;</code>表示所有的依赖 目标集 , <code>$@</code>表示目标集</p>
-<p>每条<strong>命令</strong>的 开头必须以 <code>Tab</code> 键开头，除非，命令是紧跟在依赖规则后面的分号后的。 </p>
-<p>在Makefile的命令行前加一个减号 <code>-</code> （在Tab键之后） ，标记为不管命令出不出错都认为是成功的 </p>
-<p>变量的赋值及使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects = program.o foo.o utils.o</span><br><span class="line">program : $(objects)</span><br><span class="line">    cc -o program $(objects)</span><br></pre></td></tr></table></figure>
-<p>条件判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;conditional-directive&gt;</span><br><span class="line">&lt;text-if-true&gt;</span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
-<p>其中 <code>&lt;conditional-directive&gt;</code> 表示条件关键字 ，包括<code>ifeq</code>  、<code>ifneq</code>  、<code>ifdef</code> 、<code>ifndef</code></p>
-<p> 函数调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&lt;function&gt; &lt;arguments&gt;)</span><br></pre></td></tr></table></figure>
-
+        <h1 id="吃饭饭"><a href="#吃饭饭" class="headerlink" title="吃饭饭"></a><strong>吃饭饭</strong></h1>
       
     </div>
     
@@ -350,8 +333,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/10/26/problem/" rel="next" title="零碎的问题及解决">
-                <i class="fa fa-chevron-left"></i> 零碎的问题及解决
+              <a href="/2018/11/09/leetcode155/" rel="next" title="【leetcode】155：Min Stack">
+                <i class="fa fa-chevron-left"></i> 【leetcode】155：Min Stack
               </a>
             
           </div>
@@ -359,10 +342,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/11/02/R-CNN/" rel="prev" title="R-CNN">
-                R-CNN <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -414,8 +393,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -466,6 +454,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#吃饭饭"><span class="nav-number">1.</span> <span class="nav-text">吃饭饭</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
