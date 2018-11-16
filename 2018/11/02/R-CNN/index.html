@@ -79,19 +79,21 @@
 
 
 
-<meta name="description" content="paper：  Rich feature hierarchies for accurate object detection and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类">
+<meta name="description" content="paper：  Rich feature hierarchies for accurate object detection and semantic segmentation -arXiv:1311 CVPR2014 参考文章：https://blog.csdn.net/wopawn/article/details/52133338  Introduction12年、13年，Alexnet 和">
 <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Object Detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R-CNN">
 <meta property="og:url" content="http://yoursite.com/2018/11/02/R-CNN/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="paper：  Rich feature hierarchies for accurate object detection and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类">
+<meta property="og:description" content="paper：  Rich feature hierarchies for accurate object detection and semantic segmentation -arXiv:1311 CVPR2014 参考文章：https://blog.csdn.net/wopawn/article/details/52133338  Introduction12年、13年，Alexnet 和">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2018/11/02/R-CNN/1.png">
-<meta property="og:updated_time" content="2018-11-09T02:18:24.181Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/02/R-CNN/2.png">
+<meta property="og:image" content="http://yoursite.com/2018/11/02/R-CNN/3.png">
+<meta property="og:updated_time" content="2018-11-16T03:15:13.117Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="R-CNN">
-<meta name="twitter:description" content="paper：  Rich feature hierarchies for accurate object detection and semantic segmentation -arXiv:1311 CVPR2014  Introduction12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类">
+<meta name="twitter:description" content="paper：  Rich feature hierarchies for accurate object detection and semantic segmentation -arXiv:1311 CVPR2014 参考文章：https://blog.csdn.net/wopawn/article/details/52133338  Introduction12年、13年，Alexnet 和">
 <meta name="twitter:image" content="http://yoursite.com/2018/11/02/R-CNN/1.png">
 
 
@@ -314,6 +316,7 @@
       
         <p>paper： </p>
 <p><a href="https://arxiv.org/abs/1311.2524" target="_blank" rel="noopener"><strong>Rich feature hierarchies for accurate object detection and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
+<p>参考文章：<a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
 <hr>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
 <p><img src="/2018/11/02/R-CNN/1.png" alt="1539947950822"></p>
@@ -329,15 +332,33 @@
 <h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective方法，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。想了解的可以看这篇文章<a href="https://blog.csdn.net/mao_kun/article/details/50576003" target="_blank" rel="noopener">https://blog.csdn.net/mao_kun/article/details/50576003</a></p>
 <p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
 <p>对于每个候选区域，将其4096维的特征向量做每个类别的SVM分类（若类别数目为N，则有N个SVM分类器，每个SVM做二分类，即属于或不属于该类别），得到相对于每个类别的分数。即2000x4096维的特征矩阵与4096xN维的SVM参数矩阵相乘，得到2000xN维的分数矩阵。</p>
-<p>对于同一类的2000个候选区域的分数，使用非极大值抑制（non-maximun suppresion，NMS）剔除掉一些重复的相近的候选框，保留一些得分最高的候选框，即保证对于每个物体，只有一个得分最高的框将其选中。关于NMS，详见。</p>
+<p>对于同一类的2000个候选区域的分数，使用非极大值抑制（non-maximun suppresion，NMS）剔除掉一些重复的相近的候选框，保留一些得分最高的候选框，即保证对于每个物体，只有一个得分最高的框将其选中。关于NMS，详见附录B。</p>
 <p>最后，对于N个类别中剩余的候选框，使用N个回归器做回归（称为Bounding-box regression），使得候选框的定位更加准确，得到最终的结果。</p>
 <h2 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2.训练过程"></a>2.训练过程</h2><h3 id="2-1-预训练（pre-training）"><a href="#2-1-预训练（pre-training）" class="headerlink" title="2.1 预训练（pre-training）"></a>2.1 预训练（pre-training）</h3><p>在ILSVRC数据集上对AlexNet进行分类训练，得到预训练模型，该模型保存了训练完毕后的AlexNet的参数。</p>
 <h3 id="2-2-微调（fine-tuning）"><a href="#2-2-微调（fine-tuning）" class="headerlink" title="2.2 微调（fine-tuning）"></a>2.2 微调（fine-tuning）</h3><p>将分类任务上的AlexNet迁移到检测任务上，需要对训练好的AlexNet进行微调，此时输入为候选区域变形后的227x227大小的图像，输出需要将原来的1000维（1000类）改为N+1维（N个类别+背景）。</p>
-<p>选定候选区域与标准框（ground truth）的IoU大于等0.5的为正样本，小于0.5的为负样本。即使是这样分，负样本仍比正样本多得多。因此，在每一次的SGD迭代中，选择32个正样本和96个负样本（3:1）为一个mini-batch。</p>
+<p>选定候选区域与标准框（ground truth）的IoU（见附录A）大于等0.5的为正样本，小于0.5的为负样本。即使是这样分，负样本仍比正样本多得多。因此，在每一次的SGD迭代中，选择32个正样本和96个负样本（3:1）为一个mini-batch。</p>
 <p>学习率（learning rate）设为0.001，是预训练时的1/10，从而保证在学习新东西时不至于忘记之前的记忆 。</p>
 <h3 id="2-3-分类训练"><a href="#2-3-分类训练" class="headerlink" title="2.3 分类训练"></a>2.3 分类训练</h3><p>对于每个类别的SVM分类器，选择ground-truth 框作为正样本， 选择与ground-truth的IOU小于0.3的候选框为负样本。同样的，负样本的数目远多于正样本的数目，需要采用负样本挖掘算法（hard negetive mining）选取一部分负样本进行训练。详见</p>
-<h3 id="2-4-回归训练（bounding-box-regression）"><a href="#2-4-回归训练（bounding-box-regression）" class="headerlink" title="2.4 回归训练（bounding box regression）"></a>2.4 回归训练（bounding box regression）</h3><p>详见<a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
-
+<h3 id="2-4-回归训练（bounding-box-regression）"><a href="#2-4-回归训练（bounding-box-regression）" class="headerlink" title="2.4 回归训练（bounding box regression）"></a>2.4 回归训练（bounding box regression）</h3><p>以下内容来自<a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
+<hr>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="A-IoU"><a href="#A-IoU" class="headerlink" title="A.IoU"></a>A.IoU</h2><p><img src="/2018/11/02/R-CNN/2.png" alt=""><br>即A与B的交集（intersection）与A与B的并集（union）之比：(A∩B)/(A∪B)</p>
+<h2 id="B-非极大值抑制（Non-maximun-suppresion，NMS）"><a href="#B-非极大值抑制（Non-maximun-suppresion，NMS）" class="headerlink" title="B. 非极大值抑制（Non-maximun suppresion，NMS）"></a>B. 非极大值抑制（Non-maximun suppresion，NMS）</h2><p><img src="/2018/11/02/R-CNN/3.png" alt=""></p>
+<p>在得到每一类的2000个候选区域后，会遇到上图所示情况，同一个目标会被多个建议框包围，这时需要非极大值抑制操作去除得分较低的候选框以减少重叠框。</p>
+<p>其基本操作流程如下： </p>
+<ol>
+<li><p>对于每一类，按scores大小排序</p>
+</li>
+<li><p>找到scores最大的候选框，将其保留，然后分别与其他候选框计算IoU，若IoU大于设定的阈值，则剔除得分较小的那个候选框</p>
+</li>
+<li><p>所有候选框遍历完毕后，选择socres第二大的候选框，将其保留，重复步骤2。</p>
+</li>
+<li><p>重复步骤3，直到所有的候选框都被筛选过。</p>
+</li>
+</ol>
+<p>注：对于得分低于某一阈值的候选框，应该直接剔除， 但是文章没有说明何时剔除。</p>
+<p>Python代码实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">py_cpu_nms</span><span class="params">(dets, thresh)</span>:</span></span><br><span class="line">    <span class="string">"""Pure Python NMS baseline."""</span></span><br><span class="line">    x1 = dets[:, <span class="number">0</span>]</span><br><span class="line">    y1 = dets[:, <span class="number">1</span>]</span><br><span class="line">    x2 = dets[:, <span class="number">2</span>]</span><br><span class="line">    y2 = dets[:, <span class="number">3</span>]</span><br><span class="line">    scores = dets[:, <span class="number">4</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#每一个检测框的面积</span></span><br><span class="line">    areas = (x2 - x1 + <span class="number">1</span>) * (y2 - y1 + <span class="number">1</span>)</span><br><span class="line">    <span class="comment">#按照score置信度降序排序</span></span><br><span class="line">    order = scores.argsort()[::<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    keep = []  <span class="comment">#保留的结果框集合</span></span><br><span class="line">    <span class="keyword">while</span> order.size &gt; <span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)  <span class="comment">#保留该类剩余box中得分最高的一个</span></span><br><span class="line">        xx1 = np.maximum(x1[i], x1[order[<span class="number">1</span>:]])</span><br><span class="line">        yy1 = np.maximum(y1[i], y1[order[<span class="number">1</span>:]])</span><br><span class="line">        xx2 = np.minimum(x2[i], x2[order[<span class="number">1</span>:]])</span><br><span class="line">        yy2 = np.minimum(y2[i], y2[order[<span class="number">1</span>:]])</span><br><span class="line"></span><br><span class="line">        <span class="comment">#计算相交的面积,不重叠时面积为0</span></span><br><span class="line">        w = np.maximum(<span class="number">0.0</span>, xx2 - xx1 + <span class="number">1</span>)</span><br><span class="line">        h = np.maximum(<span class="number">0.0</span>, yy2 - yy1 + <span class="number">1</span>)</span><br><span class="line">        inter = w * h</span><br><span class="line">        <span class="comment">#计算IoU：重叠面积 /（面积1+面积2-重叠面积）</span></span><br><span class="line">        ovr = inter / (areas[i] + areas[order[<span class="number">1</span>:]] - inter)</span><br><span class="line">		<span class="comment">#保留IoU小于阈值的box</span></span><br><span class="line">        inds = np.where(ovr &lt;= thresh)[<span class="number">0</span>]</span><br><span class="line">        order = order[inds + <span class="number">1</span>] <span class="comment">#因为ovr数组的长度比order数组少一个,所以这里要将所有下标后移一位</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2>
       
     </div>
     
@@ -462,7 +483,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -508,7 +529,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation"><span class="nav-number">2.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-模型设计"><span class="nav-number">2.1.</span> <span class="nav-text">1.模型设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-训练过程"><span class="nav-number">2.2.</span> <span class="nav-text">2.训练过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-预训练（pre-training）"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 预训练（pre-training）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-微调（fine-tuning）"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 微调（fine-tuning）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-分类训练"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3 分类训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-回归训练（bounding-box-regression）"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.4 回归训练（bounding box regression）</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Introduction"><span class="nav-number">1.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Implementation"><span class="nav-number">2.</span> <span class="nav-text">Implementation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-模型设计"><span class="nav-number">2.1.</span> <span class="nav-text">1.模型设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-训练过程"><span class="nav-number">2.2.</span> <span class="nav-text">2.训练过程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-预训练（pre-training）"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 预训练（pre-training）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-微调（fine-tuning）"><span class="nav-number">2.2.2.</span> <span class="nav-text">2.2 微调（fine-tuning）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-分类训练"><span class="nav-number">2.2.3.</span> <span class="nav-text">2.3 分类训练</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-4-回归训练（bounding-box-regression）"><span class="nav-number">2.2.4.</span> <span class="nav-text">2.4 回归训练（bounding box regression）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录"><span class="nav-number">3.</span> <span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#A-IoU"><span class="nav-number">3.1.</span> <span class="nav-text">A.IoU</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B-非极大值抑制（Non-maximun-suppresion，NMS）"><span class="nav-number">3.2.</span> <span class="nav-text">B. 非极大值抑制（Non-maximun suppresion，NMS）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#C"><span class="nav-number">3.3.</span> <span class="nav-text">C</span></a></li></ol></li></ol></div>
             
 
           </div>

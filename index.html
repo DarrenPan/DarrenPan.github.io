@@ -239,6 +239,268 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/yolov3-pytorch代码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/yolov3-pytorch代码分析/" itemprop="url">yolov3-pytorch代码分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T10:18:03+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>GitHub：<a href="https://github.com/ayooshkathuria/pytorch-yolo-v3" target="_blank" rel="noopener">https://github.com/ayooshkathuria/pytorch-yolo-v3</a></p>
+<p>Tutorial： <a href="https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/" target="_blank" rel="noopener">Implement YOLO v3 from scratch</a> </p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/leetcode412/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/leetcode412/" itemprop="url">【leetcode】412：Fizz Buzz</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T09:47:03+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Fizz-Buzz"><a href="#Fizz-Buzz" class="headerlink" title="Fizz Buzz"></a>Fizz Buzz</h1><p><strong>难度：Easy</strong></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>写一个程序，输出从 1 到 n 数字的字符串表示。</p>
+<ol>
+<li><p>如果 n 是3的倍数，输出“Fizz”；</p>
+</li>
+<li><p>如果 n 是5的倍数，输出“Buzz”；</p>
+</li>
+<li><p>如果 n 同时是3和5的倍数，输出 “FizzBuzz”。</p>
+</li>
+</ol>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">n = 15,</span><br><span class="line"></span><br><span class="line">返回:</span><br><span class="line">[</span><br><span class="line">    &quot;1&quot;,</span><br><span class="line">    &quot;2&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;4&quot;,</span><br><span class="line">    &quot;Buzz&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;7&quot;,</span><br><span class="line">    &quot;8&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;Buzz&quot;,</span><br><span class="line">    &quot;11&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;13&quot;,</span><br><span class="line">    &quot;14&quot;,</span><br><span class="line">    &quot;FizzBuzz&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="解"><a href="#解" class="headerlink" title="解"></a>解</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; fizzBuzz(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">15</span> == <span class="number">0</span>) res.push_back(<span class="string">"FizzBuzz"</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">3</span> == <span class="number">0</span>) res.push_back(<span class="string">"Fizz"</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">5</span> == <span class="number">0</span>) res.push_back(<span class="string">"Buzz"</span>);</span><br><span class="line">            <span class="keyword">else</span> res.push_back(to_string(i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><ol>
+<li>向量（Vector）是一个封装了动态大小数组的顺序容器（Sequence Container）。跟任意其它类型容器一样，它能够存放各种类型的对象。可以简单的认为，向量是一个能够存放任意类型的动态数组。 </li>
+</ol>
+<p>标准库vector类型使用须要的头文件：<code>#include &lt;vector&gt;</code>。</p>
+<p>Vector的定义和初始化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt; typeName &gt; v1;       <span class="comment">//默认v1为空，故以下的赋值是错误的v1[0]=5;</span></span><br><span class="line"><span class="built_in">vector</span>&lt;typeName&gt;v2(v1); 或v2=v1;或<span class="built_in">vector</span>&lt;typeName&gt; v2(v1.begin(), v1.end());<span class="comment">//v2是v1的一个副本，若v1.size（）  &gt;v2.size()则赋值后v2.size()被扩充为v1.size()。</span></span><br><span class="line"><span class="built_in">vector</span>&lt; typeName &gt; v3(n,i);<span class="comment">//v3包括n个值为i的typeName类型元素</span></span><br><span class="line"><span class="built_in">vector</span>&lt; typeName &gt; v4(n); <span class="comment">//v4含有n个值为0的元素</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>&#125;; <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v5(a,a+<span class="number">5</span>);<span class="comment">//v5的size为5，v5被初始化为a的5个值。后一个指针要指向将被拷贝的末元素的下一位置。</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v6(v5);<span class="comment">//v6是v5的拷贝</span></span><br><span class="line"><span class="built_in">vector</span>&lt; 类型 &gt; 标识符（最大容量，初始全部值）</span><br></pre></td></tr></table></figure>
+<p>Vector的基本函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>push_back 在数组的最后添加一个数据</span><br><span class="line"><span class="number">2.</span>pop_back 去掉数组的最后一个数据</span><br><span class="line"><span class="number">3.</span>at 得到编号位置的数据</span><br><span class="line"><span class="number">4.b</span>egin 得到数组头的指针</span><br><span class="line"><span class="number">5.</span>end 得到数组的最后一个单元+<span class="number">1</span>的指针</span><br><span class="line"><span class="number">6</span>．front 得到数组头的引用</span><br><span class="line"><span class="number">7.b</span>ack 得到数组的最后一个单元的引用</span><br><span class="line"><span class="number">8.</span>max_size 得到<span class="built_in">vector</span>最大可以是多大</span><br><span class="line"><span class="number">9.</span>capacity 当前<span class="built_in">vector</span>分配的大小</span><br><span class="line"><span class="number">10.</span>size 当前使用数据的大小</span><br><span class="line"><span class="number">11.</span>resize 改变当前使用数据的大小，如果它比当前使用的大，者填充默认值</span><br><span class="line"><span class="number">12.</span>reserve 改变当前vecotr所分配空间的大小</span><br><span class="line"><span class="number">13.</span>erase 删除指针指向的数据项</span><br><span class="line"><span class="number">14.</span>clear 清空当前的<span class="built_in">vector</span></span><br><span class="line"><span class="number">15.</span>rbegin 将<span class="built_in">vector</span>反转后的开始指针返回(其实就是原来的end<span class="number">-1</span>)</span><br><span class="line"><span class="number">16.</span>rend 将<span class="built_in">vector</span>反转构的结束指针返回(其实就是原来的begin<span class="number">-1</span>)</span><br><span class="line"><span class="number">17.</span>empty 判断<span class="built_in">vector</span>是否为空</span><br><span class="line"><span class="number">18.</span>swap 与另一个<span class="built_in">vector</span>交换数据</span><br></pre></td></tr></table></figure>
+<p>2.to_string</p>
+<p><code>#include &lt;string&gt;</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">int</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">unsigned</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">float</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">double</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">long</span> <span class="keyword">double</span> val)</span></span>;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/eat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -613,6 +875,15 @@
 <li>将特征向量分别通过两个不同的全连接层，其中一个输出softmax的分类得分，另一个输出bounding box的regression。</li>
 <li>利用窗口得分分别对每一类物体进行非极大值抑制剔除重叠建议框，最终得到每个类别中回归修正后的得分最高的窗口。 </li>
 </ol>
+<h2 id="1-RoI-pooling-layer"><a href="#1-RoI-pooling-layer" class="headerlink" title="1.RoI pooling layer"></a>1.RoI pooling layer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">像AlexNet CNN等网络在提取特征过程中对图像的大小并无要求，只是在提取完特征进行全连接操作的时候才需要固定特征尺寸，利用这一点，Fast R-CNN可输入任意size图片，并在全连接操作前加入RoI池化层，将建议框对应特征图中的特征框池化到H×W 的size，以便满足后续操作对size的要求</span><br></pre></td></tr></table></figure>
+<p>RoI池化层使用max pooling 将特征框固定为HxW大小。若特征框大小为h×w，则设定每个子窗口大小为h/H×w/W，然后对每个子窗口采用max pooling下采样操作，每个子窗口只取一个最大值，则特征框最终池化为H×W的大小。 </p>
+<h2 id="2-训练"><a href="#2-训练" class="headerlink" title="2.训练"></a>2.训练</h2><h3 id="2-1预训练"><a href="#2-1预训练" class="headerlink" title="2.1预训练"></a>2.1预训练</h3><p>采用了AlexNet、VGG_CNN_M_1024 、VGG-16三种网络在ImageNet上进行预训练。之后，对网络进行了三处修改：</p>
+<ol>
+<li>最后一层max pooling 改为 RoI pooling</li>
+<li>最后的fully connected layer 和softmax替换为两个子网络，其一是全连接层加K+1个分类的softmax，其二是全连接层加bounding box回归器</li>
+<li>改为双输入，即图像和其对应的region proposal</li>
+</ol>
+<h3 id="2-2-检测任务上的微调"><a href="#2-2-检测任务上的微调" class="headerlink" title="2.2 检测任务上的微调"></a>2.2 检测任务上的微调</h3><h4 id="多任务损失"><a href="#多任务损失" class="headerlink" title="多任务损失"></a>多任务损失</h4><p>Fast R-CNN有两个输出，第一个是K+1个类别的离散概率分布p=( p_{0},  …, p_{K})，第二个是bounding-box regression的offset</p>
 
           
         
@@ -1002,6 +1273,7 @@
           
             <p>paper： </p>
 <p><a href="https://arxiv.org/abs/1311.2524" target="_blank" rel="noopener"><strong>Rich feature hierarchies for accurate object detection and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
+<p>参考文章：<a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
 <hr>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
 <p><img src="/2018/11/02/R-CNN/1.png" alt="1539947950822"></p>
@@ -1017,15 +1289,33 @@
 <h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective方法，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。想了解的可以看这篇文章<a href="https://blog.csdn.net/mao_kun/article/details/50576003" target="_blank" rel="noopener">https://blog.csdn.net/mao_kun/article/details/50576003</a></p>
 <p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
 <p>对于每个候选区域，将其4096维的特征向量做每个类别的SVM分类（若类别数目为N，则有N个SVM分类器，每个SVM做二分类，即属于或不属于该类别），得到相对于每个类别的分数。即2000x4096维的特征矩阵与4096xN维的SVM参数矩阵相乘，得到2000xN维的分数矩阵。</p>
-<p>对于同一类的2000个候选区域的分数，使用非极大值抑制（non-maximun suppresion，NMS）剔除掉一些重复的相近的候选框，保留一些得分最高的候选框，即保证对于每个物体，只有一个得分最高的框将其选中。关于NMS，详见。</p>
+<p>对于同一类的2000个候选区域的分数，使用非极大值抑制（non-maximun suppresion，NMS）剔除掉一些重复的相近的候选框，保留一些得分最高的候选框，即保证对于每个物体，只有一个得分最高的框将其选中。关于NMS，详见附录B。</p>
 <p>最后，对于N个类别中剩余的候选框，使用N个回归器做回归（称为Bounding-box regression），使得候选框的定位更加准确，得到最终的结果。</p>
 <h2 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2.训练过程"></a>2.训练过程</h2><h3 id="2-1-预训练（pre-training）"><a href="#2-1-预训练（pre-training）" class="headerlink" title="2.1 预训练（pre-training）"></a>2.1 预训练（pre-training）</h3><p>在ILSVRC数据集上对AlexNet进行分类训练，得到预训练模型，该模型保存了训练完毕后的AlexNet的参数。</p>
 <h3 id="2-2-微调（fine-tuning）"><a href="#2-2-微调（fine-tuning）" class="headerlink" title="2.2 微调（fine-tuning）"></a>2.2 微调（fine-tuning）</h3><p>将分类任务上的AlexNet迁移到检测任务上，需要对训练好的AlexNet进行微调，此时输入为候选区域变形后的227x227大小的图像，输出需要将原来的1000维（1000类）改为N+1维（N个类别+背景）。</p>
-<p>选定候选区域与标准框（ground truth）的IoU大于等0.5的为正样本，小于0.5的为负样本。即使是这样分，负样本仍比正样本多得多。因此，在每一次的SGD迭代中，选择32个正样本和96个负样本（3:1）为一个mini-batch。</p>
+<p>选定候选区域与标准框（ground truth）的IoU（见附录A）大于等0.5的为正样本，小于0.5的为负样本。即使是这样分，负样本仍比正样本多得多。因此，在每一次的SGD迭代中，选择32个正样本和96个负样本（3:1）为一个mini-batch。</p>
 <p>学习率（learning rate）设为0.001，是预训练时的1/10，从而保证在学习新东西时不至于忘记之前的记忆 。</p>
 <h3 id="2-3-分类训练"><a href="#2-3-分类训练" class="headerlink" title="2.3 分类训练"></a>2.3 分类训练</h3><p>对于每个类别的SVM分类器，选择ground-truth 框作为正样本， 选择与ground-truth的IOU小于0.3的候选框为负样本。同样的，负样本的数目远多于正样本的数目，需要采用负样本挖掘算法（hard negetive mining）选取一部分负样本进行训练。详见</p>
-<h3 id="2-4-回归训练（bounding-box-regression）"><a href="#2-4-回归训练（bounding-box-regression）" class="headerlink" title="2.4 回归训练（bounding box regression）"></a>2.4 回归训练（bounding box regression）</h3><p>详见<a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
-
+<h3 id="2-4-回归训练（bounding-box-regression）"><a href="#2-4-回归训练（bounding-box-regression）" class="headerlink" title="2.4 回归训练（bounding box regression）"></a>2.4 回归训练（bounding box regression）</h3><p>以下内容来自<a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
+<hr>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="A-IoU"><a href="#A-IoU" class="headerlink" title="A.IoU"></a>A.IoU</h2><p><img src="/2018/11/02/R-CNN/2.png" alt=""><br>即A与B的交集（intersection）与A与B的并集（union）之比：(A∩B)/(A∪B)</p>
+<h2 id="B-非极大值抑制（Non-maximun-suppresion，NMS）"><a href="#B-非极大值抑制（Non-maximun-suppresion，NMS）" class="headerlink" title="B. 非极大值抑制（Non-maximun suppresion，NMS）"></a>B. 非极大值抑制（Non-maximun suppresion，NMS）</h2><p><img src="/2018/11/02/R-CNN/3.png" alt=""></p>
+<p>在得到每一类的2000个候选区域后，会遇到上图所示情况，同一个目标会被多个建议框包围，这时需要非极大值抑制操作去除得分较低的候选框以减少重叠框。</p>
+<p>其基本操作流程如下： </p>
+<ol>
+<li><p>对于每一类，按scores大小排序</p>
+</li>
+<li><p>找到scores最大的候选框，将其保留，然后分别与其他候选框计算IoU，若IoU大于设定的阈值，则剔除得分较小的那个候选框</p>
+</li>
+<li><p>所有候选框遍历完毕后，选择socres第二大的候选框，将其保留，重复步骤2。</p>
+</li>
+<li><p>重复步骤3，直到所有的候选框都被筛选过。</p>
+</li>
+</ol>
+<p>注：对于得分低于某一阈值的候选框，应该直接剔除， 但是文章没有说明何时剔除。</p>
+<p>Python代码实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">py_cpu_nms</span><span class="params">(dets, thresh)</span>:</span></span><br><span class="line">    <span class="string">"""Pure Python NMS baseline."""</span></span><br><span class="line">    x1 = dets[:, <span class="number">0</span>]</span><br><span class="line">    y1 = dets[:, <span class="number">1</span>]</span><br><span class="line">    x2 = dets[:, <span class="number">2</span>]</span><br><span class="line">    y2 = dets[:, <span class="number">3</span>]</span><br><span class="line">    scores = dets[:, <span class="number">4</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#每一个检测框的面积</span></span><br><span class="line">    areas = (x2 - x1 + <span class="number">1</span>) * (y2 - y1 + <span class="number">1</span>)</span><br><span class="line">    <span class="comment">#按照score置信度降序排序</span></span><br><span class="line">    order = scores.argsort()[::<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    keep = []  <span class="comment">#保留的结果框集合</span></span><br><span class="line">    <span class="keyword">while</span> order.size &gt; <span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)  <span class="comment">#保留该类剩余box中得分最高的一个</span></span><br><span class="line">        xx1 = np.maximum(x1[i], x1[order[<span class="number">1</span>:]])</span><br><span class="line">        yy1 = np.maximum(y1[i], y1[order[<span class="number">1</span>:]])</span><br><span class="line">        xx2 = np.minimum(x2[i], x2[order[<span class="number">1</span>:]])</span><br><span class="line">        yy2 = np.minimum(y2[i], y2[order[<span class="number">1</span>:]])</span><br><span class="line"></span><br><span class="line">        <span class="comment">#计算相交的面积,不重叠时面积为0</span></span><br><span class="line">        w = np.maximum(<span class="number">0.0</span>, xx2 - xx1 + <span class="number">1</span>)</span><br><span class="line">        h = np.maximum(<span class="number">0.0</span>, yy2 - yy1 + <span class="number">1</span>)</span><br><span class="line">        inter = w * h</span><br><span class="line">        <span class="comment">#计算IoU：重叠面积 /（面积1+面积2-重叠面积）</span></span><br><span class="line">        ovr = inter / (areas[i] + areas[order[<span class="number">1</span>:]] - inter)</span><br><span class="line">		<span class="comment">#保留IoU小于阈值的box</span></span><br><span class="line">        inds = np.where(ovr &lt;= thresh)[<span class="number">0</span>]</span><br><span class="line">        order = order[inds + <span class="number">1</span>] <span class="comment">#因为ovr数组的长度比order数组少一个,所以这里要将所有下标后移一位</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2>
           
         
       
@@ -1370,7 +1660,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
