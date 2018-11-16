@@ -239,6 +239,134 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/something_about_python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/something_about_python/" itemprop="url">Something about Python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T15:54:44+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>[TOC]</p>
+<hr>
+<h3 id="lstrip-和rstrip"><a href="#lstrip-和rstrip" class="headerlink" title="lstrip()和rstrip()"></a>lstrip()和rstrip()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str.lstrip([chars]) <span class="comment"># 删除字符串左边的空格或指定字符</span></span><br><span class="line">str.rstrip([chars]) <span class="comment"># 删除字符串末尾的空格或指定字符</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字典中找最值"><a href="#字典中找最值" class="headerlink" title="字典中找最值"></a>字典中找最值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dogdistance = &#123;<span class="string">'dog-dog'</span>: <span class="number">33</span>, <span class="string">'dog-cat'</span>: <span class="number">36</span>, <span class="string">'dog-car'</span>: <span class="number">41</span>, <span class="string">'dog-bird'</span>: <span class="number">42</span>&#125;</span><br><span class="line">min(dogdistance, key=dogdistance.get) <span class="comment"># 返回最小值的键值：’dog-dog‘</span></span><br><span class="line">max(dogdistance, key=dogdistance.get) <span class="comment"># 返回最大值的键值：’dog-bird‘</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="列表中找最值"><a href="#列表中找最值" class="headerlink" title="列表中找最值"></a>列表中找最值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">-10</span>,<span class="number">-5</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">-20</span>,<span class="number">25</span>]</span><br><span class="line"><span class="keyword">print</span> c.index(min(c))  <span class="comment"># 返回最小值的索引</span></span><br><span class="line"><span class="keyword">print</span> c.index(max(c)) <span class="comment"># 返回最大值的索引</span></span><br><span class="line">​`</span><br></pre></td></tr></table></figure>
+<p><code>`</code></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/yolov3-pytorch代码分析/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -312,6 +440,26 @@
           
             <p>GitHub：<a href="https://github.com/ayooshkathuria/pytorch-yolo-v3" target="_blank" rel="noopener">https://github.com/ayooshkathuria/pytorch-yolo-v3</a></p>
 <p>Tutorial： <a href="https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/" target="_blank" rel="noopener">Implement YOLO v3 from scratch</a> </p>
+<hr>
+<p>[TOC]</p>
+<h1 id="1-network-architecture"><a href="#1-network-architecture" class="headerlink" title="1. network architecture"></a>1. network architecture</h1><h2 id="Configuration-File"><a href="#Configuration-File" class="headerlink" title="Configuration File"></a>Configuration File</h2><p>The configuration  file <a href="https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg" target="_blank" rel="noopener">here</a> describes the layout of the network, block by block. You can also see the full architecture Darknet-53 in the folloing diagram.</p>
+<p><img src="/2018/11/16/yolov3-pytorch代码分析/1.png" alt=""></p>
+<p>There are 5 types of layers that are used in YOLO:</p>
+<p><strong><em>Convolutional</em></strong></p>
+<p><strong><em>Shortcut（Residual）</em></strong>: 参数<code>from:-3</code>表示shortcut的output等于倒数第三层的output与前一层output相加</p>
+<p><strong><em>Upsample</em></strong>: YOLO3采用了类似FPN的结构，在三个尺度上进行预测，故要做两次unsample</p>
+<p><strong><em>Route</em></strong>：<br>When layers attribute has only one value, it outputs the feature maps of the layer indexed by the value. In our example, it is -4, so the layer will output feature map from the 4th layer backwards from the Route layer.</p>
+<p>When layers has two values, it returns the concatenated feature maps of the layers indexed by it’s values. In our example it is -1, 61, and the layer will output feature maps from the previous layer (-1) and the 61st layer, concatenated along the depth dimension.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[route]</span><br><span class="line">layers = -4</span><br><span class="line"></span><br><span class="line">[route]</span><br><span class="line">layers = -1, 61</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>YOLO</em></strong>：<br>The anchors describes 9 anchors, but only the anchors which are indexed by attributes of the mask tag are used.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[yolo]</span><br><span class="line">mask = 0,1,2</span><br><span class="line">anchors = 10,13,  16,30,  33,23,  30,61,  62,45,  59,119,  116,90,  156,198,  373,326</span><br><span class="line">classes=80</span><br><span class="line">num=9</span><br><span class="line">jitter=.3</span><br><span class="line">ignore_thresh = .5</span><br><span class="line">truth_thresh = 1</span><br><span class="line">random=1</span><br></pre></td></tr></table></figure></p>
+<h2 id="Parsing-the-configuration-file"><a href="#Parsing-the-configuration-file" class="headerlink" title="Parsing the configuration file"></a>Parsing the configuration file</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_cfg</span><span class="params">(cfgfile)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Takes a configuration file</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns a list of blocks. Each blocks describes a block in the neural</span></span><br><span class="line"><span class="string">    network to be built. Block is represented as a dictionary in the list</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    """</span></span><br></pre></td></tr></table></figure>
+<h2 id="Creating-the-building-blocks"><a href="#Creating-the-building-blocks" class="headerlink" title="Creating the building blocks"></a>Creating the building blocks</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_modules</span><span class="params">(blocks)</span>:</span></span><br><span class="line">    net_info = blocks[<span class="number">0</span>]     <span class="comment">#Captures the information about the input and pre-processing    </span></span><br><span class="line">    module_list = nn.ModuleList()</span><br><span class="line">    prev_filters = <span class="number">3</span></span><br><span class="line">    output_filters = []</span><br></pre></td></tr></table></figure>
+<p>Our function will return a <code>nn.ModuleList</code> .</p>
+<p><code>prev_filters</code> is used to keep track of number of filters in the layer on which the convolutional layer is being applied. </p>
+<p><code>output_filters</code> is used to store the number of output filters of each block, for route layer need.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for x in blocks:</span><br><span class="line">    module = nn.Sequential()</span><br></pre></td></tr></table></figure>
+<p><code>nn.Sequential</code> class is used to sequentially execute a number of nn.Module objects. We use it’s <code>add_module</code> function to string together all layers.</p>
+<p><strong>for conv layer and unsample layer</strong>:(PyTorch has provided pre-built layers)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Add the convolutional layer</span></span><br><span class="line">conv = nn.Conv2d(prev_filters, filters, kernel_size, stride, pad, bias = bias)</span><br><span class="line">module.add_module(<span class="string">"conv_&#123;0&#125;"</span>.format(index), conv)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Add the Batch Norm Layer</span></span><br><span class="line">bn = nn.BatchNorm2d(filters)</span><br><span class="line">module.add_module(<span class="string">"batch_norm_&#123;0&#125;"</span>.format(index), bn)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Check the activation. </span></span><br><span class="line"><span class="comment">#It is either Linear or a Leaky ReLU for YOLO</span></span><br><span class="line">activn = nn.LeakyReLU(<span class="number">0.1</span>, inplace = <span class="keyword">True</span>)</span><br><span class="line">module.add_module(<span class="string">"leaky_&#123;0&#125;"</span>.format(index), activn)</span><br><span class="line"></span><br><span class="line"><span class="comment">#If it's an upsampling layer</span></span><br><span class="line"><span class="comment">#We use Bilinear2dUpsampling</span></span><br><span class="line">upsample = nn.Upsample(scale_factor = <span class="number">2</span>, mode = <span class="string">"bilinear"</span>)</span><br><span class="line">module.add_module(<span class="string">"upsample_&#123;&#125;"</span>.format(index), upsample)</span><br></pre></td></tr></table></figure>
 
           
         
@@ -1273,7 +1421,9 @@
           
             <p>paper： </p>
 <p><a href="https://arxiv.org/abs/1311.2524" target="_blank" rel="noopener"><strong>Rich feature hierarchies for accurate object detection and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
-<p>参考文章：<a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
+<p>参考文章：</p>
+<p><a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
+<p><a href="http://www.cnblogs.com/makefile/p/nms.html" target="_blank" rel="noopener">http://www.cnblogs.com/makefile/p/nms.html</a></p>
 <hr>
 <h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
 <p><img src="/2018/11/02/R-CNN/1.png" alt="1539947950822"></p>
@@ -1295,8 +1445,8 @@
 <h3 id="2-2-微调（fine-tuning）"><a href="#2-2-微调（fine-tuning）" class="headerlink" title="2.2 微调（fine-tuning）"></a>2.2 微调（fine-tuning）</h3><p>将分类任务上的AlexNet迁移到检测任务上，需要对训练好的AlexNet进行微调，此时输入为候选区域变形后的227x227大小的图像，输出需要将原来的1000维（1000类）改为N+1维（N个类别+背景）。</p>
 <p>选定候选区域与标准框（ground truth）的IoU（见附录A）大于等0.5的为正样本，小于0.5的为负样本。即使是这样分，负样本仍比正样本多得多。因此，在每一次的SGD迭代中，选择32个正样本和96个负样本（3:1）为一个mini-batch。</p>
 <p>学习率（learning rate）设为0.001，是预训练时的1/10，从而保证在学习新东西时不至于忘记之前的记忆 。</p>
-<h3 id="2-3-分类训练"><a href="#2-3-分类训练" class="headerlink" title="2.3 分类训练"></a>2.3 分类训练</h3><p>对于每个类别的SVM分类器，选择ground-truth 框作为正样本， 选择与ground-truth的IOU小于0.3的候选框为负样本。同样的，负样本的数目远多于正样本的数目，需要采用负样本挖掘算法（hard negetive mining）选取一部分负样本进行训练。详见</p>
-<h3 id="2-4-回归训练（bounding-box-regression）"><a href="#2-4-回归训练（bounding-box-regression）" class="headerlink" title="2.4 回归训练（bounding box regression）"></a>2.4 回归训练（bounding box regression）</h3><p>以下内容来自<a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
+<h3 id="2-3-分类训练"><a href="#2-3-分类训练" class="headerlink" title="2.3 分类训练"></a>2.3 分类训练</h3><p>对于每个类别的SVM分类器，选择ground-truth 框作为正样本， 选择与ground-truth的IOU小于0.3的候选框为负样本。同样的，负样本的数目远多于正样本的数目，需要采用负样本挖掘算法（hard negetive mining）选取一部分负样本进行训练。详见附录C。</p>
+<h3 id="2-4-回归训练（bounding-box-regression）"><a href="#2-4-回归训练（bounding-box-regression）" class="headerlink" title="2.4 回归训练（bounding box regression）"></a>2.4 回归训练（bounding box regression）</h3><p>详见附录D。</p>
 <hr>
 <h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="A-IoU"><a href="#A-IoU" class="headerlink" title="A.IoU"></a>A.IoU</h2><p><img src="/2018/11/02/R-CNN/2.png" alt=""><br>即A与B的交集（intersection）与A与B的并集（union）之比：(A∩B)/(A∪B)</p>
 <h2 id="B-非极大值抑制（Non-maximun-suppresion，NMS）"><a href="#B-非极大值抑制（Non-maximun-suppresion，NMS）" class="headerlink" title="B. 非极大值抑制（Non-maximun suppresion，NMS）"></a>B. 非极大值抑制（Non-maximun suppresion，NMS）</h2><p><img src="/2018/11/02/R-CNN/3.png" alt=""></p>
@@ -1315,7 +1465,14 @@
 <p>注：对于得分低于某一阈值的候选框，应该直接剔除， 但是文章没有说明何时剔除。</p>
 <p>Python代码实现</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">py_cpu_nms</span><span class="params">(dets, thresh)</span>:</span></span><br><span class="line">    <span class="string">"""Pure Python NMS baseline."""</span></span><br><span class="line">    x1 = dets[:, <span class="number">0</span>]</span><br><span class="line">    y1 = dets[:, <span class="number">1</span>]</span><br><span class="line">    x2 = dets[:, <span class="number">2</span>]</span><br><span class="line">    y2 = dets[:, <span class="number">3</span>]</span><br><span class="line">    scores = dets[:, <span class="number">4</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#每一个检测框的面积</span></span><br><span class="line">    areas = (x2 - x1 + <span class="number">1</span>) * (y2 - y1 + <span class="number">1</span>)</span><br><span class="line">    <span class="comment">#按照score置信度降序排序</span></span><br><span class="line">    order = scores.argsort()[::<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    keep = []  <span class="comment">#保留的结果框集合</span></span><br><span class="line">    <span class="keyword">while</span> order.size &gt; <span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)  <span class="comment">#保留该类剩余box中得分最高的一个</span></span><br><span class="line">        xx1 = np.maximum(x1[i], x1[order[<span class="number">1</span>:]])</span><br><span class="line">        yy1 = np.maximum(y1[i], y1[order[<span class="number">1</span>:]])</span><br><span class="line">        xx2 = np.minimum(x2[i], x2[order[<span class="number">1</span>:]])</span><br><span class="line">        yy2 = np.minimum(y2[i], y2[order[<span class="number">1</span>:]])</span><br><span class="line"></span><br><span class="line">        <span class="comment">#计算相交的面积,不重叠时面积为0</span></span><br><span class="line">        w = np.maximum(<span class="number">0.0</span>, xx2 - xx1 + <span class="number">1</span>)</span><br><span class="line">        h = np.maximum(<span class="number">0.0</span>, yy2 - yy1 + <span class="number">1</span>)</span><br><span class="line">        inter = w * h</span><br><span class="line">        <span class="comment">#计算IoU：重叠面积 /（面积1+面积2-重叠面积）</span></span><br><span class="line">        ovr = inter / (areas[i] + areas[order[<span class="number">1</span>:]] - inter)</span><br><span class="line">		<span class="comment">#保留IoU小于阈值的box</span></span><br><span class="line">        inds = np.where(ovr &lt;= thresh)[<span class="number">0</span>]</span><br><span class="line">        order = order[inds + <span class="number">1</span>] <span class="comment">#因为ovr数组的长度比order数组少一个,所以这里要将所有下标后移一位</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><h2 id="D-Bounding-box-regression"><a href="#D-Bounding-box-regression" class="headerlink" title="D. Bounding box regression"></a>D. Bounding box regression</h2><p><img src="/2018/11/02/R-CNN/4.png" alt=""><br>如上图所示，绿色框为实际标准的卡宴车辆框，即Ground Truth；黄色框为selective search算法得出的建议框，即Region Proposal。即使黄色框中物体被分类器识别为卡宴车辆，但是由于绿色框和黄色框IoU值并不大，所以最后的目标检测精度并不高。采用回归器是为了对建议框进行校正，使得校正后的Region Proposal与selective search更接近， 以提高最终的检测精度。论文中采用bounding-box回归使mAP提高了3~4%。 </p>
+<p><img src="/2018/11/02/R-CNN/5.png" alt=""><br>如上图，黄色窗口P表示Region Proposal，绿色窗口G表示Ground Truth，红色窗口表示Region Proposal进行回归后的预测窗口，现在的目标是找到P到红色窗口的线性变换（当Region Proposal与Ground Truth的IoU&gt;0.6时可以认为是线性变换），使得红窗与G越相近，这就相当于一个简单的可以用最小二乘法解决的线性回归问题。</p>
+<p>定义P窗口的数学表达式：<br>$$<br>P=\left ( P_{x},  P_{y},  P_{w},  P_{h}\right )<br>$$<br>分别表示P窗口的横坐标、纵坐标、宽和高，另两个窗口同理。</p>
+<p>则P窗口的回归过程如下：<br>$$<br>\widehat{G}<em>{x}=P</em>{w}d_{x}\left (P\right)+P_{x}<br>$$<br>$$<br>\widehat{G}<em>{y}=P</em>{h}d_{y}\left (P\right)+P_{y}<br>$$<br>$$<br>\widehat{G}<em>{w}=P</em>{w}\exp \left ( d_{w}\left ( P \right ) \right )<br>$$<br>$$<br>\widehat{G}<em>{h}=P</em>{h}\exp \left ( d_{h}\left ( P \right ) \right )<br>$$</p>
+<p>每一个d(P)都是一个Alex Net Pool5层特征的线性函数，即</p>
+<p>$$<br>d_{<em>}(P)=w_{</em>}^{T}\phi _{5}(P)<br>$$</p>
+<p>这里的</p>
+
           
         
       
@@ -1486,137 +1643,13 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/26/problem/" itemprop="url">零碎的问题及解决</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-26T10:07:40+08:00">
-                2018-10-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>import keras 的时候 遇到 No module named ‘tensorflow.python’</strong></p>
-<p>解决：重装tensorflow</p>
-<hr>
-<p><strong>读CSV文件时，报错UnicodeDecodeError: ‘gbk’ codec can’t decode byte 0xbf in position 2: illegal multibyte sequence</strong></p>
-<p>解决：<code>open(csv_path, &#39;r&#39;, encoding=&#39;UTF-8&#39;)</code></p>
-<p>用utf-8编码时，print出来的csv开头有<code>\ufeff</code>，因此encoding应该为<code>‘UTF-8-sig’</code></p>
-<hr>
-<p><strong>读CSV文件时，报错’utf-8’ codec can’t decode byte 0xb4 in position 0: invalid start byte</strong></p>
-<p>解决：保存时 加 encoding=’UTF-8’或’UTF-8-sig’</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1660,7 +1693,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

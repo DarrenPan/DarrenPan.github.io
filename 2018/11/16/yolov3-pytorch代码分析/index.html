@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="leetcode," />
+  <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Object Detection," />
 
 
 
@@ -79,18 +79,20 @@
 
 
 
-<meta name="description" content="GitHub：https://github.com/ayooshkathuria/pytorch-yolo-v3 Tutorial： Implement YOLO v3 from scratch">
-<meta name="keywords" content="leetcode">
+<meta name="description" content="GitHub：https://github.com/ayooshkathuria/pytorch-yolo-v3 Tutorial： Implement YOLO v3 from scratch   [TOC] 1. network architectureConfiguration FileThe configuration  file here describes the layout of">
+<meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Object Detection">
 <meta property="og:type" content="article">
 <meta property="og:title" content="yolov3-pytorch代码分析">
 <meta property="og:url" content="http://yoursite.com/2018/11/16/yolov3-pytorch代码分析/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="GitHub：https://github.com/ayooshkathuria/pytorch-yolo-v3 Tutorial： Implement YOLO v3 from scratch">
+<meta property="og:description" content="GitHub：https://github.com/ayooshkathuria/pytorch-yolo-v3 Tutorial： Implement YOLO v3 from scratch   [TOC] 1. network architectureConfiguration FileThe configuration  file here describes the layout of">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-16T02:19:34.029Z">
+<meta property="og:image" content="http://yoursite.com/2018/11/16/yolov3-pytorch代码分析/1.png">
+<meta property="og:updated_time" content="2018-11-16T11:16:43.557Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="yolov3-pytorch代码分析">
-<meta name="twitter:description" content="GitHub：https://github.com/ayooshkathuria/pytorch-yolo-v3 Tutorial： Implement YOLO v3 from scratch">
+<meta name="twitter:description" content="GitHub：https://github.com/ayooshkathuria/pytorch-yolo-v3 Tutorial： Implement YOLO v3 from scratch   [TOC] 1. network architectureConfiguration FileThe configuration  file here describes the layout of">
+<meta name="twitter:image" content="http://yoursite.com/2018/11/16/yolov3-pytorch代码分析/1.png">
 
 
 
@@ -312,6 +314,26 @@
       
         <p>GitHub：<a href="https://github.com/ayooshkathuria/pytorch-yolo-v3" target="_blank" rel="noopener">https://github.com/ayooshkathuria/pytorch-yolo-v3</a></p>
 <p>Tutorial： <a href="https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/" target="_blank" rel="noopener">Implement YOLO v3 from scratch</a> </p>
+<hr>
+<p>[TOC]</p>
+<h1 id="1-network-architecture"><a href="#1-network-architecture" class="headerlink" title="1. network architecture"></a>1. network architecture</h1><h2 id="Configuration-File"><a href="#Configuration-File" class="headerlink" title="Configuration File"></a>Configuration File</h2><p>The configuration  file <a href="https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg" target="_blank" rel="noopener">here</a> describes the layout of the network, block by block. You can also see the full architecture Darknet-53 in the folloing diagram.</p>
+<p><img src="/2018/11/16/yolov3-pytorch代码分析/1.png" alt=""></p>
+<p>There are 5 types of layers that are used in YOLO:</p>
+<p><strong><em>Convolutional</em></strong></p>
+<p><strong><em>Shortcut（Residual）</em></strong>: 参数<code>from:-3</code>表示shortcut的output等于倒数第三层的output与前一层output相加</p>
+<p><strong><em>Upsample</em></strong>: YOLO3采用了类似FPN的结构，在三个尺度上进行预测，故要做两次unsample</p>
+<p><strong><em>Route</em></strong>：<br>When layers attribute has only one value, it outputs the feature maps of the layer indexed by the value. In our example, it is -4, so the layer will output feature map from the 4th layer backwards from the Route layer.</p>
+<p>When layers has two values, it returns the concatenated feature maps of the layers indexed by it’s values. In our example it is -1, 61, and the layer will output feature maps from the previous layer (-1) and the 61st layer, concatenated along the depth dimension.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[route]</span><br><span class="line">layers = -4</span><br><span class="line"></span><br><span class="line">[route]</span><br><span class="line">layers = -1, 61</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>YOLO</em></strong>：<br>The anchors describes 9 anchors, but only the anchors which are indexed by attributes of the mask tag are used.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[yolo]</span><br><span class="line">mask = 0,1,2</span><br><span class="line">anchors = 10,13,  16,30,  33,23,  30,61,  62,45,  59,119,  116,90,  156,198,  373,326</span><br><span class="line">classes=80</span><br><span class="line">num=9</span><br><span class="line">jitter=.3</span><br><span class="line">ignore_thresh = .5</span><br><span class="line">truth_thresh = 1</span><br><span class="line">random=1</span><br></pre></td></tr></table></figure></p>
+<h2 id="Parsing-the-configuration-file"><a href="#Parsing-the-configuration-file" class="headerlink" title="Parsing the configuration file"></a>Parsing the configuration file</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_cfg</span><span class="params">(cfgfile)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Takes a configuration file</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns a list of blocks. Each blocks describes a block in the neural</span></span><br><span class="line"><span class="string">    network to be built. Block is represented as a dictionary in the list</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    """</span></span><br></pre></td></tr></table></figure>
+<h2 id="Creating-the-building-blocks"><a href="#Creating-the-building-blocks" class="headerlink" title="Creating the building blocks"></a>Creating the building blocks</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_modules</span><span class="params">(blocks)</span>:</span></span><br><span class="line">    net_info = blocks[<span class="number">0</span>]     <span class="comment">#Captures the information about the input and pre-processing    </span></span><br><span class="line">    module_list = nn.ModuleList()</span><br><span class="line">    prev_filters = <span class="number">3</span></span><br><span class="line">    output_filters = []</span><br></pre></td></tr></table></figure>
+<p>Our function will return a <code>nn.ModuleList</code> .</p>
+<p><code>prev_filters</code> is used to keep track of number of filters in the layer on which the convolutional layer is being applied. </p>
+<p><code>output_filters</code> is used to store the number of output filters of each block, for route layer need.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for x in blocks:</span><br><span class="line">    module = nn.Sequential()</span><br></pre></td></tr></table></figure>
+<p><code>nn.Sequential</code> class is used to sequentially execute a number of nn.Module objects. We use it’s <code>add_module</code> function to string together all layers.</p>
+<p><strong>for conv layer and unsample layer</strong>:(PyTorch has provided pre-built layers)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Add the convolutional layer</span></span><br><span class="line">conv = nn.Conv2d(prev_filters, filters, kernel_size, stride, pad, bias = bias)</span><br><span class="line">module.add_module(<span class="string">"conv_&#123;0&#125;"</span>.format(index), conv)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Add the Batch Norm Layer</span></span><br><span class="line">bn = nn.BatchNorm2d(filters)</span><br><span class="line">module.add_module(<span class="string">"batch_norm_&#123;0&#125;"</span>.format(index), bn)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Check the activation. </span></span><br><span class="line"><span class="comment">#It is either Linear or a Leaky ReLU for YOLO</span></span><br><span class="line">activn = nn.LeakyReLU(<span class="number">0.1</span>, inplace = <span class="keyword">True</span>)</span><br><span class="line">module.add_module(<span class="string">"leaky_&#123;0&#125;"</span>.format(index), activn)</span><br><span class="line"></span><br><span class="line"><span class="comment">#If it's an upsampling layer</span></span><br><span class="line"><span class="comment">#We use Bilinear2dUpsampling</span></span><br><span class="line">upsample = nn.Upsample(scale_factor = <span class="number">2</span>, mode = <span class="string">"bilinear"</span>)</span><br><span class="line">module.add_module(<span class="string">"upsample_&#123;&#125;"</span>.format(index), upsample)</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -329,7 +351,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/Computer-Vision/" rel="tag"># Computer Vision</a>
+          
+            <a href="/tags/Object-Detection/" rel="tag"># Object Detection</a>
           
         </div>
       
@@ -351,6 +379,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/11/16/something_about_python/" rel="prev" title="Something about Python">
+                Something about Python <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -402,8 +434,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -418,7 +459,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">10</span>
+                  <span class="site-state-item-count">11</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -454,6 +495,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-network-architecture"><span class="nav-number">1.</span> <span class="nav-text">1. network architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration-File"><span class="nav-number">1.1.</span> <span class="nav-text">Configuration File</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Parsing-the-configuration-file"><span class="nav-number">1.2.</span> <span class="nav-text">Parsing the configuration file</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-the-building-blocks"><span class="nav-number">1.3.</span> <span class="nav-text">Creating the building blocks</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
