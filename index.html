@@ -239,6 +239,139 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/07/leetcode506/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/07/leetcode506/" itemprop="url">【leetcode】412：Fizz Buzz</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-07T13:22:03+08:00">
+                2018-12-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="相对名次"><a href="#相对名次" class="headerlink" title="相对名次"></a>相对名次</h1><p><strong>难度：Easy</strong></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给出 N 名运动员的成绩，找出他们的相对名次并授予前三名对应的奖牌。前三名运动员将会被分别授予 “金牌”，“银牌” 和“ 铜牌”（”Gold Medal”, “Silver Medal”, “Bronze Medal”）。</p>
+<p>(注：分数越高的选手，排名越靠前。)</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: [5, 4, 3, 2, 1]</span><br><span class="line">输出: [&quot;Gold Medal&quot;, &quot;Silver Medal&quot;, &quot;Bronze Medal&quot;, &quot;4&quot;, &quot;5&quot;]</span><br><span class="line">解释: 前三名运动员的成绩为前三高的，因此将会分别被授予 “金牌”，“银牌”和“铜牌” (&quot;Gold Medal&quot;, &quot;Silver Medal&quot; and &quot;Bronze Medal&quot;).</span><br><span class="line">余下的两名运动员，我们只需要通过他们的成绩计算将其相对名次即可。</span><br></pre></td></tr></table></figure>
+<h2 id="提示"><a href="#提示" class="headerlink" title="提示"></a>提示</h2><ol>
+<li>N 是一个正整数并且不会超过 10000。</li>
+<li>所有运动员的成绩都不相同。</li>
+</ol>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; findRelativeRanks(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; nums) &#123;</span><br><span class="line">        <span class="keyword">int</span> n = nums.size(), cnt = <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res(n, <span class="string">""</span>);</span><br><span class="line">        priority_queue&lt;pair&lt;<span class="keyword">int</span>, <span class="keyword">int</span>&gt;&gt; q;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            q.push(&#123;nums[i], i&#125;);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; ++i) &#123;</span><br><span class="line">            <span class="keyword">int</span> idx = q.top().second; q.pop();</span><br><span class="line">            <span class="keyword">if</span> (cnt == <span class="number">1</span>) res[idx] = <span class="string">"Gold Medal"</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (cnt == <span class="number">2</span>) res[idx] = <span class="string">"Silver Medal"</span>;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (cnt == <span class="number">3</span>) res[idx] = <span class="string">"Bronze Medal"</span>;</span><br><span class="line">            <span class="keyword">else</span> res[idx] = to_string(cnt);</span><br><span class="line">            ++cnt; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>建立一个优先队列，把分数和其坐标位置放入队列中，会自动按其分数高低排序，然后我们从顶端开始一个一个取出数据，由于保存了其在原数组的位置，我们可以直接将其存到结果res中正确的位置，用一个变量cnt来记录名词，前三名给奖牌，后面就是名次数。</p>
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p><strong><em>vector</em></strong> 见leetcode[412]</p>
+<p><strong><em>priority_queue</em></strong><br>本质是一个堆，头文件是<code>#include&lt;queue&gt;</code>。<br><code>priority_queue&lt;Type, Container, Functional&gt;</code>，其中Type 为数据类型，Container为保存数据的容器，Functional 为元素比较方式。Container必须是用数组实现的容器，比如vector,deque等等，但不能用 list。STL里面默认用的是vector。<br>比较方式默认用operator&lt;，所以如果把后面2个参数缺省的话，优先队列就是大顶堆（降序），队头元素最大。（less<t>, greater<t>）<br><a href="http://www.cplusplus.com/reference/queue/priority_queue/" target="_blank" rel="noopener">http://www.cplusplus.com/reference/queue/priority_queue/</a><br><a href="https://www.cnblogs.com/Deribs4/p/5657746.html" target="_blank" rel="noopener">https://www.cnblogs.com/Deribs4/p/5657746.html</a><br><a href="https://blog.csdn.net/pzhu_cg_csdn/article/details/79166858" target="_blank" rel="noopener">https://blog.csdn.net/pzhu_cg_csdn/article/details/79166858</a></t></t></p>
+<p><strong><em>pair</em></strong><br>pair是将2个数据组合成一组数据，当需要这样的需求时就可以使用pair，如stl中的map就是将key和value放在一起来保存。另一个应用是，当一个函数需要返回2个数据的时候，可以选择pair。 pair的实现是一个结构体，主要的两个成员变量是first second 因为是使用struct不是class，所以可以直接使用pair的成员变量。两个值可以分别用pair的两个公有函数first和second访问。<br>其标准库类型–pair类型定义在<code>#include &lt;utility&gt;</code>头文件中，定义如下：<br>类模板：<code>template&lt;class T1,class T2&gt; struct pair</code></p>
+<p><a href="https://blog.csdn.net/sevenjoin/article/details/81937695" target="_blank" rel="noopener">https://blog.csdn.net/sevenjoin/article/details/81937695</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/something_about_python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -441,7 +574,6 @@
             <p>GitHub：<a href="https://github.com/ayooshkathuria/pytorch-yolo-v3" target="_blank" rel="noopener">https://github.com/ayooshkathuria/pytorch-yolo-v3</a></p>
 <p>Tutorial： <a href="https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/" target="_blank" rel="noopener">Implement YOLO v3 from scratch</a> </p>
 <hr>
-<p>[TOC]</p>
 <h1 id="1-Creating-the-layers-of-the-network-architecture"><a href="#1-Creating-the-layers-of-the-network-architecture" class="headerlink" title="1. Creating the layers of the network architecture"></a>1. Creating the layers of the network architecture</h1><h2 id="Configuration-File"><a href="#Configuration-File" class="headerlink" title="Configuration File"></a>Configuration File</h2><p>The configuration  file <a href="https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg" target="_blank" rel="noopener">here</a> describes the layout of the network, block by block. You can also see the full architecture Darknet-53 in the folloing diagram.</p>
 <p><img src="/2018/11/16/yolov3-pytorch代码分析/1.png" alt=""></p>
 <p>There are 5 types of layers that are used in YOLO:</p>
@@ -469,8 +601,14 @@
 <p>At the end of the function <code>create_modules</code>, we return a tuple containing the <code>net_info</code>, and <code>module_list</code>.</p>
 <h1 id="2-Implementing-the-the-forward-pass-of-the-network"><a href="#2-Implementing-the-the-forward-pass-of-the-network" class="headerlink" title="2. Implementing the the forward pass of the network"></a>2. Implementing the the forward pass of the network</h1><h2 id="Defining-the-Network"><a href="#Defining-the-Network" class="headerlink" title="Defining the Network"></a>Defining the Network</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Darknet</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, cfgfile)</span>:</span></span><br><span class="line">        super(Darknet, self).__init__()</span><br><span class="line">        self.blocks = parse_cfg(cfgfile)</span><br><span class="line">        self.net_info, self.module_list = create_modules(self.blocks)</span><br></pre></td></tr></table></figure>
 <h2 id="Implementing-the-forward-pass-of-the-network"><a href="#Implementing-the-forward-pass-of-the-network" class="headerlink" title="Implementing the forward pass of the network"></a>Implementing the forward pass of the network</h2><p><code>forward</code> serves two purposes. First, to calculate the output, and second, to transform the output detection feature maps in a way that it can be processed easier</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, CUDA)</span>:</span></span><br><span class="line">    modules = self.blocks[<span class="number">1</span>:]  <span class="comment"># the first element is net layer which is no use</span></span><br><span class="line">    outputs = &#123;&#125;   <span class="comment"># We cache the outputs for the route layer</span></span><br></pre></td></tr></table></figure>
-<p>Since route and shortcut layers need output maps from previous layers, we cache the output feature maps of every layer in a dict <code>outputs</code>. The keys are the the indices of the layers, and the values are the feature maps</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, CUDA)</span>:</span></span><br><span class="line">    modules = self.blocks[<span class="number">1</span>:]  <span class="comment"># the first element is net layer which is no use</span></span><br><span class="line">    outputs = &#123;&#125;   <span class="comment"># We cache the outputs for the route layer</span></span><br><span class="line">    </span><br><span class="line">    write = <span class="number">0</span>     <span class="comment">#This is explained a bit later</span></span><br><span class="line">	<span class="keyword">for</span> i, module <span class="keyword">in</span> enumerate(modules):        </span><br><span class="line">    	module_type = (module[<span class="string">"type"</span>])</span><br></pre></td></tr></table></figure>
+<p>Since route and shortcut layers need output maps from previous layers, we cache the output feature maps of every layer in a dict <code>outputs</code>. The keys are the the indices of the layers, and the values are the feature maps.</p>
+<h2 id="Convolutional-and-Upsample-Layers"><a href="#Convolutional-and-Upsample-Layers" class="headerlink" title="Convolutional and Upsample Layers"></a>Convolutional and Upsample Layers</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> module_type == <span class="string">"convolutional"</span> <span class="keyword">or</span> module_type == <span class="string">"upsample"</span>:</span><br><span class="line">    x = self.module_list[i](x)</span><br></pre></td></tr></table></figure>
+<h2 id="Route-Layer-Shortcut-Layer"><a href="#Route-Layer-Shortcut-Layer" class="headerlink" title="Route Layer / Shortcut Layer"></a>Route Layer / Shortcut Layer</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> module_type == <span class="string">"route"</span>:</span><br><span class="line">    layers = module[<span class="string">"layers"</span>]</span><br><span class="line">    layers = [int(a) <span class="keyword">for</span> a <span class="keyword">in</span> layers]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (layers[<span class="number">0</span>]) &gt; <span class="number">0</span>:</span><br><span class="line">        layers[<span class="number">0</span>] = layers[<span class="number">0</span>] - i</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> len(layers) == <span class="number">1</span>:</span><br><span class="line">        x = outputs[i + (layers[<span class="number">0</span>])]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> (layers[<span class="number">1</span>]) &gt; <span class="number">0</span>:</span><br><span class="line">            layers[<span class="number">1</span>] = layers[<span class="number">1</span>] - i</span><br><span class="line"></span><br><span class="line">        map1 = outputs[i + layers[<span class="number">0</span>]]</span><br><span class="line">        map2 = outputs[i + layers[<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">        x = torch.cat((map1, map2), <span class="number">1</span>) <span class="comment"># concatenate the feature maps along the depth</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">elif</span>  module_type == <span class="string">"shortcut"</span>:</span><br><span class="line">    from_ = int(module[<span class="string">"from"</span>])</span><br><span class="line">    x = outputs[i<span class="number">-1</span>] + outputs[i+from_]</span><br></pre></td></tr></table></figure>
+<p>In PyTorch, input and output of a convolutional layer has the format B x C x H x W. The depth corresponding the the channel dimension.</p>
+<h2 id="YOLO-Detection-Layer"><a href="#YOLO-Detection-Layer" class="headerlink" title="YOLO (Detection Layer)"></a>YOLO (Detection Layer)</h2><p>Before this, we will introduce the function <code>predict_transform</code> first.</p>
+<h2 id="Transforming-the-output"><a href="#Transforming-the-output" class="headerlink" title="Transforming the output"></a>Transforming the output</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict_transform</span><span class="params">(prediction, inp_dim, anchors, num_classes, CUDA = True)</span>:</span></span><br></pre></td></tr></table></figure>
+<p>This function takes an detection feature map and turns it into a 2-D tensor, where each row of the tensor corresponds to attributes of a bounding box, in the following order .<br><img src="/2018/11/16/yolov3-pytorch代码分析/32.png" alt=""></p>
 
           
         
@@ -1518,142 +1656,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/Makefile/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/31/Makefile/" itemprop="url">Makefile笔记</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-31T14:52:57+08:00">
-                2018-10-31
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">target ... : prerequisites ...</span><br><span class="line">    command</span><br><span class="line">    ...</span><br><span class="line">    ...</span><br></pre></td></tr></table></figure>
-<p><strong>target</strong></p>
-<p>可以是一个object file（目标文件），也可以是一个执行文件，还可以是一个标签（label）。对 于标签这种特性，在后续的“伪目标”章节中会有叙述。</p>
-<p><strong>prerequisites</strong></p>
-<p>生成该target所依赖的文件和/或target</p>
-<p><strong>command</strong></p>
-<p>该target要执行的命令（任意的shell命令）</p>
-<p><code>$&lt;</code>表示所有的依赖 目标集 , <code>$@</code>表示目标集</p>
-<p>每条<strong>命令</strong>的 开头必须以 <code>Tab</code> 键开头，除非，命令是紧跟在依赖规则后面的分号后的。 </p>
-<p>在Makefile的命令行前加一个减号 <code>-</code> （在Tab键之后） ，标记为不管命令出不出错都认为是成功的 </p>
-<p>变量的赋值及使用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">objects = program.o foo.o utils.o</span><br><span class="line">program : $(objects)</span><br><span class="line">    cc -o program $(objects)</span><br></pre></td></tr></table></figure>
-<p>条件判断</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;conditional-directive&gt;</span><br><span class="line">&lt;text-if-true&gt;</span><br><span class="line">endif</span><br></pre></td></tr></table></figure>
-<p>其中 <code>&lt;conditional-directive&gt;</code> 表示条件关键字 ，包括<code>ifeq</code>  、<code>ifneq</code>  、<code>ifdef</code> 、<code>ifndef</code></p>
-<p> 函数调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(&lt;function&gt; &lt;arguments&gt;)</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1704,7 +1706,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
