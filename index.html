@@ -239,6 +239,402 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/caffe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/20/caffe/" itemprop="url">Caffe</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-20T10:41:48+08:00">
+                2018-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="Image-Classification-and-Filter-Visualization"><a href="#Image-Classification-and-Filter-Visualization" class="headerlink" title="Image Classification and Filter Visualization"></a><a href="http://nbviewer.ipython.org/github/BVLC/caffe/blob/master/examples/00-classification.ipynb" target="_blank" rel="noopener">Image Classification and Filter Visualization</a></h2><p>Instant recognition with a pre-trained model and a tour of the net interface for visualizing features and parameters layer-by-layer.</p>
+<p><strong><em>set CPU mode and load net for test</em></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">caffe.set_mode_cpu()</span><br><span class="line"></span><br><span class="line">net = caffe.Net(model_def,      <span class="comment"># defines the structure of the model</span></span><br><span class="line">                model_weights,  <span class="comment"># contains the trained weights</span></span><br><span class="line">                caffe.TEST)     <span class="comment"># use test mode (e.g., don't perform dropout)</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>input preprocessing</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set up input preprocessing. (We&apos;ll use Caffe&apos;s caffe.io.Transformer to do this, but this step is independent of other parts of Caffe, so any custom preprocessing code may be used).</span><br><span class="line"></span><br><span class="line">Our default CaffeNet is configured to take images in BGR format. Values are expected to start in the range [0, 255] and then have the mean ImageNet pixel value subtracted from them. In addition, the channel dimension is expected as the first (outermost) dimension.</span><br><span class="line"></span><br><span class="line">As matplotlib will load images with values in the range [0, 1] in RGB format with the channel as the innermost dimension, we are arranging for the needed transformations here.</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create transformer for the input called 'data'</span></span><br><span class="line">transformer = caffe.io.Transformer(&#123;<span class="string">'data'</span>: net.blobs[<span class="string">'data'</span>].data.shape&#125;)</span><br><span class="line"></span><br><span class="line">transformer.set_transpose(<span class="string">'data'</span>, (<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>))  <span class="comment"># move image channels to outermost dimension</span></span><br><span class="line">transformer.set_mean(<span class="string">'data'</span>, mu)            <span class="comment"># subtract the dataset-mean value in each channel</span></span><br><span class="line">transformer.set_raw_scale(<span class="string">'data'</span>, <span class="number">255</span>)      <span class="comment"># rescale from [0, 1] to [0, 255]</span></span><br><span class="line">transformer.set_channel_swap(<span class="string">'data'</span>, (<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>))  <span class="comment"># swap channels from RGB to BGR</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>set the size of the input</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set the size of the input (we can skip this if we're happy</span></span><br><span class="line"><span class="comment">#  with the default; we can also change it later, e.g., for different batch sizes)</span></span><br><span class="line">net.blobs[<span class="string">'data'</span>].reshape(<span class="number">50</span>,        <span class="comment"># batch size</span></span><br><span class="line">                          <span class="number">3</span>,         <span class="comment"># 3-channel (BGR) images</span></span><br><span class="line">                          <span class="number">227</span>, <span class="number">227</span>)  <span class="comment"># image size is 227x227</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>load an image and perform the preprocessing</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">image = caffe.io.load_image(caffe_root + <span class="string">'examples/images/cat.jpg'</span>)</span><br><span class="line">transformed_image = transformer.preprocess(<span class="string">'data'</span>, image)</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>classify</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># copy the image data into the memory allocated for the net</span></span><br><span class="line">net.blobs[<span class="string">'data'</span>].data[...] = transformed_image</span><br><span class="line"></span><br><span class="line"><span class="comment">### perform classification</span></span><br><span class="line">output = net.forward()</span><br><span class="line"></span><br><span class="line">output_prob = output[<span class="string">'prob'</span>][<span class="number">0</span>]  <span class="comment"># the output probability vector for the first image in the batch</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'predicted class is:'</span>, output_prob.argmax()</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>top5</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sort top five predictions from softmax output</span></span><br><span class="line">top_inds = output_prob.argsort()[::<span class="number">-1</span>][:<span class="number">5</span>]  <span class="comment"># reverse sort and take five largest items</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'probabilities and labels:'</span></span><br><span class="line">zip(output_prob[top_inds], labels[top_inds])</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>switch to GPU</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">caffe.set_device(<span class="number">0</span>)  <span class="comment"># if we have multiple GPUs, pick the first one</span></span><br><span class="line">caffe.set_mode_gpu()</span><br><span class="line">net.forward()  <span class="comment"># run once before timing to set up memory</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>show the output shape of each layers</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> layer_name, blob <span class="keyword">in</span> net.blobs.iteritems():</span><br><span class="line">    <span class="keyword">print</span> layer_name + <span class="string">'\t'</span> + str(blob.data.shape)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">data	(50, 3, 227, 227)</span><br><span class="line">conv1	(50, 96, 55, 55)</span><br><span class="line">pool1	(50, 96, 27, 27)</span><br><span class="line">norm1	(50, 96, 27, 27)</span><br><span class="line">conv2	(50, 256, 27, 27)</span><br><span class="line">pool2	(50, 256, 13, 13)</span><br><span class="line">norm2	(50, 256, 13, 13)</span><br><span class="line">conv3	(50, 384, 13, 13)</span><br><span class="line">conv4	(50, 384, 13, 13)</span><br><span class="line">conv5	(50, 256, 13, 13)</span><br><span class="line">pool5	(50, 256, 6, 6)</span><br><span class="line">fc6		(50, 4096)</span><br><span class="line">fc7		(50, 4096)</span><br><span class="line">fc8		(50, 1000)</span><br><span class="line">prob	(50, 1000)</span><br></pre></td></tr></table></figure>
+<p><strong><em>show the parameter shape</em></strong><br>We need to index the resulting values with either [0] for weights or [1] for biases.<br>The param shapes typically have the form <code>(output_channels, input_channels, filter_height, filter_width)</code>(for the weights) and the 1-dimensional shape <code>(output_channels,)</code>(for the biases).<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> layer_name, param <span class="keyword">in</span> net.params.iteritems():</span><br><span class="line">    <span class="keyword">print</span> layer_name + <span class="string">'\t'</span> + str(param[<span class="number">0</span>].data.shape), str(param[<span class="number">1</span>].data.shape)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">conv1	(96, 3, 11, 11) (96,)</span><br><span class="line">conv2	(256, 48, 5, 5) (256,)</span><br><span class="line">conv3	(384, 256, 3, 3) (384,)</span><br><span class="line">conv4	(384, 192, 3, 3) (384,)</span><br><span class="line">conv5	(256, 192, 3, 3) (256,)</span><br><span class="line">fc6	(4096, 9216) (4096,)</span><br><span class="line">fc7	(4096, 4096) (4096,)</span><br><span class="line">fc8	(1000, 4096) (1000,)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Learning-LeNet"><a href="#Learning-LeNet" class="headerlink" title="Learning LeNet"></a><a href="http://nbviewer.ipython.org/github/BVLC/caffe/blob/master/examples/01-learning-lenet.ipynb" target="_blank" rel="noopener">Learning LeNet</a></h2><p>Define, train, and test the classic LeNet with the Python interface.</p>
+<p><strong><em>create LeNet</em></strong></p>
+<p>We’ll need two external files to help out:</p>
+<ul>
+<li>the net <code>prototxt</code>, defining the architecture and pointing to the train/test data</li>
+<li>the solver <code>prototxt</code>, defining the learning parameters</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> caffe <span class="keyword">import</span> layers <span class="keyword">as</span> L, params <span class="keyword">as</span> P</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lenet</span><span class="params">(lmdb, batch_size)</span>:</span></span><br><span class="line">    <span class="comment"># our version of LeNet: a series of linear and simple nonlinear transformations</span></span><br><span class="line">    n = caffe.NetSpec()</span><br><span class="line">    </span><br><span class="line">    n.data, n.label = L.Data(batch_size=batch_size, backend=P.Data.LMDB, source=lmdb,transform_param=dict(scale=<span class="number">1.</span>/<span class="number">255</span>), ntop=<span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">    n.conv1 = L.Convolution(n.data, kernel_size=<span class="number">5</span>, num_output=<span class="number">20</span>, weight_filler=dict(type=<span class="string">'xavier'</span>))</span><br><span class="line">    n.pool1 = L.Pooling(n.conv1, kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>, pool=P.Pooling.MAX)</span><br><span class="line">    n.conv2 = L.Convolution(n.pool1, kernel_size=<span class="number">5</span>, num_output=<span class="number">50</span>, weight_filler=dict(type=<span class="string">'xavier'</span>))</span><br><span class="line">    n.pool2 = L.Pooling(n.conv2, kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>, pool=P.Pooling.MAX)</span><br><span class="line">    n.fc1 =   L.InnerProduct(n.pool2, num_output=<span class="number">500</span>, weight_filler=dict(type=<span class="string">'xavier'</span>))</span><br><span class="line">    n.relu1 = L.ReLU(n.fc1, in_place=<span class="keyword">True</span>)</span><br><span class="line">    n.score = L.InnerProduct(n.relu1, num_output=<span class="number">10</span>, weight_filler=dict(type=<span class="string">'xavier'</span>))</span><br><span class="line">    n.loss =  L.SoftmaxWithLoss(n.score, n.label)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> n.to_proto()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'mnist/lenet_auto_train.prototxt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(str(lenet(<span class="string">'mnist/mnist_train_lmdb'</span>, <span class="number">64</span>)))</span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'mnist/lenet_auto_test.prototxt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(str(lenet(<span class="string">'mnist/mnist_test_lmdb'</span>, <span class="number">100</span>)))</span><br></pre></td></tr></table></figure>
+<p>The net has been written to disk in a more verbose but human-readable serialization format using Google’s protobuf library. You can read, write, and modify this description directly. Let’s take a look at the train net. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"data"</span></span><br><span class="line">  type: <span class="string">"Data"</span></span><br><span class="line">  top: <span class="string">"data"</span></span><br><span class="line">  top: <span class="string">"label"</span></span><br><span class="line">  transform_param &#123;</span><br><span class="line">    scale: <span class="number">0.00392156862745</span></span><br><span class="line">  &#125;</span><br><span class="line">  data_param &#123;</span><br><span class="line">    source: <span class="string">"mnist/mnist_train_lmdb"</span></span><br><span class="line">    batch_size: <span class="number">64</span></span><br><span class="line">    backend: LMDB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"conv1"</span></span><br><span class="line">  type: <span class="string">"Convolution"</span></span><br><span class="line">  bottom: <span class="string">"data"</span></span><br><span class="line">  top: <span class="string">"conv1"</span></span><br><span class="line">  convolution_param &#123;</span><br><span class="line">    num_output: <span class="number">20</span></span><br><span class="line">    kernel_size: <span class="number">5</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"pool1"</span></span><br><span class="line">  type: <span class="string">"Pooling"</span></span><br><span class="line">  bottom: <span class="string">"conv1"</span></span><br><span class="line">  top: <span class="string">"pool1"</span></span><br><span class="line">  pooling_param &#123;</span><br><span class="line">    pool: MAX</span><br><span class="line">    kernel_size: <span class="number">2</span></span><br><span class="line">    stride: <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"conv2"</span></span><br><span class="line">  type: <span class="string">"Convolution"</span></span><br><span class="line">  bottom: <span class="string">"pool1"</span></span><br><span class="line">  top: <span class="string">"conv2"</span></span><br><span class="line">  convolution_param &#123;</span><br><span class="line">    num_output: <span class="number">50</span></span><br><span class="line">    kernel_size: <span class="number">5</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"pool2"</span></span><br><span class="line">  type: <span class="string">"Pooling"</span></span><br><span class="line">  bottom: <span class="string">"conv2"</span></span><br><span class="line">  top: <span class="string">"pool2"</span></span><br><span class="line">  pooling_param &#123;</span><br><span class="line">    pool: MAX</span><br><span class="line">    kernel_size: <span class="number">2</span></span><br><span class="line">    stride: <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"fc1"</span></span><br><span class="line">  type: <span class="string">"InnerProduct"</span></span><br><span class="line">  bottom: <span class="string">"pool2"</span></span><br><span class="line">  top: <span class="string">"fc1"</span></span><br><span class="line">  inner_product_param &#123;</span><br><span class="line">    num_output: <span class="number">500</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"relu1"</span></span><br><span class="line">  type: <span class="string">"ReLU"</span></span><br><span class="line">  bottom: <span class="string">"fc1"</span></span><br><span class="line">  top: <span class="string">"fc1"</span></span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"score"</span></span><br><span class="line">  type: <span class="string">"InnerProduct"</span></span><br><span class="line">  bottom: <span class="string">"fc1"</span></span><br><span class="line">  top: <span class="string">"score"</span></span><br><span class="line">  inner_product_param &#123;</span><br><span class="line">    num_output: <span class="number">10</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"loss"</span></span><br><span class="line">  type: <span class="string">"SoftmaxWithLoss"</span></span><br><span class="line">  bottom: <span class="string">"score"</span></span><br><span class="line">  bottom: <span class="string">"label"</span></span><br><span class="line">  top: <span class="string">"loss"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now let’s see the learning parameters, which are also written as a <code>prototxt</code> file (already provided on disk). We’re using SGD with momentum, weight decay, and a specific learning rate schedule<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The train/test net protocol buffer definition</span></span><br><span class="line">train_net: <span class="string">"mnist/lenet_auto_train.prototxt"</span></span><br><span class="line">test_net: <span class="string">"mnist/lenet_auto_test.prototxt"</span></span><br><span class="line"><span class="comment"># test_iter specifies how many forward passes the test should carry out.</span></span><br><span class="line"><span class="comment"># In the case of MNIST, we have test batch size 100 and 100 test iterations,</span></span><br><span class="line"><span class="comment"># covering the full 10,000 testing images.</span></span><br><span class="line">test_iter: <span class="number">100</span></span><br><span class="line"><span class="comment"># Carry out testing every 500 training iterations.</span></span><br><span class="line">test_interval: <span class="number">500</span></span><br><span class="line"><span class="comment"># The base learning rate, momentum and the weight decay of the network.</span></span><br><span class="line">base_lr: <span class="number">0.01</span></span><br><span class="line">momentum: <span class="number">0.9</span></span><br><span class="line">weight_decay: <span class="number">0.0005</span></span><br><span class="line"><span class="comment"># The learning rate policy</span></span><br><span class="line">lr_policy: <span class="string">"inv"</span></span><br><span class="line">gamma: <span class="number">0.0001</span></span><br><span class="line">power: <span class="number">0.75</span></span><br><span class="line"><span class="comment"># Display every 100 iterations</span></span><br><span class="line">display: <span class="number">100</span></span><br><span class="line"><span class="comment"># The maximum number of iterations</span></span><br><span class="line">max_iter: <span class="number">10000</span></span><br><span class="line"><span class="comment"># snapshot intermediate results</span></span><br><span class="line">snapshot: <span class="number">5000</span></span><br><span class="line">snapshot_prefix: <span class="string">"mnist/lenet"</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>loading and checking the slover</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">caffe.set_device(<span class="number">0</span>)</span><br><span class="line">caffe.set_mode_gpu()</span><br><span class="line"></span><br><span class="line"><span class="comment">### load the solver and create train and test nets</span></span><br><span class="line">solver = <span class="keyword">None</span>  <span class="comment"># ignore this workaround for lmdb data (can't instantiate two solvers on the same data)</span></span><br><span class="line">solver = caffe.SGDSolver(<span class="string">'mnist/lenet_auto_solver.prototxt'</span>)</span><br></pre></td></tr></table></figure></p>
+<p><em>check</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># each output is (batch size, feature dim, spatial dim)</span></span><br><span class="line">[(k, v.data.shape) <span class="keyword">for</span> k, v <span class="keyword">in</span> solver.net.blobs.items()]</span><br><span class="line"></span><br><span class="line"><span class="comment"># just print the weight sizes (we'll omit the biases)</span></span><br><span class="line">[(k, v[<span class="number">0</span>].data.shape) <span class="keyword">for</span> k, v <span class="keyword">in</span> solver.net.params.items()]</span><br><span class="line">Out[<span class="number">9</span>]:</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">solver.net.forward()  <span class="comment"># train net</span></span><br><span class="line">solver.test_nets[<span class="number">0</span>].forward()  <span class="comment"># test net (there can be more than one)</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>Writing a custom training loop</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">niter = <span class="number">200</span></span><br><span class="line">test_interval = <span class="number">25</span></span><br><span class="line"><span class="comment"># losses will also be stored in the log</span></span><br><span class="line">train_loss = zeros(niter)</span><br><span class="line">test_acc = zeros(int(np.ceil(niter / test_interval)))</span><br><span class="line">output = zeros((niter, <span class="number">8</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># the main solver loop</span></span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> range(niter):</span><br><span class="line">    solver.step(<span class="number">1</span>)  <span class="comment"># SGD by Caffe</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># store the train loss</span></span><br><span class="line">    train_loss[it] = solver.net.blobs[<span class="string">'loss'</span>].data</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># store the output on the first test batch</span></span><br><span class="line">    <span class="comment"># (start the forward pass at conv1 to avoid loading new data)</span></span><br><span class="line">    solver.test_nets[<span class="number">0</span>].forward(start=<span class="string">'conv1'</span>)</span><br><span class="line">    output[it] = solver.test_nets[<span class="number">0</span>].blobs[<span class="string">'score'</span>].data[:<span class="number">8</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># run a full test every so often</span></span><br><span class="line">    <span class="comment"># (Caffe can also do this for us and write to a log, but we show here</span></span><br><span class="line">    <span class="comment">#  how to do it directly in Python, where more complicated things are easier.)</span></span><br><span class="line">    <span class="keyword">if</span> it % test_interval == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Iteration'</span>, it, <span class="string">'testing...'</span></span><br><span class="line">        correct = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> test_it <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">            solver.test_nets[<span class="number">0</span>].forward()</span><br><span class="line">            correct += sum(solver.test_nets[<span class="number">0</span>].blobs[<span class="string">'score'</span>].data.argmax(<span class="number">1</span>)</span><br><span class="line">                           == solver.test_nets[<span class="number">0</span>].blobs[<span class="string">'label'</span>].data)</span><br><span class="line">        test_acc[it // test_interval] = correct / <span class="number">1e4</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>define slover</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> caffe.proto <span class="keyword">import</span> caffe_pb2</span><br><span class="line">s = caffe_pb2.SolverParameter()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set a seed for reproducible experiments:</span></span><br><span class="line"><span class="comment"># this controls for randomization in training.</span></span><br><span class="line">s.random_seed = <span class="number">0xCAFFE</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify locations of the train and (maybe) test networks.</span></span><br><span class="line">s.train_net = train_net_path</span><br><span class="line">s.test_net.append(test_net_path)</span><br><span class="line">s.test_interval = <span class="number">500</span>  <span class="comment"># Test after every 500 training iterations.</span></span><br><span class="line">s.test_iter.append(<span class="number">100</span>) <span class="comment"># Test on 100 batches each time we test.</span></span><br><span class="line"></span><br><span class="line">s.max_iter = <span class="number">10000</span>     <span class="comment"># no. of times to update the net (training iterations)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># EDIT HERE to try different solvers</span></span><br><span class="line"><span class="comment"># solver types include "SGD", "Adam", and "Nesterov" among others.</span></span><br><span class="line">s.type = <span class="string">"SGD"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the initial learning rate for SGD.</span></span><br><span class="line">s.base_lr = <span class="number">0.01</span>  <span class="comment"># EDIT HERE to try different learning rates</span></span><br><span class="line"><span class="comment"># Set momentum to accelerate learning by</span></span><br><span class="line"><span class="comment"># taking weighted average of current and previous updates.</span></span><br><span class="line">s.momentum = <span class="number">0.9</span></span><br><span class="line"><span class="comment"># Set weight decay to regularize and prevent overfitting</span></span><br><span class="line">s.weight_decay = <span class="number">5e-4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set `lr_policy` to define how the learning rate changes during training.</span></span><br><span class="line"><span class="comment"># This is the same policy as our default LeNet.</span></span><br><span class="line">s.lr_policy = <span class="string">'inv'</span></span><br><span class="line">s.gamma = <span class="number">0.0001</span></span><br><span class="line">s.power = <span class="number">0.75</span></span><br><span class="line"><span class="comment"># EDIT HERE to try the fixed rate (and compare with adaptive solvers)</span></span><br><span class="line"><span class="comment"># `fixed` is the simplest policy that keeps the learning rate constant.</span></span><br><span class="line"><span class="comment"># s.lr_policy = 'fixed'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Display the current training loss and accuracy every 1000 iterations.</span></span><br><span class="line">s.display = <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Snapshots are files used to store networks we've trained.</span></span><br><span class="line"><span class="comment"># We'll snapshot every 5K iterations -- twice during training.</span></span><br><span class="line">s.snapshot = <span class="number">5000</span></span><br><span class="line">s.snapshot_prefix = <span class="string">'mnist/custom_net'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Train on the GPU</span></span><br><span class="line">s.solver_mode = caffe_pb2.SolverParameter.GPU</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write the solver to a temporary file and return its filename.</span></span><br><span class="line"><span class="keyword">with</span> open(solver_config_path, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(str(s))</span><br></pre></td></tr></table></figure></p>
+<h2 id="Fine-tuning-for-Style-Recognition"><a href="#Fine-tuning-for-Style-Recognition" class="headerlink" title="Fine-tuning for Style Recognition"></a><a href="http://nbviewer.ipython.org/github/BVLC/caffe/blob/master/examples/02-fine-tuning.ipynb" target="_blank" rel="noopener">Fine-tuning for Style Recognition</a></h2><p>Fine-tune the ImageNet-trained CaffeNet on new data.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/network_structure_experience/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/14/network_structure_experience/" itemprop="url">Experience in Network Structure</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-14T14:36:12+08:00">
+                2018-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Improve-Feature-Expression"><a href="#Improve-Feature-Expression" class="headerlink" title="Improve Feature Expression"></a>Improve Feature Expression</h1><h1 id="Acceleration-and-Compression"><a href="#Acceleration-and-Compression" class="headerlink" title="Acceleration and Compression"></a>Acceleration and Compression</h1><h2 id="from-35x35x320-to-17x17x60"><a href="#from-35x35x320-to-17x17x60" class="headerlink" title="from 35x35x320 to 17x17x60:"></a>from 35x35x320 to 17x17x60:</h2><ol>
+<li>conv+pooling or pooling + conv</li>
+<li>conv with stride 2</li>
+<li><img src="/2018/12/14/network_structure_experience/1.png" alt=""><br>remain to study which is faster between 2 and 3.</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/object_detection_paper_arrangement/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/14/object_detection_paper_arrangement/" itemprop="url">Object Detection Paper Arrangement</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-14T14:36:12+08:00">
+                2018-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Basic-Detection-Framework"><a href="#Basic-Detection-Framework" class="headerlink" title="Basic Detection Framework"></a>Basic Detection Framework</h1><h2 id="Two-stage："><a href="#Two-stage：" class="headerlink" title="Two stage："></a>Two stage：</h2><p>[R-CNN]<br>[SPP-Net]<br>[Fast R-CNN]<br>[Faster R-CNN]</p>
+<h2 id="One-stage"><a href="#One-stage" class="headerlink" title="One stage:"></a>One stage:</h2><p>[YOLO]<br>[SSD]</p>
+<h1 id="Improvement-for-Basic-Framework"><a href="#Improvement-for-Basic-Framework" class="headerlink" title="Improvement for Basic Framework"></a>Improvement for Basic Framework</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/07/leetcode506/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -451,7 +847,9 @@
 <h3 id="字典中找最值"><a href="#字典中找最值" class="headerlink" title="字典中找最值"></a>字典中找最值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dogdistance = &#123;<span class="string">'dog-dog'</span>: <span class="number">33</span>, <span class="string">'dog-cat'</span>: <span class="number">36</span>, <span class="string">'dog-car'</span>: <span class="number">41</span>, <span class="string">'dog-bird'</span>: <span class="number">42</span>&#125;</span><br><span class="line">min(dogdistance, key=dogdistance.get) <span class="comment"># 返回最小值的键值：’dog-dog‘</span></span><br><span class="line">max(dogdistance, key=dogdistance.get) <span class="comment"># 返回最大值的键值：’dog-bird‘</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="列表中找最值"><a href="#列表中找最值" class="headerlink" title="列表中找最值"></a>列表中找最值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">-10</span>,<span class="number">-5</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">-20</span>,<span class="number">25</span>]</span><br><span class="line"><span class="keyword">print</span> c.index(min(c))  <span class="comment"># 返回最小值的索引</span></span><br><span class="line"><span class="keyword">print</span> c.index(max(c)) <span class="comment"># 返回最大值的索引</span></span><br><span class="line">​`</span><br></pre></td></tr></table></figure>
-<p><code>`</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line">### 字典按照value排序</span><br><span class="line">返回字典：</span><br><span class="line">```python</span><br><span class="line">sorted(d.items(),key = lambda x:x[1],reverse = True)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line">sorted(d.items(),key = operator.itemgetter(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>返回只有键的tuple<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(d,key=d.__getitem__)</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -1216,446 +1614,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/leetcode543/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/02/leetcode543/" itemprop="url">【leetcode】543：Diameter of Binary Tree</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T13:48:03+08:00">
-                2018-11-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="二叉树的直径"><a href="#二叉树的直径" class="headerlink" title="二叉树的直径"></a>二叉树的直径</h1><p><strong>难度：Easy</strong></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一棵二叉树（ binary tree ），你需要计算它的直径长度。一棵二叉树的直径长度是任意两个结点（nodes）路径（path）长度中的最大值。这条路径可能穿过根结点（root）。 </p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><p>给定二叉树 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">1</span><br><span class="line">     / \</span><br><span class="line">    2   3</span><br><span class="line">   / \     </span><br><span class="line">  4   5</span><br></pre></td></tr></table></figure>
-<p>返回 <strong>3</strong>, 它的长度是路径 [4,2,1,3] 或者 [5,2,1,3]。</p>
-<p><strong>注意：</strong>两结点之间的路径长度是以它们之间边的数目表示。 </p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for a binary tree node.</span></span><br><span class="line"><span class="comment"> * struct TreeNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     TreeNode *left;</span></span><br><span class="line"><span class="comment"> *     TreeNode *right;</span></span><br><span class="line"><span class="comment"> *     TreeNode(int x) : val(x), left(NULL), right(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">diameterOfBinaryTree</span><span class="params">(TreeNode* root)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!root) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> res = getHeight(root-&gt;left) + getHeight(root-&gt;right);</span><br><span class="line">        <span class="keyword">return</span> max(res, max(diameterOfBinaryTree(root-&gt;left), diameterOfBinaryTree(root-&gt;right)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getHeight</span><span class="params">(TreeNode* node)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (!node) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (m.count(node)) <span class="keyword">return</span> m[node];</span><br><span class="line">        <span class="keyword">int</span> h = <span class="number">1</span> + max(getHeight(node-&gt;left), getHeight(node-&gt;right));</span><br><span class="line">        <span class="keyword">return</span> m[node] = h;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">unordered_map</span>&lt;TreeNode*, <span class="keyword">int</span>&gt; m;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>其实就是根结点的左右两个子树的深度之和再加1。那么我们只要对每一个结点求出其左右子树深度之和，再加上1就可以更新结果了。为了减少重复计算，我们用哈希表建立每个结点和其深度之间的映射，这样某个结点的深度之前计算过了，就不用再次计算了。</p>
-<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/leetcode-551-552/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/02/leetcode-551-552/" itemprop="url">【leetcode】551&552：Student Attendance Record</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T12:10:21+08:00">
-                2018-11-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="551-学生出勤纪录-I"><a href="#551-学生出勤纪录-I" class="headerlink" title="551  学生出勤纪录 I"></a>551  学生出勤纪录 I</h1><p><strong>难度：Easy</strong></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：</p>
-<ol>
-<li><strong>‘A’</strong> : Absent，缺勤</li>
-<li><strong>‘L’</strong> : Late，迟到</li>
-<li><strong>‘P’</strong> : Present，到场</li>
-</ol>
-<p>如果一个学生的出勤纪录中不<strong>超过一个’A’(缺勤)</strong>并且<strong>不超过两个连续的’L’(迟到)</strong>,那么这个学生会被奖赏。</p>
-<p>你需要根据这个学生的出勤纪录判断他是否会被奖赏</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;PPALLP&quot;</span><br><span class="line">输出: True</span><br><span class="line">输入: &quot;PPALLL&quot;</span><br><span class="line">输出: False</span><br></pre></td></tr></table></figure>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> numA =<span class="number">0</span>, numL = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : s)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c == <span class="string">'A'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (++numA &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                numL = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="string">'L'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (++numL &gt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                numL = <span class="number">0</span>;                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p>对字符串的遍历： <code>for（char c：s）</code></p>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (s.find(<span class="string">"A"</span>) == <span class="built_in">string</span>::npos || s.find(<span class="string">"A"</span>) == s.rfind(<span class="string">"A"</span>)) &amp;&amp; s.find(<span class="string">"LLL"</span>) == <span class="built_in">string</span>::npos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="知识点：-1"><a href="#知识点：-1" class="headerlink" title="知识点："></a>知识点：</h3><p>string中的<code>find()</code>函数：若查找成功，返回按查找规则找到的第一个字符或子串的位置；若查找失败，返回<code>string::npos</code>。<br><code>rfind()</code>与<code>find()</code>的差别在于查找顺序不一样，<code>rfind()</code>是从指定位置起向前查找，直到串首。<br>参见 <a href="https://www.cnblogs.com/zpcdbky/p/4471454.html" target="_blank" rel="noopener">https://www.cnblogs.com/zpcdbky/p/4471454.html</a></p>
-<h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !regex_search(s, regex(<span class="string">"A.*A|LLL"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>使用正则匹配，找出不合题意的情况，然后取反即可。正则匹配式是<code>A.*A|LLL</code>，<code>.*</code>表示有零个或者多个，那么<code>A.*A</code>就是至少有两A的情况，<code>LLL</code>是三个连续的迟到，<code>|</code>表示两个是或的关系，只要能匹配出任意一种情况，就会返回<code>false</code>。</p>
-<h3 id="知识点：-2"><a href="#知识点：-2" class="headerlink" title="知识点："></a>知识点：</h3><p><code>regex_search()</code>返回<code>true</code>或<code>false</code>，搜索字符串中存在符合规则的子字符串 。参考：<a href="https://blog.csdn.net/qq_34802416/article/details/79307102" target="_blank" rel="noopener">https://blog.csdn.net/qq_34802416/article/details/79307102</a></p>
-<p>正则表达式中，<code>.*</code>表示零个或多个。</p>
-<hr>
-<h1 id="552-学生出勤纪录-II"><a href="#552-学生出勤纪录-II" class="headerlink" title="552  学生出勤纪录 II"></a>552  学生出勤纪录 II</h1><p><strong>难度：Hard</strong></p>
-<p>挖坑</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/R-CNN/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/02/R-CNN/" itemprop="url">R-CNN</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T09:32:29+08:00">
-                2018-11-02
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>paper： </p>
-<p><a href="https://arxiv.org/abs/1311.2524" target="_blank" rel="noopener"><strong>Rich feature hierarchies for accurate object detection and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
-<p>参考文章：</p>
-<p><a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
-<p><a href="http://www.cnblogs.com/makefile/p/nms.html" target="_blank" rel="noopener">http://www.cnblogs.com/makefile/p/nms.html</a></p>
-<hr>
-<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
-<p><img src="/2018/11/02/R-CNN/1.png" alt="1539947950822"></p>
-<p>R-CNN 全称为Regions with CNN features，也就是说，它将图像中的某些候选区域（regions）放到CNN中，然后对得到的特征（features）进行检测。从上图可以看出，它的总体流程如下：</p>
-<ol>
-<li>从输入图像提取约个2000候选区域</li>
-<li>对于每个区域，都让其通过一个CNN，得到定长的特征向量</li>
-<li>对于每个feature， 用SVM进行分类</li>
-</ol>
-<p>R-CNN是将Deep Learning引入目标检测的开山之作，虽然此时的它还略显臃肿（进行了太多次的CNN运算）。此外，这篇论文还提出了一个重要的思想，即一个任务的预训练模型（如ImageNet）对于另一个任务的训练有很大的帮助，能够缩短其训练时间，也能让其Loss Function更有效地收敛。</p>
-<p>也正是由于R-CNN是开山之作，它只是将CNN用于特征提取，其他很多操作仍然采用传统方法，这些方法在后续成熟版本中已经弃用，对于这些细节，如果实在是搞不懂，可以跳过。Faster R-CNN才是重中之重。</p>
-<hr>
-<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective方法，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。想了解的可以看这篇文章<a href="https://blog.csdn.net/mao_kun/article/details/50576003" target="_blank" rel="noopener">https://blog.csdn.net/mao_kun/article/details/50576003</a></p>
-<p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
-<p>对于每个候选区域，将其4096维的特征向量做每个类别的SVM分类（若类别数目为N，则有N个SVM分类器，每个SVM做二分类，即属于或不属于该类别），得到相对于每个类别的分数。即2000x4096维的特征矩阵与4096xN维的SVM参数矩阵相乘，得到2000xN维的分数矩阵。</p>
-<p>对于同一类的2000个候选区域的分数，使用非极大值抑制（non-maximun suppresion，NMS）剔除掉一些重复的相近的候选框，保留一些得分最高的候选框，即保证对于每个物体，只有一个得分最高的框将其选中。关于NMS，详见附录B。</p>
-<p>最后，对于N个类别中剩余的候选框，使用N个回归器做回归（称为Bounding-box regression），使得候选框的定位更加准确，得到最终的结果。</p>
-<h2 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2.训练过程"></a>2.训练过程</h2><h3 id="2-1-预训练（pre-training）"><a href="#2-1-预训练（pre-training）" class="headerlink" title="2.1 预训练（pre-training）"></a>2.1 预训练（pre-training）</h3><p>在ILSVRC数据集上对AlexNet进行分类训练，得到预训练模型，该模型保存了训练完毕后的AlexNet的参数。</p>
-<h3 id="2-2-微调（fine-tuning）"><a href="#2-2-微调（fine-tuning）" class="headerlink" title="2.2 微调（fine-tuning）"></a>2.2 微调（fine-tuning）</h3><p>将分类任务上的AlexNet迁移到检测任务上，需要对训练好的AlexNet进行微调，此时输入为候选区域变形后的227x227大小的图像，输出需要将原来的1000维（1000类）改为N+1维（N个类别+背景）。</p>
-<p>选定候选区域与标准框（ground truth）的IoU（见附录A）大于等0.5的为正样本，小于0.5的为负样本。即使是这样分，负样本仍比正样本多得多。因此，在每一次的SGD迭代中，选择32个正样本和96个负样本（3:1）为一个mini-batch。</p>
-<p>学习率（learning rate）设为0.001，是预训练时的1/10，从而保证在学习新东西时不至于忘记之前的记忆 。</p>
-<h3 id="2-3-分类训练"><a href="#2-3-分类训练" class="headerlink" title="2.3 分类训练"></a>2.3 分类训练</h3><p>对于每个类别的SVM分类器，选择ground-truth 框作为正样本， 选择与ground-truth的IOU小于0.3的候选框为负样本。同样的，负样本的数目远多于正样本的数目，需要采用负样本挖掘算法（hard negetive mining）选取一部分负样本进行训练。详见附录C。</p>
-<h3 id="2-4-回归训练（bounding-box-regression）"><a href="#2-4-回归训练（bounding-box-regression）" class="headerlink" title="2.4 回归训练（bounding box regression）"></a>2.4 回归训练（bounding box regression）</h3><p>详见附录D。</p>
-<hr>
-<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="A-IoU"><a href="#A-IoU" class="headerlink" title="A.IoU"></a>A.IoU</h2><p><img src="/2018/11/02/R-CNN/2.png" alt=""><br>即A与B的交集（intersection）与A与B的并集（union）之比：(A∩B)/(A∪B)</p>
-<h2 id="B-非极大值抑制（Non-maximun-suppresion，NMS）"><a href="#B-非极大值抑制（Non-maximun-suppresion，NMS）" class="headerlink" title="B. 非极大值抑制（Non-maximun suppresion，NMS）"></a>B. 非极大值抑制（Non-maximun suppresion，NMS）</h2><p><img src="/2018/11/02/R-CNN/3.png" alt=""></p>
-<p>在得到每一类的2000个候选区域后，会遇到上图所示情况，同一个目标会被多个建议框包围，这时需要非极大值抑制操作去除得分较低的候选框以减少重叠框。</p>
-<p>其基本操作流程如下： </p>
-<ol>
-<li><p>对于每一类，按scores大小排序</p>
-</li>
-<li><p>找到scores最大的候选框，将其保留，然后分别与其他候选框计算IoU，若IoU大于设定的阈值，则剔除得分较小的那个候选框</p>
-</li>
-<li><p>所有候选框遍历完毕后，选择socres第二大的候选框，将其保留，重复步骤2。</p>
-</li>
-<li><p>重复步骤3，直到所有的候选框都被筛选过。</p>
-</li>
-</ol>
-<p>注：对于得分低于某一阈值的候选框，应该直接剔除， 但是文章没有说明何时剔除。</p>
-<p>Python代码实现</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">py_cpu_nms</span><span class="params">(dets, thresh)</span>:</span></span><br><span class="line">    <span class="string">"""Pure Python NMS baseline."""</span></span><br><span class="line">    x1 = dets[:, <span class="number">0</span>]</span><br><span class="line">    y1 = dets[:, <span class="number">1</span>]</span><br><span class="line">    x2 = dets[:, <span class="number">2</span>]</span><br><span class="line">    y2 = dets[:, <span class="number">3</span>]</span><br><span class="line">    scores = dets[:, <span class="number">4</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#每一个检测框的面积</span></span><br><span class="line">    areas = (x2 - x1 + <span class="number">1</span>) * (y2 - y1 + <span class="number">1</span>)</span><br><span class="line">    <span class="comment">#按照score置信度降序排序</span></span><br><span class="line">    order = scores.argsort()[::<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    keep = []  <span class="comment">#保留的结果框集合</span></span><br><span class="line">    <span class="keyword">while</span> order.size &gt; <span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)  <span class="comment">#保留该类剩余box中得分最高的一个</span></span><br><span class="line">        xx1 = np.maximum(x1[i], x1[order[<span class="number">1</span>:]])</span><br><span class="line">        yy1 = np.maximum(y1[i], y1[order[<span class="number">1</span>:]])</span><br><span class="line">        xx2 = np.minimum(x2[i], x2[order[<span class="number">1</span>:]])</span><br><span class="line">        yy2 = np.minimum(y2[i], y2[order[<span class="number">1</span>:]])</span><br><span class="line"></span><br><span class="line">        <span class="comment">#计算相交的面积,不重叠时面积为0</span></span><br><span class="line">        w = np.maximum(<span class="number">0.0</span>, xx2 - xx1 + <span class="number">1</span>)</span><br><span class="line">        h = np.maximum(<span class="number">0.0</span>, yy2 - yy1 + <span class="number">1</span>)</span><br><span class="line">        inter = w * h</span><br><span class="line">        <span class="comment">#计算IoU：重叠面积 /（面积1+面积2-重叠面积）</span></span><br><span class="line">        ovr = inter / (areas[i] + areas[order[<span class="number">1</span>:]] - inter)</span><br><span class="line">		<span class="comment">#保留IoU小于阈值的box</span></span><br><span class="line">        inds = np.where(ovr &lt;= thresh)[<span class="number">0</span>]</span><br><span class="line">        order = order[inds + <span class="number">1</span>] <span class="comment">#因为ovr数组的长度比order数组少一个,所以这里要将所有下标后移一位</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure>
-<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><h2 id="D-Bounding-box-regression"><a href="#D-Bounding-box-regression" class="headerlink" title="D. Bounding box regression"></a>D. Bounding box regression</h2><p><img src="/2018/11/02/R-CNN/4.png" alt=""><br>如上图所示，绿色框为实际标准的卡宴车辆框，即Ground Truth；黄色框为selective search算法得出的建议框，即Region Proposal。即使黄色框中物体被分类器识别为卡宴车辆，但是由于绿色框和黄色框IoU值并不大，所以最后的目标检测精度并不高。采用回归器是为了对建议框进行校正，使得校正后的Region Proposal与selective search更接近， 以提高最终的检测精度。论文中采用bounding-box回归使mAP提高了3~4%。 </p>
-<p><img src="/2018/11/02/R-CNN/5.png" alt=""><br>如上图，黄色窗口P表示Region Proposal，绿色窗口G表示Ground Truth，红色窗口表示Region Proposal进行回归后的预测窗口，现在的目标是找到P到红色窗口的线性变换（当Region Proposal与Ground Truth的IoU&gt;0.6时可以认为是线性变换），使得红窗与G越相近，这就相当于一个简单的可以用最小二乘法解决的线性回归问题。</p>
-<p>定义P窗口的数学表达式：<br>$$<br>P=\left ( P_{x},  P_{y},  P_{w},  P_{h}\right )<br>$$<br>分别表示P窗口的横坐标、纵坐标、宽和高，另两个窗口同理。</p>
-<p>则P窗口的回归过程如下：<br>$$<br>\widehat{G}<em>{x}=P</em>{w}d_{x}\left (P\right)+P_{x}<br>$$<br>$$<br>\widehat{G}<em>{y}=P</em>{h}d_{y}\left (P\right)+P_{y}<br>$$<br>$$<br>\widehat{G}<em>{w}=P</em>{w}\exp \left ( d_{w}\left ( P \right ) \right )<br>$$<br>$$<br>\widehat{G}<em>{h}=P</em>{h}\exp \left ( d_{h}\left ( P \right ) \right )<br>$$</p>
-<p>每一个d(P)都是一个Alex Net Pool5层特征的线性函数，即</p>
-<p>$$<br>d_{<em>}(P)=w_{</em>}^{T}\phi _{5}(P)<br>$$</p>
-<p>这里的</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1706,7 +1664,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Image Classification and Filter VisualizationInstant recognition with a pre-trained model and a tour of the net interface for visualizing features and parameters layer-by-layer. set CPU mode and load">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Caffe">
+<meta property="og:url" content="http://yoursite.com/2018/12/20/caffe/index.html">
+<meta property="og:site_name" content="Good Good Study">
+<meta property="og:description" content="Image Classification and Filter VisualizationInstant recognition with a pre-trained model and a tour of the net interface for visualizing features and parameters layer-by-layer. set CPU mode and load">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-12-20T08:41:19.144Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Caffe">
+<meta name="twitter:description" content="Image Classification and Filter VisualizationInstant recognition with a pre-trained model and a tour of the net interface for visualizing features and parameters layer-by-layer. set CPU mode and load">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/12/20/caffe/"/>
+
+
+
+
+
+  <title>Caffe | Good Good Study</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Good Good Study</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/20/caffe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Caffe</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-20T10:41:48+08:00">
+                2018-12-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="Image-Classification-and-Filter-Visualization"><a href="#Image-Classification-and-Filter-Visualization" class="headerlink" title="Image Classification and Filter Visualization"></a><a href="http://nbviewer.ipython.org/github/BVLC/caffe/blob/master/examples/00-classification.ipynb" target="_blank" rel="noopener">Image Classification and Filter Visualization</a></h2><p>Instant recognition with a pre-trained model and a tour of the net interface for visualizing features and parameters layer-by-layer.</p>
+<p><strong><em>set CPU mode and load net for test</em></strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">caffe.set_mode_cpu()</span><br><span class="line"></span><br><span class="line">net = caffe.Net(model_def,      <span class="comment"># defines the structure of the model</span></span><br><span class="line">                model_weights,  <span class="comment"># contains the trained weights</span></span><br><span class="line">                caffe.TEST)     <span class="comment"># use test mode (e.g., don't perform dropout)</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>input preprocessing</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Set up input preprocessing. (We&apos;ll use Caffe&apos;s caffe.io.Transformer to do this, but this step is independent of other parts of Caffe, so any custom preprocessing code may be used).</span><br><span class="line"></span><br><span class="line">Our default CaffeNet is configured to take images in BGR format. Values are expected to start in the range [0, 255] and then have the mean ImageNet pixel value subtracted from them. In addition, the channel dimension is expected as the first (outermost) dimension.</span><br><span class="line"></span><br><span class="line">As matplotlib will load images with values in the range [0, 1] in RGB format with the channel as the innermost dimension, we are arranging for the needed transformations here.</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># create transformer for the input called 'data'</span></span><br><span class="line">transformer = caffe.io.Transformer(&#123;<span class="string">'data'</span>: net.blobs[<span class="string">'data'</span>].data.shape&#125;)</span><br><span class="line"></span><br><span class="line">transformer.set_transpose(<span class="string">'data'</span>, (<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>))  <span class="comment"># move image channels to outermost dimension</span></span><br><span class="line">transformer.set_mean(<span class="string">'data'</span>, mu)            <span class="comment"># subtract the dataset-mean value in each channel</span></span><br><span class="line">transformer.set_raw_scale(<span class="string">'data'</span>, <span class="number">255</span>)      <span class="comment"># rescale from [0, 1] to [0, 255]</span></span><br><span class="line">transformer.set_channel_swap(<span class="string">'data'</span>, (<span class="number">2</span>,<span class="number">1</span>,<span class="number">0</span>))  <span class="comment"># swap channels from RGB to BGR</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>set the size of the input</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># set the size of the input (we can skip this if we're happy</span></span><br><span class="line"><span class="comment">#  with the default; we can also change it later, e.g., for different batch sizes)</span></span><br><span class="line">net.blobs[<span class="string">'data'</span>].reshape(<span class="number">50</span>,        <span class="comment"># batch size</span></span><br><span class="line">                          <span class="number">3</span>,         <span class="comment"># 3-channel (BGR) images</span></span><br><span class="line">                          <span class="number">227</span>, <span class="number">227</span>)  <span class="comment"># image size is 227x227</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>load an image and perform the preprocessing</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">image = caffe.io.load_image(caffe_root + <span class="string">'examples/images/cat.jpg'</span>)</span><br><span class="line">transformed_image = transformer.preprocess(<span class="string">'data'</span>, image)</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>classify</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># copy the image data into the memory allocated for the net</span></span><br><span class="line">net.blobs[<span class="string">'data'</span>].data[...] = transformed_image</span><br><span class="line"></span><br><span class="line"><span class="comment">### perform classification</span></span><br><span class="line">output = net.forward()</span><br><span class="line"></span><br><span class="line">output_prob = output[<span class="string">'prob'</span>][<span class="number">0</span>]  <span class="comment"># the output probability vector for the first image in the batch</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'predicted class is:'</span>, output_prob.argmax()</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>top5</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># sort top five predictions from softmax output</span></span><br><span class="line">top_inds = output_prob.argsort()[::<span class="number">-1</span>][:<span class="number">5</span>]  <span class="comment"># reverse sort and take five largest items</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">'probabilities and labels:'</span></span><br><span class="line">zip(output_prob[top_inds], labels[top_inds])</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>switch to GPU</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">caffe.set_device(<span class="number">0</span>)  <span class="comment"># if we have multiple GPUs, pick the first one</span></span><br><span class="line">caffe.set_mode_gpu()</span><br><span class="line">net.forward()  <span class="comment"># run once before timing to set up memory</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>show the output shape of each layers</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> layer_name, blob <span class="keyword">in</span> net.blobs.iteritems():</span><br><span class="line">    <span class="keyword">print</span> layer_name + <span class="string">'\t'</span> + str(blob.data.shape)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">data	(50, 3, 227, 227)</span><br><span class="line">conv1	(50, 96, 55, 55)</span><br><span class="line">pool1	(50, 96, 27, 27)</span><br><span class="line">norm1	(50, 96, 27, 27)</span><br><span class="line">conv2	(50, 256, 27, 27)</span><br><span class="line">pool2	(50, 256, 13, 13)</span><br><span class="line">norm2	(50, 256, 13, 13)</span><br><span class="line">conv3	(50, 384, 13, 13)</span><br><span class="line">conv4	(50, 384, 13, 13)</span><br><span class="line">conv5	(50, 256, 13, 13)</span><br><span class="line">pool5	(50, 256, 6, 6)</span><br><span class="line">fc6		(50, 4096)</span><br><span class="line">fc7		(50, 4096)</span><br><span class="line">fc8		(50, 1000)</span><br><span class="line">prob	(50, 1000)</span><br></pre></td></tr></table></figure>
+<p><strong><em>show the parameter shape</em></strong><br>We need to index the resulting values with either [0] for weights or [1] for biases.<br>The param shapes typically have the form <code>(output_channels, input_channels, filter_height, filter_width)</code>(for the weights) and the 1-dimensional shape <code>(output_channels,)</code>(for the biases).<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> layer_name, param <span class="keyword">in</span> net.params.iteritems():</span><br><span class="line">    <span class="keyword">print</span> layer_name + <span class="string">'\t'</span> + str(param[<span class="number">0</span>].data.shape), str(param[<span class="number">1</span>].data.shape)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">conv1	(96, 3, 11, 11) (96,)</span><br><span class="line">conv2	(256, 48, 5, 5) (256,)</span><br><span class="line">conv3	(384, 256, 3, 3) (384,)</span><br><span class="line">conv4	(384, 192, 3, 3) (384,)</span><br><span class="line">conv5	(256, 192, 3, 3) (256,)</span><br><span class="line">fc6	(4096, 9216) (4096,)</span><br><span class="line">fc7	(4096, 4096) (4096,)</span><br><span class="line">fc8	(1000, 4096) (1000,)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="Learning-LeNet"><a href="#Learning-LeNet" class="headerlink" title="Learning LeNet"></a><a href="http://nbviewer.ipython.org/github/BVLC/caffe/blob/master/examples/01-learning-lenet.ipynb" target="_blank" rel="noopener">Learning LeNet</a></h2><p>Define, train, and test the classic LeNet with the Python interface.</p>
+<p><strong><em>create LeNet</em></strong></p>
+<p>We’ll need two external files to help out:</p>
+<ul>
+<li>the net <code>prototxt</code>, defining the architecture and pointing to the train/test data</li>
+<li>the solver <code>prototxt</code>, defining the learning parameters</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> caffe <span class="keyword">import</span> layers <span class="keyword">as</span> L, params <span class="keyword">as</span> P</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">lenet</span><span class="params">(lmdb, batch_size)</span>:</span></span><br><span class="line">    <span class="comment"># our version of LeNet: a series of linear and simple nonlinear transformations</span></span><br><span class="line">    n = caffe.NetSpec()</span><br><span class="line">    </span><br><span class="line">    n.data, n.label = L.Data(batch_size=batch_size, backend=P.Data.LMDB, source=lmdb,transform_param=dict(scale=<span class="number">1.</span>/<span class="number">255</span>), ntop=<span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">    n.conv1 = L.Convolution(n.data, kernel_size=<span class="number">5</span>, num_output=<span class="number">20</span>, weight_filler=dict(type=<span class="string">'xavier'</span>))</span><br><span class="line">    n.pool1 = L.Pooling(n.conv1, kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>, pool=P.Pooling.MAX)</span><br><span class="line">    n.conv2 = L.Convolution(n.pool1, kernel_size=<span class="number">5</span>, num_output=<span class="number">50</span>, weight_filler=dict(type=<span class="string">'xavier'</span>))</span><br><span class="line">    n.pool2 = L.Pooling(n.conv2, kernel_size=<span class="number">2</span>, stride=<span class="number">2</span>, pool=P.Pooling.MAX)</span><br><span class="line">    n.fc1 =   L.InnerProduct(n.pool2, num_output=<span class="number">500</span>, weight_filler=dict(type=<span class="string">'xavier'</span>))</span><br><span class="line">    n.relu1 = L.ReLU(n.fc1, in_place=<span class="keyword">True</span>)</span><br><span class="line">    n.score = L.InnerProduct(n.relu1, num_output=<span class="number">10</span>, weight_filler=dict(type=<span class="string">'xavier'</span>))</span><br><span class="line">    n.loss =  L.SoftmaxWithLoss(n.score, n.label)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> n.to_proto()</span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'mnist/lenet_auto_train.prototxt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(str(lenet(<span class="string">'mnist/mnist_train_lmdb'</span>, <span class="number">64</span>)))</span><br><span class="line">    </span><br><span class="line"><span class="keyword">with</span> open(<span class="string">'mnist/lenet_auto_test.prototxt'</span>, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(str(lenet(<span class="string">'mnist/mnist_test_lmdb'</span>, <span class="number">100</span>)))</span><br></pre></td></tr></table></figure>
+<p>The net has been written to disk in a more verbose but human-readable serialization format using Google’s protobuf library. You can read, write, and modify this description directly. Let’s take a look at the train net. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br></pre></td><td class="code"><pre><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"data"</span></span><br><span class="line">  type: <span class="string">"Data"</span></span><br><span class="line">  top: <span class="string">"data"</span></span><br><span class="line">  top: <span class="string">"label"</span></span><br><span class="line">  transform_param &#123;</span><br><span class="line">    scale: <span class="number">0.00392156862745</span></span><br><span class="line">  &#125;</span><br><span class="line">  data_param &#123;</span><br><span class="line">    source: <span class="string">"mnist/mnist_train_lmdb"</span></span><br><span class="line">    batch_size: <span class="number">64</span></span><br><span class="line">    backend: LMDB</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"conv1"</span></span><br><span class="line">  type: <span class="string">"Convolution"</span></span><br><span class="line">  bottom: <span class="string">"data"</span></span><br><span class="line">  top: <span class="string">"conv1"</span></span><br><span class="line">  convolution_param &#123;</span><br><span class="line">    num_output: <span class="number">20</span></span><br><span class="line">    kernel_size: <span class="number">5</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"pool1"</span></span><br><span class="line">  type: <span class="string">"Pooling"</span></span><br><span class="line">  bottom: <span class="string">"conv1"</span></span><br><span class="line">  top: <span class="string">"pool1"</span></span><br><span class="line">  pooling_param &#123;</span><br><span class="line">    pool: MAX</span><br><span class="line">    kernel_size: <span class="number">2</span></span><br><span class="line">    stride: <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"conv2"</span></span><br><span class="line">  type: <span class="string">"Convolution"</span></span><br><span class="line">  bottom: <span class="string">"pool1"</span></span><br><span class="line">  top: <span class="string">"conv2"</span></span><br><span class="line">  convolution_param &#123;</span><br><span class="line">    num_output: <span class="number">50</span></span><br><span class="line">    kernel_size: <span class="number">5</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"pool2"</span></span><br><span class="line">  type: <span class="string">"Pooling"</span></span><br><span class="line">  bottom: <span class="string">"conv2"</span></span><br><span class="line">  top: <span class="string">"pool2"</span></span><br><span class="line">  pooling_param &#123;</span><br><span class="line">    pool: MAX</span><br><span class="line">    kernel_size: <span class="number">2</span></span><br><span class="line">    stride: <span class="number">2</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"fc1"</span></span><br><span class="line">  type: <span class="string">"InnerProduct"</span></span><br><span class="line">  bottom: <span class="string">"pool2"</span></span><br><span class="line">  top: <span class="string">"fc1"</span></span><br><span class="line">  inner_product_param &#123;</span><br><span class="line">    num_output: <span class="number">500</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"relu1"</span></span><br><span class="line">  type: <span class="string">"ReLU"</span></span><br><span class="line">  bottom: <span class="string">"fc1"</span></span><br><span class="line">  top: <span class="string">"fc1"</span></span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"score"</span></span><br><span class="line">  type: <span class="string">"InnerProduct"</span></span><br><span class="line">  bottom: <span class="string">"fc1"</span></span><br><span class="line">  top: <span class="string">"score"</span></span><br><span class="line">  inner_product_param &#123;</span><br><span class="line">    num_output: <span class="number">10</span></span><br><span class="line">    weight_filler &#123;</span><br><span class="line">      type: <span class="string">"xavier"</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">layer &#123;</span><br><span class="line">  name: <span class="string">"loss"</span></span><br><span class="line">  type: <span class="string">"SoftmaxWithLoss"</span></span><br><span class="line">  bottom: <span class="string">"score"</span></span><br><span class="line">  bottom: <span class="string">"label"</span></span><br><span class="line">  top: <span class="string">"loss"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now let’s see the learning parameters, which are also written as a <code>prototxt</code> file (already provided on disk). We’re using SGD with momentum, weight decay, and a specific learning rate schedule<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># The train/test net protocol buffer definition</span></span><br><span class="line">train_net: <span class="string">"mnist/lenet_auto_train.prototxt"</span></span><br><span class="line">test_net: <span class="string">"mnist/lenet_auto_test.prototxt"</span></span><br><span class="line"><span class="comment"># test_iter specifies how many forward passes the test should carry out.</span></span><br><span class="line"><span class="comment"># In the case of MNIST, we have test batch size 100 and 100 test iterations,</span></span><br><span class="line"><span class="comment"># covering the full 10,000 testing images.</span></span><br><span class="line">test_iter: <span class="number">100</span></span><br><span class="line"><span class="comment"># Carry out testing every 500 training iterations.</span></span><br><span class="line">test_interval: <span class="number">500</span></span><br><span class="line"><span class="comment"># The base learning rate, momentum and the weight decay of the network.</span></span><br><span class="line">base_lr: <span class="number">0.01</span></span><br><span class="line">momentum: <span class="number">0.9</span></span><br><span class="line">weight_decay: <span class="number">0.0005</span></span><br><span class="line"><span class="comment"># The learning rate policy</span></span><br><span class="line">lr_policy: <span class="string">"inv"</span></span><br><span class="line">gamma: <span class="number">0.0001</span></span><br><span class="line">power: <span class="number">0.75</span></span><br><span class="line"><span class="comment"># Display every 100 iterations</span></span><br><span class="line">display: <span class="number">100</span></span><br><span class="line"><span class="comment"># The maximum number of iterations</span></span><br><span class="line">max_iter: <span class="number">10000</span></span><br><span class="line"><span class="comment"># snapshot intermediate results</span></span><br><span class="line">snapshot: <span class="number">5000</span></span><br><span class="line">snapshot_prefix: <span class="string">"mnist/lenet"</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>loading and checking the slover</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">caffe.set_device(<span class="number">0</span>)</span><br><span class="line">caffe.set_mode_gpu()</span><br><span class="line"></span><br><span class="line"><span class="comment">### load the solver and create train and test nets</span></span><br><span class="line">solver = <span class="keyword">None</span>  <span class="comment"># ignore this workaround for lmdb data (can't instantiate two solvers on the same data)</span></span><br><span class="line">solver = caffe.SGDSolver(<span class="string">'mnist/lenet_auto_solver.prototxt'</span>)</span><br></pre></td></tr></table></figure></p>
+<p><em>check</em><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># each output is (batch size, feature dim, spatial dim)</span></span><br><span class="line">[(k, v.data.shape) <span class="keyword">for</span> k, v <span class="keyword">in</span> solver.net.blobs.items()]</span><br><span class="line"></span><br><span class="line"><span class="comment"># just print the weight sizes (we'll omit the biases)</span></span><br><span class="line">[(k, v[<span class="number">0</span>].data.shape) <span class="keyword">for</span> k, v <span class="keyword">in</span> solver.net.params.items()]</span><br><span class="line">Out[<span class="number">9</span>]:</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">solver.net.forward()  <span class="comment"># train net</span></span><br><span class="line">solver.test_nets[<span class="number">0</span>].forward()  <span class="comment"># test net (there can be more than one)</span></span><br></pre></td></tr></table></figure>
+<p><strong><em>Writing a custom training loop</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">niter = <span class="number">200</span></span><br><span class="line">test_interval = <span class="number">25</span></span><br><span class="line"><span class="comment"># losses will also be stored in the log</span></span><br><span class="line">train_loss = zeros(niter)</span><br><span class="line">test_acc = zeros(int(np.ceil(niter / test_interval)))</span><br><span class="line">output = zeros((niter, <span class="number">8</span>, <span class="number">10</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment"># the main solver loop</span></span><br><span class="line"><span class="keyword">for</span> it <span class="keyword">in</span> range(niter):</span><br><span class="line">    solver.step(<span class="number">1</span>)  <span class="comment"># SGD by Caffe</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># store the train loss</span></span><br><span class="line">    train_loss[it] = solver.net.blobs[<span class="string">'loss'</span>].data</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># store the output on the first test batch</span></span><br><span class="line">    <span class="comment"># (start the forward pass at conv1 to avoid loading new data)</span></span><br><span class="line">    solver.test_nets[<span class="number">0</span>].forward(start=<span class="string">'conv1'</span>)</span><br><span class="line">    output[it] = solver.test_nets[<span class="number">0</span>].blobs[<span class="string">'score'</span>].data[:<span class="number">8</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># run a full test every so often</span></span><br><span class="line">    <span class="comment"># (Caffe can also do this for us and write to a log, but we show here</span></span><br><span class="line">    <span class="comment">#  how to do it directly in Python, where more complicated things are easier.)</span></span><br><span class="line">    <span class="keyword">if</span> it % test_interval == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">print</span> <span class="string">'Iteration'</span>, it, <span class="string">'testing...'</span></span><br><span class="line">        correct = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> test_it <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">            solver.test_nets[<span class="number">0</span>].forward()</span><br><span class="line">            correct += sum(solver.test_nets[<span class="number">0</span>].blobs[<span class="string">'score'</span>].data.argmax(<span class="number">1</span>)</span><br><span class="line">                           == solver.test_nets[<span class="number">0</span>].blobs[<span class="string">'label'</span>].data)</span><br><span class="line">        test_acc[it // test_interval] = correct / <span class="number">1e4</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>define slover</em></strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> caffe.proto <span class="keyword">import</span> caffe_pb2</span><br><span class="line">s = caffe_pb2.SolverParameter()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Set a seed for reproducible experiments:</span></span><br><span class="line"><span class="comment"># this controls for randomization in training.</span></span><br><span class="line">s.random_seed = <span class="number">0xCAFFE</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Specify locations of the train and (maybe) test networks.</span></span><br><span class="line">s.train_net = train_net_path</span><br><span class="line">s.test_net.append(test_net_path)</span><br><span class="line">s.test_interval = <span class="number">500</span>  <span class="comment"># Test after every 500 training iterations.</span></span><br><span class="line">s.test_iter.append(<span class="number">100</span>) <span class="comment"># Test on 100 batches each time we test.</span></span><br><span class="line"></span><br><span class="line">s.max_iter = <span class="number">10000</span>     <span class="comment"># no. of times to update the net (training iterations)</span></span><br><span class="line"> </span><br><span class="line"><span class="comment"># EDIT HERE to try different solvers</span></span><br><span class="line"><span class="comment"># solver types include "SGD", "Adam", and "Nesterov" among others.</span></span><br><span class="line">s.type = <span class="string">"SGD"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set the initial learning rate for SGD.</span></span><br><span class="line">s.base_lr = <span class="number">0.01</span>  <span class="comment"># EDIT HERE to try different learning rates</span></span><br><span class="line"><span class="comment"># Set momentum to accelerate learning by</span></span><br><span class="line"><span class="comment"># taking weighted average of current and previous updates.</span></span><br><span class="line">s.momentum = <span class="number">0.9</span></span><br><span class="line"><span class="comment"># Set weight decay to regularize and prevent overfitting</span></span><br><span class="line">s.weight_decay = <span class="number">5e-4</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Set `lr_policy` to define how the learning rate changes during training.</span></span><br><span class="line"><span class="comment"># This is the same policy as our default LeNet.</span></span><br><span class="line">s.lr_policy = <span class="string">'inv'</span></span><br><span class="line">s.gamma = <span class="number">0.0001</span></span><br><span class="line">s.power = <span class="number">0.75</span></span><br><span class="line"><span class="comment"># EDIT HERE to try the fixed rate (and compare with adaptive solvers)</span></span><br><span class="line"><span class="comment"># `fixed` is the simplest policy that keeps the learning rate constant.</span></span><br><span class="line"><span class="comment"># s.lr_policy = 'fixed'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Display the current training loss and accuracy every 1000 iterations.</span></span><br><span class="line">s.display = <span class="number">1000</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Snapshots are files used to store networks we've trained.</span></span><br><span class="line"><span class="comment"># We'll snapshot every 5K iterations -- twice during training.</span></span><br><span class="line">s.snapshot = <span class="number">5000</span></span><br><span class="line">s.snapshot_prefix = <span class="string">'mnist/custom_net'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Train on the GPU</span></span><br><span class="line">s.solver_mode = caffe_pb2.SolverParameter.GPU</span><br><span class="line"></span><br><span class="line"><span class="comment"># Write the solver to a temporary file and return its filename.</span></span><br><span class="line"><span class="keyword">with</span> open(solver_config_path, <span class="string">'w'</span>) <span class="keyword">as</span> f:</span><br><span class="line">    f.write(str(s))</span><br></pre></td></tr></table></figure></p>
+<h2 id="Fine-tuning-for-Style-Recognition"><a href="#Fine-tuning-for-Style-Recognition" class="headerlink" title="Fine-tuning for Style Recognition"></a><a href="http://nbviewer.ipython.org/github/BVLC/caffe/blob/master/examples/02-fine-tuning.ipynb" target="_blank" rel="noopener">Fine-tuning for Style Recognition</a></h2><p>Fine-tune the ImageNet-trained CaffeNet on new data.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/12/14/network_structure_experience/" rel="next" title="Experience in Network Structure">
+                <i class="fa fa-chevron-left"></i> Experience in Network Structure
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Pan Sicheng</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Image-Classification-and-Filter-Visualization"><span class="nav-number">1.</span> <span class="nav-text">Image Classification and Filter Visualization</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-LeNet"><span class="nav-number">2.</span> <span class="nav-text">Learning LeNet</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fine-tuning-for-Style-Recognition"><span class="nav-number">3.</span> <span class="nav-text">Fine-tuning for Style Recognition</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pan Sicheng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

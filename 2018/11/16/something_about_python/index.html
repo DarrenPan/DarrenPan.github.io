@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Good Good Study">
 <meta property="og:description" content="[TOC]  lstrip()和rstrip()12str.lstrip([chars]) # 删除字符串左边的空格或指定字符str.rstrip([chars]) # 删除字符串末尾的空格或指定字符  字典中找最值123dogdistance = &amp;#123;&apos;dog-dog&apos;: 33, &apos;dog-cat&apos;: 36, &apos;dog-car&apos;: 41, &apos;dog-bird&apos;: 42&amp;#125;min">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-06T07:03:11.571Z">
+<meta property="og:updated_time" content="2018-12-13T08:22:18.274Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Something about Python">
 <meta name="twitter:description" content="[TOC]  lstrip()和rstrip()12str.lstrip([chars]) # 删除字符串左边的空格或指定字符str.rstrip([chars]) # 删除字符串末尾的空格或指定字符  字典中找最值123dogdistance = &amp;#123;&apos;dog-dog&apos;: 33, &apos;dog-cat&apos;: 36, &apos;dog-car&apos;: 41, &apos;dog-bird&apos;: 42&amp;#125;min">
@@ -317,7 +317,9 @@
 <h3 id="字典中找最值"><a href="#字典中找最值" class="headerlink" title="字典中找最值"></a>字典中找最值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dogdistance = &#123;<span class="string">'dog-dog'</span>: <span class="number">33</span>, <span class="string">'dog-cat'</span>: <span class="number">36</span>, <span class="string">'dog-car'</span>: <span class="number">41</span>, <span class="string">'dog-bird'</span>: <span class="number">42</span>&#125;</span><br><span class="line">min(dogdistance, key=dogdistance.get) <span class="comment"># 返回最小值的键值：’dog-dog‘</span></span><br><span class="line">max(dogdistance, key=dogdistance.get) <span class="comment"># 返回最大值的键值：’dog-bird‘</span></span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="列表中找最值"><a href="#列表中找最值" class="headerlink" title="列表中找最值"></a>列表中找最值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">-10</span>,<span class="number">-5</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">-20</span>,<span class="number">25</span>]</span><br><span class="line"><span class="keyword">print</span> c.index(min(c))  <span class="comment"># 返回最小值的索引</span></span><br><span class="line"><span class="keyword">print</span> c.index(max(c)) <span class="comment"># 返回最大值的索引</span></span><br><span class="line">​`</span><br></pre></td></tr></table></figure>
-<p><code>`</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line">### 字典按照value排序</span><br><span class="line">返回字典：</span><br><span class="line">```python</span><br><span class="line">sorted(d.items(),key = lambda x:x[1],reverse = True)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line">sorted(d.items(),key = operator.itemgetter(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>返回只有键的tuple<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(d,key=d.__getitem__)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -431,7 +433,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
