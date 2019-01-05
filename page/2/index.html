@@ -239,6 +239,148 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/Fast R-CNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/09/Fast R-CNN/" itemprop="url">Fast R-CNN</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-09T09:49:31+08:00">
+                2018-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>paper：<br><a href="https://arxiv.org/abs/1504.08083" target="_blank" rel="noopener"><strong>Fast R-CNN</strong> -arXiv:1504 ICCV2015</a></p>
+<hr>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>R-CNN之后，RGB大神又单枪匹马干出了Fast R-CNN。相较于前者，Fast R-CNN更加Deep Learning化了，一是只对整幅图进行一次特征提取；二是将bounding box的分类和回归联合起来，进行多任务的训练。</p>
+<hr>
+<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><p><img src="/2018/11/09/Fast R-CNN/1.png" alt="1539947950822"></p>
+<p>Faster R-CNN的流程如下：</p>
+<ol>
+<li>和R-CNN一样，用selective search算法在输入图片上提取约2000个候选框。</li>
+<li>将图片输入CNN网络中，得到特征图（feature map）。</li>
+<li>对于每个候选框，都可以在特征图上找到与其相对应的特征框，然后用ROI池化层（region of interest pooling layer）将每个特征框池化到固定的大小。</li>
+<li>将特征框输入全连接层（FC layers）得到特征向量。</li>
+<li>将特征向量分别通过两个不同的全连接层，其中一个输出softmax的分类得分，另一个输出bounding box的regression。</li>
+<li>利用窗口得分分别对每一类物体进行非极大值抑制剔除重叠建议框，最终得到每个类别中回归修正后的得分最高的窗口。 </li>
+</ol>
+<h2 id="1-RoI-pooling-layer"><a href="#1-RoI-pooling-layer" class="headerlink" title="1.RoI pooling layer"></a>1.RoI pooling layer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">像AlexNet CNN等网络在提取特征过程中对图像的大小并无要求，只是在提取完特征进行全连接操作的时候才需要固定特征尺寸，利用这一点，Fast R-CNN可输入任意size图片，并在全连接操作前加入RoI池化层，将建议框对应特征图中的特征框池化到H×W 的size，以便满足后续操作对size的要求</span><br></pre></td></tr></table></figure>
+<p>RoI池化层使用max pooling 将特征框固定为HxW大小。若特征框大小为h×w，则设定每个子窗口大小为h/H×w/W，然后对每个子窗口采用max pooling下采样操作，每个子窗口只取一个最大值，则特征框最终池化为H×W的大小。 </p>
+<h2 id="2-训练"><a href="#2-训练" class="headerlink" title="2.训练"></a>2.训练</h2><h3 id="2-1预训练"><a href="#2-1预训练" class="headerlink" title="2.1预训练"></a>2.1预训练</h3><p>采用了AlexNet、VGG_CNN_M_1024 、VGG-16三种网络在ImageNet上进行预训练。之后，对网络进行了三处修改：</p>
+<ol>
+<li>最后一层max pooling 改为 RoI pooling</li>
+<li>最后的fully connected layer 和softmax替换为两个子网络，其一是全连接层加K+1个分类的softmax，其二是全连接层加bounding box回归器</li>
+<li>改为双输入，即图像和其对应的region proposal</li>
+</ol>
+<h3 id="2-2-检测任务上的微调"><a href="#2-2-检测任务上的微调" class="headerlink" title="2.2 检测任务上的微调"></a>2.2 检测任务上的微调</h3><h4 id="多任务损失"><a href="#多任务损失" class="headerlink" title="多任务损失"></a>多任务损失</h4><p>Fast R-CNN有两个输出，第一个是K+1个类别的离散概率分布p=( p_{0},  …, p_{K})，第二个是bounding-box regression的offset</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/leetcode543/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -895,6 +1037,8 @@
 <hr>
 <p><strong>读CSV文件时，报错’utf-8’ codec can’t decode byte 0xb4 in position 0: invalid start byte</strong></p>
 <p>解决：保存时 加 encoding=’UTF-8’或’UTF-8-sig’</p>
+<hr>
+<p><strong>pytorch load 预训练模型的时候</strong><br>报错：<br>Missing key(s) in state_dict: “network.0.conv.weight”, ……<br>Unexpected key(s) in state_dict: “module.network.0.conv.weight”, ……<br>是用torch0.4.1版本训练，用0.4.0版本预测的时候报的异常  ？？<br>解决：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.load_state_dict(&#123;k.replace(<span class="string">'module.'</span>,<span class="string">''</span>):v <span class="keyword">for</span> k,v <span class="keyword">in</span> torch.load(checkpoint_path)[<span class="string">'state_dict'</span>].items()&#125;)</span><br></pre></td></tr></table></figure></p>
 
           
         
@@ -980,7 +1124,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1030,7 +1174,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

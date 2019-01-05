@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Good Good Study">
 <meta property="og:description" content="import keras 的时候 遇到 No module named ‘tensorflow.python’ 解决：重装tensorflow  读CSV文件时，报错UnicodeDecodeError: ‘gbk’ codec can’t decode byte 0xbf in position 2: illegal multibyte sequence 解决：open(csv_path, &amp;#">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-11-07T04:20:04.959Z">
+<meta property="og:updated_time" content="2019-01-05T06:46:12.588Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="零碎的问题及解决">
 <meta name="twitter:description" content="import keras 的时候 遇到 No module named ‘tensorflow.python’ 解决：重装tensorflow  读CSV文件时，报错UnicodeDecodeError: ‘gbk’ codec can’t decode byte 0xbf in position 2: illegal multibyte sequence 解决：open(csv_path, &amp;#">
@@ -318,6 +318,8 @@
 <hr>
 <p><strong>读CSV文件时，报错’utf-8’ codec can’t decode byte 0xb4 in position 0: invalid start byte</strong></p>
 <p>解决：保存时 加 encoding=’UTF-8’或’UTF-8-sig’</p>
+<hr>
+<p><strong>pytorch load 预训练模型的时候</strong><br>报错：<br>Missing key(s) in state_dict: “network.0.conv.weight”, ……<br>Unexpected key(s) in state_dict: “module.network.0.conv.weight”, ……<br>是用torch0.4.1版本训练，用0.4.0版本预测的时候报的异常  ？？<br>解决：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.load_state_dict(&#123;k.replace(<span class="string">'module.'</span>,<span class="string">''</span>):v <span class="keyword">for</span> k,v <span class="keyword">in</span> torch.load(checkpoint_path)[<span class="string">'state_dict'</span>].items()&#125;)</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -418,7 +420,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">16</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -468,7 +470,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
