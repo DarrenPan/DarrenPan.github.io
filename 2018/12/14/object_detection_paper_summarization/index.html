@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="leetcode," />
+  <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Object Detection," />
 
 
 
@@ -79,18 +79,21 @@
 
 
 
-<meta name="description" content="771 宝石与石头难度：Easy 题目描述给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。 J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。 示例12输入: J = &amp;quot;aA&amp;quot;, S = &amp;quot;aAAbbbb&amp;quot;">
-<meta name="keywords" content="leetcode">
+<meta name="description" content="Basic Detection FrameworkTwo stage：[R-CNN][SPP-Net][Fast R-CNN][Faster R-CNN] One stage:[YOLO][SSD] Improvement for Two Stage FrameworkTo eliminate high-scored false positives[DCR - ECCV2018] Revisiti">
+<meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Object Detection">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【leetcode】771：Jewels and Stones">
-<meta property="og:url" content="http://yoursite.com/2018/12/21/leetcode771/index.html">
+<meta property="og:title" content="Object Detection Paper Summarization">
+<meta property="og:url" content="http://yoursite.com/2018/12/14/object_detection_paper_summarization/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="771 宝石与石头难度：Easy 题目描述给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。 J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。 示例12输入: J = &amp;quot;aA&amp;quot;, S = &amp;quot;aAAbbbb&amp;quot;">
+<meta property="og:description" content="Basic Detection FrameworkTwo stage：[R-CNN][SPP-Net][Fast R-CNN][Faster R-CNN] One stage:[YOLO][SSD] Improvement for Two Stage FrameworkTo eliminate high-scored false positives[DCR - ECCV2018] Revisiti">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-22T05:47:22.625Z">
+<meta property="og:image" content="http://yoursite.com/2018/12/14/object_detection_paper_summarization/1.jpg">
+<meta property="og:image" content="http://yoursite.com/2018/12/14/object_detection_paper_summarization/2.jpg">
+<meta property="og:updated_time" content="2019-01-23T08:54:38.011Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【leetcode】771：Jewels and Stones">
-<meta name="twitter:description" content="771 宝石与石头难度：Easy 题目描述给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。 J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。 示例12输入: J = &amp;quot;aA&amp;quot;, S = &amp;quot;aAAbbbb&amp;quot;">
+<meta name="twitter:title" content="Object Detection Paper Summarization">
+<meta name="twitter:description" content="Basic Detection FrameworkTwo stage：[R-CNN][SPP-Net][Fast R-CNN][Faster R-CNN] One stage:[YOLO][SSD] Improvement for Two Stage FrameworkTo eliminate high-scored false positives[DCR - ECCV2018] Revisiti">
+<meta name="twitter:image" content="http://yoursite.com/2018/12/14/object_detection_paper_summarization/1.jpg">
 
 
 
@@ -120,13 +123,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/12/21/leetcode771/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/12/14/object_detection_paper_summarization/"/>
 
 
 
 
 
-  <title>【leetcode】771：Jewels and Stones | Good Good Study</title>
+  <title>Object Detection Paper Summarization | Good Good Study</title>
   
 
 
@@ -243,7 +246,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/leetcode771/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/object_detection_paper_summarization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pan Sicheng">
@@ -260,7 +263,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【leetcode】771：Jewels and Stones</h1>
+          <h1 class="post-title" itemprop="name headline">Object Detection Paper Summarization</h1>
         
 
         <div class="post-meta">
@@ -272,8 +275,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-21T10:43:02+08:00">
-                2018-12-21
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-14T14:36:12+08:00">
+                2018-12-14
               </time>
             
 
@@ -310,19 +313,11 @@
       
 
       
-        <h1 id="771-宝石与石头"><a href="#771-宝石与石头" class="headerlink" title="771 宝石与石头"></a>771 宝石与石头</h1><p><strong>难度：Easy</strong></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。</p>
-<p>J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: J = &quot;aA&quot;, S = &quot;aAAbbbb&quot;</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: J = &quot;z&quot;, S = &quot;ZZ&quot;</span><br><span class="line">输出: 0</span><br></pre></td></tr></table></figure>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
-<li><code>S</code> 和 <code>J</code> 最多含有50个字母。</li>
-<li><code>J</code> 中的字符不重复。 </li>
-</ul>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">string</span> J, <span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> s : S) &#123;</span><br><span class="line">            <span class="keyword">for</span> (cahr j : J) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s == j) &#123;</span><br><span class="line">                    ++res;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">string</span> J, <span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">char</span>&gt; s;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : J) s.insert(c);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : S) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.count(c)) ++res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>用HashSet来优化时间复杂度，将珠宝字符串J中的所有字符都放入HashSet中，然后遍历石头字符串中的每个字符，到HashSet中查找是否存在，存在的话计数器自增1即可。</p>
-
+        <h1 id="Basic-Detection-Framework"><a href="#Basic-Detection-Framework" class="headerlink" title="Basic Detection Framework"></a>Basic Detection Framework</h1><h2 id="Two-stage："><a href="#Two-stage：" class="headerlink" title="Two stage："></a>Two stage：</h2><p>[R-CNN]<br>[SPP-Net]<br>[Fast R-CNN]<br>[Faster R-CNN]</p>
+<h2 id="One-stage"><a href="#One-stage" class="headerlink" title="One stage:"></a>One stage:</h2><p>[YOLO]<br>[SSD]</p>
+<h1 id="Improvement-for-Two-Stage-Framework"><a href="#Improvement-for-Two-Stage-Framework" class="headerlink" title="Improvement for Two Stage Framework"></a>Improvement for Two Stage Framework</h1><h2 id="To-eliminate-high-scored-false-positives"><a href="#To-eliminate-high-scored-false-positives" class="headerlink" title="To eliminate high-scored false positives"></a>To eliminate high-scored false positives</h2><p><strong>[DCR - ECCV2018] Revisiting RCNN: On Awakening the Classification Power of Faster RCNN</strong><br>[paper] <a href="https://arxiv.org/abs/1803.06799" target="_blank" rel="noopener">https://arxiv.org/abs/1803.06799</a><br>[official code] <a href="https://github.com/bowenc0221/Decoupled-Classification-Refinement" target="_blank" rel="noopener">https://github.com/bowenc0221/Decoupled-Classification-Refinement</a><br>[summarization]<br>-Propose Decoupled Classification Refinement to eliminate high-scored false positives and improve the region proposal classication results.<br>-Adaptive Receptive Field<br><img src="/2018/12/14/object_detection_paper_summarization/1.jpg" alt=""></p>
+<p><strong>[DCR V2]  Decoupled Classification Refinement: Hard False Positive Suppression for Object Detection</strong><br><img src="/2018/12/14/object_detection_paper_summarization/2.jpg" alt=""></p>
+<h1 id="Improvement-for-One-Stage-Framework"><a href="#Improvement-for-One-Stage-Framework" class="headerlink" title="Improvement for  One Stage Framework"></a>Improvement for  One Stage Framework</h1><h1 id="Other-improvement"><a href="#Other-improvement" class="headerlink" title="Other improvement"></a>Other improvement</h1>
       
     </div>
     
@@ -339,7 +334,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/leetcode/" rel="tag"># leetcode</a>
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/Computer-Vision/" rel="tag"># Computer Vision</a>
+          
+            <a href="/tags/Object-Detection/" rel="tag"># Object Detection</a>
           
         </div>
       
@@ -352,8 +353,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/12/20/caffe/" rel="next" title="Caffe">
-                <i class="fa fa-chevron-left"></i> Caffe
+              <a href="/2018/11/16/something_about_python/" rel="next" title="Something about Python">
+                <i class="fa fa-chevron-left"></i> Something about Python
               </a>
             
           </div>
@@ -362,8 +363,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/01/23/pytorch/" rel="prev" title="pytorch">
-                pytorch <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/14/network_structure_experience/" rel="prev" title="Experience in Network Structure">
+                Experience in Network Structure <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -487,7 +488,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#771-宝石与石头"><span class="nav-number">1.</span> <span class="nav-text">771 宝石与石头</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">1.2.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注意"><span class="nav-number">1.3.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法一"><span class="nav-number">1.4.</span> <span class="nav-text">解法一</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解法二"><span class="nav-number">1.5.</span> <span class="nav-text">解法二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.5.1.</span> <span class="nav-text">思路</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Detection-Framework"><span class="nav-number">1.</span> <span class="nav-text">Basic Detection Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Two-stage："><span class="nav-number">1.1.</span> <span class="nav-text">Two stage：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#One-stage"><span class="nav-number">1.2.</span> <span class="nav-text">One stage:</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Improvement-for-Two-Stage-Framework"><span class="nav-number">2.</span> <span class="nav-text">Improvement for Two Stage Framework</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#To-eliminate-high-scored-false-positives"><span class="nav-number">2.1.</span> <span class="nav-text">To eliminate high-scored false positives</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Improvement-for-One-Stage-Framework"><span class="nav-number">3.</span> <span class="nav-text">Improvement for  One Stage Framework</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Other-improvement"><span class="nav-number">4.</span> <span class="nav-text">Other improvement</span></a></li></ol></div>
             
 
           </div>
