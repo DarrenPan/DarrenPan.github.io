@@ -239,6 +239,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/paper-summarization/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/05/paper-summarization/" itemprop="url">paper_summarization</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-05T16:40:28+08:00">
+                2019-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Segmentation"><a href="#Segmentation" class="headerlink" title="Segmentation"></a>Segmentation</h1><h2 id="Sematic-Segmentation"><a href="#Sematic-Segmentation" class="headerlink" title="Sematic Segmentation"></a>Sematic Segmentation</h2><p><strong>[FCN - CVPR2015]</strong></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/pytorch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -848,9 +968,12 @@
 <h1 id="Improvement-for-Two-Stage-Framework"><a href="#Improvement-for-Two-Stage-Framework" class="headerlink" title="Improvement for Two Stage Framework"></a>Improvement for Two Stage Framework</h1><h2 id="To-alleviate-the-problems-arising-from-scale-variation-and-small-object-instances"><a href="#To-alleviate-the-problems-arising-from-scale-variation-and-small-object-instances" class="headerlink" title="To alleviate the problems arising from scale variation and small object instances"></a>To alleviate the problems arising from scale variation and small object instances</h2><h3 id="Construct-feature-pyramid"><a href="#Construct-feature-pyramid" class="headerlink" title="Construct feature pyramid"></a>Construct feature pyramid</h3><p><strong>[FPN - CVPR2017]</strong></p>
 <h3 id="Multi-scale-training-approach-image-pyramid"><a href="#Multi-scale-training-approach-image-pyramid" class="headerlink" title="Multi-scale training approach (image pyramid)"></a>Multi-scale training approach (image pyramid)</h3><p><strong>[SNIP - CVPR2018] An Analysis of Scale Invariance in Object Detection – SNIP</strong><br>[paper] <a href="https://arxiv.org/abs/1711.08189" target="_blank" rel="noopener">https://arxiv.org/abs/1711.08189</a><br>[summarization]<br>-Scale Normalization for Image Pyramids<br>-Use Image Pyramids, for each image(with multi-scale), training is only performed on objects that fall in the desired scale range and the remainder are simply ignored during back-propagation<br>-Deformable R-FCN + Soft-NMS ResNet-101/DPN-98      -&gt; 48.3mAP<br><img src="/2018/12/14/object_detection_paper_summarization/3.png" alt=""></p>
 <p><strong>[SNIPER - NIPS2018] SNIPER: Efficient Multi-Scale Training</strong><br>[paper] <a href="https://arxiv.org/abs/1805.09300" target="_blank" rel="noopener">https://arxiv.org/abs/1805.09300</a><br>[official code] <a href="https://github.com/mahyarnajibi/SNIPER" target="_blank" rel="noopener">https://github.com/mahyarnajibi/SNIPER</a><br>[summarization]<br>-Chip Generation: For each scale, KxK pixels chips are placed at equal intervals of d pixels<br>-Positive Chip Selection: A ground-truth box is said to be covered if it is completely enclosed inside a chip. Ground-truth instances which have a partial overlap (IoU &gt; 0) with a chip are cropped. All the cropped ground-truth boxes (valid or invalid) are retained in the chip<br><img src="/2018/12/14/object_detection_paper_summarization/4.png" alt=""><br>-Negative Chip Selection:First train RPN for a couple of epochs. Then, for each scale i, we greedily select all the chips which cover at least M proposals.<br><img src="/2018/12/14/object_detection_paper_summarization/5.png" alt=""></p>
-<h2 id="To-eliminate-high-scored-false-positives"><a href="#To-eliminate-high-scored-false-positives" class="headerlink" title="To eliminate high-scored false positives"></a>To eliminate high-scored false positives</h2><p><strong>[DCR - ECCV2018] Revisiting RCNN: On Awakening the Classification Power of Faster RCNN</strong><br>[paper] <a href="https://arxiv.org/abs/1803.06799" target="_blank" rel="noopener">https://arxiv.org/abs/1803.06799</a><br>[official code] <a href="https://github.com/bowenc0221/Decoupled-Classification-Refinement" target="_blank" rel="noopener">https://github.com/bowenc0221/Decoupled-Classification-Refinement</a><br>[summarization]<br>-Propose Decoupled Classification Refinement to eliminate high-scored false positives and improve the region proposal classication results.<br>-Adaptive Receptive Field<br><img src="/2018/12/14/object_detection_paper_summarization/1.jpg" alt=""></p>
+<h2 id="To-improve-localization-accuracy"><a href="#To-improve-localization-accuracy" class="headerlink" title="To improve localization accuracy"></a>To improve localization accuracy</h2><h3 id="Predict-localization-confidence"><a href="#Predict-localization-confidence" class="headerlink" title="Predict localization confidence"></a>Predict localization confidence</h3><p>-Two drawbacks without localization confidence:<br>(1)  In nms, the classification scores are typically used as the metric for ranking the proposals. But the localization accuracy is not well correlated with the classification confidence.<br>(2) The absence of localization confidence makes the widely adopted bounding box regression less interpretable. Bounding box regression may degenerate the localization of input bounding boxes if applied for multiple times</p>
+<p><strong>[IoU-Net ECCV2018] Acquisition of Localization Confidence for Accurate Object Detection</strong><br>[paper] <a href="https://arxiv.org/abs/1807.11590" target="_blank" rel="noopener">https://arxiv.org/abs/1807.11590</a><br>[official code] <a href="https://github.com/vacancy/PreciseRoIPooling" target="_blank" rel="noopener">https://github.com/vacancy/PreciseRoIPooling</a> (PreciseRoIPooling)<br>[summarization]<br>-Introduce <em>IoU-Net</em>, which predicts the IoU between detected bounding boxes and their corresponding ground-truth boxes, making the networks aware of the localization criterion.<br>-Generate bounding boxes and labels for training the IoU-Net by augmenting the ground-truth, instead of taking proposals from RPNs.<br><img src="/2018/12/14/object_detection_paper_summarization/11.png" alt=""><br>-<strong><em>IoU-guided NMS</em></strong>: Replace classification confidence with the predicted IoU as the ranking keyword in NMS. When a box i eliminates box j, update the classification confidence si of box i by si = max(si; sj )<br>-<strong><em>New bounding box refinement method</em></strong>:  Optimization-based bounding box refinement (on par with traditional regression-based methods.)<br><img src="/2018/12/14/object_detection_paper_summarization/13.png" alt=""><br>-Precise RoI Pooling: It avoids any quantization of coordinates and has a continuous gradient on bounding box coordinates.<br><img src="/2018/12/14/object_detection_paper_summarization/12.png" alt=""></p>
+<h2 id="To-remove-duplicated-bounding-boxes"><a href="#To-remove-duplicated-bounding-boxes" class="headerlink" title="To remove duplicated bounding boxes"></a>To remove duplicated bounding boxes</h2><p>Widely-adopted approach: NMS</p>
+<h3 id="Modify-NMS"><a href="#Modify-NMS" class="headerlink" title="Modify NMS"></a>Modify NMS</h3><h2 id="To-eliminate-high-scored-false-positives"><a href="#To-eliminate-high-scored-false-positives" class="headerlink" title="To eliminate high-scored false positives"></a>To eliminate high-scored false positives</h2><p><strong>[DCR - ECCV2018] Revisiting RCNN: On Awakening the Classification Power of Faster RCNN</strong><br>[paper] <a href="https://arxiv.org/abs/1803.06799" target="_blank" rel="noopener">https://arxiv.org/abs/1803.06799</a><br>[official code] <a href="https://github.com/bowenc0221/Decoupled-Classification-Refinement" target="_blank" rel="noopener">https://github.com/bowenc0221/Decoupled-Classification-Refinement</a><br>[summarization]<br>-Propose Decoupled Classification Refinement to eliminate high-scored false positives and improve the region proposal classication results.<br>-Adaptive Receptive Field<br><img src="/2018/12/14/object_detection_paper_summarization/1.jpg" alt=""></p>
 <p><strong>[DCR V2]  Decoupled Classification Refinement: Hard False Positive Suppression for Object Detection</strong><br><img src="/2018/12/14/object_detection_paper_summarization/2.jpg" alt=""></p>
-<h1 id="Improvement-for-One-Stage-Framework"><a href="#Improvement-for-One-Stage-Framework" class="headerlink" title="Improvement for  One Stage Framework"></a>Improvement for  One Stage Framework</h1><h2 id="To-alleviate-the-problems-arising-from-scale-variation-and-small-object-instances-1"><a href="#To-alleviate-the-problems-arising-from-scale-variation-and-small-object-instances-1" class="headerlink" title="To alleviate the problems arising from scale variation and small object instances"></a>To alleviate the problems arising from scale variation and small object instances</h2><h3 id="Construct-feature-pyramid-1"><a href="#Construct-feature-pyramid-1" class="headerlink" title="Construct feature pyramid"></a>Construct feature pyramid</h3><p><strong>[PFPNet - ECCV2018] Parallel Feature Pyramid Network for Object Detection</strong><br>[paper]<br>[summarization]<br>-Employ the SPP module to generate pyramid-shaped feature maps via widening the network width instead of increasing its depth.<br>-SSD / RefineDet  VGG16<br><img src="/2018/12/14/object_detection_paper_summarization/9.png" alt=""><br><img src="/2018/12/14/object_detection_paper_summarization/10.png" alt=""></p>
+<h2 id="The-way-to-extract-fixed-length-feature-vector"><a href="#The-way-to-extract-fixed-length-feature-vector" class="headerlink" title="The way to extract fixed-length feature vector"></a>The way to extract fixed-length feature vector</h2><h3 id="RoI-Pooling-Fast-R-CNN"><a href="#RoI-Pooling-Fast-R-CNN" class="headerlink" title="RoI Pooling [Fast R-CNN]"></a><em>RoI Pooling</em> [Fast R-CNN]</h3><h3 id="RoI-Align-Mask-R-CNN"><a href="#RoI-Align-Mask-R-CNN" class="headerlink" title="RoI Align [Mask R-CNN]"></a><em>RoI Align</em> [Mask R-CNN]</h3><h3 id="Precise-RoI-Pooling-IoU-Net"><a href="#Precise-RoI-Pooling-IoU-Net" class="headerlink" title="Precise RoI Pooling [IoU-Net]"></a><em>Precise RoI Pooling</em> [IoU-Net]</h3><h1 id="Improvement-for-One-Stage-Framework"><a href="#Improvement-for-One-Stage-Framework" class="headerlink" title="Improvement for  One Stage Framework"></a>Improvement for  One Stage Framework</h1><h2 id="To-alleviate-the-problems-arising-from-scale-variation-and-small-object-instances-1"><a href="#To-alleviate-the-problems-arising-from-scale-variation-and-small-object-instances-1" class="headerlink" title="To alleviate the problems arising from scale variation and small object instances"></a>To alleviate the problems arising from scale variation and small object instances</h2><h3 id="Construct-feature-pyramid-1"><a href="#Construct-feature-pyramid-1" class="headerlink" title="Construct feature pyramid"></a>Construct feature pyramid</h3><p><strong>[PFPNet - ECCV2018] Parallel Feature Pyramid Network for Object Detection</strong><br>[paper]<br>[summarization]<br>-Employ the SPP module to generate pyramid-shaped feature maps via widening the network width instead of increasing its depth.<br>-SSD / RefineDet  VGG16<br><img src="/2018/12/14/object_detection_paper_summarization/9.png" alt=""><br><img src="/2018/12/14/object_detection_paper_summarization/10.png" alt=""></p>
 <p><strong>[M2Det - AAAI2019] M2Det: A Single-Shot Object Detector based on Multi-Level Feature Pyramid Network</strong><br>[paper] <a href="https://arxiv.org/abs/1811.04533" target="_blank" rel="noopener">https://arxiv.org/abs/1811.04533</a><br>[official code] <a href="https://github.com/qijiezhao/M2Det" target="_blank" rel="noopener">https://github.com/qijiezhao/M2Det</a><br>[summarization]<br>-For previous feature pyramid method, each feature map (used for detecting objects in a specific range of size) in the pyramid mainly or only consists of single-level features will result in suboptimal detection performance.<br>-Multi-Level Feature Pyramid Network (MLFPN).<br>-Based on SSD<br><img src="/2018/12/14/object_detection_paper_summarization/6.png" alt=""><br><img src="/2018/12/14/object_detection_paper_summarization/7.png" alt=""><br><img src="/2018/12/14/object_detection_paper_summarization/8.png" alt=""></p>
 <h1 id="Other-improvement"><a href="#Other-improvement" class="headerlink" title="Other improvement"></a>Other improvement</h1>
           
@@ -1474,176 +1597,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/leetcode155/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/09/leetcode155/" itemprop="url">【leetcode】155：Min Stack</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-09T10:47:03+08:00">
-                2018-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="最小栈"><a href="#最小栈" class="headerlink" title="最小栈"></a>最小栈</h1><p><strong>难度：Easy</strong></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>设计一个支持 push，pop，top 操作，并能在常数时间内检索到最小元素的栈。</p>
-<ul>
-<li>push(x) – 将元素 x 推入栈中。</li>
-<li>pop() – 删除栈顶的元素。</li>
-<li>top() – 获取栈顶元素。</li>
-<li>getMin() – 检索（retrievie）栈中的最小元素。</li>
-</ul>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">MinStack minStack = <span class="keyword">new</span> MinStack();</span><br><span class="line">minStack.push(<span class="number">-2</span>);</span><br><span class="line">minStack.push(<span class="number">0</span>);</span><br><span class="line">minStack.push(<span class="number">-3</span>);</span><br><span class="line">minStack.getMin();   --&gt; Returns <span class="number">-3.</span></span><br><span class="line">minStack.pop();</span><br><span class="line">minStack.top();      --&gt; Returns <span class="number">0.</span></span><br><span class="line">minStack.getMin();   --&gt; Returns <span class="number">-2.</span></span><br></pre></td></tr></table></figure>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** initialize your data structure here. */</span></span><br><span class="line">    MinStack() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        s1.push(x);</span><br><span class="line">        <span class="keyword">if</span> (s2.empty() || x &lt;= s2.top()) s2.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (s1.top() == s2.top()) s2.pop();</span><br><span class="line">        s1.pop();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s1.top();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> s2.top();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s1, s2;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>用两个栈，s1来按顺序存储push进来的数据，s2的栈顶用来存最小值</p>
-<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><p>stack(堆栈）是一个容器的改编，它实现了一个先进后出的数据结构（FILO）。<br>定义stack对象的示例如下：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; s1;</span><br><span class="line"><span class="built_in">stack</span>&lt;<span class="built_in">string</span>&gt; s2;</span><br></pre></td></tr></table></figure></p>
-<p>stack的基本操作如下：</p>
-<table>
-<thead>
-<tr>
-<th>函数名</th>
-<th>功能</th>
-<th>复杂度</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>size()</td>
-<td>返回栈的元素数</td>
-<td>O(1)</td>
-</tr>
-<tr>
-<td>top()</td>
-<td>返回栈顶的元素</td>
-<td>O(1)</td>
-</tr>
-<tr>
-<td>pop()</td>
-<td>从栈中取出并删除元素</td>
-<td>O(1)</td>
-</tr>
-<tr>
-<td>push(x)</td>
-<td>向栈中添加元素x</td>
-<td>O(1)</td>
-</tr>
-<tr>
-<td>empty()</td>
-<td>在栈为空时返回true</td>
-<td>O(1)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MinStack</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="comment">/** initialize your data structure here. */</span></span><br><span class="line">    MinStack() &#123;</span><br><span class="line">        min_val = INT_MAX;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (x &lt;= min_val) &#123;</span><br><span class="line">            st.push(min_val);</span><br><span class="line">            min_val = x;</span><br><span class="line">        &#125;</span><br><span class="line">        st.push(x);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> t = st.top(); st.pop();</span><br><span class="line">        <span class="keyword">if</span> (t == min_val) &#123;</span><br><span class="line">            min_val = st.top(); st.pop();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">top</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> st.top();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getMin</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> min_val;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> min_val;</span><br><span class="line">    <span class="built_in">stack</span>&lt;<span class="keyword">int</span>&gt; st;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="知识点-1"><a href="#知识点-1" class="headerlink" title="知识点"></a>知识点</h3><p>常量INT_MAX 表示最大整数 2^31-1，INT_MIN表示最小整数-2^31</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1694,7 +1647,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
