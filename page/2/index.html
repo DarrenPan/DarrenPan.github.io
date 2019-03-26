@@ -239,6 +239,125 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/eat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/09/eat/" itemprop="url">eat</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-09T11:10:19+08:00">
+                2018-11-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="吃饭饭"><a href="#吃饭饭" class="headerlink" title="吃饭饭"></a><strong>吃饭饭</strong></h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/leetcode155/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1208,7 +1327,16 @@
 <p><strong>读CSV文件时，报错’utf-8’ codec can’t decode byte 0xb4 in position 0: invalid start byte</strong></p>
 <p>解决：保存时 加 encoding=’UTF-8’或’UTF-8-sig’</p>
 <hr>
-<p><strong>pytorch load 预训练模型的时候</strong><br>报错：<br>Missing key(s) in state_dict: “network.0.conv.weight”, ……<br>Unexpected key(s) in state_dict: “module.network.0.conv.weight”, ……<br>是用torch0.4.1版本训练，用0.4.0版本预测的时候报的异常  ？？<br>解决：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.load_state_dict(&#123;k.replace(<span class="string">'module.'</span>,<span class="string">''</span>):v <span class="keyword">for</span> k,v <span class="keyword">in</span> torch.load(checkpoint_path)[<span class="string">'state_dict'</span>].items()&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><strong>pytorch load 预训练模型的时候</strong><br>报错：<br>Missing key(s) in state_dict: “network.0.conv.weight”, ……<br>Unexpected key(s) in state_dict: “module.network.0.conv.weight”, ……<br>是用torch0.4.1版本训练，用0.4.0版本预测的时候报的异常  ？？<br>解决：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.load_state_dict(&#123;k.replace(<span class="string">'module.'</span>,<span class="string">''</span>):v <span class="keyword">for</span> k,v <span class="keyword">in</span> torch.load(checkpoint_path)[<span class="string">'state_dict'</span>].items()&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>Python 报错NotImplementedError</strong><br>在面向对象编程中，可以先预留一个方法接口不实现，在其子类中实现。如果要求其子类一定要实现，不实现的时候会导致问题，那么采用raise的方式就很好。而此时产生的问题分类 是NotImplementedError。</p>
+<hr>
+<p><strong>pytorch: ‘list’ object has no attribute ‘cuda’</strong></p>
+<hr>
+<p><strong>pytorch: cuda runtime error(59) in loss.backward()</strong><br>From the error message it looks like you are using indexing with wrong indices.<br>A good way to debug these errors is to simply run the exact same code on CPU（ model.cpu()）, that way you will get a proper stack trace with the exact line that crashed.</p>
+<hr>
+<p><strong>pytorch: Assertion <code>cur_target &gt;= 0 &amp;&amp; cur_target &lt; n_classes</code> failed</strong><br>label 从0开始</p>
 
           
         
@@ -1294,7 +1422,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1307,7 +1435,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

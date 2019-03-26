@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Image Processing," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Using a series of low dynamic range images at different exposureGenerally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an H">
+<meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Image Processing">
+<meta property="og:type" content="article">
+<meta property="og:title" content="high-dynamic-range-paper">
+<meta property="og:url" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/index.html">
+<meta property="og:site_name" content="Good Good Study">
+<meta property="og:description" content="Using a series of low dynamic range images at different exposureGenerally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an H">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/13.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/21.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/31.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/32.png">
+<meta property="og:updated_time" content="2019-03-26T08:30:43.106Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="high-dynamic-range-paper">
+<meta name="twitter:description" content="Using a series of low dynamic range images at different exposureGenerally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an H">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/25/high-dynamic-range-paper/"/>
+
+
+
+
+
+  <title>high-dynamic-range-paper | Good Good Study</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="default">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Good Good Study</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/high-dynamic-range-paper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">high-dynamic-range-paper</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-25T20:57:15+08:00">
+                2019-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Using-a-series-of-low-dynamic-range-images-at-different-exposure"><a href="#Using-a-series-of-low-dynamic-range-images-at-different-exposure" class="headerlink" title="Using a series of low dynamic range images at different exposure"></a>Using a series of low dynamic range images at different exposure</h1><p>Generally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an HDR image.</p>
+<p>This method produces spectacular images for tripod mounted cameras and static scenes, but generates results with ghosting artifacts when the scene is dynamic or the camera is hand-held.</p>
+<h2 id="Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017"><a href="#Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017" class="headerlink" title="Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017"></a>Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017</h2><p>-the artifacts of the alignment can be significantly reduced during merging</p>
+<p>-<em>Preprocessing the Input LDR Images:</em> </p>
+<p>If the LDR images are not in the RAW format, we first linearize them using the camera response function (CRF), then apply gamma correction (γ = 2.2). The gamma correction basically maps the images into a domain that is closer to what we perceive with our eyes.</p>
+<p>-<em>Alignment:</em> </p>
+<p>Produce aligned images by registering the images with low (Z1) and high (Z3) exposures to the reference image Z2 using tranditional method. (optical flow)</p>
+<p>-<em>HDR Merge:</em></p>
+<p>1)<em>Model</em>:<br><img src="/2019/03/25/high-dynamic-range-paper/1.png" alt=""><br><img src="/2019/03/25/high-dynamic-range-paper/2.png" alt=""></p>
+<p>2)<em>Loss Function</em>:</p>
+<p>Since HDR images are usually displayed after <em>tonemapping</em>, we propose to compute our loss function between the tonemapped estimated and ground truth HDR images. We propose to use μ-law, a commonly-used range compressor in audio processing, which is differentiable.<br><img src="/2019/03/25/high-dynamic-range-paper/3.png" alt=""></p>
+<p>we train the learning system by minimizing the L2 distance of the tonemapped estimated and<br>ground truth HDR images defined as:<br><img src="/2019/03/25/high-dynamic-range-paper/4.png" alt=""></p>
+<h2 id="Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018"><a href="#Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018" class="headerlink" title="Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018"></a>Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018</h2><p>-CNNs have been demonstrated to have the ability to learn misalignment and hallucinate missing details</p>
+<p>-Three advantage: 1) trained end-to-end without optical flow alignment. 2)can hallucinate plausible details that are totally missing or their presence is extremely weak in all LDR inputs. 3) the same framework can be easily extended to more LDR inputs, and possibly with any specified reference image.</p>
+<p>-<em>Network Architecture</em><br><img src="/2019/03/25/high-dynamic-range-paper/11.png" alt=""><br>We separate the first two layers as encoders for each exposure inputs. After extracting the features, the network learns to merge them, mostly in the middle layers, and to decode them into an HDR output, mostly in the last few layers.</p>
+<p>-<em>Processing Pipeline and Loss Function</em></p>
+<p>Given a stack of LDR images, if they are not in RAW format, we first linearize the images using the estimated inverse of Camera Response Function (CRF), which is often referred to as radiometric calibration. We then apply gamma correction to produce the input to our system.</p>
+<p>We first map LDRs to H = {H1;H2;H3} in the HDR domain, using simple gamma encoding:<br><img src="/2019/03/25/high-dynamic-range-paper/12.png" alt=""><br>where ti is the exposure time of image Ii. We then concatenate I and H channel-wise into a 6-channel input and feed it directly to the network. The LDRs facilitate the detection of misalignments and saturation, while the exposure-adjusted HDRs improve the robustness of the network across LDRs with various exposure levels.</p>
+<p>Tonemapping function and loss function are the same as the previous paper.<br><img src="/2019/03/25/high-dynamic-range-paper/13.png" alt=""></p>
+<p>-<em>Data Preparation</em></p>
+<p>First align the background using simple homography transformation by <em>homography transformation</em>. Without it, we found that our network tends to produce blurry edges where background is largely misaligned.</p>
+<p>Crop the images into 256x256 patches with a stride of 64. To keep the training focused on foreground motions, we detect large motion patches by thresholding the structural similarity<br>between different exposure shots, and replicate these patches in the training set.</p>
+<h1 id="Using-single-low-dynamic-range-image"><a href="#Using-single-low-dynamic-range-image" class="headerlink" title="Using single low dynamic range image"></a>Using single low dynamic range image</h1><h2 id="HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710"><a href="#HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710" class="headerlink" title="HDR image reconstruction from a single exposure using deep CNNs - 1710"></a>HDR image reconstruction from a single exposure using deep CNNs - 1710</h2><p>-Estimating missing information in bright image parts, such as highlights, lost due to saturation of the camera sensor<br><img src="/2019/03/25/high-dynamic-range-paper/21.png" alt=""></p>
+<h2 id="ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018"><a href="#ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018" class="headerlink" title="ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018"></a>ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018</h2><p>-Designed to avoid upsampling of downsampled features, in an attempt to reduce blocking and/or haloing artefacts that may arise from more straightforward approaches.</p>
+<p>-It is argued that upsampling, especially the frequently used deconvolutional layers, cause checkerboard artefacts. Furthermore, upsampling may cause unwanted information bleeding in areas where context is missing, for example large overexposed areas.</p>
+<p>-The local branch handling local detail, the dilation branch for medium level detail, and a global branch accounting for higher level image-wide features<br><img src="/2019/03/25/high-dynamic-range-paper/31.png" alt=""></p>
+<p>-<em>Loss Function</em></p>
+<p>The L1 distance is chosen for this problem since the more frequently used L2 distance was found to cause blurry results for images. An additional cosine similarity term is added to ensure color correctness of the RGB vectors of each pixel.<br><img src="/2019/03/25/high-dynamic-range-paper/32.png" alt=""></p>
+<p>Cosine similarity measures how close two vectors are by comparing the angle between them, not taking magnitude into account. For the context of this work, it ensures that each pixel points in the same direction of the three dimensional RGB space. It provides improved color stability, especially for low luminance values, which are frequent in HDR images, since slight variations in any of the RGB components of these low values do not contribute much to the L1 loss, but they may however cause noticeable color shifts.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/Computer-Vision/" rel="tag"># Computer Vision</a>
+          
+            <a href="/tags/Image-Processing/" rel="tag"># Image Processing</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/05/paper-summarization/" rel="next" title="paper_summarization">
+                <i class="fa fa-chevron-left"></i> paper_summarization
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">Pan Sicheng</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Using-a-series-of-low-dynamic-range-images-at-different-exposure"><span class="nav-number">1.</span> <span class="nav-text">Using a series of low dynamic range images at different exposure</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017"><span class="nav-number">1.1.</span> <span class="nav-text">Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018"><span class="nav-number">1.2.</span> <span class="nav-text">Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Using-single-low-dynamic-range-image"><span class="nav-number">2.</span> <span class="nav-text">Using single low dynamic range image</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710"><span class="nav-number">2.1.</span> <span class="nav-text">HDR image reconstruction from a single exposure using deep CNNs - 1710</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018"><span class="nav-number">2.2.</span> <span class="nav-text">ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Pan Sicheng</span>
+
+  
+</div>
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -239,6 +239,154 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/high-dynamic-range-paper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/25/high-dynamic-range-paper/" itemprop="url">high-dynamic-range-paper</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-25T20:57:15+08:00">
+                2019-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Using-a-series-of-low-dynamic-range-images-at-different-exposure"><a href="#Using-a-series-of-low-dynamic-range-images-at-different-exposure" class="headerlink" title="Using a series of low dynamic range images at different exposure"></a>Using a series of low dynamic range images at different exposure</h1><p>Generally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an HDR image.</p>
+<p>This method produces spectacular images for tripod mounted cameras and static scenes, but generates results with ghosting artifacts when the scene is dynamic or the camera is hand-held.</p>
+<h2 id="Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017"><a href="#Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017" class="headerlink" title="Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017"></a>Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017</h2><p>-the artifacts of the alignment can be significantly reduced during merging</p>
+<p>-<em>Preprocessing the Input LDR Images:</em> </p>
+<p>If the LDR images are not in the RAW format, we first linearize them using the camera response function (CRF), then apply gamma correction (γ = 2.2). The gamma correction basically maps the images into a domain that is closer to what we perceive with our eyes.</p>
+<p>-<em>Alignment:</em> </p>
+<p>Produce aligned images by registering the images with low (Z1) and high (Z3) exposures to the reference image Z2 using tranditional method. (optical flow)</p>
+<p>-<em>HDR Merge:</em></p>
+<p>1)<em>Model</em>:<br><img src="/2019/03/25/high-dynamic-range-paper/1.png" alt=""><br><img src="/2019/03/25/high-dynamic-range-paper/2.png" alt=""></p>
+<p>2)<em>Loss Function</em>:</p>
+<p>Since HDR images are usually displayed after <em>tonemapping</em>, we propose to compute our loss function between the tonemapped estimated and ground truth HDR images. We propose to use μ-law, a commonly-used range compressor in audio processing, which is differentiable.<br><img src="/2019/03/25/high-dynamic-range-paper/3.png" alt=""></p>
+<p>we train the learning system by minimizing the L2 distance of the tonemapped estimated and<br>ground truth HDR images defined as:<br><img src="/2019/03/25/high-dynamic-range-paper/4.png" alt=""></p>
+<h2 id="Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018"><a href="#Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018" class="headerlink" title="Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018"></a>Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018</h2><p>-CNNs have been demonstrated to have the ability to learn misalignment and hallucinate missing details</p>
+<p>-Three advantage: 1) trained end-to-end without optical flow alignment. 2)can hallucinate plausible details that are totally missing or their presence is extremely weak in all LDR inputs. 3) the same framework can be easily extended to more LDR inputs, and possibly with any specified reference image.</p>
+<p>-<em>Network Architecture</em><br><img src="/2019/03/25/high-dynamic-range-paper/11.png" alt=""><br>We separate the first two layers as encoders for each exposure inputs. After extracting the features, the network learns to merge them, mostly in the middle layers, and to decode them into an HDR output, mostly in the last few layers.</p>
+<p>-<em>Processing Pipeline and Loss Function</em></p>
+<p>Given a stack of LDR images, if they are not in RAW format, we first linearize the images using the estimated inverse of Camera Response Function (CRF), which is often referred to as radiometric calibration. We then apply gamma correction to produce the input to our system.</p>
+<p>We first map LDRs to H = {H1;H2;H3} in the HDR domain, using simple gamma encoding:<br><img src="/2019/03/25/high-dynamic-range-paper/12.png" alt=""><br>where ti is the exposure time of image Ii. We then concatenate I and H channel-wise into a 6-channel input and feed it directly to the network. The LDRs facilitate the detection of misalignments and saturation, while the exposure-adjusted HDRs improve the robustness of the network across LDRs with various exposure levels.</p>
+<p>Tonemapping function and loss function are the same as the previous paper.<br><img src="/2019/03/25/high-dynamic-range-paper/13.png" alt=""></p>
+<p>-<em>Data Preparation</em></p>
+<p>First align the background using simple homography transformation by <em>homography transformation</em>. Without it, we found that our network tends to produce blurry edges where background is largely misaligned.</p>
+<p>Crop the images into 256x256 patches with a stride of 64. To keep the training focused on foreground motions, we detect large motion patches by thresholding the structural similarity<br>between different exposure shots, and replicate these patches in the training set.</p>
+<h1 id="Using-single-low-dynamic-range-image"><a href="#Using-single-low-dynamic-range-image" class="headerlink" title="Using single low dynamic range image"></a>Using single low dynamic range image</h1><h2 id="HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710"><a href="#HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710" class="headerlink" title="HDR image reconstruction from a single exposure using deep CNNs - 1710"></a>HDR image reconstruction from a single exposure using deep CNNs - 1710</h2><p>-Estimating missing information in bright image parts, such as highlights, lost due to saturation of the camera sensor<br><img src="/2019/03/25/high-dynamic-range-paper/21.png" alt=""></p>
+<h2 id="ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018"><a href="#ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018" class="headerlink" title="ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018"></a>ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018</h2><p>-Designed to avoid upsampling of downsampled features, in an attempt to reduce blocking and/or haloing artefacts that may arise from more straightforward approaches.</p>
+<p>-It is argued that upsampling, especially the frequently used deconvolutional layers, cause checkerboard artefacts. Furthermore, upsampling may cause unwanted information bleeding in areas where context is missing, for example large overexposed areas.</p>
+<p>-The local branch handling local detail, the dilation branch for medium level detail, and a global branch accounting for higher level image-wide features<br><img src="/2019/03/25/high-dynamic-range-paper/31.png" alt=""></p>
+<p>-<em>Loss Function</em></p>
+<p>The L1 distance is chosen for this problem since the more frequently used L2 distance was found to cause blurry results for images. An additional cosine similarity term is added to ensure color correctness of the RGB vectors of each pixel.<br><img src="/2019/03/25/high-dynamic-range-paper/32.png" alt=""></p>
+<p>Cosine similarity measures how close two vectors are by comparing the angle between them, not taking magnitude into account. For the context of this work, it ensures that each pixel points in the same direction of the three dimensional RGB space. It provides improved color stability, especially for low luminance values, which are frequent in HDR images, since slight variations in any of the RGB components of these low values do not contribute much to the L1 loss, but they may however cause noticeable color shifts.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/05/paper-summarization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -985,7 +1133,7 @@
 <h2 id="Anchor"><a href="#Anchor" class="headerlink" title="Anchor"></a>Anchor</h2><p>Anchors are regression references and classification candidates to predict proposals (for two-stage detectors) or final bounding boxes (for single-stage detectors). Modern object detection pipelines usually begin with a large set of densely distributed anchors. </p>
 <p>Two general rules for a reasonable anchor design: (1)Alignment: anchor centers need to be well aligned with feature map pixels. (2)Consistency: the receptive field and semantic scope are consistent in different regions of a feature map, so the scale and shape of anchors across different locations should be consistent.</p>
 <p>The uniform anchoring scheme can lead to two difficulties: (1) A neat set of anchors of fixed aspect ratios has to be predefined for different problems. A wrong design may hamper the speed and accuracy of the detector. (2) To maintain a sufficiently high recall for proposals, a large number of anchors are needed, while most of them correspond to false candidates that are irrelevant to the object of interests.</p>
-<p><strong>[Guided Anchoring - CVPR2019] Region Proposal by Guided Anchoring</strong><br>[paper] <a href="https://arxiv.org/abs/1901.03278" target="_blank" rel="noopener">https://arxiv.org/abs/1901.03278</a><br>[official code] <a href="https://github.com/open-mmlab/mmdetection" target="_blank" rel="noopener">https://github.com/open-mmlab/mmdetection</a><br>[summarization]<br><img src="/2018/12/14/object_detection_paper_summarization/19.png" alt=""><br>(1)<em>Anchor Location Prediction</em>:<br>    -a 1x1 convolution and an element-wise sigmoid function.<br>    -yields a probability map that indicates the possible locations of the objects.<br>    -selecting those locations whose corresponding probability values are above a predefined threshold.<br>    -use masked convolution when inference<br>    -define center/ignore/outside region, use focal loss when training<br>(2)<em>Anchor Shape Prediction</em>:<br>    -predict the best shape (w; h) for each location.<br>    -a 1x1 convolutional layer that yields a two-channel map that contains the values of dw and dh, an element-wise transform layer that implements Eq.(2).<br>    <img src="/2018/12/14/object_detection_paper_summarization/20.png" alt=""><br>    -when training, sample some common values of w and h, calculate the IoU of these sampled anchors with gt, use the maximum. use bounded iou loss.<br>(3)<em>AnchorGuided Feature Adaptation</em><br>    -Ideally, the feature for a large anchor should encode the content over a large region, while those for small anchors should have smaller scopes accordingly.<br>    -first predict an offset field from the output of anchor shape prediction branch, and then apply 3x3 deformable convolution to the original feature map with the offsets.<br>(4)<em>The Use of High quality Proposals</em><br>    -set a higher positive/negative threshold and use fewer samples when training detectors with GA-RPN compared to RPN.</p>
+<p><strong>[Guided Anchoring - CVPR2019] Region Proposal by Guided Anchoring</strong><br>[paper] <a href="https://arxiv.org/abs/1901.03278" target="_blank" rel="noopener">https://arxiv.org/abs/1901.03278</a><br>[official code] <a href="https://github.com/open-mmlab/mmdetection" target="_blank" rel="noopener">https://github.com/open-mmlab/mmdetection</a><br>[summarization]<br><img src="/2018/12/14/object_detection_paper_summarization/19.png" alt=""><br>(1)<em>Anchor Location Prediction</em>:<br>-a 1x1 convolution and an element-wise sigmoid function.<br>-yields a probability map that indicates the possible locations of the objects.<br>-selecting those locations whose corresponding probability values are above a predefined threshold.<br>-use masked convolution when inference<br>-define center/ignore/outside region, use focal loss when training<br>(2)<em>Anchor Shape Prediction</em>:<br>-predict the best shape (w; h) for each location.<br>-a 1x1 convolutional layer that yields a two-channel map that contains the values of dw and dh, an element-wise transform layer that implements Eq.(2).<br>  <img src="/2018/12/14/object_detection_paper_summarization/20.png" alt=""><br>-when training, sample some common values of w and h, calculate the IoU of these sampled anchors with gt, use the maximum. use bounded iou loss.<br>(3)<em>Anchor Guided Feature Adaptation</em><br>-Ideally, the feature for a large anchor should encode the content over a large region, while those for small anchors should have smaller scopes accordingly.<br>-first predict an offset field from the output of anchor shape prediction branch, and then apply 3x3 deformable convolution to the original feature map with the offsets.<br>(4)<em>The Use of High quality Proposals</em><br>-set a higher positive/negative threshold and use fewer samples when training detectors with GA-RPN compared to RPN.</p>
 <h2 id="The-way-to-extract-fixed-length-feature-vector"><a href="#The-way-to-extract-fixed-length-feature-vector" class="headerlink" title="The way to extract fixed-length feature vector"></a>The way to extract fixed-length feature vector</h2><p><strong>RoI Pooling</strong> [Fast R-CNN]<br><strong>RoI Align</strong> [Mask R-CNN]<br><strong>Precise RoI Pooling</strong> [IoU-Net]</p>
 <h1 id="Improvement-for-One-Stage-Framework"><a href="#Improvement-for-One-Stage-Framework" class="headerlink" title="Improvement for  One Stage Framework"></a>Improvement for  One Stage Framework</h1><h2 id="To-alleviate-the-problems-arising-from-scale-variation-and-small-object-instances-1"><a href="#To-alleviate-the-problems-arising-from-scale-variation-and-small-object-instances-1" class="headerlink" title="To alleviate the problems arising from scale variation and small object instances"></a>To alleviate the problems arising from scale variation and small object instances</h2><h3 id="Construct-feature-pyramid-1"><a href="#Construct-feature-pyramid-1" class="headerlink" title="Construct feature pyramid"></a>Construct feature pyramid</h3><p><strong>[PFPNet - ECCV2018] Parallel Feature Pyramid Network for Object Detection</strong><br>[paper]<br>[summarization]<br>-Employ the SPP module to generate pyramid-shaped feature maps via widening the network width instead of increasing its depth.<br>-SSD / RefineDet  VGG16<br><img src="/2018/12/14/object_detection_paper_summarization/9.png" alt=""><br><img src="/2018/12/14/object_detection_paper_summarization/10.png" alt=""></p>
 <p><strong>[M2Det - AAAI2019] M2Det: A Single-Shot Object Detector based on Multi-Level Feature Pyramid Network</strong><br>[paper] <a href="https://arxiv.org/abs/1811.04533" target="_blank" rel="noopener">https://arxiv.org/abs/1811.04533</a><br>[official code] <a href="https://github.com/qijiezhao/M2Det" target="_blank" rel="noopener">https://github.com/qijiezhao/M2Det</a><br>[summarization]<br>-For previous feature pyramid method, each feature map (used for detecting objects in a specific range of size) in the pyramid mainly or only consists of single-level features will result in suboptimal detection performance.<br>-Multi-Level Feature Pyramid Network (MLFPN).<br>-Based on SSD<br><img src="/2018/12/14/object_detection_paper_summarization/6.png" alt=""><br><img src="/2018/12/14/object_detection_paper_summarization/7.png" alt=""><br><img src="/2018/12/14/object_detection_paper_summarization/8.png" alt=""></p>
@@ -1495,125 +1643,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/eat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/09/eat/" itemprop="url">eat</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-09T11:10:19+08:00">
-                2018-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="吃饭饭"><a href="#吃饭饭" class="headerlink" title="吃饭饭"></a><strong>吃饭饭</strong></h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1664,7 +1693,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1677,7 +1706,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
