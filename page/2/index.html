@@ -239,6 +239,474 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/something_about_python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/something_about_python/" itemprop="url">Something about Python</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T15:54:44+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <hr>
+<p>[TOC]</p>
+<hr>
+<h3 id="lstrip-和rstrip"><a href="#lstrip-和rstrip" class="headerlink" title="lstrip()和rstrip()"></a>lstrip()和rstrip()</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">str.lstrip([chars]) <span class="comment"># 删除字符串左边的空格或指定字符</span></span><br><span class="line">str.rstrip([chars]) <span class="comment"># 删除字符串末尾的空格或指定字符</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字典中找最值"><a href="#字典中找最值" class="headerlink" title="字典中找最值"></a>字典中找最值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dogdistance = &#123;<span class="string">'dog-dog'</span>: <span class="number">33</span>, <span class="string">'dog-cat'</span>: <span class="number">36</span>, <span class="string">'dog-car'</span>: <span class="number">41</span>, <span class="string">'dog-bird'</span>: <span class="number">42</span>&#125;</span><br><span class="line">min(dogdistance, key=dogdistance.get) <span class="comment"># 返回最小值的键值：’dog-dog‘</span></span><br><span class="line">max(dogdistance, key=dogdistance.get) <span class="comment"># 返回最大值的键值：’dog-bird‘</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="列表中找最值"><a href="#列表中找最值" class="headerlink" title="列表中找最值"></a>列表中找最值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = [<span class="number">-10</span>,<span class="number">-5</span>,<span class="number">0</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">10</span>,<span class="number">15</span>,<span class="number">-20</span>,<span class="number">25</span>]</span><br><span class="line"><span class="keyword">print</span> c.index(min(c))  <span class="comment"># 返回最小值的索引</span></span><br><span class="line"><span class="keyword">print</span> c.index(max(c)) <span class="comment"># 返回最大值的索引</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="字典按照value排序"><a href="#字典按照value排序" class="headerlink" title="字典按照value排序"></a>字典按照value排序</h3><p>返回list：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(d.items(),key = <span class="keyword">lambda</span> x:x[<span class="number">1</span>],reverse = <span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line">sorted(d.items(),key = operator.itemgetter(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
+<p>返回只有键的tuple<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(d,key=d.__getitem__)</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/yolov3-pytorch代码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/yolov3-pytorch代码分析/" itemprop="url">yolov3-pytorch代码分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T10:18:03+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>GitHub：<a href="https://github.com/ayooshkathuria/pytorch-yolo-v3" target="_blank" rel="noopener">https://github.com/ayooshkathuria/pytorch-yolo-v3</a></p>
+<p>Tutorial： <a href="https://blog.paperspace.com/how-to-implement-a-yolo-object-detector-in-pytorch/" target="_blank" rel="noopener">Implement YOLO v3 from scratch</a> </p>
+<hr>
+<h1 id="1-Creating-the-layers-of-the-network-architecture"><a href="#1-Creating-the-layers-of-the-network-architecture" class="headerlink" title="1. Creating the layers of the network architecture"></a>1. Creating the layers of the network architecture</h1><h2 id="Configuration-File"><a href="#Configuration-File" class="headerlink" title="Configuration File"></a>Configuration File</h2><p>The configuration  file <a href="https://github.com/pjreddie/darknet/blob/master/cfg/yolov3.cfg" target="_blank" rel="noopener">here</a> describes the layout of the network, block by block. You can also see the full architecture Darknet-53 in the folloing diagram.</p>
+<p><img src="/2018/11/16/yolov3-pytorch代码分析/1.png" alt=""></p>
+<p>There are 5 types of layers that are used in YOLO:</p>
+<p><strong><em>Convolutional</em></strong></p>
+<p><strong><em>Shortcut（Residual）</em></strong>: 参数<code>from:-3</code>表示shortcut的output等于倒数第三层的output与前一层output相加</p>
+<p><strong><em>Upsample</em></strong>: YOLO3采用了类似FPN的结构，在三个尺度上进行预测，故要做两次unsample</p>
+<p><strong><em>Route</em></strong>：<br>When layers attribute has only one value, it outputs the feature maps of the layer indexed by the value. In our example, it is -4, so the layer will output feature map from the 4th layer backwards from the Route layer.</p>
+<p>When layers has two values, it returns the concatenated feature maps of the layers indexed by it’s values. In our example it is -1, 61, and the layer will output feature maps from the previous layer (-1) and the 61st layer, concatenated along the depth dimension.<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[route]</span><br><span class="line">layers = -4</span><br><span class="line"></span><br><span class="line">[route]</span><br><span class="line">layers = -1, 61</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>YOLO</em></strong>：<br>The anchors describes 9 anchors, but only the anchors which are indexed by attributes of the mask tag are used. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[yolo]</span><br><span class="line">mask = 0,1,2</span><br><span class="line">anchors = 10,13,  16,30,  33,23,  30,61,  62,45,  59,119,  116,90,  156,198,  373,326</span><br><span class="line">classes=80</span><br><span class="line">num=9</span><br><span class="line">jitter=.3</span><br><span class="line">ignore_thresh = .5</span><br><span class="line">truth_thresh = 1</span><br><span class="line">random=1</span><br></pre></td></tr></table></figure>
+<h2 id="Parsing-the-configuration-file"><a href="#Parsing-the-configuration-file" class="headerlink" title="Parsing the configuration file"></a>Parsing the configuration file</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">parse_cfg</span><span class="params">(cfgfile)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Takes a configuration file</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns a list of blocks. Each blocks describes a block in the neural</span></span><br><span class="line"><span class="string">    network to be built. Block is represented as a dictionary in the list</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    """</span></span><br></pre></td></tr></table></figure>
+<h2 id="Creating-the-building-blocks"><a href="#Creating-the-building-blocks" class="headerlink" title="Creating the building blocks"></a>Creating the building blocks</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_modules</span><span class="params">(blocks)</span>:</span></span><br><span class="line">    net_info = blocks[<span class="number">0</span>]     <span class="comment">#Captures the information about the input and pre-processing    </span></span><br><span class="line">    module_list = nn.ModuleList()</span><br><span class="line">    prev_filters = <span class="number">3</span></span><br><span class="line">    output_filters = []</span><br></pre></td></tr></table></figure>
+<p>Our function will return a <code>nn.ModuleList</code> .</p>
+<p><code>prev_filters</code> is used to keep track of number of filters in the layer on which the convolutional layer is being applied. </p>
+<p><code>output_filters</code> is used to store the number of output filters of each block, for route layer need.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">for x in blocks:</span><br><span class="line">    module = nn.Sequential()</span><br></pre></td></tr></table></figure>
+<p><code>nn.Sequential</code> class is used to sequentially execute a number of nn.Module objects. We use it’s <code>add_module</code> function to string together all layers.</p>
+<p><strong>for conv layer and unsample layer</strong>:(PyTorch has provided pre-built layers)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Add the convolutional layer</span></span><br><span class="line">conv = nn.Conv2d(prev_filters, filters, kernel_size, stride, pad, bias = bias)</span><br><span class="line">module.add_module(<span class="string">"conv_&#123;0&#125;"</span>.format(index), conv)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Add the Batch Norm Layer</span></span><br><span class="line">bn = nn.BatchNorm2d(filters)</span><br><span class="line">module.add_module(<span class="string">"batch_norm_&#123;0&#125;"</span>.format(index), bn)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Check the activation. </span></span><br><span class="line"><span class="comment">#It is either Linear or a Leaky ReLU for YOLO</span></span><br><span class="line">activn = nn.LeakyReLU(<span class="number">0.1</span>, inplace = <span class="keyword">True</span>)</span><br><span class="line">module.add_module(<span class="string">"leaky_&#123;0&#125;"</span>.format(index), activn)</span><br><span class="line"></span><br><span class="line"><span class="comment">#If it's an upsampling layer</span></span><br><span class="line"><span class="comment">#We use Bilinear2dUpsampling</span></span><br><span class="line">upsample = nn.Upsample(scale_factor = <span class="number">2</span>, mode = <span class="string">"bilinear"</span>)</span><br><span class="line">module.add_module(<span class="string">"upsample_&#123;&#125;"</span>.format(index), upsample)</span><br></pre></td></tr></table></figure>
+<p><strong>for Route Layer / Shortcut Layers</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">shortcut = EmptyLayer()</span><br><span class="line">module.add_module(<span class="string">"shortcut_&#123;&#125;"</span>.format(index), shortcut)</span><br><span class="line"></span><br><span class="line">route = EmptyLayer()</span><br><span class="line">module.add_module(<span class="string">"route_&#123;0&#125;"</span>.format(index), route)</span><br></pre></td></tr></table></figure>
+<p>The empty layer is defined as:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EmptyLayer</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(EmptyLayer, self).__init__()</span><br></pre></td></tr></table></figure></p>
+<p>We use empty layer and  perform the concatenation directly in the<code>forward</code> function of the <code>nn.Module</code> object representing darknet.</p>
+<p><strong>for yolo layers</strong>:</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">detection = DetectionLayer(anchors)</span><br><span class="line">module.add_module(<span class="string">"Detection_&#123;&#125;"</span>.format(index), detection)</span><br></pre></td></tr></table></figure>
+<p>We define a new layer<code>DetectionLayer</code> that holds the anchors used to detect bounding boxes.</p>
+<p>The detection layer is defined as: (the <code>forward</code> function will be proposed later)<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DetectionLayer</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, anchors)</span>:</span></span><br><span class="line">        super(DetectionLayer, self).__init__()</span><br><span class="line">        self.anchors = anchors</span><br></pre></td></tr></table></figure></p>
+<p>At the end of the loop for each block， we do some bookkeeping.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">module_list.append(module)</span><br><span class="line">prev_filters = filters</span><br><span class="line">output_filters.append(filters)</span><br><span class="line">index += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>At the end of the function <code>create_modules</code>, we return a tuple containing the <code>net_info</code>, and <code>module_list</code>.</p>
+<h1 id="2-Implementing-the-the-forward-pass-of-the-network"><a href="#2-Implementing-the-the-forward-pass-of-the-network" class="headerlink" title="2. Implementing the the forward pass of the network"></a>2. Implementing the the forward pass of the network</h1><h2 id="Defining-the-Network"><a href="#Defining-the-Network" class="headerlink" title="Defining the Network"></a>Defining the Network</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Darknet</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, cfgfile)</span>:</span></span><br><span class="line">        super(Darknet, self).__init__()</span><br><span class="line">        self.blocks = parse_cfg(cfgfile)</span><br><span class="line">        self.net_info, self.module_list = create_modules(self.blocks)</span><br></pre></td></tr></table></figure>
+<h2 id="Implementing-the-forward-pass-of-the-network"><a href="#Implementing-the-forward-pass-of-the-network" class="headerlink" title="Implementing the forward pass of the network"></a>Implementing the forward pass of the network</h2><p><code>forward</code> serves two purposes. First, to calculate the output, and second, to transform the output detection feature maps in a way that it can be processed easier</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x, CUDA)</span>:</span></span><br><span class="line">    modules = self.blocks[<span class="number">1</span>:]  <span class="comment"># the first element is net layer which is no use</span></span><br><span class="line">    outputs = &#123;&#125;   <span class="comment"># We cache the outputs for the route layer</span></span><br><span class="line">    </span><br><span class="line">    write = <span class="number">0</span>     <span class="comment">#This is explained a bit later</span></span><br><span class="line">	<span class="keyword">for</span> i, module <span class="keyword">in</span> enumerate(modules):        </span><br><span class="line">    	module_type = (module[<span class="string">"type"</span>])</span><br></pre></td></tr></table></figure>
+<p>Since route and shortcut layers need output maps from previous layers, we cache the output feature maps of every layer in a dict <code>outputs</code>. The keys are the the indices of the layers, and the values are the feature maps.</p>
+<h2 id="Convolutional-and-Upsample-Layers"><a href="#Convolutional-and-Upsample-Layers" class="headerlink" title="Convolutional and Upsample Layers"></a>Convolutional and Upsample Layers</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> module_type == <span class="string">"convolutional"</span> <span class="keyword">or</span> module_type == <span class="string">"upsample"</span>:</span><br><span class="line">    x = self.module_list[i](x)</span><br></pre></td></tr></table></figure>
+<h2 id="Route-Layer-Shortcut-Layer"><a href="#Route-Layer-Shortcut-Layer" class="headerlink" title="Route Layer / Shortcut Layer"></a>Route Layer / Shortcut Layer</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> module_type == <span class="string">"route"</span>:</span><br><span class="line">    layers = module[<span class="string">"layers"</span>]</span><br><span class="line">    layers = [int(a) <span class="keyword">for</span> a <span class="keyword">in</span> layers]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (layers[<span class="number">0</span>]) &gt; <span class="number">0</span>:</span><br><span class="line">        layers[<span class="number">0</span>] = layers[<span class="number">0</span>] - i</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> len(layers) == <span class="number">1</span>:</span><br><span class="line">        x = outputs[i + (layers[<span class="number">0</span>])]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">if</span> (layers[<span class="number">1</span>]) &gt; <span class="number">0</span>:</span><br><span class="line">            layers[<span class="number">1</span>] = layers[<span class="number">1</span>] - i</span><br><span class="line"></span><br><span class="line">        map1 = outputs[i + layers[<span class="number">0</span>]]</span><br><span class="line">        map2 = outputs[i + layers[<span class="number">1</span>]]</span><br><span class="line"></span><br><span class="line">        x = torch.cat((map1, map2), <span class="number">1</span>) <span class="comment"># concatenate the feature maps along the depth</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">elif</span>  module_type == <span class="string">"shortcut"</span>:</span><br><span class="line">    from_ = int(module[<span class="string">"from"</span>])</span><br><span class="line">    x = outputs[i<span class="number">-1</span>] + outputs[i+from_]</span><br></pre></td></tr></table></figure>
+<p>In PyTorch, input and output of a convolutional layer has the format B x C x H x W. The depth corresponding the the channel dimension.</p>
+<h2 id="YOLO-Detection-Layer"><a href="#YOLO-Detection-Layer" class="headerlink" title="YOLO (Detection Layer)"></a>YOLO (Detection Layer)</h2><p>The output of YOLO is a convolutional feature map that contains the bounding box attributes along the depth of the feature map. </p>
+<p>There are two problems. First, the attributes bounding boxes predicted by a cell are stacked one by one along each other,  this form is very inconvenient for output processing. Second, it would be nice to have to do these operations on a single tensor, rather than three separate tensors.</p>
+<p>To remedy these problems, we will introduce the function <code>predict_transform</code> first.</p>
+<h2 id="Transforming-the-output"><a href="#Transforming-the-output" class="headerlink" title="Transforming the output"></a>Transforming the output</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">predict_transform</span><span class="params">(prediction, inp_dim, anchors, num_classes, CUDA = True)</span>:</span></span><br></pre></td></tr></table></figure>
+<p>This function takes an detection feature map and turns it into a 2-D tensor, where each row of the tensor corresponds to attributes of a bounding box, in the following order .<br><img src="/2018/11/16/yolov3-pytorch代码分析/32.png" alt=""></p>
+<p>The code to do above transformation is:<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">batch_size = prediction.size(<span class="number">0</span>)</span><br><span class="line">stride =  inp_dim // prediction.size(<span class="number">2</span>)</span><br><span class="line">grid_size = inp_dim // stride</span><br><span class="line">bbox_attrs = <span class="number">5</span> + num_classes</span><br><span class="line">num_anchors = len(anchors)</span><br><span class="line"></span><br><span class="line">prediction = prediction.view(batch_size, bbox_attrs*num_anchors, grid_size*grid_size)</span><br><span class="line">prediction = prediction.transpose(<span class="number">1</span>,<span class="number">2</span>).contiguous()</span><br><span class="line">prediction = prediction.view(batch_size, grid_size*grid_size*num_anchors, bbox_attrs)</span><br></pre></td></tr></table></figure></p>
+<p>The dimensions of the anchors are in accordance to the <code>height</code> and <code>width</code> attributes of the <code>net</code> block. These attributes describe the dimensions of the input image, which is larger (by a factor of stride) than the detection map. Therefore, we must divide the anchors by the stride of the detection feature map.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">anchors = [(a[<span class="number">0</span>]/stride, a[<span class="number">1</span>]/stride) <span class="keyword">for</span> a <span class="keyword">in</span> anchors]</span><br></pre></td></tr></table></figure></p>
+<p>Now, we need to transform our output according to the equations<br><img src="/2018/11/16/yolov3-pytorch代码分析/4.png" alt=""></p>
+<p>First, sigmoid the x,y coordinates and the objectness score.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Sigmoid the  centre_X, centre_Y. and object confidencce</span></span><br><span class="line">prediction[:,:,<span class="number">0</span>] = torch.sigmoid(prediction[:,:,<span class="number">0</span>])</span><br><span class="line">prediction[:,:,<span class="number">1</span>] = torch.sigmoid(prediction[:,:,<span class="number">1</span>])</span><br><span class="line">prediction[:,:,<span class="number">4</span>] = torch.sigmoid(prediction[:,:,<span class="number">4</span>])</span><br></pre></td></tr></table></figure></p>
+<p>Add the grid offsets to the center cordinates prediction.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Add the center offsets</span></span><br><span class="line">grid = np.arange(grid_size)</span><br><span class="line">a,b = np.meshgrid(grid, grid)</span><br><span class="line"></span><br><span class="line">x_offset = torch.FloatTensor(a).view(<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line">y_offset = torch.FloatTensor(b).view(<span class="number">-1</span>,<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> CUDA:</span><br><span class="line">    x_offset = x_offset.cuda()</span><br><span class="line">    y_offset = y_offset.cuda()</span><br><span class="line"></span><br><span class="line">x_y_offset = torch.cat((x_offset, y_offset), <span class="number">1</span>).repeat(<span class="number">1</span>,num_anchors).view(<span class="number">-1</span>,<span class="number">2</span>).unsqueeze(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">prediction[:,:,:<span class="number">2</span>] += x_y_offset</span><br></pre></td></tr></table></figure></p>
+<p>Apply the anchors to the dimensions of the bounding box.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#log space transform height and the width</span></span><br><span class="line">anchors = torch.FloatTensor(anchors)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> CUDA:</span><br><span class="line">    anchors = anchors.cuda()</span><br><span class="line"></span><br><span class="line">anchors = anchors.repeat(grid_size*grid_size, <span class="number">1</span>).unsqueeze(<span class="number">0</span>)</span><br><span class="line">prediction[:,:,<span class="number">2</span>:<span class="number">4</span>] = torch.exp(prediction[:,:,<span class="number">2</span>:<span class="number">4</span>])*anchors</span><br></pre></td></tr></table></figure></p>
+<p>Apply sigmoid activation to the the class scores.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">prediction[:,:,<span class="number">5</span>: <span class="number">5</span> + num_classes] = torch.sigmoid((prediction[:,:, <span class="number">5</span> : <span class="number">5</span> + num_classes]))</span><br></pre></td></tr></table></figure></p>
+<p>The last thing we want to do here, is to resize the detections map to the size of the input image. The bounding box attributes here are sized according to the feature map (say, 13 x 13). If the input image was 416 x 416, we multiply the attributes by 32, or the <code>stride</code> variable.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prediction[:,:,:<span class="number">4</span>] *= stride</span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span> prediction</span><br></pre></td></tr></table></figure></p>
+<h2 id="Detection-Layer-Revisited"><a href="#Detection-Layer-Revisited" class="headerlink" title="Detection Layer Revisited"></a>Detection Layer Revisited</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">elif</span> module_type == <span class="string">'yolo'</span>:        </span><br><span class="line">    anchors = self.module_list[i][<span class="number">0</span>].anchors</span><br><span class="line">    <span class="comment">#Get the input dimensions</span></span><br><span class="line">    inp_dim = int (self.net_info[<span class="string">"height"</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#Get the number of classes</span></span><br><span class="line">    num_classes = int (module[<span class="string">"classes"</span>])</span><br><span class="line"></span><br><span class="line">    <span class="comment">#Transform </span></span><br><span class="line">    x = x.data</span><br><span class="line">    x = predict_transform(x, inp_dim, anchors, num_classes, CUDA)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> write:              <span class="comment">#if no collector has been intialised. </span></span><br><span class="line">        detections = x</span><br><span class="line">        write = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">else</span>:       </span><br><span class="line">        detections = torch.cat((detections, x), <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">outputs[i] = x</span><br><span class="line"></span><br><span class="line">rturn detections</span><br></pre></td></tr></table></figure>
+<h1 id="3-Confidence-Thresholding-and-Non-maximum-Suppression"><a href="#3-Confidence-Thresholding-and-Non-maximum-Suppression" class="headerlink" title="3. Confidence Thresholding and Non-maximum Suppression"></a>3. Confidence Thresholding and Non-maximum Suppression</h1><p>To be precise, our output is a tensor of shape <code>B x 10647 x 85</code>. B is the number of images in a batch, 10647 is the number of bounding boxes predicted per image, and 85 is the number of bounding box attributes.</p>
+<p>However,  we must subject our output to objectness score thresholding and Non-maximal suppression, to obtain what we will call in the rest of this post as the<em>true</em> detections. To do that, we will create a function called <code>write_results</code>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">write_results</span><span class="params">(prediction, confidence, num_classes, nms_conf = <span class="number">0.4</span>)</span>:</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Object-Confidence-Thresholding"><a href="#Object-Confidence-Thresholding" class="headerlink" title="Object Confidence Thresholding"></a>Object Confidence Thresholding</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">conf_mask = (prediction[:,:,<span class="number">4</span>] &gt; confidence).float().unsqueeze(<span class="number">2</span>)</span><br><span class="line">prediction = prediction*conf_mask</span><br></pre></td></tr></table></figure>
+<h2 id="Performing-Non-maximum-Suppression"><a href="#Performing-Non-maximum-Suppression" class="headerlink" title="Performing Non-maximum Suppression"></a>Performing Non-maximum Suppression</h2><p>Transform the (center x, center y, height, width) attributes of our boxes, to (top-left corner x, top-left corner y, right-bottom corner x, right-bottom corner y).<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">box_corner = prediction.new(prediction.shape)</span><br><span class="line">box_corner[:,:,<span class="number">0</span>] = (prediction[:,:,<span class="number">0</span>] - prediction[:,:,<span class="number">2</span>]/<span class="number">2</span>)</span><br><span class="line">box_corner[:,:,<span class="number">1</span>] = (prediction[:,:,<span class="number">1</span>] - prediction[:,:,<span class="number">3</span>]/<span class="number">2</span>)</span><br><span class="line">box_corner[:,:,<span class="number">2</span>] = (prediction[:,:,<span class="number">0</span>] + prediction[:,:,<span class="number">2</span>]/<span class="number">2</span>) </span><br><span class="line">box_corner[:,:,<span class="number">3</span>] = (prediction[:,:,<span class="number">1</span>] + prediction[:,:,<span class="number">3</span>]/<span class="number">2</span>)</span><br><span class="line">prediction[:,:,:<span class="number">4</span>] = box_corner[:,:,:<span class="number">4</span>]</span><br></pre></td></tr></table></figure></p>
+<p>Confidence thresholding and NMS has to be done for one image at once. This means, we must loop over the first dimension of <code>prediction</code>.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">batch_size = prediction.size(<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">write = <span class="keyword">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> ind <span class="keyword">in</span> range(batch_size):</span><br><span class="line">    image_pred = prediction[ind]          <span class="comment">#image Tensor</span></span><br><span class="line">       <span class="comment">#confidence threshholding </span></span><br><span class="line">       <span class="comment">#NMS</span></span><br></pre></td></tr></table></figure></p>
+<p>Notice each bounding box row has 85 attributes, out of which 80 are the class scores. At this point, we’re only concerned with the class score having the maximum value. So, we remove the 80 class scores from each row, and instead add the index of the class having the maximum values, as well the class score of that class.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">max_conf, max_conf_score = torch.max(image_pred[:,<span class="number">5</span>:<span class="number">5</span>+ num_classes], <span class="number">1</span>)</span><br><span class="line">max_conf = max_conf.float().unsqueeze(<span class="number">1</span>)</span><br><span class="line">max_conf_score = max_conf_score.float().unsqueeze(<span class="number">1</span>)</span><br><span class="line">seq = (image_pred[:,:<span class="number">5</span>], max_conf, max_conf_score)</span><br><span class="line">image_pred = torch.cat(seq, <span class="number">1</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Get rid of  the bounding box rows having a object confidence less than the threshold.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">non_zero_ind =  (torch.nonzero(image_pred[:,<span class="number">4</span>]))</span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    image_pred_ = image_pred[non_zero_ind.squeeze(),:].view(<span class="number">-1</span>,<span class="number">7</span>)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#For PyTorch 0.4 compatibility</span></span><br><span class="line"><span class="comment">#Since the above code with not raise exception for no detection </span></span><br><span class="line"><span class="comment">#as scalars are supported in PyTorch 0.4</span></span><br><span class="line"><span class="keyword">if</span> image_pred_.shape[<span class="number">0</span>] == <span class="number">0</span>:</span><br><span class="line">    <span class="keyword">continue</span></span><br></pre></td></tr></table></figure></p>
+<p>The try-except block is there to handle situations where we get no detections. In that case, we use <code>continue</code> to skip the rest of the loop body for this image.</p>
+<p>Now, let’s get the classes detected in a an image.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Get the various classes detected in the image</span></span><br><span class="line">img_classes = unique(image_pred_[:,<span class="number">-1</span>]) <span class="comment"># -1 index holds the class index</span></span><br></pre></td></tr></table></figure></p>
+<p>Since there can be multiple true detections of the same class, we use a function called <code>unique</code> to get classes present in any given image.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">unique</span><span class="params">(tensor)</span>:</span></span><br><span class="line">    tensor_np = tensor.cpu().numpy()</span><br><span class="line">    unique_np = np.unique(tensor_np)</span><br><span class="line">    unique_tensor = torch.from_numpy(unique_np)</span><br><span class="line">    </span><br><span class="line">    tensor_res = tensor.new(unique_tensor.shape)</span><br><span class="line">    tensor_res.copy_(unique_tensor)</span><br><span class="line">    <span class="keyword">return</span> tensor_res</span><br></pre></td></tr></table></figure></p>
+<p>Then, we perform NMS classwise.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> cls <span class="keyword">in</span> img_classes:</span><br><span class="line">    <span class="comment">#perform NMS</span></span><br></pre></td></tr></table></figure></p>
+<p>Once we are inside the loop, the first thing we do is extract the detections of a particular class (denoted by variable <code>cls</code>).<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#get the detections with one particular class</span></span><br><span class="line">cls_mask = image_pred_*(image_pred_[:,<span class="number">-1</span>] == cls).float().unsqueeze(<span class="number">1</span>)</span><br><span class="line">class_mask_ind = torch.nonzero(cls_mask[:,<span class="number">-2</span>]).squeeze()</span><br><span class="line">image_pred_class = image_pred_[class_mask_ind].view(<span class="number">-1</span>,<span class="number">7</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#sort the detections such that the entry with the maximum objectness confidence is at the top</span></span><br><span class="line">conf_sort_index = torch.sort(image_pred_class[:,<span class="number">4</span>], descending = <span class="keyword">True</span> )[<span class="number">1</span>]</span><br><span class="line">image_pred_class = image_pred_class[conf_sort_index]</span><br><span class="line">idx = image_pred_class.size(<span class="number">0</span>)   <span class="comment">#Number of detections</span></span><br></pre></td></tr></table></figure></p>
+<p>Now, we perform NMS.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(idx):</span><br><span class="line">    <span class="comment">#Get the IOUs of all boxes that come after the one we are looking at </span></span><br><span class="line">    <span class="comment">#in the loop</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        ious = bbox_iou(image_pred_class[i].unsqueeze(<span class="number">0</span>), image_pred_class[i+<span class="number">1</span>:])</span><br><span class="line">    <span class="keyword">except</span> ValueError:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">except</span> IndexError:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#Zero out all the detections that have IoU &gt; treshhold</span></span><br><span class="line">    iou_mask = (ious &lt; nms_conf).float().unsqueeze(<span class="number">1</span>)</span><br><span class="line">    image_pred_class[i+<span class="number">1</span>:] *= iou_mask       </span><br><span class="line"></span><br><span class="line">    <span class="comment">#Remove the non-zero entries</span></span><br><span class="line">    non_zero_ind = torch.nonzero(image_pred_class[:,<span class="number">4</span>]).squeeze()</span><br><span class="line">    image_pred_class = image_pred_class[non_zero_ind].view(<span class="number">-1</span>,<span class="number">7</span>)</span><br></pre></td></tr></table></figure></p>
+<p>Here, we use a function <code>bbox_iou</code>. The first input is the bounding box row that is indexed by the the variable <code>i</code> in the loop.<br>Second input is a tensor of multiple rows of bounding boxes. The output of the function <code>bbox_iou</code> is a tensor containing IoUs of the bounding box represented by the first input with each of the bounding boxes present in the second input.<br>If we have two bounding boxes of the same class having an IoU larger than a threshold, then the one with lower class confidence is eliminated. </p>
+<p>Also notice, we have put the line of code to compute the ious in a <code>try-catch</code> block. This is because the loop is designed to run <code>idx</code> iterations. However, as we proceed with the loop, a number of bounding boxes may be removed from <code>image_pred_class</code>. This means, we cannot have idx iterations in most instances. Hence, we might try to index a value that is out of bounds (<code>IndexError</code>), or the slice <code>image_pred_class[i+1:]</code> may return an empty tensor, assigning which triggers a <code>ValueError</code>. At that point, we can ascertain that NMS can remove no further bounding boxes, and we break out of the loop.</p>
+<p><strong>Calculating the IoU</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bbox_iou</span><span class="params">(box1, box2)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Returns the IoU of two bounding boxes </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="comment">#Get the coordinates of bounding boxes</span></span><br><span class="line">    b1_x1, b1_y1, b1_x2, b1_y2 = box1[:,<span class="number">0</span>], box1[:,<span class="number">1</span>], box1[:,<span class="number">2</span>], box1[:,<span class="number">3</span>]</span><br><span class="line">    b2_x1, b2_y1, b2_x2, b2_y2 = box2[:,<span class="number">0</span>], box2[:,<span class="number">1</span>], box2[:,<span class="number">2</span>], box2[:,<span class="number">3</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#get the corrdinates of the intersection rectangle</span></span><br><span class="line">    inter_rect_x1 =  torch.max(b1_x1, b2_x1)</span><br><span class="line">    inter_rect_y1 =  torch.max(b1_y1, b2_y1)</span><br><span class="line">    inter_rect_x2 =  torch.min(b1_x2, b2_x2)</span><br><span class="line">    inter_rect_y2 =  torch.min(b1_y2, b2_y2)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#Intersection area</span></span><br><span class="line">    inter_area = torch.clamp(inter_rect_x2 - inter_rect_x1 + <span class="number">1</span>, min=<span class="number">0</span>) * torch.clamp(inter_rect_y2 - inter_rect_y1 + <span class="number">1</span>, min=<span class="number">0</span>)</span><br><span class="line"> </span><br><span class="line">    <span class="comment">#Union Area</span></span><br><span class="line">    b1_area = (b1_x2 - b1_x1 + <span class="number">1</span>)*(b1_y2 - b1_y1 + <span class="number">1</span>)</span><br><span class="line">    b2_area = (b2_x2 - b2_x1 + <span class="number">1</span>)*(b2_y2 - b2_y1 + <span class="number">1</span>)</span><br><span class="line">    </span><br><span class="line">    iou = inter_area / (b1_area + b2_area - inter_area)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> iou</span><br></pre></td></tr></table></figure></p>
+<h2 id="Writing-the-predictions"><a href="#Writing-the-predictions" class="headerlink" title="Writing the predictions"></a>Writing the predictions</h2><p>The function <code>write_results</code> outputs a tensor of shape D x 8. Here D is the true detections in all of images, each represented by a row. Each detections has 8 attributes, namely, <strong>index of the image in the batch to which the detection belongs to, 4 corner coordinates, objectness score, the score of class with maximum confidence, and the index of that class.</strong><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">batch_ind = image_pred_class.new(image_pred_class.size(<span class="number">0</span>), <span class="number">1</span>).fill_(ind)      </span><br><span class="line"><span class="comment">#Repeat the batch_id for as many detections of the class cls in the image</span></span><br><span class="line">seq = batch_ind, image_pred_class</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="keyword">not</span> write:</span><br><span class="line">    output = torch.cat(seq,<span class="number">1</span>)</span><br><span class="line">    write = <span class="keyword">True</span></span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    out = torch.cat(seq,<span class="number">1</span>)</span><br><span class="line">    output = torch.cat((output,out))</span><br></pre></td></tr></table></figure></p>
+<h1 id="4-Designing-the-input-and-the-output-pipelines"><a href="#4-Designing-the-input-and-the-output-pipelines" class="headerlink" title="4. Designing the input and the output pipelines"></a>4. Designing the input and the output pipelines</h1><h2 id="Loading-the-Network"><a href="#Loading-the-Network" class="headerlink" title="Loading the Network"></a>Loading the Network</h2><p>Load the class file.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">num_classes = <span class="number">80</span>    <span class="comment">#For COCO</span></span><br><span class="line">classes = load_classes(<span class="string">"data/coco.names"</span>)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_classes</span><span class="params">(namesfile)</span>:</span></span><br><span class="line">    fp = open(namesfile, <span class="string">"r"</span>)</span><br><span class="line">    names = fp.read().split(<span class="string">"\n"</span>)[:<span class="number">-1</span>]</span><br><span class="line">    <span class="keyword">return</span> names</span><br></pre></td></tr></table></figure>
+<p>Initialize the network and load weights.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Set up the neural network</span></span><br><span class="line">print(<span class="string">"Loading network....."</span>)</span><br><span class="line">model = Darknet(args.cfgfile)</span><br><span class="line">model.load_weights(args.weightsfile)</span><br><span class="line">print(<span class="string">"Network successfully loaded"</span>)</span><br><span class="line"></span><br><span class="line">model.net_info[<span class="string">"height"</span>] = args.reso</span><br><span class="line">inp_dim = int(model.net_info[<span class="string">"height"</span>])</span><br><span class="line"><span class="keyword">assert</span> inp_dim % <span class="number">32</span> == <span class="number">0</span> </span><br><span class="line"><span class="keyword">assert</span> inp_dim &gt; <span class="number">32</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#If there's a GPU availible, put the model on GPU</span></span><br><span class="line"><span class="keyword">if</span> CUDA:</span><br><span class="line">    model.cuda()</span><br><span class="line"></span><br><span class="line"><span class="comment">#Set the model in evaluation mode</span></span><br><span class="line">model.eval()</span><br></pre></td></tr></table></figure></p>
+<h2 id="Read-the-Input-images"><a href="#Read-the-Input-images" class="headerlink" title="Read the Input images"></a>Read the Input images</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">read_dir = time.time()</span><br><span class="line"><span class="comment">#Detection phase</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    imlist = [osp.join(osp.realpath(<span class="string">'.'</span>), images, img) <span class="keyword">for</span> img <span class="keyword">in</span> os.listdir(images)]</span><br><span class="line"><span class="keyword">except</span> NotADirectoryError:</span><br><span class="line">    imlist = []</span><br><span class="line">    imlist.append(osp.join(osp.realpath(<span class="string">'.'</span>), images))</span><br><span class="line"><span class="keyword">except</span> FileNotFoundError:</span><br><span class="line">    <span class="keyword">print</span> (<span class="string">"No file or directory with the name &#123;&#125;"</span>.format(images))</span><br><span class="line">    exit()</span><br></pre></td></tr></table></figure>
+<p>use OpenCV to load the images.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">load_batch = time.time()</span><br><span class="line">loaded_ims = [cv2.imread(x) <span class="keyword">for</span> x <span class="keyword">in</span> imlist]</span><br></pre></td></tr></table></figure></p>
+<p>Write the function <code>letterbox_image</code> to resizes our image, keeping the aspect ratio consistent, and padding the left out areas with the color (128,128,128).<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">letterbox_image</span><span class="params">(img, inp_dim)</span>:</span></span><br><span class="line">    <span class="string">'''resize image with unchanged aspect ratio using padding'''</span></span><br><span class="line">    img_w, img_h = img.shape[<span class="number">1</span>], img.shape[<span class="number">0</span>]</span><br><span class="line">    w, h = inp_dim</span><br><span class="line">    new_w = int(img_w * min(w/img_w, h/img_h))</span><br><span class="line">    new_h = int(img_h * min(w/img_w, h/img_h))</span><br><span class="line">    resized_image = cv2.resize(img, (new_w,new_h), interpolation = cv2.INTER_CUBIC)</span><br><span class="line">    </span><br><span class="line">    canvas = np.full((inp_dim[<span class="number">1</span>], inp_dim[<span class="number">0</span>], <span class="number">3</span>), <span class="number">128</span>)</span><br><span class="line"></span><br><span class="line">    canvas[(h-new_h)//<span class="number">2</span>:(h-new_h)//<span class="number">2</span> + new_h,(w-new_w)//<span class="number">2</span>:(w-new_w)//<span class="number">2</span> + new_w,  :] = resized_image</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> canvas</span><br></pre></td></tr></table></figure></p>
+<p>Write the function <code>prep_image</code> to takes a OpenCV images and converts it to PyTorch’s input format.<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">prep_image</span><span class="params">(img, inp_dim)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Prepare image for inputting to the neural network. </span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns a Variable </span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line"></span><br><span class="line">    img = cv2.resize(img, (inp_dim, inp_dim))</span><br><span class="line">    img = img[:,:,::<span class="number">-1</span>].transpose((<span class="number">2</span>,<span class="number">0</span>,<span class="number">1</span>)).copy()</span><br><span class="line">    img = torch.from_numpy(img).float().div(<span class="number">255.0</span>).unsqueeze(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">return</span> img</span><br></pre></td></tr></table></figure></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/leetcode412/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/leetcode412/" itemprop="url">【leetcode】412：Fizz Buzz</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T09:47:03+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Fizz-Buzz"><a href="#Fizz-Buzz" class="headerlink" title="Fizz Buzz"></a>Fizz Buzz</h1><p><strong>难度：Easy</strong></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>写一个程序，输出从 1 到 n 数字的字符串表示。</p>
+<ol>
+<li><p>如果 n 是3的倍数，输出“Fizz”；</p>
+</li>
+<li><p>如果 n 是5的倍数，输出“Buzz”；</p>
+</li>
+<li><p>如果 n 同时是3和5的倍数，输出 “FizzBuzz”。</p>
+</li>
+</ol>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">n = 15,</span><br><span class="line"></span><br><span class="line">返回:</span><br><span class="line">[</span><br><span class="line">    &quot;1&quot;,</span><br><span class="line">    &quot;2&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;4&quot;,</span><br><span class="line">    &quot;Buzz&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;7&quot;,</span><br><span class="line">    &quot;8&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;Buzz&quot;,</span><br><span class="line">    &quot;11&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;13&quot;,</span><br><span class="line">    &quot;14&quot;,</span><br><span class="line">    &quot;FizzBuzz&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="解"><a href="#解" class="headerlink" title="解"></a>解</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; fizzBuzz(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">15</span> == <span class="number">0</span>) res.push_back(<span class="string">"FizzBuzz"</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">3</span> == <span class="number">0</span>) res.push_back(<span class="string">"Fizz"</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">5</span> == <span class="number">0</span>) res.push_back(<span class="string">"Buzz"</span>);</span><br><span class="line">            <span class="keyword">else</span> res.push_back(to_string(i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><ol>
+<li>向量（Vector）是一个封装了动态大小数组的顺序容器（Sequence Container）。跟任意其它类型容器一样，它能够存放各种类型的对象。可以简单的认为，向量是一个能够存放任意类型的动态数组。 </li>
+</ol>
+<p>标准库vector类型使用须要的头文件：<code>#include &lt;vector&gt;</code>。</p>
+<p>Vector的定义和初始化：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt; typeName &gt; v1;       <span class="comment">//默认v1为空，故以下的赋值是错误的v1[0]=5;</span></span><br><span class="line"><span class="built_in">vector</span>&lt;typeName&gt;v2(v1); 或v2=v1;或<span class="built_in">vector</span>&lt;typeName&gt; v2(v1.begin(), v1.end());<span class="comment">//v2是v1的一个副本，若v1.size（）  &gt;v2.size()则赋值后v2.size()被扩充为v1.size()。</span></span><br><span class="line"><span class="built_in">vector</span>&lt; typeName &gt; v3(n,i);<span class="comment">//v3包括n个值为i的typeName类型元素</span></span><br><span class="line"><span class="built_in">vector</span>&lt; typeName &gt; v4(n); <span class="comment">//v4含有n个值为0的元素</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>&#125;; <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v5(a,a+<span class="number">5</span>);<span class="comment">//v5的size为5，v5被初始化为a的5个值。后一个指针要指向将被拷贝的末元素的下一位置。</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v6(v5);<span class="comment">//v6是v5的拷贝</span></span><br><span class="line"><span class="built_in">vector</span>&lt; 类型 &gt; 标识符（最大容量，初始全部值）</span><br></pre></td></tr></table></figure>
+<p>Vector的基本函数</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>push_back 在数组的最后添加一个数据</span><br><span class="line"><span class="number">2.</span>pop_back 去掉数组的最后一个数据</span><br><span class="line"><span class="number">3.</span>at 得到编号位置的数据</span><br><span class="line"><span class="number">4.b</span>egin 得到数组头的指针</span><br><span class="line"><span class="number">5.</span>end 得到数组的最后一个单元+<span class="number">1</span>的指针</span><br><span class="line"><span class="number">6</span>．front 得到数组头的引用</span><br><span class="line"><span class="number">7.b</span>ack 得到数组的最后一个单元的引用</span><br><span class="line"><span class="number">8.</span>max_size 得到<span class="built_in">vector</span>最大可以是多大</span><br><span class="line"><span class="number">9.</span>capacity 当前<span class="built_in">vector</span>分配的大小</span><br><span class="line"><span class="number">10.</span>size 当前使用数据的大小</span><br><span class="line"><span class="number">11.</span>resize 改变当前使用数据的大小，如果它比当前使用的大，者填充默认值</span><br><span class="line"><span class="number">12.</span>reserve 改变当前vecotr所分配空间的大小</span><br><span class="line"><span class="number">13.</span>erase 删除指针指向的数据项</span><br><span class="line"><span class="number">14.</span>clear 清空当前的<span class="built_in">vector</span></span><br><span class="line"><span class="number">15.</span>rbegin 将<span class="built_in">vector</span>反转后的开始指针返回(其实就是原来的end<span class="number">-1</span>)</span><br><span class="line"><span class="number">16.</span>rend 将<span class="built_in">vector</span>反转构的结束指针返回(其实就是原来的begin<span class="number">-1</span>)</span><br><span class="line"><span class="number">17.</span>empty 判断<span class="built_in">vector</span>是否为空</span><br><span class="line"><span class="number">18.</span>swap 与另一个<span class="built_in">vector</span>交换数据</span><br></pre></td></tr></table></figure>
+<p>2.to_string</p>
+<p><code>#include &lt;string&gt;</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">int</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">unsigned</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">float</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">double</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">long</span> <span class="keyword">double</span> val)</span></span>;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/eat/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1233,150 +1701,11 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/problem/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/10/26/problem/" itemprop="url">零碎的问题及解决</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-26T10:07:40+08:00">
-                2018-10-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>import keras 的时候 遇到 No module named ‘tensorflow.python’</strong></p>
-<p>解决：重装tensorflow</p>
-<hr>
-<p><strong>读CSV文件时，报错UnicodeDecodeError: ‘gbk’ codec can’t decode byte 0xbf in position 2: illegal multibyte sequence</strong></p>
-<p>解决：<code>open(csv_path, &#39;r&#39;, encoding=&#39;UTF-8&#39;)</code></p>
-<p>用utf-8编码时，print出来的csv开头有<code>\ufeff</code>，因此encoding应该为<code>‘UTF-8-sig’</code></p>
-<hr>
-<p><strong>读CSV文件时，报错’utf-8’ codec can’t decode byte 0xb4 in position 0: invalid start byte</strong></p>
-<p>解决：保存时 加 encoding=’UTF-8’或’UTF-8-sig’</p>
-<hr>
-<p><strong>pytorch load 预训练模型的时候</strong><br>报错：<br>Missing key(s) in state_dict: “network.0.conv.weight”, ……<br>Unexpected key(s) in state_dict: “module.network.0.conv.weight”, ……<br>是用torch0.4.1版本训练，用0.4.0版本预测的时候报的异常  ？？<br>解决：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.load_state_dict(&#123;k.replace(<span class="string">'module.'</span>,<span class="string">''</span>):v <span class="keyword">for</span> k,v <span class="keyword">in</span> torch.load(checkpoint_path)[<span class="string">'state_dict'</span>].items()&#125;)</span><br></pre></td></tr></table></figure>
-<hr>
-<p><strong>Python 报错NotImplementedError</strong><br>在面向对象编程中，可以先预留一个方法接口不实现，在其子类中实现。如果要求其子类一定要实现，不实现的时候会导致问题，那么采用raise的方式就很好。而此时产生的问题分类 是NotImplementedError。</p>
-<hr>
-<p><strong>pytorch: ‘list’ object has no attribute ‘cuda’</strong></p>
-<hr>
-<p><strong>pytorch: cuda runtime error(59) in loss.backward()</strong><br>From the error message it looks like you are using indexing with wrong indices.<br>A good way to debug these errors is to simply run the exact same code on CPU（ model.cpu()）, that way you will get a proper stack trace with the exact line that crashed.</p>
-<hr>
-<p><strong>pytorch: Assertion <code>cur_target &gt;= 0 &amp;&amp; cur_target &lt; n_classes</code> failed</strong><br>label 从0开始</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -1422,7 +1751,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Machine Learning,Deep Learning," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,13 @@
 
 
 
-<meta name="description" content="viewtransposecontiguousrepeatsqueezeunsqueeze">
-<meta name="keywords" content="Machine Learning,Deep Learning">
-<meta property="og:type" content="article">
-<meta property="og:title" content="pytorch">
-<meta property="og:url" content="http://yoursite.com/2019/01/23/pytorch/index.html">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Good Good Study">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="viewtransposecontiguousrepeatsqueezeunsqueeze">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-01-24T06:31:52.650Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="pytorch">
-<meta name="twitter:description" content="viewtransposecontiguousrepeatsqueezeunsqueeze">
+<meta name="twitter:title" content="Good Good Study">
 
 
 
@@ -120,13 +115,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/01/23/pytorch/"/>
+  <link rel="canonical" href="http://yoursite.com/page/3/"/>
 
 
 
 
 
-  <title>pytorch | Good Good Study</title>
+  <title>Good Good Study</title>
   
 
 
@@ -145,7 +140,8 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left 
+  page-home">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -228,9 +224,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-
-  <div id="posts" class="posts-expand">
+  <section id="posts" class="posts-expand">
     
+      
 
   
 
@@ -243,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/pytorch/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/26/problem/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pan Sicheng">
@@ -260,7 +256,9 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">pytorch</h1>
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/10/26/problem/" itemprop="url">零碎的问题及解决</a></h1>
         
 
         <div class="post-meta">
@@ -272,8 +270,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-01-23T14:50:33+08:00">
-                2019-01-23
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-26T10:07:40+08:00">
+                2018-10-26
               </time>
             
 
@@ -310,7 +308,31 @@
       
 
       
-        <h2 id="view"><a href="#view" class="headerlink" title="view"></a>view</h2><h2 id="transpose"><a href="#transpose" class="headerlink" title="transpose"></a>transpose</h2><h2 id="contiguous"><a href="#contiguous" class="headerlink" title="contiguous"></a>contiguous</h2><h2 id="repeat"><a href="#repeat" class="headerlink" title="repeat"></a>repeat</h2><h2 id="squeeze"><a href="#squeeze" class="headerlink" title="squeeze"></a>squeeze</h2><h2 id="unsqueeze"><a href="#unsqueeze" class="headerlink" title="unsqueeze"></a>unsqueeze</h2>
+        
+          
+            <p><strong>import keras 的时候 遇到 No module named ‘tensorflow.python’</strong></p>
+<p>解决：重装tensorflow</p>
+<hr>
+<p><strong>读CSV文件时，报错UnicodeDecodeError: ‘gbk’ codec can’t decode byte 0xbf in position 2: illegal multibyte sequence</strong></p>
+<p>解决：<code>open(csv_path, &#39;r&#39;, encoding=&#39;UTF-8&#39;)</code></p>
+<p>用utf-8编码时，print出来的csv开头有<code>\ufeff</code>，因此encoding应该为<code>‘UTF-8-sig’</code></p>
+<hr>
+<p><strong>读CSV文件时，报错’utf-8’ codec can’t decode byte 0xb4 in position 0: invalid start byte</strong></p>
+<p>解决：保存时 加 encoding=’UTF-8’或’UTF-8-sig’</p>
+<hr>
+<p><strong>pytorch load 预训练模型的时候</strong><br>报错：<br>Missing key(s) in state_dict: “network.0.conv.weight”, ……<br>Unexpected key(s) in state_dict: “module.network.0.conv.weight”, ……<br>是用torch0.4.1版本训练，用0.4.0版本预测的时候报的异常  ？？<br>解决：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.load_state_dict(&#123;k.replace(<span class="string">'module.'</span>,<span class="string">''</span>):v <span class="keyword">for</span> k,v <span class="keyword">in</span> torch.load(checkpoint_path)[<span class="string">'state_dict'</span>].items()&#125;)</span><br></pre></td></tr></table></figure>
+<hr>
+<p><strong>Python 报错NotImplementedError</strong><br>在面向对象编程中，可以先预留一个方法接口不实现，在其子类中实现。如果要求其子类一定要实现，不实现的时候会导致问题，那么采用raise的方式就很好。而此时产生的问题分类 是NotImplementedError。</p>
+<hr>
+<p><strong>pytorch: ‘list’ object has no attribute ‘cuda’</strong></p>
+<hr>
+<p><strong>pytorch: cuda runtime error(59) in loss.backward()</strong><br>From the error message it looks like you are using indexing with wrong indices.<br>A good way to debug these errors is to simply run the exact same code on CPU（ model.cpu()）, that way you will get a proper stack trace with the exact line that crashed.</p>
+<hr>
+<p><strong>pytorch: Assertion <code>cur_target &gt;= 0 &amp;&amp; cur_target &lt; n_classes</code> failed</strong><br>label 从0开始</p>
+
+          
+        
       
     </div>
     
@@ -325,42 +347,14 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
-          
-            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
-          
-        </div>
+
+      
+
       
 
       
       
-      
-
-      
-        <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            
-              <a href="/2018/12/21/leetcode771/" rel="next" title="【leetcode】771：Jewels and Stones">
-                <i class="fa fa-chevron-left"></i> 【leetcode】771：Jewels and Stones
-              </a>
-            
-          </div>
-
-          <span class="post-nav-divider"></span>
-
-          <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/05/paper-summarization/" rel="prev" title="paper_summarization">
-                paper_summarization <i class="fa fa-chevron-right"></i>
-              </a>
-            
-          </div>
-        </div>
-      
-
-      
+        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -370,11 +364,14 @@
   </article>
 
 
+    
+  </section>
 
-    <div class="post-spread">
-      
-    </div>
-  </div>
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
 
 
           </div>
@@ -382,10 +379,6 @@
 
 
           
-
-  
-
-
 
         </div>
         
@@ -406,17 +399,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -467,22 +451,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#view"><span class="nav-number">1.</span> <span class="nav-text">view</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#transpose"><span class="nav-number">2.</span> <span class="nav-text">transpose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#contiguous"><span class="nav-number">3.</span> <span class="nav-text">contiguous</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#repeat"><span class="nav-number">4.</span> <span class="nav-text">repeat</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#squeeze"><span class="nav-number">5.</span> <span class="nav-text">squeeze</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#unsqueeze"><span class="nav-number">6.</span> <span class="nav-text">unsqueeze</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -623,10 +591,6 @@
 
 
   
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
 
   
 

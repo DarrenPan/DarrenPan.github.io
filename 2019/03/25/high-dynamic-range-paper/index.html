@@ -82,7 +82,7 @@
 <meta name="description" content="Using a series of low dynamic range images at different exposureGenerally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an H">
 <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Image Processing">
 <meta property="og:type" content="article">
-<meta property="og:title" content="high-dynamic-range-paper">
+<meta property="og:title" content="High Dynamic Range Paper">
 <meta property="og:url" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/index.html">
 <meta property="og:site_name" content="Good Good Study">
 <meta property="og:description" content="Using a series of low dynamic range images at different exposureGenerally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an H">
@@ -97,9 +97,9 @@
 <meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/21.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/31.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/32.png">
-<meta property="og:updated_time" content="2019-03-26T08:30:43.106Z">
+<meta property="og:updated_time" content="2019-03-28T01:33:06.070Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="high-dynamic-range-paper">
+<meta name="twitter:title" content="High Dynamic Range Paper">
 <meta name="twitter:description" content="Using a series of low dynamic range images at different exposureGenerally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an H">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/25/high-dynamic-range-paper/1.png">
 
@@ -137,7 +137,7 @@
 
 
 
-  <title>high-dynamic-range-paper | Good Good Study</title>
+  <title>High Dynamic Range Paper | Good Good Study</title>
   
 
 
@@ -271,7 +271,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">high-dynamic-range-paper</h1>
+          <h1 class="post-title" itemprop="name headline">High Dynamic Range Paper</h1>
         
 
         <div class="post-meta">
@@ -323,6 +323,7 @@
       
         <h1 id="Using-a-series-of-low-dynamic-range-images-at-different-exposure"><a href="#Using-a-series-of-low-dynamic-range-images-at-different-exposure" class="headerlink" title="Using a series of low dynamic range images at different exposure"></a>Using a series of low dynamic range images at different exposure</h1><p>Generally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an HDR image.</p>
 <p>This method produces spectacular images for tripod mounted cameras and static scenes, but generates results with ghosting artifacts when the scene is dynamic or the camera is hand-held.</p>
+<hr>
 <h2 id="Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017"><a href="#Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017" class="headerlink" title="Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017"></a>Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017</h2><p>-the artifacts of the alignment can be significantly reduced during merging</p>
 <p>-<em>Preprocessing the Input LDR Images:</em> </p>
 <p>If the LDR images are not in the RAW format, we first linearize them using the camera response function (CRF), then apply gamma correction (γ = 2.2). The gamma correction basically maps the images into a domain that is closer to what we perceive with our eyes.</p>
@@ -333,6 +334,7 @@
 <p>2)<em>Loss Function</em>:</p>
 <p>Since HDR images are usually displayed after <em>tonemapping</em>, we propose to compute our loss function between the tonemapped estimated and ground truth HDR images. We propose to use μ-law, a commonly-used range compressor in audio processing, which is differentiable.<br><img src="/2019/03/25/high-dynamic-range-paper/3.png" alt=""></p>
 <p>we train the learning system by minimizing the L2 distance of the tonemapped estimated and<br>ground truth HDR images defined as:<br><img src="/2019/03/25/high-dynamic-range-paper/4.png" alt=""></p>
+<hr>
 <h2 id="Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018"><a href="#Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018" class="headerlink" title="Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018"></a>Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018</h2><p>-CNNs have been demonstrated to have the ability to learn misalignment and hallucinate missing details</p>
 <p>-Three advantage: 1) trained end-to-end without optical flow alignment. 2)can hallucinate plausible details that are totally missing or their presence is extremely weak in all LDR inputs. 3) the same framework can be easily extended to more LDR inputs, and possibly with any specified reference image.</p>
 <p>-<em>Network Architecture</em><br><img src="/2019/03/25/high-dynamic-range-paper/11.png" alt=""><br>We separate the first two layers as encoders for each exposure inputs. After extracting the features, the network learns to merge them, mostly in the middle layers, and to decode them into an HDR output, mostly in the last few layers.</p>
@@ -344,6 +346,7 @@
 <p>First align the background using simple homography transformation by <em>homography transformation</em>. Without it, we found that our network tends to produce blurry edges where background is largely misaligned.</p>
 <p>Crop the images into 256x256 patches with a stride of 64. To keep the training focused on foreground motions, we detect large motion patches by thresholding the structural similarity<br>between different exposure shots, and replicate these patches in the training set.</p>
 <h1 id="Using-single-low-dynamic-range-image"><a href="#Using-single-low-dynamic-range-image" class="headerlink" title="Using single low dynamic range image"></a>Using single low dynamic range image</h1><h2 id="HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710"><a href="#HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710" class="headerlink" title="HDR image reconstruction from a single exposure using deep CNNs - 1710"></a>HDR image reconstruction from a single exposure using deep CNNs - 1710</h2><p>-Estimating missing information in bright image parts, such as highlights, lost due to saturation of the camera sensor<br><img src="/2019/03/25/high-dynamic-range-paper/21.png" alt=""></p>
+<hr>
 <h2 id="ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018"><a href="#ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018" class="headerlink" title="ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018"></a>ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018</h2><p>-Designed to avoid upsampling of downsampled features, in an attempt to reduce blocking and/or haloing artefacts that may arise from more straightforward approaches.</p>
 <p>-It is argued that upsampling, especially the frequently used deconvolutional layers, cause checkerboard artefacts. Furthermore, upsampling may cause unwanted information bleeding in areas where context is missing, for example large overexposed areas.</p>
 <p>-The local branch handling local detail, the dilation branch for medium level detail, and a global branch accounting for higher level image-wide features<br><img src="/2019/03/25/high-dynamic-range-paper/31.png" alt=""></p>
@@ -395,6 +398,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/28/linux/" rel="prev" title="linux">
+                linux <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -471,7 +478,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">18</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
