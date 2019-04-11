@@ -239,6 +239,318 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/leetcode-551-552/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/02/leetcode-551-552/" itemprop="url">【leetcode】551&552：Student Attendance Record</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T12:10:21+08:00">
+                2018-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="551-学生出勤纪录-I"><a href="#551-学生出勤纪录-I" class="headerlink" title="551  学生出勤纪录 I"></a>551  学生出勤纪录 I</h1><p><strong>难度：Easy</strong></p>
+<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串来代表一个学生的出勤纪录，这个纪录仅包含以下三个字符：</p>
+<ol>
+<li><strong>‘A’</strong> : Absent，缺勤</li>
+<li><strong>‘L’</strong> : Late，迟到</li>
+<li><strong>‘P’</strong> : Present，到场</li>
+</ol>
+<p>如果一个学生的出勤纪录中不<strong>超过一个’A’(缺勤)</strong>并且<strong>不超过两个连续的’L’(迟到)</strong>,那么这个学生会被奖赏。</p>
+<p>你需要根据这个学生的出勤纪录判断他是否会被奖赏</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;PPALLP&quot;</span><br><span class="line">输出: True</span><br><span class="line">输入: &quot;PPALLL&quot;</span><br><span class="line">输出: False</span><br></pre></td></tr></table></figure>
+<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> numA =<span class="number">0</span>, numL = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : s)&#123;</span><br><span class="line">            <span class="keyword">if</span>(c == <span class="string">'A'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (++numA &gt; <span class="number">1</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">                numL = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c == <span class="string">'L'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span> (++numL &gt; <span class="number">2</span>) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                numL = <span class="number">0</span>;                </span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><p>对字符串的遍历： <code>for（char c：s）</code></p>
+<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (s.find(<span class="string">"A"</span>) == <span class="built_in">string</span>::npos || s.find(<span class="string">"A"</span>) == s.rfind(<span class="string">"A"</span>)) &amp;&amp; s.find(<span class="string">"LLL"</span>) == <span class="built_in">string</span>::npos;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="知识点：-1"><a href="#知识点：-1" class="headerlink" title="知识点："></a>知识点：</h3><p>string中的<code>find()</code>函数：若查找成功，返回按查找规则找到的第一个字符或子串的位置；若查找失败，返回<code>string::npos</code>。<br><code>rfind()</code>与<code>find()</code>的差别在于查找顺序不一样，<code>rfind()</code>是从指定位置起向前查找，直到串首。<br>参见 <a href="https://www.cnblogs.com/zpcdbky/p/4471454.html" target="_blank" rel="noopener">https://www.cnblogs.com/zpcdbky/p/4471454.html</a></p>
+<h2 id="解法三"><a href="#解法三" class="headerlink" title="解法三"></a>解法三</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">checkRecord</span><span class="params">(<span class="built_in">string</span> s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> !regex_search(s, regex(<span class="string">"A.*A|LLL"</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h3 id="思路："><a href="#思路：" class="headerlink" title="思路："></a>思路：</h3><p>使用正则匹配，找出不合题意的情况，然后取反即可。正则匹配式是<code>A.*A|LLL</code>，<code>.*</code>表示有零个或者多个，那么<code>A.*A</code>就是至少有两A的情况，<code>LLL</code>是三个连续的迟到，<code>|</code>表示两个是或的关系，只要能匹配出任意一种情况，就会返回<code>false</code>。</p>
+<h3 id="知识点：-2"><a href="#知识点：-2" class="headerlink" title="知识点："></a>知识点：</h3><p><code>regex_search()</code>返回<code>true</code>或<code>false</code>，搜索字符串中存在符合规则的子字符串 。参考：<a href="https://blog.csdn.net/qq_34802416/article/details/79307102" target="_blank" rel="noopener">https://blog.csdn.net/qq_34802416/article/details/79307102</a></p>
+<p>正则表达式中，<code>.*</code>表示零个或多个。</p>
+<hr>
+<h1 id="552-学生出勤纪录-II"><a href="#552-学生出勤纪录-II" class="headerlink" title="552  学生出勤纪录 II"></a>552  学生出勤纪录 II</h1><p><strong>难度：Hard</strong></p>
+<p>挖坑</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/02/R-CNN/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/02/R-CNN/" itemprop="url">R-CNN</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-02T09:32:29+08:00">
+                2018-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>paper： </p>
+<p><a href="https://arxiv.org/abs/1311.2524" target="_blank" rel="noopener"><strong>Rich feature hierarchies for accurate object detection and semantic segmentation</strong> -arXiv:1311 CVPR2014</a></p>
+<p>参考文章：</p>
+<p><a href="https://blog.csdn.net/wopawn/article/details/52133338" target="_blank" rel="noopener">https://blog.csdn.net/wopawn/article/details/52133338</a></p>
+<p><a href="http://www.cnblogs.com/makefile/p/nms.html" target="_blank" rel="noopener">http://www.cnblogs.com/makefile/p/nms.html</a></p>
+<hr>
+<h1 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h1><p>12年、13年，Alexnet 和 VGGnet 相继诞生， 在分类任务中将传统方法重重地踩在了脚下，深度卷积神经网络开始在计算机视觉领域大放异彩。比分类任务更进一步的检测任务，当然不会被研究者们放过，于是RGB大神（Ross Girshick）的R-CNN横空出世。</p>
+<p><img src="/2018/11/02/R-CNN/1.png" alt="1539947950822"></p>
+<p>R-CNN 全称为Regions with CNN features，也就是说，它将图像中的某些候选区域（regions）放到CNN中，然后对得到的特征（features）进行检测。从上图可以看出，它的总体流程如下：</p>
+<ol>
+<li>从输入图像提取约个2000候选区域</li>
+<li>对于每个区域，都让其通过一个CNN，得到定长的特征向量</li>
+<li>对于每个feature， 用SVM进行分类</li>
+</ol>
+<p>R-CNN是将Deep Learning引入目标检测的开山之作，虽然此时的它还略显臃肿（进行了太多次的CNN运算）。此外，这篇论文还提出了一个重要的思想，即一个任务的预训练模型（如ImageNet）对于另一个任务的训练有很大的帮助，能够缩短其训练时间，也能让其Loss Function更有效地收敛。</p>
+<p>也正是由于R-CNN是开山之作，它只是将CNN用于特征提取，其他很多操作仍然采用传统方法，这些方法在后续成熟版本中已经弃用，对于这些细节，如果实在是搞不懂，可以跳过。Faster R-CNN才是重中之重。</p>
+<hr>
+<h1 id="Implementation"><a href="#Implementation" class="headerlink" title="Implementation"></a>Implementation</h1><h2 id="1-模型设计"><a href="#1-模型设计" class="headerlink" title="1.模型设计"></a>1.模型设计</h2><p>首先，使用传统的selective selective方法，从输入图像提取约个2000候选区域（Region Proposal），但是后面的工作（如Faster RCNN）中都用CNN来提取候选区域了，所以SS在这就不做介绍了。想了解的可以看这篇文章<a href="https://blog.csdn.net/mao_kun/article/details/50576003" target="_blank" rel="noopener">https://blog.csdn.net/mao_kun/article/details/50576003</a></p>
+<p>之后，对于每个候选区域，都让其经过Alexnet的卷积层，从而提取出4096维的特征向量。由于Alexnet要求输入的图像大小为227x227，因此对于各种不同大小和纵横比的区域，在通过Alexnet之前需要进行卷曲操作（wrap），从而得到定长的输入Alexnet的图像。</p>
+<p>对于每个候选区域，将其4096维的特征向量做每个类别的SVM分类（若类别数目为N，则有N个SVM分类器，每个SVM做二分类，即属于或不属于该类别），得到相对于每个类别的分数。即2000x4096维的特征矩阵与4096xN维的SVM参数矩阵相乘，得到2000xN维的分数矩阵。</p>
+<p>对于同一类的2000个候选区域的分数，使用非极大值抑制（non-maximun suppresion，NMS）剔除掉一些重复的相近的候选框，保留一些得分最高的候选框，即保证对于每个物体，只有一个得分最高的框将其选中。关于NMS，详见附录B。</p>
+<p>最后，对于N个类别中剩余的候选框，使用N个回归器做回归（称为Bounding-box regression），使得候选框的定位更加准确，得到最终的结果。</p>
+<h2 id="2-训练过程"><a href="#2-训练过程" class="headerlink" title="2.训练过程"></a>2.训练过程</h2><h3 id="2-1-预训练（pre-training）"><a href="#2-1-预训练（pre-training）" class="headerlink" title="2.1 预训练（pre-training）"></a>2.1 预训练（pre-training）</h3><p>在ILSVRC数据集上对AlexNet进行分类训练，得到预训练模型，该模型保存了训练完毕后的AlexNet的参数。</p>
+<h3 id="2-2-微调（fine-tuning）"><a href="#2-2-微调（fine-tuning）" class="headerlink" title="2.2 微调（fine-tuning）"></a>2.2 微调（fine-tuning）</h3><p>将分类任务上的AlexNet迁移到检测任务上，需要对训练好的AlexNet进行微调，此时输入为候选区域变形后的227x227大小的图像，输出需要将原来的1000维（1000类）改为N+1维（N个类别+背景）。</p>
+<p>选定候选区域与标准框（ground truth）的IoU（见附录A）大于等0.5的为正样本，小于0.5的为负样本。即使是这样分，负样本仍比正样本多得多。因此，在每一次的SGD迭代中，选择32个正样本和96个负样本（3:1）为一个mini-batch。</p>
+<p>学习率（learning rate）设为0.001，是预训练时的1/10，从而保证在学习新东西时不至于忘记之前的记忆 。</p>
+<h3 id="2-3-分类训练"><a href="#2-3-分类训练" class="headerlink" title="2.3 分类训练"></a>2.3 分类训练</h3><p>对于每个类别的SVM分类器，选择ground-truth 框作为正样本， 选择与ground-truth的IOU小于0.3的候选框为负样本。同样的，负样本的数目远多于正样本的数目，需要采用负样本挖掘算法（hard negetive mining）选取一部分负样本进行训练。详见附录C。</p>
+<h3 id="2-4-回归训练（bounding-box-regression）"><a href="#2-4-回归训练（bounding-box-regression）" class="headerlink" title="2.4 回归训练（bounding box regression）"></a>2.4 回归训练（bounding box regression）</h3><p>详见附录D。</p>
+<hr>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><h2 id="A-IoU"><a href="#A-IoU" class="headerlink" title="A.IoU"></a>A.IoU</h2><p><img src="/2018/11/02/R-CNN/2.png" alt=""><br>即A与B的交集（intersection）与A与B的并集（union）之比：(A∩B)/(A∪B)</p>
+<h2 id="B-非极大值抑制（Non-maximun-suppresion，NMS）"><a href="#B-非极大值抑制（Non-maximun-suppresion，NMS）" class="headerlink" title="B. 非极大值抑制（Non-maximun suppresion，NMS）"></a>B. 非极大值抑制（Non-maximun suppresion，NMS）</h2><p><img src="/2018/11/02/R-CNN/3.png" alt=""></p>
+<p>在得到每一类的2000个候选区域后，会遇到上图所示情况，同一个目标会被多个建议框包围，这时需要非极大值抑制操作去除得分较低的候选框以减少重叠框。</p>
+<p>其基本操作流程如下： </p>
+<ol>
+<li><p>对于每一类，按scores大小排序</p>
+</li>
+<li><p>找到scores最大的候选框，将其保留，然后分别与其他候选框计算IoU，若IoU大于设定的阈值，则剔除得分较小的那个候选框</p>
+</li>
+<li><p>所有候选框遍历完毕后，选择socres第二大的候选框，将其保留，重复步骤2。</p>
+</li>
+<li><p>重复步骤3，直到所有的候选框都被筛选过。</p>
+</li>
+</ol>
+<p>注：对于得分低于某一阈值的候选框，应该直接剔除， 但是文章没有说明何时剔除。</p>
+<p>Python代码实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">py_cpu_nms</span><span class="params">(dets, thresh)</span>:</span></span><br><span class="line">    <span class="string">"""Pure Python NMS baseline."""</span></span><br><span class="line">    x1 = dets[:, <span class="number">0</span>]</span><br><span class="line">    y1 = dets[:, <span class="number">1</span>]</span><br><span class="line">    x2 = dets[:, <span class="number">2</span>]</span><br><span class="line">    y2 = dets[:, <span class="number">3</span>]</span><br><span class="line">    scores = dets[:, <span class="number">4</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#每一个检测框的面积</span></span><br><span class="line">    areas = (x2 - x1 + <span class="number">1</span>) * (y2 - y1 + <span class="number">1</span>)</span><br><span class="line">    <span class="comment">#按照score置信度降序排序</span></span><br><span class="line">    order = scores.argsort()[::<span class="number">-1</span>]</span><br><span class="line"></span><br><span class="line">    keep = []  <span class="comment">#保留的结果框集合</span></span><br><span class="line">    <span class="keyword">while</span> order.size &gt; <span class="number">0</span>:</span><br><span class="line">        i = order[<span class="number">0</span>]</span><br><span class="line">        keep.append(i)  <span class="comment">#保留该类剩余box中得分最高的一个</span></span><br><span class="line">        xx1 = np.maximum(x1[i], x1[order[<span class="number">1</span>:]])</span><br><span class="line">        yy1 = np.maximum(y1[i], y1[order[<span class="number">1</span>:]])</span><br><span class="line">        xx2 = np.minimum(x2[i], x2[order[<span class="number">1</span>:]])</span><br><span class="line">        yy2 = np.minimum(y2[i], y2[order[<span class="number">1</span>:]])</span><br><span class="line"></span><br><span class="line">        <span class="comment">#计算相交的面积,不重叠时面积为0</span></span><br><span class="line">        w = np.maximum(<span class="number">0.0</span>, xx2 - xx1 + <span class="number">1</span>)</span><br><span class="line">        h = np.maximum(<span class="number">0.0</span>, yy2 - yy1 + <span class="number">1</span>)</span><br><span class="line">        inter = w * h</span><br><span class="line">        <span class="comment">#计算IoU：重叠面积 /（面积1+面积2-重叠面积）</span></span><br><span class="line">        ovr = inter / (areas[i] + areas[order[<span class="number">1</span>:]] - inter)</span><br><span class="line">		<span class="comment">#保留IoU小于阈值的box</span></span><br><span class="line">        inds = np.where(ovr &lt;= thresh)[<span class="number">0</span>]</span><br><span class="line">        order = order[inds + <span class="number">1</span>] <span class="comment">#因为ovr数组的长度比order数组少一个,所以这里要将所有下标后移一位</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> keep</span><br></pre></td></tr></table></figure>
+<h2 id="C"><a href="#C" class="headerlink" title="C"></a>C</h2><h2 id="D-Bounding-box-regression"><a href="#D-Bounding-box-regression" class="headerlink" title="D. Bounding box regression"></a>D. Bounding box regression</h2><p><img src="/2018/11/02/R-CNN/4.png" alt=""><br>如上图所示，绿色框为实际标准的卡宴车辆框，即Ground Truth；黄色框为selective search算法得出的建议框，即Region Proposal。即使黄色框中物体被分类器识别为卡宴车辆，但是由于绿色框和黄色框IoU值并不大，所以最后的目标检测精度并不高。采用回归器是为了对建议框进行校正，使得校正后的Region Proposal与selective search更接近， 以提高最终的检测精度。论文中采用bounding-box回归使mAP提高了3~4%。 </p>
+<p><img src="/2018/11/02/R-CNN/5.png" alt=""><br>如上图，黄色窗口P表示Region Proposal，绿色窗口G表示Ground Truth，红色窗口表示Region Proposal进行回归后的预测窗口，现在的目标是找到P到红色窗口的线性变换（当Region Proposal与Ground Truth的IoU&gt;0.6时可以认为是线性变换），使得红窗与G越相近，这就相当于一个简单的可以用最小二乘法解决的线性回归问题。</p>
+<p>定义P窗口的数学表达式：<br>$$<br>P=\left ( P_{x},  P_{y},  P_{w},  P_{h}\right )<br>$$<br>分别表示P窗口的横坐标、纵坐标、宽和高，另两个窗口同理。</p>
+<p>则P窗口的回归过程如下：<br>$$<br>\widehat{G}<em>{x}=P</em>{w}d_{x}\left (P\right)+P_{x}<br>$$<br>$$<br>\widehat{G}<em>{y}=P</em>{h}d_{y}\left (P\right)+P_{y}<br>$$<br>$$<br>\widehat{G}<em>{w}=P</em>{w}\exp \left ( d_{w}\left ( P \right ) \right )<br>$$<br>$$<br>\widehat{G}<em>{h}=P</em>{h}\exp \left ( d_{h}\left ( P \right ) \right )<br>$$</p>
+<p>每一个d(P)都是一个Alex Net Pool5层特征的线性函数，即</p>
+<p>$$<br>d_{<em>}(P)=w_{</em>}^{T}\phi _{5}(P)<br>$$</p>
+<p>这里的</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/10/31/Makefile/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -551,7 +863,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

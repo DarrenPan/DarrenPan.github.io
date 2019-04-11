@@ -239,6 +239,126 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/09/Deconvolution-and-Checkerboard-Artifacts/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/04/09/Deconvolution-and-Checkerboard-Artifacts/" itemprop="url">Deconvolution and Checkerboard Artifacts</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-04-09T15:29:08+08:00">
+                2019-04-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>Deconvolution can easily have “uneven overlap,”（不均匀重叠）putting more of the metaphorical paint in some places than others. In particular, deconvolution has uneven overlap when the kernel size (the output window size) is not divisible by the stride (the spacing between points on the top). While the network could, in principle, carefully learn weights to avoid this  — as we’ll discuss in more detail later — in practice neural networks struggle to avoid it completely.</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/study-tensorflow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -380,6 +500,11 @@
 <h2 id="Operate"><a href="#Operate" class="headerlink" title="Operate"></a>Operate</h2><p><code>tf.slice(inputs,begin,size,name=&#39;&#39;)</code></p>
 <p>inputs：可以是list,array,tensor<br>begin：n维列表，begin[i] 表示从inputs中第i维抽取数据时，相对0的起始偏移量，也就是从第i维的begin[i]开始抽取数据<br>size：n维列表，size[i]表示要抽取的第i维元素的数目</p>
 <p><code>tf.concat([tensor1, tensor2, tensor3,...], axis)</code></p>
+<h2 id="tf-logging"><a href="#tf-logging" class="headerlink" title="tf.logging"></a>tf.logging</h2><p><code>tf.logging.set_verbosity (tf.logging.INFO)</code></p>
+<p>设计日志级别</p>
+<p><code>tf.logging.info(msg, *args, **kwargs)</code></p>
+<p>记录INFO级别的日志. </p>
+<h2 id="tf-gfile"><a href="#tf-gfile" class="headerlink" title="tf.gfile"></a>tf.gfile</h2><p><a href="https://blog.csdn.net/pursuit_zhangyu/article/details/80557958" target="_blank" rel="noopener">https://blog.csdn.net/pursuit_zhangyu/article/details/80557958</a></p>
 
           
         
@@ -499,7 +624,34 @@
       
         
           
-            <h1 id="Sematic-Segmentation"><a href="#Sematic-Segmentation" class="headerlink" title="Sematic Segmentation"></a>Sematic Segmentation</h1>
+            <h1 id="Sematic-Segmentation"><a href="#Sematic-Segmentation" class="headerlink" title="Sematic Segmentation"></a>Sematic Segmentation</h1><p><strong>[FCN - CVPR2015]</strong></p>
+<p>-不含全连接层(fc)的<strong>全卷积(fully conv)网络</strong>。可适应任意尺寸输入。 </p>
+<p>-增大数据尺寸的<strong>反卷积(deconv)层</strong>。能够输出精细的结果。 </p>
+<p>-结合不同深度层结果的<strong>跳级(skip)结构</strong>。同时确保鲁棒性和精确性。</p>
+<p><img src="/2019/03/28/segmentation-paper/1.png" alt=""></p>
+<p><strong>[U-Net - MICCAI2015]</strong></p>
+<p><img src="/2019/03/28/segmentation-paper/2.png" alt=""></p>
+<p><strong>[RefineNet - CVPR2017]</strong></p>
+<p>-The deconvolution operations are not able to recover the low-level visual features which are lost after the down-sampling operation in the convolution forward stage</p>
+<p>-Dilated convolutions introduce a coarse sub-sampling of features, which potentially leads to a loss of important details</p>
+<p>-RefineNet provides a generic means to fuse coarse high-level semantic features with finer-grained low-level features to generate high-resolution semantic feature maps.</p>
+<p><img src="/2019/03/28/segmentation-paper/3.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/4.png" alt=""></p>
+<p><strong>[PSPNet - CVPR2017]</strong></p>
+<p>-Current FCN based model is lack of suitable strategy to utilize global scene category clues.</p>
+<p>-Global context information along with sub-region context is helpful in this regard to distinguish among various categories.</p>
+<p><img src="/2019/03/28/segmentation-paper/5.png" alt=""></p>
+<hr>
+<p><strong>[DeepLabv1 - ICLR2015]</strong></p>
+<p>-Atrous Convolution</p>
+<p><strong>[DeepLabv2]</strong></p>
+<p>-Atrous Spatial Pyramid Pooling (ASPP)</p>
+<p><img src="/2019/03/28/segmentation-paper/6.png" alt=""></p>
+<p><strong>[DeepLabv3]</strong></p>
+<p><img src="/2019/03/28/segmentation-paper/9.png" alt=""></p>
+<p><strong>[DeepLabv3+ - ECCV2018]</strong></p>
+<p><img src="/2019/03/28/segmentation-paper/8.png" alt=""></p>
+
           
         
       
@@ -743,10 +895,12 @@
 <p>2.下载：<br><a href="https://pan.baidu.com/s/1eRNQwng#list/path=%2F" target="_blank" rel="noopener">https://pan.baidu.com/s/1eRNQwng#list/path=%2F</a></p>
 <p>3.安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i xl2tpd_1.1.12-zju2_i386.deb</span><br></pre></td></tr></table></figure></p>
 <p>报错：没有iproute 所以要先装一个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install iproute</span><br></pre></td></tr></table></figure></p>
-<p>4.配置:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect -c</span><br></pre></td></tr></table></figure></p>
+<p>4.配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect -c</span><br></pre></td></tr></table></figure>
 <p>按照提示操作, 注意用户名 学号后面要加@a</p>
 <p>5.连接:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect</span><br></pre></td></tr></table></figure></p>
-<p>6.断开:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect -d</span><br></pre></td></tr></table></figure></p>
+<p>6.断开:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect -d</span><br></pre></td></tr></table></figure>
 <hr>
 
           
@@ -1039,6 +1193,7 @@
         
           
             <h1 id="Segmentation"><a href="#Segmentation" class="headerlink" title="Segmentation"></a>Segmentation</h1><h2 id="Sematic-Segmentation"><a href="#Sematic-Segmentation" class="headerlink" title="Sematic Segmentation"></a>Sematic Segmentation</h2><p><strong>[FCN - CVPR2015]</strong></p>
+<p><strong>[]</strong></p>
 
           
         
@@ -1477,136 +1632,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/network_structure_experience/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/14/network_structure_experience/" itemprop="url">Experience in Network Structure</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-14T14:36:12+08:00">
-                2018-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Improvement-for-Feature-Expression"><a href="#Improvement-for-Feature-Expression" class="headerlink" title="Improvement for Feature Expression"></a>Improvement for Feature Expression</h1><h2 id="inverted-residual-with-linear-bottleneck"><a href="#inverted-residual-with-linear-bottleneck" class="headerlink" title="inverted residual with linear bottleneck"></a>inverted residual with linear bottleneck</h2><h2 id="ReLU6-、-ReLU、PReLU"><a href="#ReLU6-、-ReLU、PReLU" class="headerlink" title="ReLU6 、 ReLU、PReLU"></a>ReLU6 、 ReLU、PReLU</h2><h1 id="Acceleration-and-Compression"><a href="#Acceleration-and-Compression" class="headerlink" title="Acceleration and Compression"></a>Acceleration and Compression</h1><h2 id="Depthwise-Separable-Convolution"><a href="#Depthwise-Separable-Convolution" class="headerlink" title="Depthwise Separable Convolution"></a>Depthwise Separable Convolution</h2><p><img src="/2018/12/14/network_structure_experience/2.jpg" alt=""></p>
-<p>computational cost reduce from </p>
-<p><img src="/2018/12/14/network_structure_experience/3.jpg" alt=""></p>
-<p>to</p>
-<p><img src="/2018/12/14/network_structure_experience/4.jpg" alt=""></p>
-<h2 id="Group-Convolution"><a href="#Group-Convolution" class="headerlink" title="Group Convolution"></a>Group Convolution</h2><h2 id="from-35x35x320-to-17x17x640"><a href="#from-35x35x320-to-17x17x640" class="headerlink" title="from 35x35x320 to 17x17x640:"></a>from 35x35x320 to 17x17x640:</h2><ol>
-<li>conv+pooling or pooling + conv</li>
-<li>conv with stride 2</li>
-<li><img src="/2018/12/14/network_structure_experience/1.png" alt=""><br>remain to study which is faster between 2 and 3.</li>
-</ol>
-<h1 id="Inspired-Architecture"><a href="#Inspired-Architecture" class="headerlink" title="Inspired Architecture"></a>Inspired Architecture</h1><h1 id="Insight"><a href="#Insight" class="headerlink" title="Insight"></a>Insight</h1><p>Manifold of interest should lie in a low-dimensional subspace of the higher-dimensional activation space (non-linearity destroys information in low-dimensional space.)<br><img src="/2018/12/14/network_structure_experience/5.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1657,7 +1682,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

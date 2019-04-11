@@ -79,18 +79,27 @@
 
 
 
-<meta name="description" content="Sematic Segmentation">
+<meta name="description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。  [U-Net - MICCAI2015]  [RefineNet - CVPR2017] -The de">
 <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Segmentation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="segmentation-paper">
 <meta property="og:url" content="http://yoursite.com/2019/03/28/segmentation-paper/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="Sematic Segmentation">
+<meta property="og:description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。  [U-Net - MICCAI2015]  [RefineNet - CVPR2017] -The de">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-09T06:43:03.436Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/8.png">
+<meta property="og:updated_time" content="2019-04-11T12:37:22.770Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="segmentation-paper">
-<meta name="twitter:description" content="Sematic Segmentation">
+<meta name="twitter:description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。  [U-Net - MICCAI2015]  [RefineNet - CVPR2017] -The de">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/28/segmentation-paper/1.png">
 
 
 
@@ -310,7 +319,34 @@
       
 
       
-        <h1 id="Sematic-Segmentation"><a href="#Sematic-Segmentation" class="headerlink" title="Sematic Segmentation"></a>Sematic Segmentation</h1>
+        <h1 id="Sematic-Segmentation"><a href="#Sematic-Segmentation" class="headerlink" title="Sematic Segmentation"></a>Sematic Segmentation</h1><p><strong>[FCN - CVPR2015]</strong></p>
+<p>-不含全连接层(fc)的<strong>全卷积(fully conv)网络</strong>。可适应任意尺寸输入。 </p>
+<p>-增大数据尺寸的<strong>反卷积(deconv)层</strong>。能够输出精细的结果。 </p>
+<p>-结合不同深度层结果的<strong>跳级(skip)结构</strong>。同时确保鲁棒性和精确性。</p>
+<p><img src="/2019/03/28/segmentation-paper/1.png" alt=""></p>
+<p><strong>[U-Net - MICCAI2015]</strong></p>
+<p><img src="/2019/03/28/segmentation-paper/2.png" alt=""></p>
+<p><strong>[RefineNet - CVPR2017]</strong></p>
+<p>-The deconvolution operations are not able to recover the low-level visual features which are lost after the down-sampling operation in the convolution forward stage</p>
+<p>-Dilated convolutions introduce a coarse sub-sampling of features, which potentially leads to a loss of important details</p>
+<p>-RefineNet provides a generic means to fuse coarse high-level semantic features with finer-grained low-level features to generate high-resolution semantic feature maps.</p>
+<p><img src="/2019/03/28/segmentation-paper/3.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/4.png" alt=""></p>
+<p><strong>[PSPNet - CVPR2017]</strong></p>
+<p>-Current FCN based model is lack of suitable strategy to utilize global scene category clues.</p>
+<p>-Global context information along with sub-region context is helpful in this regard to distinguish among various categories.</p>
+<p><img src="/2019/03/28/segmentation-paper/5.png" alt=""></p>
+<hr>
+<p><strong>[DeepLabv1 - ICLR2015]</strong></p>
+<p>-Atrous Convolution</p>
+<p><strong>[DeepLabv2]</strong></p>
+<p>-Atrous Spatial Pyramid Pooling (ASPP)</p>
+<p><img src="/2019/03/28/segmentation-paper/6.png" alt=""></p>
+<p><strong>[DeepLabv3]</strong></p>
+<p><img src="/2019/03/28/segmentation-paper/9.png" alt=""></p>
+<p><strong>[DeepLabv3+ - ECCV2018]</strong></p>
+<p><img src="/2019/03/28/segmentation-paper/8.png" alt=""></p>
+
       
     </div>
     
@@ -435,7 +471,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">24</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
