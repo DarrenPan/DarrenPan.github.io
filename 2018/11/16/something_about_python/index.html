@@ -86,7 +86,7 @@
 <meta property="og:site_name" content="Good Good Study">
 <meta property="og:description" content="[TOC]  lstrip()和rstrip()12str.lstrip([chars]) # 删除字符串左边的空格或指定字符str.rstrip([chars]) # 删除字符串末尾的空格或指定字符  字典中找最值123dogdistance = &amp;#123;&apos;dog-dog&apos;: 33, &apos;dog-cat&apos;: 36, &apos;dog-car&apos;: 41, &apos;dog-bird&apos;: 42&amp;#125;min">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-25T07:13:31.395Z">
+<meta property="og:updated_time" content="2019-06-11T01:46:10.720Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Something about Python">
 <meta name="twitter:description" content="[TOC]  lstrip()和rstrip()12str.lstrip([chars]) # 删除字符串左边的空格或指定字符str.rstrip([chars]) # 删除字符串末尾的空格或指定字符  字典中找最值123dogdistance = &amp;#123;&apos;dog-dog&apos;: 33, &apos;dog-cat&apos;: 36, &apos;dog-car&apos;: 41, &apos;dog-bird&apos;: 42&amp;#125;min">
@@ -321,6 +321,11 @@
 <h3 id="字典按照value排序"><a href="#字典按照value排序" class="headerlink" title="字典按照value排序"></a>字典按照value排序</h3><p>返回list：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(d.items(),key = <span class="keyword">lambda</span> x:x[<span class="number">1</span>],reverse = <span class="keyword">True</span>)</span><br></pre></td></tr></table></figure></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line">sorted(d.items(),key = operator.itemgetter(<span class="number">1</span>))</span><br></pre></td></tr></table></figure>
 <p>返回只有键的tuple<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sorted(d,key=d.__getitem__)</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h3 id="numpy-array-找最值"><a href="#numpy-array-找最值" class="headerlink" title="numpy array 找最值"></a>numpy array 找最值</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">a = np.arange(<span class="number">9</span>).reshape((<span class="number">3</span>,<span class="number">3</span>))</span><br><span class="line">a</span><br><span class="line">array([[<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>],</span><br><span class="line">[<span class="number">9</span>, <span class="number">4</span>, <span class="number">5</span>],</span><br><span class="line">[<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>]])</span><br><span class="line"> </span><br><span class="line">print(np.max(a)) <span class="comment">#全局最大</span></span><br><span class="line"><span class="number">8</span></span><br><span class="line">print(np.max(a,axis=<span class="number">0</span>)) <span class="comment">#每列最大</span></span><br><span class="line">[<span class="number">6</span> <span class="number">7</span> <span class="number">8</span>]</span><br><span class="line">print(np.max(a,axis=<span class="number">1</span>)) <span class="comment">#每行最大</span></span><br><span class="line">[<span class="number">2</span> <span class="number">5</span> <span class="number">8</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(np.where(a==np.max(a)))</span><br><span class="line">(array([<span class="number">2</span>], dtype=int64), array([<span class="number">2</span>], dtype=int64))</span><br><span class="line">print(np.where(a==np.max(a,axis=<span class="number">0</span>)))</span><br><span class="line">(array([<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>], dtype=int64), array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], dtype=int64))</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="List做除法"><a href="#List做除法" class="headerlink" title="List做除法"></a>List做除法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(map(<span class="keyword">lambda</span> x: x//<span class="number">4</span>, list_a))</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -345,8 +350,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/16/google_deeplab代码分析/" rel="next" title="google_deeplab代码分析">
-                <i class="fa fa-chevron-left"></i> google_deeplab代码分析
+              <a href="/2018/11/16/yolov3-pytorch代码分析/" rel="next" title="yolov3-pytorch代码分析">
+                <i class="fa fa-chevron-left"></i> yolov3-pytorch代码分析
               </a>
             
           </div>
@@ -355,8 +360,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/12/14/object_detection_paper_summarization/" rel="prev" title="Object Detection Paper Summarization">
-                Object Detection Paper Summarization <i class="fa fa-chevron-right"></i>
+              <a href="/2018/12/14/network_structure_experience/" rel="prev" title="Experience in Network Structure">
+                Experience in Network Structure <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -434,7 +439,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">24</span>
+                  <span class="site-state-item-count">25</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -480,7 +485,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#lstrip-和rstrip"><span class="nav-number">1.</span> <span class="nav-text">lstrip()和rstrip()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典中找最值"><span class="nav-number">2.</span> <span class="nav-text">字典中找最值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表中找最值"><span class="nav-number">3.</span> <span class="nav-text">列表中找最值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典按照value排序"><span class="nav-number">4.</span> <span class="nav-text">字典按照value排序</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#lstrip-和rstrip"><span class="nav-number">1.</span> <span class="nav-text">lstrip()和rstrip()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典中找最值"><span class="nav-number">2.</span> <span class="nav-text">字典中找最值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列表中找最值"><span class="nav-number">3.</span> <span class="nav-text">列表中找最值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字典按照value排序"><span class="nav-number">4.</span> <span class="nav-text">字典按照value排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#numpy-array-找最值"><span class="nav-number">5.</span> <span class="nav-text">numpy array 找最值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List做除法"><span class="nav-number">6.</span> <span class="nav-text">List做除法</span></a></li></ol></div>
             
 
           </div>
