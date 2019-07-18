@@ -476,15 +476,34 @@
 <td>注释</td>
 </tr>
 <tr>
-<td style="text-align:center"></td>
-<td></td>
+<td style="text-align:center">Ctrl+R</td>
+<td>替换</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+c</td>
+<td>复制整行</td>
+</tr>
+<tr>
+<td style="text-align:center">Ctrl+Alt+I</td>
+<td>自动缩进</td>
+</tr>
+<tr>
+<td style="text-align:center">Tab</td>
+<td>缩进</td>
 </tr>
 <tr>
 <td style="text-align:center"></td>
 </tr>
 </tbody>
 </table>
-<h1 id="遇到的一些问题"><a href="#遇到的一些问题" class="headerlink" title="遇到的一些问题"></a>遇到的一些问题</h1>
+<h1 id="遇到的一些问题"><a href="#遇到的一些问题" class="headerlink" title="遇到的一些问题"></a>遇到的一些问题</h1><p><strong>打开后不是原来的路径，如下图所示</strong><br><img src="/2019/06/05/something_for_pycharm/2.png" alt=""></p>
+<p>在setting -&gt; Project: XXX -&gt; project structure 里面 有个Add Content Root 把root删了重新添加自己想要的root<br><img src="/2019/06/05/something_for_pycharm/3.png" alt=""></p>
+<hr>
+<p><strong>Project Interpreter 的选择</strong><br>如果是用anaconda里的pip装的一些东西，选择existing environment 选择anaconda安装目录下bin/python3<br><img src="/2019/06/05/something_for_pycharm/1.png" alt=""></p>
+<hr>
+<p><strong>pycharm同一目录下无法import明明已经存在的.py文件</strong><br>mark  Directory as <em>source root</em><br><a href="https://blog.csdn.net/l8947943/article/details/79874180" target="_blank" rel="noopener">https://blog.csdn.net/l8947943/article/details/79874180</a></p>
+<hr>
+
           
         
       
@@ -1073,7 +1092,61 @@
       
         
           
-            
+            <h1 id="PSNR-Oriented-Approach"><a href="#PSNR-Oriented-Approach" class="headerlink" title="PSNR Oriented Approach"></a>PSNR Oriented Approach</h1><p><strong>[SRCNN - ECCV2014] Learning a Deep Convolutional Network for Image Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/1.png" alt=""></p>
+<p>-The training data set is synthesized by extracting nonoverlapping dense patches of size 32x32 from the HR images. The LR input patches are first downsampled and then upsampled using bicubic interpolation having the same size as the high-resolution output image.</p>
+<p>-MSE loss</p>
+<hr>
+<p><strong>[RED-Net - NIPS2016] Image Restoration Using Convolutional Auto-encoders with Symmetric Skip Connections</strong></p>
+<hr>
+<p><strong>[VDSR - CVPR2016] Accurate Image Super-Resolution Using Very Deep Convolutional Networks</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/2.png" alt=""></p>
+<p>-VGG</p>
+<p>-To speed-up the training: (1) learn a residual mapping that generates the difference between the HR and LR image instead of directly generating a HR image. (2) gradients are clipped with in the range [-θ, θ]. These allow very high learning rates.</p>
+<hr>
+<p><strong>[ESPCN - CVPR2016] Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/4.png" alt=""></p>
+<p>-Propose an efficient sub-pixel convolution layer to learn the upscaling operation for image and video super-resolution.</p>
+<p>-Sub-pixel convolution : <a href="https://blog.csdn.net/bbbeoy/article/details/81085652" target="_blank" rel="noopener">https://blog.csdn.net/bbbeoy/article/details/81085652</a><br>First, use a convolution outputs H x W x Crr. Second, use periodic shuffling to rearange it to Hr x Wr x C </p>
+<hr>
+<p><strong>[DRCN - CVPR2016] Deeply-Recursive Convolutional Network for Image Super-Resolution</strong></p>
+<hr>
+<p><strong>[FSRCNN - ECCV2016] Accelerating the Super-Resolution Convolutional Neural Network</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/3.png" alt=""></p>
+<p>-Use deconvolution as a post-upsamling step instead of upsampling the original LR image as a pre-processing step.</p>
+<p>-Use PReLU instead of ReLU</p>
+<p>-Use the 91-image dataset [1] with another 100 images collected from the internet. Data augmentation such as rotation, flipping, and scaling is also employed to increase the number<br>of images by 19 times.<br><em>[1] J. Yang, J.Wright, T. S. Huang, and Y. Ma, “Image super-resolution via sparse representation,” TIP, 2010.</em></p>
+<hr>
+<p><strong>[DRRN - CVPR2017] Image Super-Resolution via Deep Recursive Residual Network</strong></p>
+<hr>
+<p><strong>[EDSR - CVPR2017W] Enhanced Deep Residual Networks for Single Image Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/5.png" alt=""></p>
+<p>-Modify SRResNet:</p>
+<p>(1) Remove Batch Normalization layers (from each residual block) and ReLU activation (outside residual blocks). Since batch normalization layers normalize the features, they get rid of range flexibility from networks by normalizing the features. Furthermore, GPU memory usage is also sufficiently reduced since the batch normalization layers consume the same amount of memory as the preceding convolutional layers. Consequently, we can build up a larger model.</p>
+<p><img src="/2019/03/28/super-resolution-paper/6.png" alt=""></p>
+<p>(2) Increasing F(the number of feature channels) instead of B(thenumber of layers) can maximize the model capacity when considering limited computational resources. Use residual scaling to stabilize the training procedure. In EDSR, set B = 32, F = 256, scaling factor=0.1.</p>
+<p>-When training our model for upsampling factor x3 and x4, we initialize the model parameters with pre-trained x2 network.</p>
+<p>-MDSR (Multi scale model) (B = 80 and F = 64)</p>
+<p><img src="/2019/03/28/super-resolution-paper/7.png" alt=""></p>
+<p>-L1 loss provides better convergence than L2.</p>
+<hr>
+<p><strong>[BTSRN - CVPR2017W] Balanced Two-Stage Residual Networks for Image Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/11.png" alt=""></p>
+<p>-Only 10 residual blocks to ensure the efficiency. (6 for lr stage, 4 for hr stage)</p>
+<p><img src="/2019/03/28/super-resolution-paper/12.png" alt=""></p>
+<p>-For the up-sampling layers, the element sum of nearest neighbor up-sampling and deconvolution is employed. To reduce the artifacts, the stride and size of kernels are equal to scaling factor for x2 and x3, and two x2 up-sampling are applied for x4 scaling.</p>
+<p>-Batch normalization is not suitable for super-resolution task. Because super-resolution is a regressing task, the target outputs are highly correlated to inputs first order statistics, while batch normalization makes the networks invariant to data re-centering and re-scaling.</p>
+<p>-Predict the residual images.  L2 loss.</p>
+<hr>
+<p><strong>[CARN - ECCV2018] Fast, Accurate, and Lightweight Super-Resolution with Cascading Residual Network</strong></p>
+<p>-Global cascade:</p>
+<p><img src="/2019/03/28/super-resolution-paper/8.png" alt=""></p>
+<p>-Cascading block, local cascade and efficient residual (residual-E) block.  And to further reduce the parameters, make the parameters of the Cascading blocks shared, effectively making the blocks recursive.<br><img src="/2019/03/28/super-resolution-paper/9.png" alt=""></p>
+<p>-Cascading on both the local and global levels has two advantages: 1) The model<br>incorporates features from multiple layers, which allows learning multi-level rep-<br>resentations. 2) Multi-level cascading connection behaves as multi-level shortcut<br>connections that quickly propagate information from lower to higher layers (and<br>vice-versa, in case of back-propagation).</p>
+<p><img src="/2019/03/28/super-resolution-paper/10.png" alt=""></p>
+<hr>
+<p><strong>[]</strong></p>
+<h1 id="GAN-based-Approach"><a href="#GAN-based-Approach" class="headerlink" title="GAN based Approach"></a>GAN based Approach</h1><h1 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h1><h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1>
           
         
       
@@ -1192,9 +1265,11 @@
       
         
           
-            <p><strong>zjuvpn安装</strong></p>
+            <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>zjuvpn安装</strong></p>
 <p><a href="https://www.cc98.org/topic/2323871" target="_blank" rel="noopener">https://www.cc98.org/topic/2323871</a></p>
-<p>1.删除原来的xl2tpd包：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --purge xl2tpd</span><br></pre></td></tr></table></figure></p>
+<p>1.删除原来的xl2tpd包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --purge xl2tpd</span><br></pre></td></tr></table></figure>
 <p>2.下载：<br><a href="https://pan.baidu.com/s/1eRNQwng#list/path=%2F" target="_blank" rel="noopener">https://pan.baidu.com/s/1eRNQwng#list/path=%2F</a></p>
 <p>3.安装：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i xl2tpd_1.1.12-zju2_i386.deb</span><br></pre></td></tr></table></figure></p>
 <p>报错：没有iproute 所以要先装一个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install iproute</span><br></pre></td></tr></table></figure></p>
@@ -1725,7 +1800,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>

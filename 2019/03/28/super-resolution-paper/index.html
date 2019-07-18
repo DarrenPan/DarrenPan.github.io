@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Deep Learning,Computer Vision,Super Resolution," />
 
 
 
@@ -79,14 +79,31 @@
 
 
 
+<meta name="description" content="PSNR Oriented Approach[SRCNN - ECCV2014] Learning a Deep Convolutional Network for Image Super-Resolution  -The training data set is synthesized by extracting nonoverlapping dense patches of size 32x3">
+<meta name="keywords" content="Deep Learning,Computer Vision,Super Resolution">
 <meta property="og:type" content="article">
 <meta property="og:title" content="super-resolution-paper">
 <meta property="og:url" content="http://yoursite.com/2019/03/28/super-resolution-paper/index.html">
 <meta property="og:site_name" content="Good Good Study">
+<meta property="og:description" content="PSNR Oriented Approach[SRCNN - ECCV2014] Learning a Deep Convolutional Network for Image Super-Resolution  -The training data set is synthesized by extracting nonoverlapping dense patches of size 32x3">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-03-28T01:33:55.621Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/1.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/2.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/4.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/3.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/5.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/6.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/7.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/11.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/8.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/9.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/10.png">
+<meta property="og:updated_time" content="2019-07-18T06:56:44.851Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="super-resolution-paper">
+<meta name="twitter:description" content="PSNR Oriented Approach[SRCNN - ECCV2014] Learning a Deep Convolutional Network for Image Super-Resolution  -The training data set is synthesized by extracting nonoverlapping dense patches of size 32x3">
+<meta name="twitter:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/1.png">
 
 
 
@@ -306,7 +323,61 @@
       
 
       
-        
+        <h1 id="PSNR-Oriented-Approach"><a href="#PSNR-Oriented-Approach" class="headerlink" title="PSNR Oriented Approach"></a>PSNR Oriented Approach</h1><p><strong>[SRCNN - ECCV2014] Learning a Deep Convolutional Network for Image Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/1.png" alt=""></p>
+<p>-The training data set is synthesized by extracting nonoverlapping dense patches of size 32x32 from the HR images. The LR input patches are first downsampled and then upsampled using bicubic interpolation having the same size as the high-resolution output image.</p>
+<p>-MSE loss</p>
+<hr>
+<p><strong>[RED-Net - NIPS2016] Image Restoration Using Convolutional Auto-encoders with Symmetric Skip Connections</strong></p>
+<hr>
+<p><strong>[VDSR - CVPR2016] Accurate Image Super-Resolution Using Very Deep Convolutional Networks</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/2.png" alt=""></p>
+<p>-VGG</p>
+<p>-To speed-up the training: (1) learn a residual mapping that generates the difference between the HR and LR image instead of directly generating a HR image. (2) gradients are clipped with in the range [-θ, θ]. These allow very high learning rates.</p>
+<hr>
+<p><strong>[ESPCN - CVPR2016] Real-Time Single Image and Video Super-Resolution Using an Efficient Sub-Pixel Convolutional Neural Network</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/4.png" alt=""></p>
+<p>-Propose an efficient sub-pixel convolution layer to learn the upscaling operation for image and video super-resolution.</p>
+<p>-Sub-pixel convolution : <a href="https://blog.csdn.net/bbbeoy/article/details/81085652" target="_blank" rel="noopener">https://blog.csdn.net/bbbeoy/article/details/81085652</a><br>First, use a convolution outputs H x W x Crr. Second, use periodic shuffling to rearange it to Hr x Wr x C </p>
+<hr>
+<p><strong>[DRCN - CVPR2016] Deeply-Recursive Convolutional Network for Image Super-Resolution</strong></p>
+<hr>
+<p><strong>[FSRCNN - ECCV2016] Accelerating the Super-Resolution Convolutional Neural Network</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/3.png" alt=""></p>
+<p>-Use deconvolution as a post-upsamling step instead of upsampling the original LR image as a pre-processing step.</p>
+<p>-Use PReLU instead of ReLU</p>
+<p>-Use the 91-image dataset [1] with another 100 images collected from the internet. Data augmentation such as rotation, flipping, and scaling is also employed to increase the number<br>of images by 19 times.<br><em>[1] J. Yang, J.Wright, T. S. Huang, and Y. Ma, “Image super-resolution via sparse representation,” TIP, 2010.</em></p>
+<hr>
+<p><strong>[DRRN - CVPR2017] Image Super-Resolution via Deep Recursive Residual Network</strong></p>
+<hr>
+<p><strong>[EDSR - CVPR2017W] Enhanced Deep Residual Networks for Single Image Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/5.png" alt=""></p>
+<p>-Modify SRResNet:</p>
+<p>(1) Remove Batch Normalization layers (from each residual block) and ReLU activation (outside residual blocks). Since batch normalization layers normalize the features, they get rid of range flexibility from networks by normalizing the features. Furthermore, GPU memory usage is also sufficiently reduced since the batch normalization layers consume the same amount of memory as the preceding convolutional layers. Consequently, we can build up a larger model.</p>
+<p><img src="/2019/03/28/super-resolution-paper/6.png" alt=""></p>
+<p>(2) Increasing F(the number of feature channels) instead of B(thenumber of layers) can maximize the model capacity when considering limited computational resources. Use residual scaling to stabilize the training procedure. In EDSR, set B = 32, F = 256, scaling factor=0.1.</p>
+<p>-When training our model for upsampling factor x3 and x4, we initialize the model parameters with pre-trained x2 network.</p>
+<p>-MDSR (Multi scale model) (B = 80 and F = 64)</p>
+<p><img src="/2019/03/28/super-resolution-paper/7.png" alt=""></p>
+<p>-L1 loss provides better convergence than L2.</p>
+<hr>
+<p><strong>[BTSRN - CVPR2017W] Balanced Two-Stage Residual Networks for Image Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/11.png" alt=""></p>
+<p>-Only 10 residual blocks to ensure the efficiency. (6 for lr stage, 4 for hr stage)</p>
+<p><img src="/2019/03/28/super-resolution-paper/12.png" alt=""></p>
+<p>-For the up-sampling layers, the element sum of nearest neighbor up-sampling and deconvolution is employed. To reduce the artifacts, the stride and size of kernels are equal to scaling factor for x2 and x3, and two x2 up-sampling are applied for x4 scaling.</p>
+<p>-Batch normalization is not suitable for super-resolution task. Because super-resolution is a regressing task, the target outputs are highly correlated to inputs first order statistics, while batch normalization makes the networks invariant to data re-centering and re-scaling.</p>
+<p>-Predict the residual images.  L2 loss.</p>
+<hr>
+<p><strong>[CARN - ECCV2018] Fast, Accurate, and Lightweight Super-Resolution with Cascading Residual Network</strong></p>
+<p>-Global cascade:</p>
+<p><img src="/2019/03/28/super-resolution-paper/8.png" alt=""></p>
+<p>-Cascading block, local cascade and efficient residual (residual-E) block.  And to further reduce the parameters, make the parameters of the Cascading blocks shared, effectively making the blocks recursive.<br><img src="/2019/03/28/super-resolution-paper/9.png" alt=""></p>
+<p>-Cascading on both the local and global levels has two advantages: 1) The model<br>incorporates features from multiple layers, which allows learning multi-level rep-<br>resentations. 2) Multi-level cascading connection behaves as multi-level shortcut<br>connections that quickly propagate information from lower to higher layers (and<br>vice-versa, in case of back-propagation).</p>
+<p><img src="/2019/03/28/super-resolution-paper/10.png" alt=""></p>
+<hr>
+<p><strong>[]</strong></p>
+<h1 id="GAN-based-Approach"><a href="#GAN-based-Approach" class="headerlink" title="GAN based Approach"></a>GAN based Approach</h1><h1 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h1><h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1>
       
     </div>
     
@@ -320,6 +391,16 @@
     
 
     <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
+          
+            <a href="/tags/Computer-Vision/" rel="tag"># Computer Vision</a>
+          
+            <a href="/tags/Super-Resolution/" rel="tag"># Super Resolution</a>
+          
+        </div>
       
 
       
@@ -394,8 +475,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -423,7 +513,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -446,6 +536,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#PSNR-Oriented-Approach"><span class="nav-number">1.</span> <span class="nav-text">PSNR Oriented Approach</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GAN-based-Approach"><span class="nav-number">2.</span> <span class="nav-text">GAN based Approach</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Video"><span class="nav-number">3.</span> <span class="nav-text">Video</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Dataset"><span class="nav-number">4.</span> <span class="nav-text">Dataset</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
