@@ -1097,8 +1097,6 @@
 <p>-The training data set is synthesized by extracting nonoverlapping dense patches of size 32x32 from the HR images. The LR input patches are first downsampled and then upsampled using bicubic interpolation having the same size as the high-resolution output image.</p>
 <p>-MSE loss</p>
 <hr>
-<p><strong>[RED-Net - NIPS2016] Image Restoration Using Convolutional Auto-encoders with Symmetric Skip Connections</strong></p>
-<hr>
 <p><strong>[VDSR - CVPR2016] Accurate Image Super-Resolution Using Very Deep Convolutional Networks</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/2.png" alt=""></p>
 <p>-VGG</p>
@@ -1110,6 +1108,9 @@
 <p>-Sub-pixel convolution : <a href="https://blog.csdn.net/bbbeoy/article/details/81085652" target="_blank" rel="noopener">https://blog.csdn.net/bbbeoy/article/details/81085652</a><br>First, use a convolution outputs H x W x Crr. Second, use periodic shuffling to rearange it to Hr x Wr x C </p>
 <hr>
 <p><strong>[DRCN - CVPR2016] Deeply-Recursive Convolutional Network for Image Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/13.png" alt=""></p>
+<p>-Supervise all recursions in order to alleviate the effect of vanishing/exploding gradients</p>
+<p>-Add a layer skip from input to the reconstruction net.</p>
 <hr>
 <p><strong>[FSRCNN - ECCV2016] Accelerating the Super-Resolution Convolutional Neural Network</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/3.png" alt=""></p>
@@ -1117,7 +1118,15 @@
 <p>-Use PReLU instead of ReLU</p>
 <p>-Use the 91-image dataset [1] with another 100 images collected from the internet. Data augmentation such as rotation, flipping, and scaling is also employed to increase the number<br>of images by 19 times.<br><em>[1] J. Yang, J.Wright, T. S. Huang, and Y. Ma, “Image super-resolution via sparse representation,” TIP, 2010.</em></p>
 <hr>
+<p><strong>[RED-Net - NIPS2016] Image Restoration Using Convolutional Auto-encoders with Symmetric Skip Connections</strong></p>
+<hr>
+<p><strong>[LapSRN - CVPR2017] Deep Laplacian Pyramid Networks for Fast and Accurate Super-Resolution</strong></p>
+<hr>
 <p><strong>[DRRN - CVPR2017] Image Super-Resolution via Deep Recursive Residual Network</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/14.png" alt=""></p>
+<p>-Global and local residual learning</p>
+<p>-Recursive block consisting of several residual units, and the weight set is shared among these residual units.</p>
+<p>-For one block,  a multi-path structure is used and all the residual units share the same input for the identity branch</p>
 <hr>
 <p><strong>[EDSR - CVPR2017W] Enhanced Deep Residual Networks for Single Image Super-Resolution</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/5.png" alt=""></p>
@@ -1138,7 +1147,10 @@
 <p>-Batch normalization is not suitable for super-resolution task. Because super-resolution is a regressing task, the target outputs are highly correlated to inputs first order statistics, while batch normalization makes the networks invariant to data re-centering and re-scaling.</p>
 <p>-Predict the residual images.  L2 loss.</p>
 <hr>
+<p><strong>[MemNet - ICCV2017] MemNet: A Persistent Memory Network for Image Restoration</strong></p>
+<hr>
 <p><strong>[CARN - ECCV2018] Fast, Accurate, and Lightweight Super-Resolution with Cascading Residual Network</strong></p>
+<p><em>其实就是把DRRN里resnet的连线改为densenet的连线，加了些1x1conv</em></p>
 <p>-Global cascade:</p>
 <p><img src="/2019/03/28/super-resolution-paper/8.png" alt=""></p>
 <p>-Cascading block, local cascade and efficient residual (residual-E) block.  And to further reduce the parameters, make the parameters of the Cascading blocks shared, effectively making the blocks recursive.<br><img src="/2019/03/28/super-resolution-paper/9.png" alt=""></p>
