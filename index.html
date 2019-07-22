@@ -1109,24 +1109,28 @@
 <hr>
 <p><strong>[DRCN - CVPR2016] Deeply-Recursive Convolutional Network for Image Super-Resolution</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/13.png" alt=""></p>
-<p>-Supervise all recursions in order to alleviate the effect of vanishing/exploding gradients</p>
+<p>-Supervise all recursions in order to alleviate the effect of vanishing/exploding gradients.</p>
 <p>-Add a layer skip from input to the reconstruction net.</p>
 <hr>
 <p><strong>[FSRCNN - ECCV2016] Accelerating the Super-Resolution Convolutional Neural Network</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/3.png" alt=""></p>
 <p>-Use deconvolution as a post-upsamling step instead of upsampling the original LR image as a pre-processing step.</p>
-<p>-Use PReLU instead of ReLU</p>
+<p>-Use PReLU instead of ReLU.</p>
 <p>-Use the 91-image dataset [1] with another 100 images collected from the internet. Data augmentation such as rotation, flipping, and scaling is also employed to increase the number<br>of images by 19 times.<br><em>[1] J. Yang, J.Wright, T. S. Huang, and Y. Ma, “Image super-resolution via sparse representation,” TIP, 2010.</em></p>
 <hr>
 <p><strong>[RED-Net - NIPS2016] Image Restoration Using Convolutional Auto-encoders with Symmetric Skip Connections</strong></p>
 <hr>
 <p><strong>[LapSRN - CVPR2017] Deep Laplacian Pyramid Networks for Fast and Accurate Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/19.png" alt=""></p>
+<p>-Progressively predicts residual images at log2(S) levels where S is the scale factor.</p>
+<p>-Loss function:<br><img src="/2019/03/28/super-resolution-paper/20.png" alt=""></p>
+<p>-3x3conv, 4x4deconv, lrelu.</p>
 <hr>
 <p><strong>[DRRN - CVPR2017] Image Super-Resolution via Deep Recursive Residual Network</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/14.png" alt=""></p>
 <p>-Global and local residual learning</p>
 <p>-Recursive block consisting of several residual units, and the weight set is shared among these residual units.</p>
-<p>-For one block,  a multi-path structure is used and all the residual units share the same input for the identity branch</p>
+<p>-For one block,  a multi-path structure is used and all the residual units share the same input for the identity branch.</p>
 <hr>
 <p><strong>[EDSR - CVPR2017W] Enhanced Deep Residual Networks for Single Image Super-Resolution</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/5.png" alt=""></p>
@@ -1148,6 +1152,27 @@
 <p>-Predict the residual images.  L2 loss.</p>
 <hr>
 <p><strong>[MemNet - ICCV2017] MemNet: A Persistent Memory Network for Image Restoration</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/17.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/16.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/15.png" alt=""></p>
+<p>-Gate unit: 1x1conv</p>
+<hr>
+<p><strong>[SRDenseNet - ICCV2017]</strong><br><img src="/2019/03/28/super-resolution-paper/18.png" alt=""></p>
+<hr>
+<p><strong>[RDN - CVPR2018] Residual Dense Network for Image Super-Resolution</strong></p>
+<p><em>加一点MemNet，加一点SRDenseNet</em></p>
+<p><img src="/2019/03/28/super-resolution-paper/21.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/22.png" alt=""></p>
+<p>-l1 loss which has been demonstrated to be more powerful for performance and convergence.</p>
+<hr>
+<p><strong>[D-DBPN - CVPR2018] Deep Back-Projection Networks For Super-Resolution</strong></p>
+<p>-DBPN:<br><img src="/2019/03/28/super-resolution-paper/23.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/24.png" alt=""></p>
+<p>-D-DBPN:<br><img src="/2019/03/28/super-resolution-paper/25.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/26.png" alt=""></p>
+<p>-Avoid dropout and batch norm, use 1 x 1 convolution layer as feature pooling and dimensional<br>reduction instead.</p>
+<p>-The projection unit uses large sized filters such as 8 x 8 and 12 x 12. In other existing networks, the use of largesized filter is avoided because it slows down the convergence speed and might produce sub-optimal results. However, iterative utilization of our projection units enables the network to suppress this limitation and to perform better performance on large scaling factor even with shallow net works.</p>
+<hr>
+<p><strong>[IDN - CVPR2018] Fast and Accurate Single Image Super-Resolution via Information Distillation Network</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/27.png" alt=""></p>
+<p>-Enhancement unit (each of convs is followed by LReLU)<br><img src="/2019/03/28/super-resolution-paper/28.png" alt=""></p>
+<p>-Compression unit: 1x1conv</p>
+<p>-First train the network with MAE loss and then fine-tune it by MSE loss</p>
 <hr>
 <p><strong>[CARN - ECCV2018] Fast, Accurate, and Lightweight Super-Resolution with Cascading Residual Network</strong></p>
 <p><em>其实就是把DRRN里resnet的连线改为densenet的连线，加了些1x1conv</em></p>
@@ -1157,7 +1182,8 @@
 <p>-Cascading on both the local and global levels has two advantages: 1) The model<br>incorporates features from multiple layers, which allows learning multi-level rep-<br>resentations. 2) Multi-level cascading connection behaves as multi-level shortcut<br>connections that quickly propagate information from lower to higher layers (and<br>vice-versa, in case of back-propagation).</p>
 <p><img src="/2019/03/28/super-resolution-paper/10.png" alt=""></p>
 <hr>
-<p><strong>[]</strong></p>
+<p><strong>[RCAN - ECCV2018] Image Super-Resolution Using Very Deep Residual Channel Attention Networks</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/29.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/30.png" alt=""></p>
 <h1 id="GAN-based-Approach"><a href="#GAN-based-Approach" class="headerlink" title="GAN based Approach"></a>GAN based Approach</h1><h1 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h1><h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1>
           
         
