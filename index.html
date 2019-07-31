@@ -1151,18 +1151,21 @@
 <p>-Batch normalization is not suitable for super-resolution task. Because super-resolution is a regressing task, the target outputs are highly correlated to inputs first order statistics, while batch normalization makes the networks invariant to data re-centering and re-scaling.</p>
 <p>-Predict the residual images.  L2 loss.</p>
 <hr>
+<p><strong>[SelNet - CVPR2017W] A Deep Convolutional Neural Network with Selection Units for Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/31.png" alt=""></p>
+<hr>
 <p><strong>[MemNet - ICCV2017] MemNet: A Persistent Memory Network for Image Restoration</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/17.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/16.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/15.png" alt=""></p>
 <p>-Gate unit: 1x1conv</p>
 <hr>
-<p><strong>[SRDenseNet - ICCV2017]</strong><br><img src="/2019/03/28/super-resolution-paper/18.png" alt=""></p>
+<p><strong>[SRDenseNet - ICCV2017] Image Super-Resolution Using Dense Skip Connections</strong><br><img src="/2019/03/28/super-resolution-paper/18.png" alt=""></p>
 <hr>
 <p><strong>[RDN - CVPR2018] Residual Dense Network for Image Super-Resolution</strong></p>
 <p><em>加一点MemNet，加一点SRDenseNet</em></p>
 <p><img src="/2019/03/28/super-resolution-paper/21.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/22.png" alt=""></p>
 <p>-l1 loss which has been demonstrated to be more powerful for performance and convergence.</p>
 <hr>
-<p><strong>[D-DBPN - CVPR2018] Deep Back-Projection Networks For Super-Resolution</strong></p>
+<p><strong>[DBPN - CVPR2018] Deep Back-Projection Networks For Super-Resolution</strong></p>
 <p>-DBPN:<br><img src="/2019/03/28/super-resolution-paper/23.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/24.png" alt=""></p>
 <p>-D-DBPN:<br><img src="/2019/03/28/super-resolution-paper/25.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/26.png" alt=""></p>
 <p>-Avoid dropout and batch norm, use 1 x 1 convolution layer as feature pooling and dimensional<br>reduction instead.</p>
@@ -1184,7 +1187,28 @@
 <hr>
 <p><strong>[RCAN - ECCV2018] Image Super-Resolution Using Very Deep Residual Channel Attention Networks</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/29.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/30.png" alt=""></p>
-<h1 id="GAN-based-Approach"><a href="#GAN-based-Approach" class="headerlink" title="GAN based Approach"></a>GAN based Approach</h1><h1 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h1><h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1>
+<hr>
+<p><strong>[SRRAM - arXiv1811] RAM: Residual Attention Module for Single Image Super-Resolution</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/32.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/33.png" alt=""></p>
+<p>-Channel Attention: since SR ultimately aims at restoring high-frequency components of images,<br>it is more reasonable for attention maps to be determined using high-frequency statistics about the channels. To this end, we choose to use the variance rather than the average for the pooling method</p>
+<p>-Spatial Attention: use depth-wise convolution</p>
+<h1 id="GAN-based-Approach"><a href="#GAN-based-Approach" class="headerlink" title="GAN based Approach"></a>GAN based Approach</h1><p><strong>[SRGAN - CVPR2017] Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network</strong><br><img src="/2019/03/28/super-resolution-paper/34.png" alt=""></p>
+<p>-Perceptual loss function<br><img src="/2019/03/28/super-resolution-paper/35.png" alt=""></p>
+<p>-content loss<br>With φ<sub>ij</sub> we indicate the feature map obtained by the j-th convolution (after activation) before the i-th maxpooling layer within the VGG19 network.<br><img src="/2019/03/28/super-resolution-paper/36.png" alt=""></p>
+<p>-adverarial loss<br><img src="/2019/03/28/super-resolution-paper/37.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/38.png" alt=""></p>
+<hr>
+<p><strong>[EhanceNet - ICCV2017] EnhanceNet: Single Image Super-Resolution Through Automated Texture Synthesis</strong></p>
+<hr>
+<p><strong>[SRFeat - ECCV2018] SRFeat: Single Image Super-Resolution with Feature Discrimination</strong></p>
+<p>-While GAN-based SISR methods show dramatic improvements over previous approaches in terms of perceptual quality, they often tend to produce less meaningful high-frequency noise in super-resolved images. We argue that this is because the most dominant difference between super-resolved images and real HR images is high-frequency information, where super-resolved images obtained by minimizing pixel-wise errors lack high-frequency details. The simplest way for a discriminator to distinguish super-resolved images from real HR images could be simply inspecting the presence of high-frequency components in a given im- age, and the simplest way for a generator to fool the discriminator would be to put arbitrary high-frequency noise into result images.</p>
+<p><img src="/2019/03/28/super-resolution-paper/39.png" alt=""></p>
+<p>-First pre-train using MSE loss, then go adversarial training.</p>
+<p><img src="/2019/03/28/super-resolution-paper/40.png" alt=""></p>
+<p>-L<sub>p</sub>: perceptual Similarity Loss.<br>L<sup>i</sup><sub>a</sub> : image gan loss.<br><img src="/2019/03/28/super-resolution-paper/42.png" alt=""><br>L<sup>f</sup><sub>a</sub> : feature gan loss.<br><img src="/2019/03/28/super-resolution-paper/41.png" alt=""></p>
+<hr>
+<p><strong>[ESRGAN - ECCV2018W] Enhanced Super-Resolution Generative Adversarial Networks</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/43.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/44.png" alt=""></p>
+<h1 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h1><h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1>
           
         
       
