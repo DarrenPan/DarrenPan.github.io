@@ -131,7 +131,12 @@
 <meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/41.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/43.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/44.png">
-<meta property="og:updated_time" content="2019-07-31T04:07:48.762Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/45.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/46.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/47.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/48.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/super-resolution-paper/49.png">
+<meta property="og:updated_time" content="2019-08-01T03:35:28.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="super-resolution-paper">
 <meta name="twitter:description" content="PSNR Oriented Approach[SRCNN - ECCV2014] Learning a Deep Convolutional Network for Image Super-Resolution  -The training data set is synthesized by extracting nonoverlapping dense patches of size 32x3">
@@ -471,6 +476,14 @@
 <hr>
 <p><strong>[ESRGAN - ECCV2018W] Enhanced Super-Resolution Generative Adversarial Networks</strong></p>
 <p><img src="/2019/03/28/super-resolution-paper/43.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/44.png" alt=""></p>
+<p>-Net Architecture:<br>Like EDSR: When the statistics of training and testing datasets differ a lot, BN layers tend to introduce unpleasant artifacts and limit the generalization ability. We empirically observe that BN layers are more likely to bring artifacts when the network is deeper and trained under a GAN framework.</p>
+<p>Residual leaning.<br>Smaller initialization</p>
+<p>-Relativistic Discriminator<br>A relativistic discriminator tries to predict the probability that a real image x<sub>r</sub> is relatively more realistic than a fake one x<sub>f</sub><br><img src="/2019/03/28/super-resolution-paper/45.png" alt=""><br>where E[ ] represents the operation of taking average for all fake or real data in the mini-batch.</p>
+<p>The discriminator loss is then defined as:<br><img src="/2019/03/28/super-resolution-paper/46.png" alt=""><br>The adversarial loss for generator is in a symmetrical form:<br><img src="/2019/03/28/super-resolution-paper/47.png" alt=""></p>
+<p>It is observed that the adversarial loss for generator contains both xr and xf . Therefore, our generator benefits from the gradients from both generated data and real data in adversarial training, while in SRGAN only generated part takes effect. The experiment shows this modification of discriminator helps to learn sharper edges and more detailed textures.</p>
+<p>-Perceptual Loss:<br>Develop a more effective perceptual loss by constraining on features before activation rather than after activation. Two reasons: first, the activated features are very sparse; second, using features after activation also causes inconsistent reconstructed brightness</p>
+<p>-total loss for the generator<br><img src="/2019/03/28/super-resolution-paper/48.png" alt=""></p>
+<p>-Network Interpolation<br>To remove unpleasant noise in GAN-based methods while maintain a good perceptual quality<br><img src="/2019/03/28/super-resolution-paper/49.png" alt=""></p>
 <h1 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h1><h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1>
       
     </div>
