@@ -239,6 +239,132 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/pytorch_tutorial/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/27/pytorch_tutorial/" itemprop="url">Pytorch Tutorial</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-09-27T16:22:39+08:00">
+                2019-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="0-安装"><a href="#0-安装" class="headerlink" title="0.安装"></a>0.安装</h1><h2 id="0-1-安装Anaconda3"><a href="#0-1-安装Anaconda3" class="headerlink" title="0.1 安装Anaconda3:"></a>0.1 安装Anaconda3:</h2><p><a href="https://blog.csdn.net/u012318074/article/details/77074665" target="_blank" rel="noopener">https://blog.csdn.net/u012318074/article/details/77074665</a><br>现在最新的版本所带的python版本应该是3.7 （找个3.6版本的也可以）</p>
+<h2 id="0-2-安装Pytorch"><a href="#0-2-安装Pytorch" class="headerlink" title="0.2 安装Pytorch"></a>0.2 安装Pytorch</h2><p>在命令行输入<code>which pip</code>， 应该会显示pip在anaconda3下面，这时如果用pip命令装pytorch就是装在Anaconda3里面了。</p>
+<p>在命令行输入<code>pip install torch==1.0.0</code>和 <code>pip install torchvision</code>进行安装，其中torch后面跟的是版本，现在最新的是1.2，有些代码要求的版本可能要低一些或高一些，就需要用<code>pip install torch==x.x.x</code>来降低或升高版本。</p>
+<p>其他安装方式参见官网 <a href="https://pytorch.org/" target="_blank" rel="noopener">https://pytorch.org/</a></p>
+<h2 id="0-3-安装Pycharm"><a href="#0-3-安装Pycharm" class="headerlink" title="0.3 安装Pycharm"></a>0.3 安装Pycharm</h2><p>在官网下载linux professional 版本 <a href="https://www.jetbrains.com/pycharm/download/#section=linux" target="_blank" rel="noopener">https://www.jetbrains.com/pycharm/download/#section=linux</a></p>
+<p>学生是可以免费使用的，需要进行学生认证，时限是一年，第二年可以继续认证。<br>认证流程大概是<a href="https://blog.csdn.net/qq_36667170/article/details/79905198" target="_blank" rel="noopener">https://blog.csdn.net/qq_36667170/article/details/79905198</a> （我也没看过</p>
+<p>下载完了之后在命令行输入<code>tar zxvf xxxx.tar.gz</code>解压压缩包</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/06/28/googlecloud/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -945,24 +1071,40 @@
 <p>-增大数据尺寸的<strong>反卷积(deconv)层</strong>。能够输出精细的结果。 </p>
 <p>-结合不同深度层结果的<strong>跳级(skip)结构</strong>。同时确保鲁棒性和精确性。</p>
 <p><img src="/2019/03/28/segmentation-paper/1.png" alt=""></p>
+<hr>
 <p><strong>[U-Net - MICCAI2015]</strong></p>
 <p><img src="/2019/03/28/segmentation-paper/2.png" alt=""></p>
+<hr>
 <p><strong>[RefineNet - CVPR2017]</strong></p>
 <p>-The deconvolution operations are not able to recover the low-level visual features which are lost after the down-sampling operation in the convolution forward stage</p>
 <p>-Dilated convolutions introduce a coarse sub-sampling of features, which potentially leads to a loss of important details</p>
 <p>-RefineNet provides a generic means to fuse coarse high-level semantic features with finer-grained low-level features to generate high-resolution semantic feature maps.</p>
 <p><img src="/2019/03/28/segmentation-paper/3.png" alt=""></p>
 <p><img src="/2019/03/28/segmentation-paper/4.png" alt=""></p>
+<hr>
 <p><strong>[PSPNet - CVPR2017]</strong></p>
 <p>-Current FCN based model is lack of suitable strategy to utilize global scene category clues.</p>
 <p>-Global context information along with sub-region context is helpful in this regard to distinguish among various categories.</p>
 <p><img src="/2019/03/28/segmentation-paper/5.png" alt=""></p>
+<hr>
 <p><strong>[GCN - CVPR2017] Large Kernel Matters——Improve Semantic Segmentation by Global Convolutional Network</strong></p>
 <p><img src="/2019/03/28/segmentation-paper/10.png" alt=""></p>
+<hr>
 <p><strong>[DFN - CVPR2018] Learning a Discriminative Feature Network for Semantic Segmentation </strong></p>
 <p><img src="/2019/03/28/segmentation-paper/11.png" alt=""></p>
+<hr>
 <p><strong>[BiSeNet - ECCV2018] BiSeNet: Bilateral Segmentation Network for Real-time Semantic Segmentation</strong></p>
 <p><img src="/2019/03/28/segmentation-paper/12.png" alt=""></p>
+<p>-Spatial Path (SP) and Context Path (CP). As their names imply, the two components are devised to confront with the loss of spatial information and shrinkage of receptive field respectively.</p>
+<p>-SP: three layers, each layer includes a convolution with stride = 2, followed by batch normalization and ReLU.</p>
+<p>-CP: utilizes lightweight model and global average pooling to provide large receptive field</p>
+<p>-loss function:</p>
+<hr>
+<p><strong>[ICNet - ECCV2018] ICNet for Real-Time Semantic Segmentation on High-Resolution Images</strong></p>
+<hr>
+<p><strong>[DFANet - CVPR2019] DFANet: Deep Feature Aggregation for Real-Time Semantic Segmentation</strong></p>
+<p><img src="/2019/03/28/segmentation-paper/14.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/13.png" alt=""></p>
 <hr>
 <p><strong>[DeepLabv1 - ICLR2015]</strong></p>
 <p>-Atrous Convolution</p>
@@ -973,6 +1115,9 @@
 <p><img src="/2019/03/28/segmentation-paper/9.png" alt=""></p>
 <p><strong>[DeepLabv3+ - ECCV2018]</strong></p>
 <p><img src="/2019/03/28/segmentation-paper/8.png" alt=""></p>
+<hr>
+<h2 id="“Attention”-in-Segmentation"><a href="#“Attention”-in-Segmentation" class="headerlink" title="“Attention” in Segmentation"></a>“Attention” in Segmentation</h2><p><strong>[NLNet - CVPR2018]  Non-local Neural Networks</strong></p>
+<p><strong>[CCNet - ICCV2019] CCNet: Criss-Cross Attention for Semantic Segmentation</strong></p>
 
           
         
@@ -1676,137 +1821,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/21/leetcode771/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/21/leetcode771/" itemprop="url">【leetcode】771：Jewels and Stones</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-21T10:43:02+08:00">
-                2018-12-21
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="771-宝石与石头"><a href="#771-宝石与石头" class="headerlink" title="771 宝石与石头"></a>771 宝石与石头</h1><p><strong>难度：Easy</strong></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定字符串J 代表石头中宝石的类型，和字符串 S代表你拥有的石头。 S 中每个字符代表了一种你拥有的石头的类型，你想知道你拥有的石头中有多少是宝石。</p>
-<p>J 中的字母不重复，J 和 S中的所有字符都是字母。字母区分大小写，因此”a”和”A”是不同类型的石头。</p>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: J = &quot;aA&quot;, S = &quot;aAAbbbb&quot;</span><br><span class="line">输出: 3</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: J = &quot;z&quot;, S = &quot;ZZ&quot;</span><br><span class="line">输出: 0</span><br></pre></td></tr></table></figure>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><ul>
-<li><code>S</code> 和 <code>J</code> 最多含有50个字母。</li>
-<li><code>J</code> 中的字符不重复。 </li>
-</ul>
-<h2 id="解法一"><a href="#解法一" class="headerlink" title="解法一"></a>解法一</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">string</span> J, <span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> s : S) &#123;</span><br><span class="line">            <span class="keyword">for</span> (cahr j : J) &#123;</span><br><span class="line">                <span class="keyword">if</span> (s == j) &#123;</span><br><span class="line">                    ++res;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="解法二"><a href="#解法二" class="headerlink" title="解法二"></a>解法二</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numJewelsInStones</span><span class="params">(<span class="built_in">string</span> J, <span class="built_in">string</span> S)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="built_in">unordered_set</span>&lt;<span class="keyword">char</span>&gt; s;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : J) s.insert(c);</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">char</span> c : S) &#123;</span><br><span class="line">            <span class="keyword">if</span> (s.count(c)) ++res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>用HashSet来优化时间复杂度，将珠宝字符串J中的所有字符都放入HashSet中，然后遍历石头字符串中的每个字符，到HashSet中查找是否存在，存在的话计数器自增1即可。</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1857,7 +1871,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

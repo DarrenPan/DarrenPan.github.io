@@ -79,13 +79,13 @@
 
 
 
-<meta name="description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。  [U-Net - MICCAI2015]  [RefineNet - CVPR2017] -The de">
+<meta name="description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。   [U-Net - MICCAI2015]   [RefineNet - CVPR2017] -The">
 <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Segmentation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="segmentation-paper">
 <meta property="og:url" content="http://yoursite.com/2019/03/28/segmentation-paper/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。  [U-Net - MICCAI2015]  [RefineNet - CVPR2017] -The de">
+<meta property="og:description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。   [U-Net - MICCAI2015]   [RefineNet - CVPR2017] -The">
 <meta property="og:locale" content="default">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/1.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/2.png">
@@ -95,13 +95,15 @@
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/10.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/11.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/12.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/14.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/13.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/6.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/9.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/8.png">
-<meta property="og:updated_time" content="2019-05-08T08:54:13.889Z">
+<meta property="og:updated_time" content="2019-09-10T12:59:30.688Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="segmentation-paper">
-<meta name="twitter:description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。  [U-Net - MICCAI2015]  [RefineNet - CVPR2017] -The de">
+<meta name="twitter:description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。   [U-Net - MICCAI2015]   [RefineNet - CVPR2017] -The">
 <meta name="twitter:image" content="http://yoursite.com/2019/03/28/segmentation-paper/1.png">
 
 
@@ -327,24 +329,40 @@
 <p>-增大数据尺寸的<strong>反卷积(deconv)层</strong>。能够输出精细的结果。 </p>
 <p>-结合不同深度层结果的<strong>跳级(skip)结构</strong>。同时确保鲁棒性和精确性。</p>
 <p><img src="/2019/03/28/segmentation-paper/1.png" alt=""></p>
+<hr>
 <p><strong>[U-Net - MICCAI2015]</strong></p>
 <p><img src="/2019/03/28/segmentation-paper/2.png" alt=""></p>
+<hr>
 <p><strong>[RefineNet - CVPR2017]</strong></p>
 <p>-The deconvolution operations are not able to recover the low-level visual features which are lost after the down-sampling operation in the convolution forward stage</p>
 <p>-Dilated convolutions introduce a coarse sub-sampling of features, which potentially leads to a loss of important details</p>
 <p>-RefineNet provides a generic means to fuse coarse high-level semantic features with finer-grained low-level features to generate high-resolution semantic feature maps.</p>
 <p><img src="/2019/03/28/segmentation-paper/3.png" alt=""></p>
 <p><img src="/2019/03/28/segmentation-paper/4.png" alt=""></p>
+<hr>
 <p><strong>[PSPNet - CVPR2017]</strong></p>
 <p>-Current FCN based model is lack of suitable strategy to utilize global scene category clues.</p>
 <p>-Global context information along with sub-region context is helpful in this regard to distinguish among various categories.</p>
 <p><img src="/2019/03/28/segmentation-paper/5.png" alt=""></p>
+<hr>
 <p><strong>[GCN - CVPR2017] Large Kernel Matters——Improve Semantic Segmentation by Global Convolutional Network</strong></p>
 <p><img src="/2019/03/28/segmentation-paper/10.png" alt=""></p>
+<hr>
 <p><strong>[DFN - CVPR2018] Learning a Discriminative Feature Network for Semantic Segmentation </strong></p>
 <p><img src="/2019/03/28/segmentation-paper/11.png" alt=""></p>
+<hr>
 <p><strong>[BiSeNet - ECCV2018] BiSeNet: Bilateral Segmentation Network for Real-time Semantic Segmentation</strong></p>
 <p><img src="/2019/03/28/segmentation-paper/12.png" alt=""></p>
+<p>-Spatial Path (SP) and Context Path (CP). As their names imply, the two components are devised to confront with the loss of spatial information and shrinkage of receptive field respectively.</p>
+<p>-SP: three layers, each layer includes a convolution with stride = 2, followed by batch normalization and ReLU.</p>
+<p>-CP: utilizes lightweight model and global average pooling to provide large receptive field</p>
+<p>-loss function:</p>
+<hr>
+<p><strong>[ICNet - ECCV2018] ICNet for Real-Time Semantic Segmentation on High-Resolution Images</strong></p>
+<hr>
+<p><strong>[DFANet - CVPR2019] DFANet: Deep Feature Aggregation for Real-Time Semantic Segmentation</strong></p>
+<p><img src="/2019/03/28/segmentation-paper/14.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/13.png" alt=""></p>
 <hr>
 <p><strong>[DeepLabv1 - ICLR2015]</strong></p>
 <p>-Atrous Convolution</p>
@@ -355,6 +373,9 @@
 <p><img src="/2019/03/28/segmentation-paper/9.png" alt=""></p>
 <p><strong>[DeepLabv3+ - ECCV2018]</strong></p>
 <p><img src="/2019/03/28/segmentation-paper/8.png" alt=""></p>
+<hr>
+<h2 id="“Attention”-in-Segmentation"><a href="#“Attention”-in-Segmentation" class="headerlink" title="“Attention” in Segmentation"></a>“Attention” in Segmentation</h2><p><strong>[NLNet - CVPR2018]  Non-local Neural Networks</strong></p>
+<p><strong>[CCNet - ICCV2019] CCNet: Criss-Cross Attention for Semantic Segmentation</strong></p>
 
       
     </div>
@@ -480,7 +501,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">25</span>
+                  <span class="site-state-item-count">26</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -526,7 +547,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sematic-Segmentation"><span class="nav-number">1.</span> <span class="nav-text">Sematic Segmentation</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Sematic-Segmentation"><span class="nav-number">1.</span> <span class="nav-text">Sematic Segmentation</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#“Attention”-in-Segmentation"><span class="nav-number">1.1.</span> <span class="nav-text">“Attention” in Segmentation</span></a></li></ol></li></ol></div>
             
 
           </div>
