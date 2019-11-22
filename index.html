@@ -1236,7 +1236,19 @@
 <p><img src="/2019/03/28/segmentation-paper/8.png" alt=""></p>
 <hr>
 <h2 id="“Attention”-in-Segmentation"><a href="#“Attention”-in-Segmentation" class="headerlink" title="“Attention” in Segmentation"></a>“Attention” in Segmentation</h2><p><strong>[NLNet - CVPR2018]  Non-local Neural Networks</strong></p>
+<p>-Capturing long-range dependencies is of central importance in deep neural networks. Intuitively, a non-local operation computes the response at a position as a weighted sum of the features at all positions in the input feature maps.</p>
+<p>-Generic non-local operation:<br><img src="/2019/03/28/segmentation-paper/15.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/17.png" alt=""><br><img src="/2019/03/28/segmentation-paper/18.png" alt=""><br><img src="/2019/03/28/segmentation-paper/16.png" alt=""><br>-HWxHW与HWx512做矩阵乘，前一个可以理解为每一行是一个点的f， 然后与512维中每个点相乘，对于每个通道上，用的f值是一样的，可以理解为spatial attention。</p>
+<p><strong>[DANet - CVPR2019] Dual Attention Network for Scene Segmentation</strong></p>
+<p>-Introduces a self-attention mechanism to capture features dependencies in the spatial and channel dimensions</p>
+<p><img src="/2019/03/28/segmentation-paper/23.png" alt=""><br><img src="/2019/03/28/segmentation-paper/24.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/25.png" alt=""></p>
 <p><strong>[CCNet - ICCV2019] CCNet: Criss-Cross Attention for Semantic Segmentation</strong></p>
+<p>-The current no-local operation, can be alternatively replaced by two consecutive criss-cross operations, in which each one only has sparse connections (H + W - 1) for each position in the feature maps. By serially stacking two criss-cross attention modules, it can collect contextual information from all pixels. The decomposition greatly reduce the complexity in time and space from O((HxW)x(HxW)) to O((HxW)x(H +W - 1)).</p>
+<p><img src="/2019/03/28/segmentation-paper/19.png" alt=""><br><img src="/2019/03/28/segmentation-paper/20.png" alt=""></p>
+<p>-The details of criss-cross attention module:<br><img src="/2019/03/28/segmentation-paper/21.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/22.png" alt=""></p>
+<p>-</p>
 
           
         
@@ -1456,7 +1468,8 @@
 <p><img src="/2019/03/28/super-resolution-paper/32.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/33.png" alt=""></p>
 <p>-Channel Attention: since SR ultimately aims at restoring high-frequency components of images,<br>it is more reasonable for attention maps to be determined using high-frequency statistics about the channels. To this end, we choose to use the variance rather than the average for the pooling method</p>
 <p>-Spatial Attention: use depth-wise convolution</p>
-<h1 id="GAN-based-Approach"><a href="#GAN-based-Approach" class="headerlink" title="GAN based Approach"></a>GAN based Approach</h1><p><strong>[SRGAN - CVPR2017] Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network</strong><br><img src="/2019/03/28/super-resolution-paper/34.png" alt=""></p>
+<h1 id="GAN-based-Approach"><a href="#GAN-based-Approach" class="headerlink" title="GAN based Approach"></a>GAN based Approach</h1><p><strong>[SRGAN - CVPR2017] Photo-Realistic Single Image Super-Resolution Using a Generative Adversarial Network</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/34.png" alt=""></p>
 <p>-Perceptual loss function<br><img src="/2019/03/28/super-resolution-paper/35.png" alt=""></p>
 <p>-content loss<br>With φ<sub>ij</sub> we indicate the feature map obtained by the j-th convolution (after activation) before the i-th maxpooling layer within the VGG19 network.<br><img src="/2019/03/28/super-resolution-paper/36.png" alt=""></p>
 <p>-adverarial loss<br><img src="/2019/03/28/super-resolution-paper/37.png" alt=""><br><img src="/2019/03/28/super-resolution-paper/38.png" alt=""></p>
@@ -1480,8 +1493,20 @@
 <p>-Perceptual Loss:<br>Develop a more effective perceptual loss by constraining on features before activation rather than after activation. Two reasons: first, the activated features are very sparse; second, using features after activation also causes inconsistent reconstructed brightness</p>
 <p>-total loss for the generator<br><img src="/2019/03/28/super-resolution-paper/48.png" alt=""></p>
 <p>-Network Interpolation<br>To remove unpleasant noise in GAN-based methods while maintain a good perceptual quality<br><img src="/2019/03/28/super-resolution-paper/49.png" alt=""></p>
-<p><strong>[RankSRGAN - ICCV2019]RankSRGAN: Generative Adversarial Networks with Ranker<br>for Image Super-Resolution</strong></p>
-<h1 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h1><h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1>
+<p><strong>[RankSRGAN - ICCV2019] RankSRGAN: Generative Adversarial Networks with Ranker for Image Super-Resolution</strong></p>
+<h1 id="Video"><a href="#Video" class="headerlink" title="Video"></a>Video</h1><p>Four steps: feature extraction, alignment, fusion, and reconstruction.</p>
+<p><strong>[VESPCN - CVPR2017] Real-Time Video Super-Resolution with Spatio-Temporal Networks and Motion Compensation</strong></p>
+<p><strong>[SPMC - ICCV2017] Detail-revealing Deep Video Super-resolution </strong></p>
+<p><strong>[FRVSR - CVPR2018] Frame-Recurrent Video Super-Resolution</strong></p>
+<p><strong>[DUF - CVPR2018] Deep Video Super-Resolution Network Using Dynamic Upsampling FiltersWithout Explicit Motion Compensation</strong></p>
+<p><img src="/2019/03/28/super-resolution-paper/50.png" alt=""></p>
+<p>-<em>Dynamic Upsampling Filters</em><br><img src="/2019/03/28/super-resolution-paper/51.png" alt=""></p>
+<p>First, a set of input LR frames {Xt−N:t+N} (7 frames in our network: N = 3) is fed into the dynamic filter generation network. The trained network outputs a set of r<sup>2</sup>HW upsampling filters Ft of a certain size (5 × 5 in our network).(F的大小为: 5 x 5 x r<sup>2</sup>HW, 这里的r是scale factor)</p>
+<p>然后对于原图中的一点，用周围5x5的点与F中5x5xr<sup>2</sup>依次相乘，得到rxr个点，从而upsampling了r倍。</p>
+<p>-<em>Residual Learning</em><br>The result after applying the dynamic upsampling filters alone lacks sharpness as it is still a weighted sum of input pixels.To address this, we additionally estimate a residual image to increase high frequency details</p>
+<p>-<em>Network Design</em><br>3D convolutional layers / filter and residual generation network are designed to share most of the weights</p>
+<p><strong>[EDVR - CVPRW2019] EDVR: Video Restoration with Enhanced Deformable Convolutional Networks</strong></p>
+<h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1>
           
         
       

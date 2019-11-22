@@ -100,7 +100,18 @@
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/6.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/9.png">
 <meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/8.png">
-<meta property="og:updated_time" content="2019-09-10T12:59:30.688Z">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/15.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/17.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/18.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/16.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/23.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/24.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/25.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/19.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/20.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/21.png">
+<meta property="og:image" content="http://yoursite.com/2019/03/28/segmentation-paper/22.png">
+<meta property="og:updated_time" content="2019-11-22T06:28:49.653Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="segmentation-paper">
 <meta name="twitter:description" content="Sematic Segmentation[FCN - CVPR2015] -不含全连接层(fc)的全卷积(fully conv)网络。可适应任意尺寸输入。  -增大数据尺寸的反卷积(deconv)层。能够输出精细的结果。  -结合不同深度层结果的跳级(skip)结构。同时确保鲁棒性和精确性。   [U-Net - MICCAI2015]   [RefineNet - CVPR2017] -The">
@@ -375,7 +386,19 @@
 <p><img src="/2019/03/28/segmentation-paper/8.png" alt=""></p>
 <hr>
 <h2 id="“Attention”-in-Segmentation"><a href="#“Attention”-in-Segmentation" class="headerlink" title="“Attention” in Segmentation"></a>“Attention” in Segmentation</h2><p><strong>[NLNet - CVPR2018]  Non-local Neural Networks</strong></p>
+<p>-Capturing long-range dependencies is of central importance in deep neural networks. Intuitively, a non-local operation computes the response at a position as a weighted sum of the features at all positions in the input feature maps.</p>
+<p>-Generic non-local operation:<br><img src="/2019/03/28/segmentation-paper/15.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/17.png" alt=""><br><img src="/2019/03/28/segmentation-paper/18.png" alt=""><br><img src="/2019/03/28/segmentation-paper/16.png" alt=""><br>-HWxHW与HWx512做矩阵乘，前一个可以理解为每一行是一个点的f， 然后与512维中每个点相乘，对于每个通道上，用的f值是一样的，可以理解为spatial attention。</p>
+<p><strong>[DANet - CVPR2019] Dual Attention Network for Scene Segmentation</strong></p>
+<p>-Introduces a self-attention mechanism to capture features dependencies in the spatial and channel dimensions</p>
+<p><img src="/2019/03/28/segmentation-paper/23.png" alt=""><br><img src="/2019/03/28/segmentation-paper/24.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/25.png" alt=""></p>
 <p><strong>[CCNet - ICCV2019] CCNet: Criss-Cross Attention for Semantic Segmentation</strong></p>
+<p>-The current no-local operation, can be alternatively replaced by two consecutive criss-cross operations, in which each one only has sparse connections (H + W - 1) for each position in the feature maps. By serially stacking two criss-cross attention modules, it can collect contextual information from all pixels. The decomposition greatly reduce the complexity in time and space from O((HxW)x(HxW)) to O((HxW)x(H +W - 1)).</p>
+<p><img src="/2019/03/28/segmentation-paper/19.png" alt=""><br><img src="/2019/03/28/segmentation-paper/20.png" alt=""></p>
+<p>-The details of criss-cross attention module:<br><img src="/2019/03/28/segmentation-paper/21.png" alt=""></p>
+<p><img src="/2019/03/28/segmentation-paper/22.png" alt=""></p>
+<p>-</p>
 
       
     </div>
