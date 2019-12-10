@@ -239,6 +239,298 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/03/leetcode_python_medium/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/12/03/leetcode_python_medium/" itemprop="url">Leetcode_Python_Medium</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-03T14:17:48+08:00">
+                2019-12-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="2-Add-Two-Numbers"><a href="#2-Add-Two-Numbers" class="headerlink" title="2. Add Two Numbers"></a>2. Add Two Numbers</h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>给出两个 非空 的链表( linked lists)用来表示两个非负的整数。其中，它们各自的位数是按照 逆序 的方式存储的，并且它们的每个节点只能存储 一位 数字。</p>
+<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
+<p>您可以假设除了数字 0 之外，这两个数都不会以 0 开头。</p>
+<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：(2 -&gt; 4 -&gt; 3) + (5 -&gt; 6 -&gt; 4)</span><br><span class="line">输出：7 -&gt; 0 -&gt; 8</span><br><span class="line">原因：342 + 465 = 807</span><br></pre></td></tr></table></figure>
+<h2 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Definition for singly-linked list.</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ListNode</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, x)</span>:</span></span><br><span class="line">         self.val = x</span><br><span class="line">         self.next = <span class="keyword">None</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">addTwoNumbers</span><span class="params">(self, l1, l2)</span>:</span></span><br><span class="line">    <span class="comment"># def addTwoNumbers(self, l1: ListNode, l2: ListNode) -&gt; ListNode:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type l1: ListNode</span></span><br><span class="line"><span class="string">        :type l2: ListNode</span></span><br><span class="line"><span class="string">        :rtype: ListNode</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        head = curr = ListNode(<span class="number">0</span>)</span><br><span class="line">        carry = <span class="number">0</span> <span class="comment"># 进位</span></span><br><span class="line">        <span class="keyword">while</span> l1 <span class="keyword">or</span> l2:</span><br><span class="line">            <span class="comment"># 从低到高 逐位相加</span></span><br><span class="line">            sum = carry</span><br><span class="line">            <span class="keyword">if</span> l1:</span><br><span class="line">                sum += l1.val</span><br><span class="line">                l1 = l1.next</span><br><span class="line">            <span class="keyword">if</span> l2:</span><br><span class="line">                sum += l2.val</span><br><span class="line">                l2 = l2.next</span><br><span class="line">            curr.next = ListNode(sum%<span class="number">10</span>)  <span class="comment"># 个位保留 十位做进位</span></span><br><span class="line">            curr = curr.next</span><br><span class="line">            carry = sum / <span class="number">10</span></span><br><span class="line">        <span class="keyword">if</span> carry &gt; <span class="number">0</span>: <span class="comment"># 特别注意 两个链表都加完后是否还有进位</span></span><br><span class="line">            curr.next = ListNode(carry)</span><br><span class="line">        <span class="keyword">return</span> head.next</span><br></pre></td></tr></table></figure>
+<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><p>1.Python2用/ Python3用 // 表示下取整的除法<br>2.链表的构建<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">head = curr = ListNode(0)</span><br><span class="line">...</span><br><span class="line">curr.next = ListNode(XX)</span><br><span class="line">curr = curr.next</span><br><span class="line">...</span><br><span class="line">return head.next</span><br></pre></td></tr></table></figure></p>
+<p>3.生成链表的方法及本题测试代码</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generateList</span><span class="params">(l: list)</span> -&gt; ListNode:</span></span><br><span class="line">    prenode = ListNode(<span class="number">0</span>)</span><br><span class="line">    lastnode = prenode</span><br><span class="line">    <span class="keyword">for</span> val <span class="keyword">in</span> l:</span><br><span class="line">        lastnode.next = ListNode(val)</span><br><span class="line">        lastnode = lastnode.next</span><br><span class="line">    <span class="keyword">return</span> prenode.next</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printList</span><span class="params">(l: ListNode)</span>:</span></span><br><span class="line">    <span class="keyword">while</span> l:</span><br><span class="line">        print(<span class="string">"%d, "</span> %(l.val), end = <span class="string">''</span>)</span><br><span class="line">        l = l.next</span><br><span class="line">    print(<span class="string">''</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    l1 = generateList([<span class="number">1</span>, <span class="number">5</span>, <span class="number">8</span>])</span><br><span class="line">    l2 = generateList([<span class="number">9</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">9</span>])</span><br><span class="line">    printList(l1)</span><br><span class="line">    printList(l2)</span><br><span class="line">    s = Solution()</span><br><span class="line">    sum = s.addTwoNumbers(l1, l2)</span><br><span class="line">    printList(sum)</span><br></pre></td></tr></table></figure>
+<h1 id="3-Longest-Substring-Without-Repeating-Characters"><a href="#3-Longest-Substring-Without-Repeating-Characters" class="headerlink" title="3. Longest Substring Without Repeating Characters"></a>3. Longest Substring Without Repeating Characters</h1><h2 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。。</p>
+<h2 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;abcabcbb&quot;</span><br><span class="line">输出: 3 </span><br><span class="line">解释: 因为无重复字符的最长子串是 &quot;abc&quot;，所以其长度为 3。</span><br><span class="line"></span><br><span class="line">输入: &quot;bbbbb&quot;</span><br><span class="line">输出: 1</span><br><span class="line">解释: 因为无重复字符的最长子串是 &quot;b&quot;，所以其长度为 1。</span><br><span class="line"></span><br><span class="line">输入: &quot;pwwkew&quot;</span><br><span class="line">输出: 3</span><br><span class="line">解释: 因为无重复字符的最长子串是 &quot;wke&quot;，所以其长度为 3。</span><br><span class="line">     请注意，你的答案必须是 子串 的长度，&quot;pwke&quot; 是一个子序列，不是子串。</span><br></pre></td></tr></table></figure>
+<h2 id="Solution1"><a href="#Solution1" class="headerlink" title="Solution1"></a>Solution1</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        max_len = <span class="number">0</span> <span class="comment"># 储存最大长度</span></span><br><span class="line">        start = <span class="number">0</span> <span class="comment"># 记录子串开始的index</span></span><br><span class="line">        substring = &#123;&#125;</span><br><span class="line">        <span class="keyword">for</span> index, c <span class="keyword">in</span> enumerate(s):</span><br><span class="line">            <span class="comment"># 不断记录下子串，直到出现重复字符，记录下原子串的长度，</span></span><br><span class="line">            <span class="comment"># 并丢弃原子串中该字符及之前的字符（更新start位置），将新的字符加入子串中</span></span><br><span class="line">            <span class="keyword">if</span> c <span class="keyword">in</span> substring <span class="keyword">and</span> substring[c] &gt;= start:</span><br><span class="line">                max_len = max(max_len, index-start)</span><br><span class="line">                start = substring[c] + <span class="number">1</span></span><br><span class="line">            substring[c] = index</span><br><span class="line">        <span class="keyword">return</span> max(max_len, len(s) - start)  <span class="comment">#遍历到最后的一串无重复字符子串长度为len(s)-start</span></span><br></pre></td></tr></table></figure>
+<h2 id="Solution2"><a href="#Solution2" class="headerlink" title="Solution2"></a>Solution2</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">lengthOfLongestSubstring</span><span class="params">(self, s: str)</span> -&gt; int:</span></span><br><span class="line">        substring = <span class="string">""</span></span><br><span class="line">        max_len = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:  </span><br><span class="line">            index = substring.find(c)  <span class="comment"># 直接对字符串操作</span></span><br><span class="line">            <span class="keyword">if</span> index == <span class="number">-1</span>:</span><br><span class="line">                substring += c</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                max_len = max(max_len, len(substring))         </span><br><span class="line">                substring = substring[index+<span class="number">1</span>:] + c  <span class="comment">#注意这里不是[index+1:-1]</span></span><br><span class="line">            </span><br><span class="line">        <span class="keyword">return</span> max(max_len, len(substring))</span><br></pre></td></tr></table></figure>
+<h1 id="5-Longest-Palindromic-回文-Substring-！！！！！！！！！！！！！！！！"><a href="#5-Longest-Palindromic-回文-Substring-！！！！！！！！！！！！！！！！" class="headerlink" title="5. Longest Palindromic(回文) Substring ！！！！！！！！！！！！！！！！"></a>5. Longest Palindromic(回文) Substring ！！！！！！！！！！！！！！！！</h1><h2 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个字符串 s，找到 s 中最长的回文子串。你可以假设 s 的最大长度为 1000。</p>
+<h2 id="示例-2"><a href="#示例-2" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;babad&quot;</span><br><span class="line">输出: &quot;bab&quot;</span><br><span class="line">注意: &quot;aba&quot; 也是一个有效答案。</span><br><span class="line"></span><br><span class="line">输入: &quot;cbbd&quot;</span><br><span class="line">输出: &quot;bb&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h2><h1 id="6-ZigZag-Conversion-Z字形变换"><a href="#6-ZigZag-Conversion-Z字形变换" class="headerlink" title="6. ZigZag Conversion (Z字形变换)"></a>6. ZigZag Conversion (Z字形变换)</h1><p><em>相关标签</em>: <code>字符串</code></p>
+<h2 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h2><p>将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。</p>
+<p>比如输入字符串为 “LEETCODEISHIRING” 行数为 3 时，排列如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">L   C   I   R</span><br><span class="line">E T O E S I I G</span><br><span class="line">E   D   H   N</span><br></pre></td></tr></table></figure></p>
+<p>之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：”LCIRETOESIIGEDHN”。</p>
+<p>请你实现这个将字符串进行指定行数变换的函数 <code>string convert(string s, int numRows);</code></p>
+<h2 id="示例-3"><a href="#示例-3" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">输入: s = &quot;LEETCODEISHIRING&quot;, numRows = 3</span><br><span class="line">输出: &quot;LCIRETOESIIGEDHN&quot;</span><br><span class="line"></span><br><span class="line">输入: s = &quot;LEETCODEISHIRING&quot;, numRows = 4</span><br><span class="line">输出: &quot;LDREOEIIECIHNTSG&quot;</span><br><span class="line">解释:</span><br><span class="line"></span><br><span class="line">L     D     R</span><br><span class="line">E   O E   I I</span><br><span class="line">E C   I H   N</span><br><span class="line">T     S     G</span><br></pre></td></tr></table></figure>
+<h2 id="Solution-2"><a href="#Solution-2" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">convert</span><span class="params">(self, s: str, numRows: int)</span> -&gt; str:</span></span><br><span class="line">        <span class="keyword">if</span> numRows &lt; <span class="number">2</span>:</span><br><span class="line">            <span class="keyword">return</span> s</span><br><span class="line">        row = [<span class="string">""</span> <span class="keyword">for</span> _ <span class="keyword">in</span> range(numRows)]</span><br><span class="line">        row_id = <span class="number">0</span></span><br><span class="line">        flag = <span class="number">-1</span></span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">            row[row_id] += c</span><br><span class="line">            <span class="keyword">if</span> row_id==<span class="number">0</span> <span class="keyword">or</span> row_id == numRows - <span class="number">1</span>:</span><br><span class="line">                flag = -flag</span><br><span class="line">            row_id += flag</span><br><span class="line">        <span class="keyword">return</span> <span class="string">""</span>.join(row)</span><br></pre></td></tr></table></figure>
+<h1 id="11-Container-With-Most-Water"><a href="#11-Container-With-Most-Water" class="headerlink" title="11. Container With Most Water"></a>11. Container With Most Water</h1><p><em>相关标签</em>: <code>双指针</code></p>
+<h2 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水</p>
+<h2 id="示例-4"><a href="#示例-4" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出: 49</span><br></pre></td></tr></table></figure>
+<h2 id="Solution-3"><a href="#Solution-3" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">maxArea</span><span class="params">(self, height: List[int])</span> -&gt; int:</span></span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        j = len(height) - <span class="number">1</span></span><br><span class="line">        res = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            <span class="keyword">if</span> height[i] &lt; height[j]:</span><br><span class="line">                res = max(res, height[i] * (j - i))</span><br><span class="line">                i += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                res = max(res, height[j] * (j - i))</span><br><span class="line">                j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h2><p><strong>算法流程</strong>： 设置双指针 i,j 分别位于容器壁两端，根据规则移动指针（后续说明），并且更新面积最大值 res，直到 i == j 时返回 res。</p>
+<p><strong>指针移动规则与证明</strong>： 每次选定围成水槽两板高度 h[i],h[j]中的短板，向中间收窄 111 格。以下证明：</p>
+<ul>
+<li>设每一状态下水槽面积为 S(i,j),(0&lt;=i&lt;j&lt;n)，由于水槽的实际高度由两板中的短板决定，则可得面积公式 S(i,j)=min(h[i],h[j])×(j−i)S(i, j)。</li>
+<li>在每一个状态下，无论长板或短板收窄 1格，都会导致水槽 底边宽度 −1。</li>
+<li>若向内移动短板，水槽的短板 min(h[i],h[j])可能变大，因此水槽面积 S(i,j)S(i, j)S(i,j) 可能增大。</li>
+<li>若向内移动长板，水槽的短板 min(h[i],h[j])不变或变小，下个水槽的面积一定小于当前水槽面积。</li>
+</ul>
+<h1 id="12-Integer-to-Roman"><a href="#12-Integer-to-Roman" class="headerlink" title="12. Integer to Roman"></a>12. Integer to Roman</h1><p><em>相关标签</em>: <code>字符串</code></p>
+<h2 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h2><p> 罗马数字包含以下七种字符： <code>I</code>， <code>V</code>， <code>X</code>， <code>L</code>，<code>C</code>，<code>D</code> 和 <code>M</code>。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">字符          数值</span><br><span class="line">I             1</span><br><span class="line">V             5</span><br><span class="line">X             10</span><br><span class="line">L             50</span><br><span class="line">C             100</span><br><span class="line">D             500</span><br><span class="line">M             1000</span><br></pre></td></tr></table></figure></p>
+<p>例如， 罗马数字 2 写做 II ，即为两个并列的 I。12 写做 XII ，即为 X + II 。 27 写做  XXVII, 即为 XX + V + II 。</p>
+<p>通常情况下，罗马数字中小的数字在大的数字的右边。但也存在特例，例如 4 不写做 IIII，而是 IV。数字 1 在数字 5 的左边，所表示的数等于大数 5 减小数 1 得到的数值 4 。同样地，数字 9 表示为 IX。这个特殊的规则只适用于以下六种情况：</p>
+<pre><code>I 可以放在 V (5) 和 X (10) 的左边，来表示 4 和 9。
+X 可以放在 L (50) 和 C (100) 的左边，来表示 40 和 90。 
+C 可以放在 D (500) 和 M (1000) 的左边，来表示 400 和 900。
+</code></pre><p>给定一个整数，将其转为罗马数字。输入确保在 1 到 3999 的范围内。</p>
+<h2 id="示例-5"><a href="#示例-5" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">输入: 3</span><br><span class="line">输出: &quot;III&quot;</span><br><span class="line"></span><br><span class="line">输入: 4</span><br><span class="line">输出: &quot;IV&quot;</span><br><span class="line"></span><br><span class="line">输入: 9</span><br><span class="line">输出: &quot;IX&quot;</span><br><span class="line"></span><br><span class="line">输入: 58</span><br><span class="line">输出: &quot;LVIII&quot;</span><br><span class="line"></span><br><span class="line">输入: 1994</span><br><span class="line">输出: &quot;MCMXCIV&quot;</span><br></pre></td></tr></table></figure>
+<h2 id="Solution-4"><a href="#Solution-4" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intToRoman</span><span class="params">(self, num: int)</span> -&gt; str:</span></span><br><span class="line">        res = <span class="string">""</span></span><br><span class="line">        values = [<span class="number">1000</span>, <span class="number">900</span>, <span class="number">500</span>, <span class="number">400</span>,</span><br><span class="line">                  <span class="number">100</span>, <span class="number">90</span>, <span class="number">50</span>, <span class="number">40</span>,</span><br><span class="line">                  <span class="number">10</span>, <span class="number">9</span>, <span class="number">5</span>, <span class="number">4</span>,</span><br><span class="line">                  <span class="number">1</span>]</span><br><span class="line">        symbols = [<span class="string">'M'</span>, <span class="string">'CM'</span>, <span class="string">'D'</span>, <span class="string">'CD'</span>,</span><br><span class="line">                   <span class="string">'C'</span>, <span class="string">'XC'</span>, <span class="string">'L'</span>, <span class="string">'XL'</span>,</span><br><span class="line">                   <span class="string">'X'</span>, <span class="string">'IX'</span>, <span class="string">'V'</span>, <span class="string">'IV'</span>,</span><br><span class="line">                   <span class="string">'I'</span>]</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> num &gt; <span class="number">0</span>:</span><br><span class="line">            count = num // values[i]</span><br><span class="line">            res += <span class="string">""</span>.join([symbols[i] <span class="keyword">for</span> _ <span class="keyword">in</span> range(count)])</span><br><span class="line">            num -= count * values[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h1 id="15-3SUM"><a href="#15-3SUM" class="headerlink" title="15. 3SUM"></a>15. 3SUM</h1><p><em>相关标签</em>: <code>双指针</code> <code>数组</code></p>
+<h2 id="题目描述-6"><a href="#题目描述-6" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？找出所有满足条件且不重复的三元组。</p>
+<p><strong>注意</strong>：答案中不可以包含重复的三元组。</p>
+<h2 id="示例-6"><a href="#示例-6" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">给定数组 nums = [-1, 0, 1, 2, -1, -4]，</span><br><span class="line"></span><br><span class="line">满足要求的三元组集合为：</span><br><span class="line">[</span><br><span class="line">  [-1, 0, 1],</span><br><span class="line">  [-1, -1, 2]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<h2 id="Solution-5"><a href="#Solution-5" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSum</span><span class="params">(self, nums: List[int])</span> -&gt; List[List[int]]:</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        res = []</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(len(nums)<span class="number">-2</span>):</span><br><span class="line">            <span class="keyword">if</span> nums[k] &gt; <span class="number">0</span>: <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">if</span> k &gt; <span class="number">0</span> <span class="keyword">and</span> nums[k] == nums[k<span class="number">-1</span>]: <span class="keyword">continue</span></span><br><span class="line">            i, j = k+<span class="number">1</span>, len(nums)<span class="number">-1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> i &lt; j:</span><br><span class="line">                s = nums[k] + nums[i] + nums[j]</span><br><span class="line"></span><br><span class="line">                <span class="keyword">if</span> s &gt; <span class="number">0</span>:</span><br><span class="line">                    j -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[j] == nums[j+<span class="number">1</span>]: j -= <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> s &lt; <span class="number">0</span>:</span><br><span class="line">                    i += <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[i] == nums[i<span class="number">-1</span>]: i += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    res.append([nums[k], nums[i], nums[j]])</span><br><span class="line">                    i += <span class="number">1</span></span><br><span class="line">                    j -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[j] == nums[j+<span class="number">1</span>]: j -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[i] == nums[i<span class="number">-1</span>]: i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<h2 id="思路-1"><a href="#思路-1" class="headerlink" title="思路"></a>思路</h2><p><img src="/2019/12/03/leetcode_python_medium/1.png" alt=""></p>
+<h1 id="16-3Sum-Closest"><a href="#16-3Sum-Closest" class="headerlink" title="16. 3Sum Closest"></a>16. 3Sum Closest</h1><p><em>相关标签</em>: <code>双指针</code> <code>数组</code> </p>
+<h2 id="题目描述-7"><a href="#题目描述-7" class="headerlink" title="题目描述"></a>题目描述</h2><p>给定一个包括 n 个整数的数组 nums 和 一个目标值 target。找出 nums 中的三个整数，使得它们的和与 target 最接近。返回这三个数的和。假定每组输入只存在唯一答案。</p>
+<h2 id="示例-7"><a href="#示例-7" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">给定数组 nums = [-1，2，1，-4], 和 target = 1.</span><br><span class="line"></span><br><span class="line">与 target 最接近的三个数的和为 2. (-1 + 2 + 1 = 2).</span><br></pre></td></tr></table></figure>
+<h2 id="Solution-6"><a href="#Solution-6" class="headerlink" title="Solution"></a>Solution</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">threeSumClosest</span><span class="params">(self, nums: List[int], target: int)</span> -&gt; int:</span></span><br><span class="line">        nums.sort()</span><br><span class="line">        res = float(<span class="string">"inf"</span>)</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> range(len(nums)<span class="number">-2</span>):</span><br><span class="line">            <span class="keyword">if</span> k &gt; <span class="number">0</span> <span class="keyword">and</span> nums[k] == nums[k<span class="number">-1</span>]: <span class="keyword">continue</span></span><br><span class="line">            i, j = k+<span class="number">1</span>, len(nums)<span class="number">-1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">while</span> i &lt; j:</span><br><span class="line">                s = nums[k] + nums[i] + nums[j]</span><br><span class="line">                <span class="keyword">if</span> s == target:</span><br><span class="line">                    <span class="keyword">return</span> s</span><br><span class="line">                <span class="keyword">elif</span> abs(s-target) &lt; abs(res-target):</span><br><span class="line">                    res = s</span><br><span class="line">                </span><br><span class="line">                <span class="keyword">if</span> s &lt; target:</span><br><span class="line">                    i+=<span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[i] == nums[i<span class="number">-1</span>]: i += <span class="number">1</span></span><br><span class="line">                <span class="keyword">elif</span> s &gt; target:</span><br><span class="line">                    j -= <span class="number">1</span></span><br><span class="line">                    <span class="keyword">while</span> i &lt; j <span class="keyword">and</span> nums[j] == nums[j+<span class="number">1</span>]: j -= <span class="number">1</span></span><br><span class="line">                </span><br><span class="line">        <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
+<p><img src="/2019/12/03/leetcode_python_medium/2.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/29/gan-paper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/11/29/gan-paper/" itemprop="url">gan-paper</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-29T15:22:18+08:00">
+                2019-11-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/25/kaggle-solution/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -310,7 +602,92 @@
       
         
           
-            
+            <h1 id="经验分享"><a href="#经验分享" class="headerlink" title="经验分享"></a>经验分享</h1><p><a href="https://zhuanlan.zhihu.com/p/93806755" target="_blank" rel="noopener">本科生晋升GM记录 &amp; Kaggle比赛进阶技巧分享</a></p>
+<h1 id="Tricks"><a href="#Tricks" class="headerlink" title="Tricks"></a>Tricks</h1><h2 id="调参技巧"><a href="#调参技巧" class="headerlink" title="调参技巧"></a>调参技巧</h2><p>1.<strong>Adam</strong>: init_lr=5e-4(3e-4)（⭐⭐⭐⭐⭐），3e-4号称是Adam最好的初始学习率</p>
+<p>2.<strong>lr schedule</strong></p>
+<ul>
+<li>ReduceLROnPlateau，patience=4（5），gamma=0.1，这是我常用的一套组合，并不是最好的；</li>
+<li>StepLR，个人比较喜欢用这个，自己设定好在哪个epoch进行学习率的衰减，个人比较喜欢用的衰减步骤是[5e-4(3e-4), 1e-4, 1e-5, 1e-6]，至于衰减位置，就需要自己有比较好的直觉，或者就是看log调参，对着2.1上训练的valid  loss走势，valid loss不收敛了，咱就立刻进行衰减；</li>
+<li>CosineAnnealingLR+Multi cycle,这个相较于前两个，就不需要太多的调参，可以训练多个cycle，模型可以找到更多的局部最优，一般推荐min_lr=1e-6，至于每个cycle多少epoch这个就说不准了，不同数据不太一样。</li>
+</ul>
+<p>3.<strong>finetune</strong>，微调也是有许多比较fancy的技巧，在这里不做优劣比较，针对分类任务说明。</p>
+<ul>
+<li><strong>微调方式一</strong>，最常用，只替换掉最后一层fc layer，改成本任务里训练集的类别数目，然后不做其余特殊处理，直接开始训练；</li>
+<li><strong>微调方式二</strong>，在微调一的基础上，freeze backbone的参数，只更新（预训练）新的fc layer的参数（更新的参数量少，训练更快）到收敛为止，之后再放开所有层的参数，再一起训练；</li>
+<li><strong>微调方式三</strong>，在微调方式二预训练fc layer之后或者直接就是微调方式一，可选择接上差分学习率（discriminative learning  rates）即更新backbone参数和新fc  layer的参数所使用的学习率是不一致的，一般可选择差异10倍，理由是backbone的参数是基于imagenet训练的，参数足够优秀同时泛化性也会更好，所以是希望得到微调即可，不需要太大的变化。 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">optimizer = torch.optim.Adam([&#123;&apos;params&apos;: model.backbone.parameters(), &apos;lr&apos;: 3e-5&#125;, &#123;&apos;params&apos;: model.fc.parameters(), &apos;lr&apos;: 3e-4&#125;, ])</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>微调方式四</strong>，freeze浅层，训练深层（如可以不更新resnet前两个resnet block的参数，只更新其余的参数，一样是为了增强泛化，减少过拟合）。</li>
+</ul>
+<p>4.<strong>Find the best init_lr</strong>，前面说到3e-4在Adam是较优的init_lr，那么如何寻找最好的init_lr？</p>
+<ul>
+<li>出自fastai, lr_find()，其原理就是选取loss function仍在明显降低的较大的学习速率，优劣性其实也是相对而言，不一定都是最好的。</li>
+</ul>
+<p>5.<strong>learing rate warmup</strong>，理论解释可以参 <a href="https://www.zhihu.com/question/338066667" target="_blank" rel="noopener">https://www.zhihu.com/question/338066667</a></p>
+<p>6.如果模型太大的同时你的GPU显存又不够大，那么设置的batch size就会太小，如何在有限的资源里提升多一点？</p>
+<ul>
+<li>梯度累计（gradient accumulation），其实就是积累多个batch的梯度之后，再进行梯度的回传做参数的更新，变相的增大了训练的batch size，但缺点是对Batch Normalization没影响的。。</li>
+<li>如果你卡多，这时可以使用多卡并行训练，但要使用syncbn（跨卡同步bn），即增大了batch size，又对Batch Normalization起到相同的作用。</li>
+</ul>
+<h2 id="分类赛技巧"><a href="#分类赛技巧" class="headerlink" title="分类赛技巧"></a>分类赛技巧</h2><p>1.<strong>label smoothing</strong> </p>
+<p>分类任务的标签是one-hot形式，交叉熵会不断地去拟合这个真实概率，在数据不够充足的情况下拟合one-hot容易形成过拟合，因为one-hot会鼓励正确类别与所属类别之间的差异性尽可能大，但其实有不少类别之间是极为相似的。label smoothing的做法其实就是将hard label变成soft label。</p>
+<p>2.<strong>topk-loss(OHEM)</strong> </p>
+<p>OHEM最初是在目标检测上提出来的，但其实思想是所有领域任务都通用的。意思就是提取当前batch里top k大的loss的均值作为当前batch的loss，进行梯度的计算和回传。其insight也很简单，就是一种hard  mining的方法，一个batch里会有easy sample和hard sample，easy  sample对网络的更新作用较小（loss值小，梯度也会小），而hard  sample的作用会更大（loss值大，梯度值也会大），所以topk-loss就是提取hard sample。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">loss = criterion(logits, truth)</span><br><span class="line">loss,_ = loss.topk(k=..)     </span><br><span class="line">loss = loss.mean()</span><br></pre></td></tr></table></figure>
+<p>3.<strong>weighted loss</strong> </p>
+<p>weighted loss其实也算是一种hard  mining的方法，只不过这种是人为地认为哪种类别样本更加hard，哪种类别样本更加easy。也就是说人为对不同类别的loss进行进行一个权重的设置，比如0,1类更难，设置权重为1.2，2类更容易，设置权重为0.8。。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">weights = [<span class="number">1.2</span>, <span class="number">1.2</span>, <span class="number">0.8</span>]</span><br><span class="line">class_weights = torch.FloatTensor(weights).to(device)</span><br><span class="line">criterion = torch.nn.CrossEntropyLoss(weight=class_weights)</span><br></pre></td></tr></table></figure>
+<p>4.<strong>dual pooling</strong> </p>
+<p>这种是在模型层进行改造的一种小trick了，常见的做法：global max/average pooling + fc layer，这里试concat(global max-pooling, global  average pooling) + fc layer，其实就是为了丰富特征层，max pooling更加关注重要的局部特征，而average  pooling试更加关注全局的特征。不一定有效，我试过不少次，有效的次数比较少，但不少人喜欢这样用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">res18</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_classes)</span>:</span></span><br><span class="line">        super(res18, self).__init__()</span><br><span class="line">        self.base = resnet18(pretrained=<span class="keyword">True</span>)</span><br><span class="line">        self.feature = nn.Sequential(</span><br><span class="line">            self.base.conv1,</span><br><span class="line">            self.base.bn1,</span><br><span class="line">            self.base.relu,</span><br><span class="line">            self.base.maxpool,</span><br><span class="line">            self.base.layer1,</span><br><span class="line">            self.base.layer2,</span><br><span class="line">            self.base.layer3,</span><br><span class="line">            self.base.layer4</span><br><span class="line">        )</span><br><span class="line">        self.avg_pool = nn.AdaptiveAvgPool2d(<span class="number">1</span>)</span><br><span class="line">        self.max_pool = nn.AdaptiveMaxPool2d(<span class="number">1</span>)</span><br><span class="line">        self.reduce_layer = nn.Conv2d(<span class="number">1024</span>, <span class="number">512</span>, <span class="number">1</span>)</span><br><span class="line">        self.fc  = nn.Sequential(</span><br><span class="line">            nn.Dropout(<span class="number">0.5</span>),</span><br><span class="line">            nn.Linear(<span class="number">512</span>, num_classes)</span><br><span class="line">            )</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        bs = x.shape[<span class="number">0</span>]</span><br><span class="line">        x = self.feature(x)</span><br><span class="line">        x1 = self.avg_pool(x).view(bs, <span class="number">-1</span>)</span><br><span class="line">        x2 = self.max_pool(x).view(bs, <span class="number">-1</span>)</span><br><span class="line">        x1 = self.avg_pool(x)</span><br><span class="line">        x2 = self.max_pool(x)</span><br><span class="line">        x = torch.cat([x1, x2], dim=<span class="number">1</span>)</span><br><span class="line">        x = self.reduce_layer(x).view(bs, <span class="number">-1</span>)</span><br><span class="line">        logits = self.fc(x)</span><br><span class="line">        <span class="keyword">return</span> logits</span><br></pre></td></tr></table></figure>
+<p>5.<strong>margin-based softmax</strong></p>
+<ul>
+<li>在人脸识别领域，基于margin的softmax loss其实就是对softmax loss的一系列魔改（large margin  softmax、NormFace、AM-softmax、CosFace、ArcFace等等），增加类间  margin，当然也有其它的特点，如weight  norm和基于余弦角度的优化等等。其共同目标都是为了获得一个更加具有区分度的feature，不易过拟合。</li>
+<li>一个比较多同学忽略的点是，如果使用了margin-based  softmax，往往连同开源repo里默认的超参数也一起使用了，比如s=32.0，m=0.5，但其实这两个参数的设定都是有一定的缘由，比如s值象征着超球体的体积，如果类别数较多，那么s应该设置大点。如果你没有很好的直觉，那grid search一波，搜索到适合的s和m值也不会花很多时间。</li>
+</ul>
+<p>6.<strong>Lovasz loss</strong></p>
+<ul>
+<li>这个loss本来是出于分割任务上的，其优化的是IOU，但你如果仔细观察lovasz传入的logit和truth，可以发现是和multi label classification类似，logit和truth都是由多个1值的one-hot形式。所以在多标签分类任务上，其实是可以用lovasz loss来进行优化的，出自（Bestfitting）(<a href="https://link.zhihu.com/?target=https%3A//www.kaggle.com/c/human-protein-atlas-image-classification/discussion/78109%23latest-676029" target="_blank" rel="noopener">https://www.kaggle.com/c/human-protein-atlas-image-classification/discussion/78109#latest-676029</a>)</li>
+</ul>
+<h2 id="分类赛技巧（openset-检索）"><a href="#分类赛技巧（openset-检索）" class="headerlink" title="分类赛技巧（openset/检索）"></a>分类赛技巧（openset/检索）</h2><p>1.<strong>BNNeck</strong>(出自罗浩博士的Bag of Tricks and A Strong Baseline for Deep Person Re-identification )，知乎链接<a href="https://zhuanlan.zhihu.com/p/61831669" target="_blank" rel="noopener">一个更加强力的ReID Baseline</a>， 其实就是在feature层和fc layer之间增加一层Batch Normalization  layer，然后在retrieval的时候，使用BN后的feature再做一个l2 norm，也就是retrieval with Cosine  distance。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">res50</span><span class="params">(torch.nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_classes)</span>:</span></span><br><span class="line">        super(res50, self).__init__()</span><br><span class="line">        resnet = resnet50(pretrained=<span class="keyword">True</span>)</span><br><span class="line">        self.backbone = torch.nn.Sequential(</span><br><span class="line">                        resnet.conv1,</span><br><span class="line">                        resnet.bn1,</span><br><span class="line">                        resnet.relu,</span><br><span class="line">                        resnet.layer1,</span><br><span class="line">                        resnet.layer2,</span><br><span class="line">                        resnet.layer3,</span><br><span class="line">                        resnet.layer4</span><br><span class="line">        )</span><br><span class="line">        self.pool = torch.nn.AdaptiveMaxPool2d(<span class="number">1</span>)</span><br><span class="line">        self.bnneck = nn.BatchNorm1d(<span class="number">2048</span>)</span><br><span class="line">        self.bnneck.bias.requires_grad_(<span class="keyword">False</span>)  <span class="comment"># no shift</span></span><br><span class="line">        self.classifier = nn.Linear(<span class="number">2048</span>, num_classes, bias=<span class="keyword">False</span>)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        x = self.backbone(x)</span><br><span class="line">        x = self.pool(x)</span><br><span class="line">        feat = x.view(x.shape[<span class="number">0</span>], <span class="number">-1</span>)</span><br><span class="line">        feat = self.bnneck(feat)</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> self.training:</span><br><span class="line">            <span class="keyword">return</span> nn.functional.normalize(feat, dim=<span class="number">1</span>, p=<span class="number">2</span>)</span><br><span class="line">        x = self.classifier(feat)</span><br><span class="line">        <span class="keyword">return</span> x</span><br></pre></td></tr></table></figure>
+<p>2.<strong>margin-based softmax</strong>（上面已经说到）</p>
+<p>3.<strong>triplet loss + softmax loss</strong>，结合metric learning，对feature进行多个loss的优化，triplet loss也是可以有很多的花样，Batch Hard Triplet Loss，是针对triplet loss的一种hard mining方法。</p>
+<p>4.<strong>IBN</strong>，切换带有IBN block的backbone，搜图（open-set）往往test和train是不同场景下的数据，IBN  block当初提出是为了提高针对不同场景下的模型泛化性能，提升跨域（cross domain）能力，在reid下的实验，IBN表现优异。</p>
+<p>5.<strong>center loss</strong> </p>
+<p>6.<strong>Gem，generalized mean pooling</strong>，出自Fine-tuning CNN Image Retrieval with No Human Annotation，提出的是一种可学习的pooling layer，可提高检索性能，代码出自 <a href="https://link.zhihu.com/?target=https%3A//github.com/tuananh1007/CNN-Image-Retrieval-in-PyTorch/blob/master/cirtorch/layers/pooling.py" target="_blank" rel="noopener">https://github.com/tuananh1007/CNN-Image-Retrieval-in-PyTorch/blob/master/cirtorch/layers/pooling.py</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">GeM</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, p=<span class="number">3</span>, eps=<span class="number">1e-6</span>)</span>:</span></span><br><span class="line">        super(GeM,self).__init__()</span><br><span class="line">        self.p = Parameter(torch.ones(<span class="number">1</span>)*p)</span><br><span class="line">        self.eps = eps</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> LF.gem(x, p=self.p, eps=self.eps)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__class__.__name__ + <span class="string">'('</span> + <span class="string">'p='</span> + <span class="string">'&#123;:.4f&#125;'</span>.format(self.p.data.tolist()[<span class="number">0</span>]) + <span class="string">', '</span> + <span class="string">'eps='</span> + str(self.eps) + <span class="string">')'</span></span><br></pre></td></tr></table></figure>
+<p>7.<strong>global feature + local features</strong> 将全局特征和多个局部特征一起融合，其实就是一种暴力融合特征的方法，对提升精度有一定的帮助，就是耗时相对只使用global  feature来说很多点，此种方法可参考在reid常用的PCB(Beyond Part Models: Person Retrieval  with Refined Part Pooling)或MGN(Learning Discriminative Features with  Multiple Granularities for Person Re-Identification)方法</p>
+<p>8.<strong>re-ranking</strong>，是一种在首次获取检索图的候选图里做一次重新排序，获得更加精准的检索，相对比较耗时间，不适合现实场景，适合比赛刷精度。</p>
+<h2 id="分割赛技巧"><a href="#分割赛技巧" class="headerlink" title="分割赛技巧"></a>分割赛技巧</h2><p>1.<strong>Unet</strong> Unet可以说是在kaggle的语义分割赛里的一个较优的选择，许多top solution都是使用了Unet，FPN也是一个非常不错的选择。<br>2.<strong>Unet的魔改</strong><br>   现在有个开源库其实是已经集成了许多不同分割网络，表现也是相对不错的，如果觉得自己修改比较困难，或者自己改得不够好，可以尝试使用这个库<strong>segmentation_models_pytorch</strong></p>
+<ul>
+<li>很多top solution都是修改Unet的Decoder，最常见的就是增加scse block和Hypercolumn  block，也有一些是使用了CBAM（Convolutional Block Attention  Module，bestfitting比较喜欢用）或BAM（Bottleneck attention  module），这些注意力block一般是放在decoder不同stage出来的feature后面，因为注意力机制往往都是来优化feature的。</li>
+<li>dual head(multi task learning)，也就是构造一个end2end带有分割与分类的模型。同时，多任务学习往往会降低模型过拟合的程度，并可以提升模型的性能。</li>
+</ul>
+<p><img src="/2019/10/25/kaggle-solution/1.jpg" alt=""></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> segmentation_models_pytorch <span class="keyword">as</span> smp</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Res34_UNET</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, num_classes)</span>:</span></span><br><span class="line">        super(Res34_UNET, self).__init__()</span><br><span class="line">        self.model = smp.Unet(encoder_name=<span class="string">'resnet34'</span>, encoder_weights=<span class="string">'imagenet'</span>, classes=num_classes, activation=<span class="keyword">None</span>)</span><br><span class="line">        self.avgpool = nn.AdaptiveAvgPool2d((<span class="number">1</span>,<span class="number">1</span>))</span><br><span class="line">        self.cls_head = nn.Linear(<span class="number">512</span>, num_classes, bias=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        global_features = self.model.encoder(x)</span><br><span class="line">        cls_feature = global_features[<span class="number">0</span>]</span><br><span class="line">        cls_feature = self.avgpool(cls_feature)</span><br><span class="line">        cls_feature = cls_feature.view(cls_feature.size(<span class="number">0</span>), <span class="number">-1</span>)</span><br><span class="line">        cls_feature = self.cls_head(cls_feature)</span><br><span class="line">        seg_feature = self.model.decoder(global_features)</span><br><span class="line">        <span class="keyword">return</span> seg_feature, cls_feature</span><br></pre></td></tr></table></figure>
+<p>3.<strong>lovasz loss</strong> 之前在TGS Salt  Identification的适合，lovasz对分割的效果的表现真的是出类拔萃，相比bce或者dice等loss可以提高一个档次。但是最近的分割赛这个loss的表现就一般，猜测是优化不同metric，然后不同loss就会带来不同的效果，又或者是数据的问题。</p>
+<p>4.<strong>dice loss for postive，bce loss for negtive</strong> 主要就是将分割任务划分两个任务：1. 分割任务，2. 分类任务 dice loss可以很好的优化模型的dice score，而bce  loss训练出来的分类器可以很好地找出negtive  sample，两者结合可以达到一种非常好效果，详细解说可以参考我之前的一个solution: <a href="https://zhuanlan.zhihu.com/p/93198713" target="_blank" rel="noopener">Kaggle Understanding Clouds 7th place总结</a></p>
+<h2 id="通用技巧"><a href="#通用技巧" class="headerlink" title="通用技巧"></a>通用技巧</h2><p>1.<strong>TTA（Test Time Augmentation）</strong>  一种暴力测试的方法，将有效的增强方式得到多个不同的input，然后进行infer，得到多个结果进行融合，一般会比原始input会高不少。这种方法的缘由就是希望通过对input进行不同的变换方式获取多个不同的但重要的特征，然后可以得到多个具有差异性的预测结果。<br>2.<strong>多尺度训练，融合</strong> 在训练期间，随机输入多种尺度的图像进行训练，如（128<em>128，196</em>196，224<em>224，256</em>256，384*384等等）然后测试的时候可适当的选取其中某几个尺度表现优异的预测结果出来融合，这种方法其实就是为了提升模型对尺度的变换的鲁棒性，不易受尺度变换的影响。<br>3.<strong>Ensemble</strong></p>
+<ul>
+<li><strong>Snapshot Ensembles</strong>，这个方法常在与cycle learning rate的情况下使用，在不同cycle下，模型会产出多个不同的snapshot  weight（多个不同的局部最优，具有差异性），这时可以将这几个snapshot model一起进行推断，然后将预测结果进行平均融合。</li>
+<li><strong>SWA, Stochastic Weight Averaging</strong>，随机权重平均，其实现原理当模型在训练时收敛到一定程度后，开始追踪每次epoch后得到的模型的平均值，有一个计算公式和当前的模型权重做一个平均得到一个最终的权重，提高泛化性能。</li>
+<li><strong>stacking</strong>，在分类任务里，stacking是作为一种2nd level的ensemble方法，将多个“准而不同”的基分类器的预测集成与一身，再扔进去一个简单的分类器（mlp、logit  regression、simple  cnn，xgboost等）让其自己学习怎么将多个模型融合的收益做到最高。一般数据没有问题的话，stacking会更加稳定，不易过拟合，融合的收益也会更高。</li>
+</ul>
+<p>4.<strong>设计metric loss</strong>  许多小伙伴会有这样一个疑惑，比赛的评测metric往往和自己训练时所使用的loss优化方向不是那么一致。比如多标签分类里的metric是fbeta_score，但训练时是用了bce loss，经常可以看到val loss再收敛后会有一个反弹增大的过程，但此时val  fbeta_score是还在继续提升的。这时就可以针对metric来自行设计loss，比如fbeta loss就有。</p>
+<p>5.<strong>semi-supervised learning</strong></p>
+<ul>
+<li><strong>recurssive pseudo-label（伪标签）</strong>，伪标签现在已经是kaggle赛里一个必备工具了，但是这是个非常危险的操作，如果没有筛选好的伪标签出来，容易造成模型过拟合伪标签里的许多噪声。比较安全的方法是：1. 筛选预测置信度高的样本作为伪标签，如分类里，再test里的预测概率是大于0.9的，则视为正确的预测，此时将其作为伪标签来使用。2.  帮第一次的伪标签扔进去训练集一起训练后，得到新的模型，按相同的规则再次挑一次伪标签出来。3. 如此不断循环多次，置信度的阈值可以适当作调整。</li>
+<li><strong>mean teacher</strong>，在这里给涛哥在Recursion Cellular Image Classification第三名的方案做个广告，end2end semi-supervised learining pipeline。</li>
+</ul>
+<p><img src="/2019/10/25/kaggle-solution/2.jpg" alt=""></p>
+<ul>
+<li><strong>knowledge distillation（知识蒸馏）</strong>，此方法有助于提高小模型（student）的性能，将大模型（teacher）的预测作为soft label（用于学习teacher的模型信息）与truth（hard  label）扔进去给小模型一起学习，当然两个不同label的loss权重需要调一调。当然，蒸馏的方法有很多种，这只是其中一种最简单的方法。蒸馏不一定用于训练小模型，大模型之间也是可以一同使用的 </li>
+</ul>
+<h2 id="数据增强与预处理"><a href="#数据增强与预处理" class="headerlink" title="数据增强与预处理"></a>数据增强与预处理</h2><p>1.<strong>h/v flip(水平垂直翻转)</strong>，95%的情况下都是有效的，因为不怎么破坏图像空间信息。<br>2.<strong>random crop/center crop and resize</strong>，在原图进行crop之后再resize到指定的尺度。模型的感受野有限，有时会看不到图像中一些分布比较边缘或者是面积比较小的目标物体，crop过后其占比有更大，模型看到的机会也会更多。适用性也是比较大的。<br>3.<strong>random cutout/erasing(随机擦除)</strong>，其实就是为了随机擦除图像中局部特征，模型根据有限的特征也可以判断出其属性，可提高模型的泛化性。<br>4.<strong>AutoAugment</strong>，自己设定一些规则policy，让模型自己寻找合适的数据增强方式，需要消耗比较多的计算资源。<br>5.<strong>mixup</strong> 一种与数据无关的数据增强方式，即特征之间的线性插值应导致相关标签之间的线性插值，扩大训练分布。意思是两个不同的label的样本进行不同比例的线性插值融合，那么其label也应该是相同比例关系进行线性融合。（上图）<br>6.<strong>Class balance</strong> 主要就是针对数据不平衡的情况下进行的操作，一般是针对采样方法，或者在loss上做处理，如focal loss、weighted loss等。<br>7.<strong>图像预处理</strong>，许多看似有效的预处理操作，但是并不一定有效，如在医学领域的图像，许多肉眼观察良好的预处理的方式，实际上是破坏了原图真实类别关联的特征，这种方面需要相关领域知识。</p>
+<h3 id="如何选择更好的backbone模型"><a href="#如何选择更好的backbone模型" class="headerlink" title="如何选择更好的backbone模型"></a>如何选择更好的backbone模型</h3><p>1.对于baseline，从<strong>resnet18/34 or efficientnet-B0</strong>起步，把所有work的技巧（loss/augmentation/metric/lr_schedule）调好之后，这时就应该大模型（deeper）；<br>2.当更好需要换模型的时候，是不是就需要自己去设计/构造新模型呢？其实在比赛的短期里，重新设计一个新的backbone出来是不提倡的，因为模型不仅要work，还要重新在imagenet上预训练，时间消耗巨大，不合适比赛；<br>3.由于学术界里，sota模型多之又多，那如何选择？从个人经验总结来看，比较推荐<strong>se-resnext50/101、SENet154</strong>（太大，很少用），带有se  block的resnet，都不同类型的任务都有一定的通用性，性价比也较高；efficientnet系列（最近在某些比赛里还优于se-resnext）可以上到B3,B5，有条件的B7都没问题。其他的sota模型，可以尝试Xception，inception-resnetV2等等。</p>
+<h1 id="Competitions"><a href="#Competitions" class="headerlink" title="Competitions"></a>Competitions</h1>
           
         
       
@@ -1541,457 +1918,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/linux/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/28/linux/" itemprop="url">linux</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-28T09:04:58+08:00">
-                2019-03-28
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">vncserver -geometry 1920x1080</td>
-<td>创建一个1920x1080的vnc</td>
-</tr>
-<tr>
-<td style="text-align:left">vncserver -kill :1</td>
-<td>删除ID为1的vnc</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">mkdir XXX</td>
-<td>建文件夹</td>
-</tr>
-<tr>
-<td style="text-align:left">mkdir -p AAA/BBB</td>
-<td>建BBB，若AAA不存在则先建AAA</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">cd XX</td>
-<td>到某个目录</td>
-</tr>
-<tr>
-<td style="text-align:left">cd ..</td>
-<td>返回上一级目录</td>
-</tr>
-<tr>
-<td style="text-align:left">cd ~</td>
-<td>到home目录</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">pip intsall</td>
-<td>装某一个python的库</td>
-</tr>
-<tr>
-<td style="text-align:left">nvidia-smi</td>
-<td>查看gpu使用情况</td>
-</tr>
-<tr>
-<td style="text-align:left">./XX.sh</td>
-<td>运行某个.sh文件</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">rm -rf XXX</td>
-<td>删除整个文件夹</td>
-</tr>
-<tr>
-<td style="text-align:left">rm XXX</td>
-<td>删除一个文件</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">cp -a XX(source) YY(destination)</td>
-<td>将整个XX复制到YY</td>
-</tr>
-<tr>
-<td style="text-align:left">mv XX YY</td>
-<td>将XX移动到YY</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">df -h</td>
-<td>查看系统中文件的使用情况</td>
-</tr>
-<tr>
-<td style="text-align:left">du -sh *</td>
-<td>查看当前目录下各个文件及目录占用空间大小</td>
-</tr>
-<tr>
-<td style="text-align:left">du -sh FILE/</td>
-<td>查看目录文件总大小</td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left">tar</td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-<td></td>
-</tr>
-<tr>
-<td style="text-align:left"></td>
-</tr>
-</tbody>
-</table>
-<hr>
-<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>zjuvpn安装</strong></p>
-<p><a href="https://www.cc98.org/topic/2323871" target="_blank" rel="noopener">https://www.cc98.org/topic/2323871</a></p>
-<p>1.删除原来的xl2tpd包：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --purge xl2tpd</span><br></pre></td></tr></table></figure>
-<p>2.下载：<br><a href="https://pan.baidu.com/s/1eRNQwng#list/path=%2F" target="_blank" rel="noopener">https://pan.baidu.com/s/1eRNQwng#list/path=%2F</a></p>
-<p>3.安装：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i xl2tpd_1.1.12-zju2_i386.deb</span><br></pre></td></tr></table></figure>
-<p>报错：没有iproute 所以要先装一个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install iproute</span><br></pre></td></tr></table></figure></p>
-<p>4.配置:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect -c</span><br></pre></td></tr></table></figure>
-<p>按照提示操作, 注意用户名 学号后面要加@a</p>
-<p>5.连接:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect</span><br></pre></td></tr></table></figure></p>
-<p>6.断开:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect -d</span><br></pre></td></tr></table></figure>
-<hr>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/high-dynamic-range-paper/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/03/25/high-dynamic-range-paper/" itemprop="url">High Dynamic Range Paper</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-25T20:57:15+08:00">
-                2019-03-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Using-a-series-of-low-dynamic-range-images-at-different-exposure"><a href="#Using-a-series-of-low-dynamic-range-images-at-different-exposure" class="headerlink" title="Using a series of low dynamic range images at different exposure"></a>Using a series of low dynamic range images at different exposure</h1><p>Generally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an HDR image.</p>
-<p>This method produces spectacular images for tripod mounted cameras and static scenes, but generates results with ghosting artifacts when the scene is dynamic or the camera is hand-held.</p>
-<hr>
-<h2 id="Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017"><a href="#Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017" class="headerlink" title="Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017"></a>Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017</h2><p>-the artifacts of the alignment can be significantly reduced during merging</p>
-<p>-<em>Preprocessing the Input LDR Images:</em> </p>
-<p>If the LDR images are not in the RAW format, we first linearize them using the camera response function (CRF), then apply gamma correction (γ = 2.2). The gamma correction basically maps the images into a domain that is closer to what we perceive with our eyes.</p>
-<p>-<em>Alignment:</em> </p>
-<p>Produce aligned images by registering the images with low (Z1) and high (Z3) exposures to the reference image Z2 using tranditional method. (optical flow)</p>
-<p>-<em>HDR Merge:</em></p>
-<p>1)<em>Model</em>:<br><img src="/2019/03/25/high-dynamic-range-paper/1.png" alt=""><br><img src="/2019/03/25/high-dynamic-range-paper/2.png" alt=""></p>
-<p>2)<em>Loss Function</em>:</p>
-<p>Since HDR images are usually displayed after <em>tonemapping</em>, we propose to compute our loss function between the tonemapped estimated and ground truth HDR images. We propose to use μ-law, a commonly-used range compressor in audio processing, which is differentiable.<br><img src="/2019/03/25/high-dynamic-range-paper/3.png" alt=""></p>
-<p>we train the learning system by minimizing the L2 distance of the tonemapped estimated and<br>ground truth HDR images defined as:<br><img src="/2019/03/25/high-dynamic-range-paper/4.png" alt=""></p>
-<hr>
-<h2 id="Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018"><a href="#Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018" class="headerlink" title="Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018"></a>Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018</h2><p>-CNNs have been demonstrated to have the ability to learn misalignment and hallucinate missing details</p>
-<p>-Three advantage: 1) trained end-to-end without optical flow alignment. 2)can hallucinate plausible details that are totally missing or their presence is extremely weak in all LDR inputs. 3) the same framework can be easily extended to more LDR inputs, and possibly with any specified reference image.</p>
-<p>-<em>Network Architecture</em><br><img src="/2019/03/25/high-dynamic-range-paper/11.png" alt=""><br>We separate the first two layers as encoders for each exposure inputs. After extracting the features, the network learns to merge them, mostly in the middle layers, and to decode them into an HDR output, mostly in the last few layers.</p>
-<p>-<em>Processing Pipeline and Loss Function</em></p>
-<p>Given a stack of LDR images, if they are not in RAW format, we first linearize the images using the estimated inverse of Camera Response Function (CRF), which is often referred to as radiometric calibration. We then apply gamma correction to produce the input to our system.</p>
-<p>We first map LDRs to H = {H1;H2;H3} in the HDR domain, using simple gamma encoding:<br><img src="/2019/03/25/high-dynamic-range-paper/12.png" alt=""><br>where ti is the exposure time of image Ii. We then concatenate I and H channel-wise into a 6-channel input and feed it directly to the network. The LDRs facilitate the detection of misalignments and saturation, while the exposure-adjusted HDRs improve the robustness of the network across LDRs with various exposure levels.</p>
-<p>Tonemapping function and loss function are the same as the previous paper.<br><img src="/2019/03/25/high-dynamic-range-paper/13.png" alt=""></p>
-<p>-<em>Data Preparation</em></p>
-<p>First align the background using simple homography transformation by <em>homography transformation</em>. Without it, we found that our network tends to produce blurry edges where background is largely misaligned.</p>
-<p>Crop the images into 256x256 patches with a stride of 64. To keep the training focused on foreground motions, we detect large motion patches by thresholding the structural similarity between different exposure shots, and replicate these patches in the training set.</p>
-<h1 id="Using-single-low-dynamic-range-image"><a href="#Using-single-low-dynamic-range-image" class="headerlink" title="Using single low dynamic range image"></a>Using single low dynamic range image</h1><p>One intrinsic limitation of this approach is the total reliance on one single input LDR image, which often fails in highly contrastive scenes due to large-scale saturation.</p>
-<h2 id="HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710"><a href="#HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710" class="headerlink" title="HDR image reconstruction from a single exposure using deep CNNs - 1710"></a>HDR image reconstruction from a single exposure using deep CNNs - 1710</h2><p>-Estimating missing information in bright image parts, such as highlights, lost due to saturation of the camera sensor<br><img src="/2019/03/25/high-dynamic-range-paper/21.png" alt=""></p>
-<hr>
-<h2 id="ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018"><a href="#ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018" class="headerlink" title="ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018"></a>ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018</h2><p>-Designed to avoid upsampling of downsampled features, in an attempt to reduce blocking and/or haloing artefacts that may arise from more straightforward approaches.</p>
-<p>-It is argued that upsampling, especially the frequently used deconvolutional layers, cause checkerboard artefacts. Furthermore, upsampling may cause unwanted information bleeding in areas where context is missing, for example large overexposed areas.</p>
-<p>-The local branch handling local detail, the dilation branch for medium level detail, and a global branch accounting for higher level image-wide features<br><img src="/2019/03/25/high-dynamic-range-paper/31.png" alt=""></p>
-<p>-<em>Loss Function</em></p>
-<p>The L1 distance is chosen for this problem since the more frequently used L2 distance was found to cause blurry results for images. An additional cosine similarity term is added to ensure color correctness of the RGB vectors of each pixel.<br><img src="/2019/03/25/high-dynamic-range-paper/32.png" alt=""></p>
-<p>Cosine similarity measures how close two vectors are by comparing the angle between them, not taking magnitude into account. For the context of this work, it ensures that each pixel points in the same direction of the three dimensional RGB space. It provides improved color stability, especially for low luminance values, which are frequent in HDR images, since slight variations in any of the RGB components of these low values do not contribute much to the L1 loss, but they may however cause noticeable color shifts.</p>
-<h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1><p><strong>proposed by Kalantari(Deep High Dynamic Range Imaging of Dynamic Scenes):</strong></p>
-<p>To generate the ground truth HDR image, we capture a static set by asking a subject to stay still and taking three images with different exposures on a tripod.</p>
-<p>Next, we capture a dynamic set to use as our input by asking the subject to move and taking three bracketed exposure images either by holding the camera (to simulate camera motion) or on a tripod.</p>
-<p>Capture all the images in RAW format with a resolution of 5760 × 3840 and using a Canon EOS-5D Mark III camera. Downsample all the images (including the dynamic set) to the resolution of 1500 × 1000.</p>
-<p>Use color channel swapping and geometric transformation (rotating 90 degrees and flipping) with 6 and 8 different combinations, respectively. This process produces a total of 48 different combinations of data augmentation, from which we randomly choose 10 combinations to augment each training scene. Our data augmentation process increases the number of training scenes from 74 to 740.</p>
-<p>Finally, since training on full images is slow, we break down the training images into overlapping patches of size 40 × 40 with a stride of 20. This process produces a set of training patches consisting of the aligned patches in the LDR and HDR domains as well as their corresponding ground truth HDR patches. We then select the training patches where more than 50 percent of their reference patch is under/over-exposed, which results in around 1,000,000 selected patches. This selection is performed to put the main focus of the networks on the challenging regions.</p>
-<p><strong>Described in DeepHDR</strong></p>
-<p>The dataset was split into 74 training examples and 15 testing examples. crop the images into 256x256 patches with a stride of 64, which produces around 19000 patches. We then perform data augmentation (flipping and rotation), further increasing the training data by 8 times.</p>
-<p>In fact, a large portion of these patches contain only background regions, and exhibit little foreground motions. To keep the training focused on foreground motions, we detect large motion patches by thresholding the structural similarity<br>between different exposure shots, and replicate these patches in the training set.</p>
-<p><strong>ExpandNet</strong></p>
-<h1 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h1><p>Sen:  Robust Patch-Based HDR Reconstruction of Dynamic Scenes. ACM TOG 31(6), 203:1-203:11 (2012)</p>
-<p>Hu: HDR Deghosting: How to deal with Saturation? In: IEEE CVPR (2013)</p>
-<p>Kalantari: Deep High Dynamic Range Imaging of Dynamic Scenes. ACM TOG 36(4) (2017)</p>
-<p>HDRCNN: HDR image reconstruction from a single exposure using deep cnns. ACM TOG 36(6) (2017)</p>
-<p>Ours: Deep High Dynamic Range Imaging with Large Foreground Motions</p>
-<h2 id="Running-Time"><a href="#Running-Time" class="headerlink" title="Running Time"></a>Running Time</h2><p>PC with i7-4790K (4.0GHz) and 32GB RAM, 3 LDR images of size 896x1408 as input.</p>
-<p><img src="/2019/03/25/high-dynamic-range-paper/41.png" alt=""></p>
-<p>When run with GPU (Titan X Pascal), our Unet and ResNet take 0.225s and 0.239s respectively.</p>
-<h2 id="Quantitative-Comparison"><a href="#Quantitative-Comparison" class="headerlink" title="Quantitative Comparison"></a>Quantitative Comparison</h2><p><img src="/2019/03/25/high-dynamic-range-paper/42.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2042,7 +1968,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>

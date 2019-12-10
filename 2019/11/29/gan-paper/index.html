@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Segmentation," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -79,18 +79,14 @@
 
 
 
-<meta name="description" content="vis.py :  12predictions = model.predict_labels() -&amp;gt;model.py   def predict_labels() 12outputs_to_scales_to_logits = multi_scale_logits() def multi_scale_logits() 1outputs_to_logits = _get_logits() d">
-<meta name="keywords" content="Machine Learning,Deep Learning,Computer Vision,Segmentation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="google_deeplab代码分析">
-<meta property="og:url" content="http://yoursite.com/2018/11/16/google_deeplab代码分析/index.html">
+<meta property="og:title" content="gan-paper">
+<meta property="og:url" content="http://yoursite.com/2019/11/29/gan-paper/index.html">
 <meta property="og:site_name" content="Good Good Study">
-<meta property="og:description" content="vis.py :  12predictions = model.predict_labels() -&amp;gt;model.py   def predict_labels() 12outputs_to_scales_to_logits = multi_scale_logits() def multi_scale_logits() 1outputs_to_logits = _get_logits() d">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-04-12T04:01:08.229Z">
+<meta property="og:updated_time" content="2019-11-29T07:22:18.440Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="google_deeplab代码分析">
-<meta name="twitter:description" content="vis.py :  12predictions = model.predict_labels() -&amp;gt;model.py   def predict_labels() 12outputs_to_scales_to_logits = multi_scale_logits() def multi_scale_logits() 1outputs_to_logits = _get_logits() d">
+<meta name="twitter:title" content="gan-paper">
 
 
 
@@ -120,13 +116,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/11/16/google_deeplab代码分析/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/11/29/gan-paper/"/>
 
 
 
 
 
-  <title>google_deeplab代码分析 | Good Good Study</title>
+  <title>gan-paper | Good Good Study</title>
   
 
 
@@ -243,7 +239,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/google_deeplab代码分析/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/29/gan-paper/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Pan Sicheng">
@@ -260,7 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">google_deeplab代码分析</h1>
+          <h1 class="post-title" itemprop="name headline">gan-paper</h1>
         
 
         <div class="post-meta">
@@ -272,8 +268,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T10:18:03+08:00">
-                2018-11-16
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-29T15:22:18+08:00">
+                2019-11-29
               </time>
             
 
@@ -310,29 +306,7 @@
       
 
       
-        <p><strong>vis.py :</strong> </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">predictions = model.predict_labels(</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p><strong>-&gt;model.py</strong>  </p>
-<p>def predict_labels()</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">outputs_to_scales_to_logits = multi_scale_logits(</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>def multi_scale_logits()</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outputs_to_logits = _get_logits()</span><br></pre></td></tr></table></figure>
-<p>def _get_logits()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">features, end_point = extract_features()</span><br></pre></td></tr></table></figure>
-<p>def extract_features()</p>
-<p><strong>-&gt;core/feature_extractor.py</strong></p>
-<p>def  extract_features()</p>
-<p><code>model_variant</code>  [‘resnet’, ‘xception’, ‘mobilenet’, ‘nas’]</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arg_scope = arg_scopes_map[model_variant]()</span><br><span class="line">features, end_point = get_network(model_variant,..., arg_scope)</span><br></pre></td></tr></table></figure>
-<p>model_variant=’xception-XX’</p>
-<p>-&gt; arg_scopes_map[model_variant]=xception_arg_scope</p>
-<p><strong>-&gt;core/xception.py</strong></p>
-<p>def xception_arg_scope()  不知道干啥的</p>
-<p>def get_network()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func = network_map[network_name]</span><br></pre></td></tr></table></figure>
-<p><strong>-&gt;core/xception.py</strong></p>
-<p>def xception_71()</p>
-
+        
       
     </div>
     
@@ -347,18 +321,6 @@
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
-          
-            <a href="/tags/Deep-Learning/" rel="tag"># Deep Learning</a>
-          
-            <a href="/tags/Computer-Vision/" rel="tag"># Computer Vision</a>
-          
-            <a href="/tags/Segmentation/" rel="tag"># Segmentation</a>
-          
-        </div>
-      
 
       
       
@@ -368,8 +330,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/11/16/yolov3-pytorch代码分析/" rel="next" title="yolov3-pytorch代码分析">
-                <i class="fa fa-chevron-left"></i> yolov3-pytorch代码分析
+              <a href="/2019/10/25/kaggle-solution/" rel="next" title="kaggle_solution">
+                <i class="fa fa-chevron-left"></i> kaggle_solution
               </a>
             
           </div>
@@ -378,8 +340,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/11/16/something_about_python/" rel="prev" title="Something about Python">
-                Something about Python <i class="fa fa-chevron-right"></i>
+              <a href="/2019/12/03/leetcode_python_medium/" rel="prev" title="Leetcode_Python_Medium">
+                Leetcode_Python_Medium <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

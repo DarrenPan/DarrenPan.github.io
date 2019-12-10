@@ -239,6 +239,457 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/linux/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/28/linux/" itemprop="url">linux</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-28T09:04:58+08:00">
+                2019-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">vncserver -geometry 1920x1080</td>
+<td>创建一个1920x1080的vnc</td>
+</tr>
+<tr>
+<td style="text-align:left">vncserver -kill :1</td>
+<td>删除ID为1的vnc</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">mkdir XXX</td>
+<td>建文件夹</td>
+</tr>
+<tr>
+<td style="text-align:left">mkdir -p AAA/BBB</td>
+<td>建BBB，若AAA不存在则先建AAA</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">cd XX</td>
+<td>到某个目录</td>
+</tr>
+<tr>
+<td style="text-align:left">cd ..</td>
+<td>返回上一级目录</td>
+</tr>
+<tr>
+<td style="text-align:left">cd ~</td>
+<td>到home目录</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">pip intsall</td>
+<td>装某一个python的库</td>
+</tr>
+<tr>
+<td style="text-align:left">nvidia-smi</td>
+<td>查看gpu使用情况</td>
+</tr>
+<tr>
+<td style="text-align:left">./XX.sh</td>
+<td>运行某个.sh文件</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">rm -rf XXX</td>
+<td>删除整个文件夹</td>
+</tr>
+<tr>
+<td style="text-align:left">rm XXX</td>
+<td>删除一个文件</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">cp -a XX(source) YY(destination)</td>
+<td>将整个XX复制到YY</td>
+</tr>
+<tr>
+<td style="text-align:left">mv XX YY</td>
+<td>将XX移动到YY</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">df -h</td>
+<td>查看系统中文件的使用情况</td>
+</tr>
+<tr>
+<td style="text-align:left">du -sh *</td>
+<td>查看当前目录下各个文件及目录占用空间大小</td>
+</tr>
+<tr>
+<td style="text-align:left">du -sh FILE/</td>
+<td>查看目录文件总大小</td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left">tar</td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+<td></td>
+</tr>
+<tr>
+<td style="text-align:left"></td>
+</tr>
+</tbody>
+</table>
+<hr>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p><strong>zjuvpn安装</strong></p>
+<p><a href="https://www.cc98.org/topic/2323871" target="_blank" rel="noopener">https://www.cc98.org/topic/2323871</a></p>
+<p>1.删除原来的xl2tpd包：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --purge xl2tpd</span><br></pre></td></tr></table></figure>
+<p>2.下载：<br><a href="https://pan.baidu.com/s/1eRNQwng#list/path=%2F" target="_blank" rel="noopener">https://pan.baidu.com/s/1eRNQwng#list/path=%2F</a></p>
+<p>3.安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i xl2tpd_1.1.12-zju2_i386.deb</span><br></pre></td></tr></table></figure>
+<p>报错：没有iproute 所以要先装一个：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install iproute</span><br></pre></td></tr></table></figure></p>
+<p>4.配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect -c</span><br></pre></td></tr></table></figure>
+<p>按照提示操作, 注意用户名 学号后面要加@a</p>
+<p>5.连接:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect</span><br></pre></td></tr></table></figure></p>
+<p>6.断开:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vpn-connect -d</span><br></pre></td></tr></table></figure>
+<hr>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/25/high-dynamic-range-paper/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/03/25/high-dynamic-range-paper/" itemprop="url">High Dynamic Range Paper</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-03-25T20:57:15+08:00">
+                2019-03-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Using-a-series-of-low-dynamic-range-images-at-different-exposure"><a href="#Using-a-series-of-low-dynamic-range-images-at-different-exposure" class="headerlink" title="Using a series of low dynamic range images at different exposure"></a>Using a series of low dynamic range images at different exposure</h1><p>Generally, this problem can be broken down into two stages: 1) aligning the input LDR images and 2) merging the aligned images into an HDR image.</p>
+<p>This method produces spectacular images for tripod mounted cameras and static scenes, but generates results with ghosting artifacts when the scene is dynamic or the camera is hand-held.</p>
+<hr>
+<h2 id="Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017"><a href="#Deep-High-Dynamic-Range-Imaging-of-Dynamic-Scenes-SIGGRAPH2017" class="headerlink" title="Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017"></a>Deep High Dynamic Range Imaging of Dynamic Scenes - SIGGRAPH2017</h2><p>-the artifacts of the alignment can be significantly reduced during merging</p>
+<p>-<em>Preprocessing the Input LDR Images:</em> </p>
+<p>If the LDR images are not in the RAW format, we first linearize them using the camera response function (CRF), then apply gamma correction (γ = 2.2). The gamma correction basically maps the images into a domain that is closer to what we perceive with our eyes.</p>
+<p>-<em>Alignment:</em> </p>
+<p>Produce aligned images by registering the images with low (Z1) and high (Z3) exposures to the reference image Z2 using tranditional method. (optical flow)</p>
+<p>-<em>HDR Merge:</em></p>
+<p>1)<em>Model</em>:<br><img src="/2019/03/25/high-dynamic-range-paper/1.png" alt=""><br><img src="/2019/03/25/high-dynamic-range-paper/2.png" alt=""></p>
+<p>2)<em>Loss Function</em>:</p>
+<p>Since HDR images are usually displayed after <em>tonemapping</em>, we propose to compute our loss function between the tonemapped estimated and ground truth HDR images. We propose to use μ-law, a commonly-used range compressor in audio processing, which is differentiable.<br><img src="/2019/03/25/high-dynamic-range-paper/3.png" alt=""></p>
+<p>we train the learning system by minimizing the L2 distance of the tonemapped estimated and<br>ground truth HDR images defined as:<br><img src="/2019/03/25/high-dynamic-range-paper/4.png" alt=""></p>
+<hr>
+<h2 id="Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018"><a href="#Deep-High-Dynamic-Range-Imaging-with-Large-Foreground-Motions-ECCV2018" class="headerlink" title="Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018"></a>Deep High Dynamic Range Imaging with Large Foreground Motions - ECCV2018</h2><p>-CNNs have been demonstrated to have the ability to learn misalignment and hallucinate missing details</p>
+<p>-Three advantage: 1) trained end-to-end without optical flow alignment. 2)can hallucinate plausible details that are totally missing or their presence is extremely weak in all LDR inputs. 3) the same framework can be easily extended to more LDR inputs, and possibly with any specified reference image.</p>
+<p>-<em>Network Architecture</em><br><img src="/2019/03/25/high-dynamic-range-paper/11.png" alt=""><br>We separate the first two layers as encoders for each exposure inputs. After extracting the features, the network learns to merge them, mostly in the middle layers, and to decode them into an HDR output, mostly in the last few layers.</p>
+<p>-<em>Processing Pipeline and Loss Function</em></p>
+<p>Given a stack of LDR images, if they are not in RAW format, we first linearize the images using the estimated inverse of Camera Response Function (CRF), which is often referred to as radiometric calibration. We then apply gamma correction to produce the input to our system.</p>
+<p>We first map LDRs to H = {H1;H2;H3} in the HDR domain, using simple gamma encoding:<br><img src="/2019/03/25/high-dynamic-range-paper/12.png" alt=""><br>where ti is the exposure time of image Ii. We then concatenate I and H channel-wise into a 6-channel input and feed it directly to the network. The LDRs facilitate the detection of misalignments and saturation, while the exposure-adjusted HDRs improve the robustness of the network across LDRs with various exposure levels.</p>
+<p>Tonemapping function and loss function are the same as the previous paper.<br><img src="/2019/03/25/high-dynamic-range-paper/13.png" alt=""></p>
+<p>-<em>Data Preparation</em></p>
+<p>First align the background using simple homography transformation by <em>homography transformation</em>. Without it, we found that our network tends to produce blurry edges where background is largely misaligned.</p>
+<p>Crop the images into 256x256 patches with a stride of 64. To keep the training focused on foreground motions, we detect large motion patches by thresholding the structural similarity between different exposure shots, and replicate these patches in the training set.</p>
+<h1 id="Using-single-low-dynamic-range-image"><a href="#Using-single-low-dynamic-range-image" class="headerlink" title="Using single low dynamic range image"></a>Using single low dynamic range image</h1><p>One intrinsic limitation of this approach is the total reliance on one single input LDR image, which often fails in highly contrastive scenes due to large-scale saturation.</p>
+<h2 id="HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710"><a href="#HDR-image-reconstruction-from-a-single-exposure-using-deep-CNNs-1710" class="headerlink" title="HDR image reconstruction from a single exposure using deep CNNs - 1710"></a>HDR image reconstruction from a single exposure using deep CNNs - 1710</h2><p>-Estimating missing information in bright image parts, such as highlights, lost due to saturation of the camera sensor<br><img src="/2019/03/25/high-dynamic-range-paper/21.png" alt=""></p>
+<hr>
+<h2 id="ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018"><a href="#ExpandNet-A-Deep-Convolutional-Neural-Network-for-High-Dynamic-Range-Expansion-from-Low-Dynamic-Range-Content-EUROGRAPHICS-2018" class="headerlink" title="ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018"></a>ExpandNet: A Deep Convolutional Neural Network for High Dynamic Range Expansion from Low Dynamic Range Content - EUROGRAPHICS 2018</h2><p>-Designed to avoid upsampling of downsampled features, in an attempt to reduce blocking and/or haloing artefacts that may arise from more straightforward approaches.</p>
+<p>-It is argued that upsampling, especially the frequently used deconvolutional layers, cause checkerboard artefacts. Furthermore, upsampling may cause unwanted information bleeding in areas where context is missing, for example large overexposed areas.</p>
+<p>-The local branch handling local detail, the dilation branch for medium level detail, and a global branch accounting for higher level image-wide features<br><img src="/2019/03/25/high-dynamic-range-paper/31.png" alt=""></p>
+<p>-<em>Loss Function</em></p>
+<p>The L1 distance is chosen for this problem since the more frequently used L2 distance was found to cause blurry results for images. An additional cosine similarity term is added to ensure color correctness of the RGB vectors of each pixel.<br><img src="/2019/03/25/high-dynamic-range-paper/32.png" alt=""></p>
+<p>Cosine similarity measures how close two vectors are by comparing the angle between them, not taking magnitude into account. For the context of this work, it ensures that each pixel points in the same direction of the three dimensional RGB space. It provides improved color stability, especially for low luminance values, which are frequent in HDR images, since slight variations in any of the RGB components of these low values do not contribute much to the L1 loss, but they may however cause noticeable color shifts.</p>
+<h1 id="Dataset"><a href="#Dataset" class="headerlink" title="Dataset"></a>Dataset</h1><p><strong>proposed by Kalantari(Deep High Dynamic Range Imaging of Dynamic Scenes):</strong></p>
+<p>To generate the ground truth HDR image, we capture a static set by asking a subject to stay still and taking three images with different exposures on a tripod.</p>
+<p>Next, we capture a dynamic set to use as our input by asking the subject to move and taking three bracketed exposure images either by holding the camera (to simulate camera motion) or on a tripod.</p>
+<p>Capture all the images in RAW format with a resolution of 5760 × 3840 and using a Canon EOS-5D Mark III camera. Downsample all the images (including the dynamic set) to the resolution of 1500 × 1000.</p>
+<p>Use color channel swapping and geometric transformation (rotating 90 degrees and flipping) with 6 and 8 different combinations, respectively. This process produces a total of 48 different combinations of data augmentation, from which we randomly choose 10 combinations to augment each training scene. Our data augmentation process increases the number of training scenes from 74 to 740.</p>
+<p>Finally, since training on full images is slow, we break down the training images into overlapping patches of size 40 × 40 with a stride of 20. This process produces a set of training patches consisting of the aligned patches in the LDR and HDR domains as well as their corresponding ground truth HDR patches. We then select the training patches where more than 50 percent of their reference patch is under/over-exposed, which results in around 1,000,000 selected patches. This selection is performed to put the main focus of the networks on the challenging regions.</p>
+<p><strong>Described in DeepHDR</strong></p>
+<p>The dataset was split into 74 training examples and 15 testing examples. crop the images into 256x256 patches with a stride of 64, which produces around 19000 patches. We then perform data augmentation (flipping and rotation), further increasing the training data by 8 times.</p>
+<p>In fact, a large portion of these patches contain only background regions, and exhibit little foreground motions. To keep the training focused on foreground motions, we detect large motion patches by thresholding the structural similarity<br>between different exposure shots, and replicate these patches in the training set.</p>
+<p><strong>ExpandNet</strong></p>
+<h1 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h1><p>Sen:  Robust Patch-Based HDR Reconstruction of Dynamic Scenes. ACM TOG 31(6), 203:1-203:11 (2012)</p>
+<p>Hu: HDR Deghosting: How to deal with Saturation? In: IEEE CVPR (2013)</p>
+<p>Kalantari: Deep High Dynamic Range Imaging of Dynamic Scenes. ACM TOG 36(4) (2017)</p>
+<p>HDRCNN: HDR image reconstruction from a single exposure using deep cnns. ACM TOG 36(6) (2017)</p>
+<p>Ours: Deep High Dynamic Range Imaging with Large Foreground Motions</p>
+<h2 id="Running-Time"><a href="#Running-Time" class="headerlink" title="Running Time"></a>Running Time</h2><p>PC with i7-4790K (4.0GHz) and 32GB RAM, 3 LDR images of size 896x1408 as input.</p>
+<p><img src="/2019/03/25/high-dynamic-range-paper/41.png" alt=""></p>
+<p>When run with GPU (Titan X Pascal), our Unet and ResNet take 0.225s and 0.239s respectively.</p>
+<h2 id="Quantitative-Comparison"><a href="#Quantitative-Comparison" class="headerlink" title="Quantitative Comparison"></a>Quantitative Comparison</h2><p><img src="/2019/03/25/high-dynamic-range-paper/42.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/01/23/pytorch/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -643,136 +1094,6 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/network_structure_experience/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/12/14/network_structure_experience/" itemprop="url">Experience in Network Structure</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-14T14:36:12+08:00">
-                2018-12-14
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Improvement-for-Feature-Expression"><a href="#Improvement-for-Feature-Expression" class="headerlink" title="Improvement for Feature Expression"></a>Improvement for Feature Expression</h1><h2 id="inverted-residual-with-linear-bottleneck"><a href="#inverted-residual-with-linear-bottleneck" class="headerlink" title="inverted residual with linear bottleneck"></a>inverted residual with linear bottleneck</h2><h2 id="ReLU6-、-ReLU、PReLU"><a href="#ReLU6-、-ReLU、PReLU" class="headerlink" title="ReLU6 、 ReLU、PReLU"></a>ReLU6 、 ReLU、PReLU</h2><h1 id="Acceleration-and-Compression"><a href="#Acceleration-and-Compression" class="headerlink" title="Acceleration and Compression"></a>Acceleration and Compression</h1><h2 id="Depthwise-Separable-Convolution"><a href="#Depthwise-Separable-Convolution" class="headerlink" title="Depthwise Separable Convolution"></a>Depthwise Separable Convolution</h2><p><img src="/2018/12/14/network_structure_experience/2.jpg" alt=""></p>
-<p>computational cost reduce from </p>
-<p><img src="/2018/12/14/network_structure_experience/3.jpg" alt=""></p>
-<p>to</p>
-<p><img src="/2018/12/14/network_structure_experience/4.jpg" alt=""></p>
-<h2 id="Group-Convolution"><a href="#Group-Convolution" class="headerlink" title="Group Convolution"></a>Group Convolution</h2><h2 id="from-35x35x320-to-17x17x640"><a href="#from-35x35x320-to-17x17x640" class="headerlink" title="from 35x35x320 to 17x17x640:"></a>from 35x35x320 to 17x17x640:</h2><ol>
-<li>conv+pooling or pooling + conv</li>
-<li>conv with stride 2</li>
-<li><img src="/2018/12/14/network_structure_experience/1.png" alt=""><br>remain to study which is faster between 2 and 3.</li>
-</ol>
-<h1 id="Inspired-Architecture"><a href="#Inspired-Architecture" class="headerlink" title="Inspired Architecture"></a>Inspired Architecture</h1><h1 id="Insight"><a href="#Insight" class="headerlink" title="Insight"></a>Insight</h1><p>Manifold of interest should lie in a low-dimensional subspace of the higher-dimensional activation space (non-linearity destroys information in low-dimensional space.)<br><img src="/2018/12/14/network_structure_experience/5.png" alt=""></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/object_detection_paper_summarization/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -959,6 +1280,136 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/12/14/network_structure_experience/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/12/14/network_structure_experience/" itemprop="url">Experience in Network Structure</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-14T14:36:12+08:00">
+                2018-12-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Improvement-for-Feature-Expression"><a href="#Improvement-for-Feature-Expression" class="headerlink" title="Improvement for Feature Expression"></a>Improvement for Feature Expression</h1><h2 id="inverted-residual-with-linear-bottleneck"><a href="#inverted-residual-with-linear-bottleneck" class="headerlink" title="inverted residual with linear bottleneck"></a>inverted residual with linear bottleneck</h2><h2 id="ReLU6-、-ReLU、PReLU"><a href="#ReLU6-、-ReLU、PReLU" class="headerlink" title="ReLU6 、 ReLU、PReLU"></a>ReLU6 、 ReLU、PReLU</h2><h1 id="Acceleration-and-Compression"><a href="#Acceleration-and-Compression" class="headerlink" title="Acceleration and Compression"></a>Acceleration and Compression</h1><h2 id="Depthwise-Separable-Convolution"><a href="#Depthwise-Separable-Convolution" class="headerlink" title="Depthwise Separable Convolution"></a>Depthwise Separable Convolution</h2><p><img src="/2018/12/14/network_structure_experience/2.jpg" alt=""></p>
+<p>computational cost reduce from </p>
+<p><img src="/2018/12/14/network_structure_experience/3.jpg" alt=""></p>
+<p>to</p>
+<p><img src="/2018/12/14/network_structure_experience/4.jpg" alt=""></p>
+<h2 id="Group-Convolution"><a href="#Group-Convolution" class="headerlink" title="Group Convolution"></a>Group Convolution</h2><h2 id="from-35x35x320-to-17x17x640"><a href="#from-35x35x320-to-17x17x640" class="headerlink" title="from 35x35x320 to 17x17x640:"></a>from 35x35x320 to 17x17x640:</h2><ol>
+<li>conv+pooling or pooling + conv</li>
+<li>conv with stride 2</li>
+<li><img src="/2018/12/14/network_structure_experience/1.png" alt=""><br>remain to study which is faster between 2 and 3.</li>
+</ol>
+<h1 id="Inspired-Architecture"><a href="#Inspired-Architecture" class="headerlink" title="Inspired Architecture"></a>Inspired Architecture</h1><h1 id="Insight"><a href="#Insight" class="headerlink" title="Insight"></a>Insight</h1><p>Manifold of interest should lie in a low-dimensional subspace of the higher-dimensional activation space (non-linearity destroys information in low-dimensional space.)<br><img src="/2018/12/14/network_structure_experience/5.png" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/something_about_python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1047,6 +1498,147 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">print(np.where(a==np.max(a)))</span><br><span class="line">(array([<span class="number">2</span>], dtype=int64), array([<span class="number">2</span>], dtype=int64))</span><br><span class="line">print(np.where(a==np.max(a,axis=<span class="number">0</span>)))</span><br><span class="line">(array([<span class="number">2</span>, <span class="number">2</span>, <span class="number">2</span>], dtype=int64), array([<span class="number">0</span>, <span class="number">1</span>, <span class="number">2</span>], dtype=int64))</span><br></pre></td></tr></table></figure>
 <hr>
 <h3 id="List做除法"><a href="#List做除法" class="headerlink" title="List做除法"></a>List做除法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">list(map(<span class="keyword">lambda</span> x: x//<span class="number">4</span>, list_a))</span><br></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/google_deeplab代码分析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Pan Sicheng">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Good Good Study">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/11/16/google_deeplab代码分析/" itemprop="url">google_deeplab代码分析</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T10:18:03+08:00">
+                2018-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><strong>vis.py :</strong> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">predictions = model.predict_labels(</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p><strong>-&gt;model.py</strong>  </p>
+<p>def predict_labels()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">outputs_to_scales_to_logits = multi_scale_logits(</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<p>def multi_scale_logits()</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outputs_to_logits = _get_logits()</span><br></pre></td></tr></table></figure>
+<p>def _get_logits()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">features, end_point = extract_features()</span><br></pre></td></tr></table></figure>
+<p>def extract_features()</p>
+<p><strong>-&gt;core/feature_extractor.py</strong></p>
+<p>def  extract_features()</p>
+<p><code>model_variant</code>  [‘resnet’, ‘xception’, ‘mobilenet’, ‘nas’]</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arg_scope = arg_scopes_map[model_variant]()</span><br><span class="line">features, end_point = get_network(model_variant,..., arg_scope)</span><br></pre></td></tr></table></figure>
+<p>model_variant=’xception-XX’</p>
+<p>-&gt; arg_scopes_map[model_variant]=xception_arg_scope</p>
+<p><strong>-&gt;core/xception.py</strong></p>
+<p>def xception_arg_scope()  不知道干啥的</p>
+<p>def get_network()</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func = network_map[network_name]</span><br></pre></td></tr></table></figure>
+<p><strong>-&gt;core/xception.py</strong></p>
+<p>def xception_71()</p>
 
           
         
@@ -1278,407 +1870,6 @@
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/google_deeplab代码分析/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/16/google_deeplab代码分析/" itemprop="url">google_deeplab代码分析</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T10:18:03+08:00">
-                2018-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p><strong>vis.py :</strong> </p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">predictions = model.predict_labels(</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p><strong>-&gt;model.py</strong>  </p>
-<p>def predict_labels()</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">outputs_to_scales_to_logits = multi_scale_logits(</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
-<p>def multi_scale_logits()</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outputs_to_logits = _get_logits()</span><br></pre></td></tr></table></figure>
-<p>def _get_logits()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">features, end_point = extract_features()</span><br></pre></td></tr></table></figure>
-<p>def extract_features()</p>
-<p><strong>-&gt;core/feature_extractor.py</strong></p>
-<p>def  extract_features()</p>
-<p><code>model_variant</code>  [‘resnet’, ‘xception’, ‘mobilenet’, ‘nas’]</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">arg_scope = arg_scopes_map[model_variant]()</span><br><span class="line">features, end_point = get_network(model_variant,..., arg_scope)</span><br></pre></td></tr></table></figure>
-<p>model_variant=’xception-XX’</p>
-<p>-&gt; arg_scopes_map[model_variant]=xception_arg_scope</p>
-<p><strong>-&gt;core/xception.py</strong></p>
-<p>def xception_arg_scope()  不知道干啥的</p>
-<p>def get_network()</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">func = network_map[network_name]</span><br></pre></td></tr></table></figure>
-<p><strong>-&gt;core/xception.py</strong></p>
-<p>def xception_71()</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/16/leetcode412/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/16/leetcode412/" itemprop="url">【leetcode】412：Fizz Buzz</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-16T09:47:03+08:00">
-                2018-11-16
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="Fizz-Buzz"><a href="#Fizz-Buzz" class="headerlink" title="Fizz Buzz"></a>Fizz Buzz</h1><p><strong>难度：Easy</strong></p>
-<h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>写一个程序，输出从 1 到 n 数字的字符串表示。</p>
-<ol>
-<li><p>如果 n 是3的倍数，输出“Fizz”；</p>
-</li>
-<li><p>如果 n 是5的倍数，输出“Buzz”；</p>
-</li>
-<li><p>如果 n 同时是3和5的倍数，输出 “FizzBuzz”。</p>
-</li>
-</ol>
-<h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">n = 15,</span><br><span class="line"></span><br><span class="line">返回:</span><br><span class="line">[</span><br><span class="line">    &quot;1&quot;,</span><br><span class="line">    &quot;2&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;4&quot;,</span><br><span class="line">    &quot;Buzz&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;7&quot;,</span><br><span class="line">    &quot;8&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;Buzz&quot;,</span><br><span class="line">    &quot;11&quot;,</span><br><span class="line">    &quot;Fizz&quot;,</span><br><span class="line">    &quot;13&quot;,</span><br><span class="line">    &quot;14&quot;,</span><br><span class="line">    &quot;FizzBuzz&quot;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
-<h2 id="解"><a href="#解" class="headerlink" title="解"></a>解</h2><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; fizzBuzz(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        <span class="built_in">vector</span>&lt;<span class="built_in">string</span>&gt; res;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">15</span> == <span class="number">0</span>) res.push_back(<span class="string">"FizzBuzz"</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">3</span> == <span class="number">0</span>) res.push_back(<span class="string">"Fizz"</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (i % <span class="number">5</span> == <span class="number">0</span>) res.push_back(<span class="string">"Buzz"</span>);</span><br><span class="line">            <span class="keyword">else</span> res.push_back(to_string(i));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="知识点："><a href="#知识点：" class="headerlink" title="知识点："></a>知识点：</h3><ol>
-<li>向量（Vector）是一个封装了动态大小数组的顺序容器（Sequence Container）。跟任意其它类型容器一样，它能够存放各种类型的对象。可以简单的认为，向量是一个能够存放任意类型的动态数组。 </li>
-</ol>
-<p>标准库vector类型使用须要的头文件：<code>#include &lt;vector&gt;</code>。</p>
-<p>Vector的定义和初始化：</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">vector</span>&lt; typeName &gt; v1;       <span class="comment">//默认v1为空，故以下的赋值是错误的v1[0]=5;</span></span><br><span class="line"><span class="built_in">vector</span>&lt;typeName&gt;v2(v1); 或v2=v1;或<span class="built_in">vector</span>&lt;typeName&gt; v2(v1.begin(), v1.end());<span class="comment">//v2是v1的一个副本，若v1.size（）  &gt;v2.size()则赋值后v2.size()被扩充为v1.size()。</span></span><br><span class="line"><span class="built_in">vector</span>&lt; typeName &gt; v3(n,i);<span class="comment">//v3包括n个值为i的typeName类型元素</span></span><br><span class="line"><span class="built_in">vector</span>&lt; typeName &gt; v4(n); <span class="comment">//v4含有n个值为0的元素</span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">4</span>]=&#123;<span class="number">0</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">3</span>&#125;; <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v5(a,a+<span class="number">5</span>);<span class="comment">//v5的size为5，v5被初始化为a的5个值。后一个指针要指向将被拷贝的末元素的下一位置。</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; v6(v5);<span class="comment">//v6是v5的拷贝</span></span><br><span class="line"><span class="built_in">vector</span>&lt; 类型 &gt; 标识符（最大容量，初始全部值）</span><br></pre></td></tr></table></figure>
-<p>Vector的基本函数</p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1.</span>push_back 在数组的最后添加一个数据</span><br><span class="line"><span class="number">2.</span>pop_back 去掉数组的最后一个数据</span><br><span class="line"><span class="number">3.</span>at 得到编号位置的数据</span><br><span class="line"><span class="number">4.b</span>egin 得到数组头的指针</span><br><span class="line"><span class="number">5.</span>end 得到数组的最后一个单元+<span class="number">1</span>的指针</span><br><span class="line"><span class="number">6</span>．front 得到数组头的引用</span><br><span class="line"><span class="number">7.b</span>ack 得到数组的最后一个单元的引用</span><br><span class="line"><span class="number">8.</span>max_size 得到<span class="built_in">vector</span>最大可以是多大</span><br><span class="line"><span class="number">9.</span>capacity 当前<span class="built_in">vector</span>分配的大小</span><br><span class="line"><span class="number">10.</span>size 当前使用数据的大小</span><br><span class="line"><span class="number">11.</span>resize 改变当前使用数据的大小，如果它比当前使用的大，者填充默认值</span><br><span class="line"><span class="number">12.</span>reserve 改变当前vecotr所分配空间的大小</span><br><span class="line"><span class="number">13.</span>erase 删除指针指向的数据项</span><br><span class="line"><span class="number">14.</span>clear 清空当前的<span class="built_in">vector</span></span><br><span class="line"><span class="number">15.</span>rbegin 将<span class="built_in">vector</span>反转后的开始指针返回(其实就是原来的end<span class="number">-1</span>)</span><br><span class="line"><span class="number">16.</span>rend 将<span class="built_in">vector</span>反转构的结束指针返回(其实就是原来的begin<span class="number">-1</span>)</span><br><span class="line"><span class="number">17.</span>empty 判断<span class="built_in">vector</span>是否为空</span><br><span class="line"><span class="number">18.</span>swap 与另一个<span class="built_in">vector</span>交换数据</span><br></pre></td></tr></table></figure>
-<p>2.to_string</p>
-<p><code>#include &lt;string&gt;</code></p>
-<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">int</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">long</span> <span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">unsigned</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">unsigned</span> <span class="keyword">long</span> <span class="keyword">long</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">float</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">double</span> val)</span></span>;</span><br><span class="line"><span class="function"><span class="built_in">string</span> <span class="title">to_string</span> <span class="params">(<span class="keyword">long</span> <span class="keyword">double</span> val)</span></span>;</span><br></pre></td></tr></table></figure>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/11/09/eat/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Pan Sicheng">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Good Good Study">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/11/09/eat/" itemprop="url">eat</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-11-09T11:10:19+08:00">
-                2018-11-09
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h1 id="吃饭饭"><a href="#吃饭饭" class="headerlink" title="吃饭饭"></a><strong>吃饭饭</strong></h1>
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -1729,7 +1920,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">29</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
